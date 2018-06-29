@@ -6,6 +6,7 @@
 
 <script>
   import 'bootstrap/dist/js/bootstrap.min.js'
+  import '../public/scripts/lib/bootstrap.datepicker'
 
   export default {
     name: 'App'
