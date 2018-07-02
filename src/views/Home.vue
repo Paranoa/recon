@@ -110,12 +110,12 @@ export default {
     api.test()
       .then(res => this.account = { cname: res.name, role: 1 })
   },
-  beforeRouteEnter(to, from, next) { // 渲染该组件的路由前被调用，不能获取组件实例this
+  beforeRouteEnter(to, from, next) {
     next(vm => {
       vm.routeName = to.name
     })
   },
-  beforeRouteUpdate(to, from, next) {   // 路由改变，组件被复用时调用，能获取组件实例this
+  beforeRouteUpdate(to, from, next) {
     this.routeName = to.name
     next()
   }
