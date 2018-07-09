@@ -11,9 +11,10 @@
     "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "jquery": "^3.3.1",
-    "jqueryui": "^1.11.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
+    "vue-upload-component": "^2.8.9",
+    "vuejs-datepicker": "^1.5.2",
     "vuejs-paginate": "^1.9.3"
   },
   "devDependencies": {
@@ -25,7 +26,8 @@
   "eslintConfig": {
     "root": true,
     "globals": {
-      "$": true
+      "$": true,
+      "CountUp": true
     },
     "env": {
       "node": true

@@ -13,6 +13,6 @@ module.exports = {
     ]
   },
   devServer: {
-    proxy: 'https://beta.geexfinance.com/recon'
+    proxy: 'https://beta.geexfinance.com/recon/'
   }
 }

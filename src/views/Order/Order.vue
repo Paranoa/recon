@@ -34,23 +34,23 @@
                 </div>
               </div>
               <div class="row-fluid filter-block">
-                  <div class="pull-left search-line">
-                      <span>
-                          时间：<input type="text" name="search_start" v-model="query.search_start" class="input-large datepicker search_start" maxlength="20"> 
-                      至：<input type="text" name="search_end" v-model="query.search_end" class="input-large datepicker search_end" maxlength="20"></span>
-                      <span>
-                          <label style="display: inline">
-                            <input style="width: 10px; min-width:0" type="radio" value="1" v-model="type">申请时间
-                          </label>
-                          <label style="display: inline">
-                            <input style="width: 10px; min-width:0" type="radio" value="2" v-model="type">放款时间
-                          </label>
-                      </span>
-                  </div>
-                  <div class="pull-right search-buttons">
-                      <div class="btn-glow search_btn" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
-                      <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
-                  </div>
+                <div class="pull-left search-line">
+                  <span>
+                      时间：<datepicker input-class="datepicker-input" v-model="query.search_start"></datepicker>
+                  至：<datepicker input-class="datepicker-input" v-model="query.search_end"></datepicker></span>
+                  <span>
+                      <label style="display: inline">
+                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="type">申请时间
+                      </label>
+                      <label style="display: inline">
+                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="type">放款时间
+                      </label>
+                  </span>
+                </div>
+                <div class="pull-right search-buttons">
+                  <div class="btn-glow search_btn" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
+                  <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
+                </div>
               </div>
             </form>
             <div class="row-fluid">
@@ -68,8 +68,6 @@
                     <th class="span1"><span class="line"></span>审批日期</th>
                     <th class="span1"><span class="line"></span>放款日期</th>
                     <th class="span1"><span class="line"></span>销售姓名</th>
-                    <th v-if="ONLINE_MERCHANT.includes(account.merchant_code)" class="span1"><span class="line"></span>商户单号</th>
-                    <th v-if="account.merchant_code === 'hlh01'" class="span1"><span class="line"></span>销售座机</th>
                     <th class="span1"><span class="line"></span>产品类型</th>
                     <th class="span1"><span class="line"></span>状态</th>
                     <th class="span1"><span class="line"></span>门店</th>
@@ -85,50 +83,54 @@
                     <td>{{ order.C_MBL_TEL }}</td>
                     <td>{{ order.N_AMT_APPLIED | fix2 }}</td>
                     <td class="{ red: order.N_APP_STATUS === 130 }">{{ order.N_AMT_DRAWDOWN | fix2 }}</td>
-                    <td v-if="[130, 160].includes(+order.N_APP_STATUS)">
-                      <template v-if="order.C_FUND_ID === 'NYB01'">
-                        {{ order.C_NAME_CN }}
-                      </template>
-                      <template v-else>
-                        {{ LOAN_SHOW_FUND_MEAN[order.C_FUND_ID] }}
+                    <td>
+                      <template v-if="[130, 160].includes(+order.N_APP_STATUS)">
+                        <template v-if="order.C_FUND_ID === 'NYB01'">
+                          {{ order.C_NAME_CN }}
+                        </template>
+                        <template v-else>
+                          {{ order.C_FUND_ID | fundMean }}
+                        </template>
                       </template>
                     </td>
                     <td>{{ order.N_TENOR_APPLIED }}</td>
                     <td>{{ order.pdt }}</td>
-                    <td>{{ order.D_DECISION.substring(0, 10) }}></td>
-                    <td>{{ order.D_DRAWDOWN.substring(0, 10) }}</td>
+                    <td>{{ order.D_DECISION | len10 }}</td>
+                    <td>{{ order.D_DRAWDOWN | len10 }}</td>
                     <td>{{ order.C_SALES_ID }}</td>
-                    <td v-if="ONLINE_MERCHANT.includes(account.merchant_code)">{{ order.ORDER_ID }}</td>
-                    <td v-if="account.merchant_code === 'hlh01'">{{ order.C_SALES_TEL }}</td>
                     <td>
                       <template v-if="order.N_DDG_FLAG === '1'">单单过</template>
                     </td>
                     <td>
-                      <span class="label" :class="GEEX_STATUS_CLASS_MAP[order.N_APP_STATUS]">
+                      <span class="label" :class="order.N_APP_STATUS | statusClass">
                         <template v-if="order.N_APP_STATUS === '130' && order.D_SEND_FUND_TIME">
                           已通知银行放款
                         </template>
                         <template v-else>
-                          {{ GEEX_ALL_STATUS_MEAN[order.N_APP_STATUS] }}
+                          {{ order.N_APP_STATUS | statusMean }}
                         </template>
                       </span>
                     </td>
                     <td>{{ order.STORE_NAME }}</td>
                     <td>{{ order.C_APP_ID }}</td>
-                    <td>{{ order.C_APP_TYPE | apptype }}</td>
+                    <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
                       <template v-if="order.N_APP_STATUS === '160'">
-                        <div v-if="['0','2','3','4','5','8','21','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="myRefundModal(order)">退贷预约</div>
-                        <div v-else-if="['2','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_cancelrefund" @click="myCancelRefundModal(order)">查看/取消预约</div>
-                        <div class="btn-glow bt_refund" @click="myModal(order)">上传凭证</div>
-                        <span v-if="order.N_LOAN_AFTER_STATUS" class="label">{{ LOAN_AFTER_SHOW_STATUS_MEAN[order.N_LOAN_AFTER_STATUS] || '' }}</span>
-                        <div v-if="order.SHOW_APPLY_BUTTON" class="btn-glow btn btn-lg bt_applyLoan myApplyLoanModalButton">{{ SHOW_APPLY_BUTTON_NAME }}</div>
+                        <div v-if="!['0','2','3','4','5','8','21','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="modalId.refund = order.C_APP_ID, modal.refund = true">退贷预约
+                        </div>
+                        <template v-else>
+                          <template v-if="['2','23'].includes(order.N_LOAN_AFTER_STATUS)">
+                            <div class="btn-glow bt_cancelrefund" @click="modalId.refundCancel = order.C_APP_ID, modal.refundCancel = true">查看/取消预约</div>
+                            <div class="btn-glow bt_refund" @click="modalId.refundConf = order.C_APP_ID, modal.refundConf = true">上传凭证</div>
+                          </template>
+                          <span v-else-if="order.N_LOAN_AFTER_STATUS" class="label">
+                            {{ order.N_LOAN_AFTER_STATUS | loanAfterStatus }}
+                          </span>
+                        </template>
                       </template>
-                      <template v-else-if="order.N_APP_STATUS === '103'">
-                        <div class="btn-glow bt_tryddg" @click="myDDGModal(order)">审核通过</div>
-                        <div class="btn-glow bt_refuseddg">审核拒绝</div>
-                      </template>
-                      <input type="hidden" class="return_mark" v-model="order.mark">
+                      <div v-if="order.SHOW_APPLY_BUTTON" class="btn-glow btn btn-lg bt_applyLoan" @click="modalId.applyLoan = order.C_APP_ID, modal.applyLoan = true">
+                        {{ order.SHOW_APPLY_BUTTON_NAME }}
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -140,14 +142,26 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <paginate :page-count="20" :page-range="5" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="change"></paginate>
+        <Paginate :page-count="orderPageCount" :page-range="5" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="queryOrder"></Paginate>
       </div>
     </div>
+    <aside class="backdrop" v-show="hasModal"></aside>
+    <RefundModal v-if="modal.refund" width="560px" title="退贷预约" :modalId="modalId.refund" @close="closeModal('refund')"></RefundModal>
+    <RefundCancelModal v-if="modal.refundCancel" width="560px" title="退贷预约" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')"></RefundCancelModal>
+    <ApplyLoanModal v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')"></ApplyLoanModal>
+    <RefundConfModal v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')"></RefundConfModal>
   </div>
 </template>
 
 <script>
+  import api from '@/api/api'
   import Paginate from 'vuejs-paginate'
+  import Datepicker from '@/components/Datepicker.vue'
+  
+  import RefundModal from './RefundModal.vue'
+  import RefundCancelModal from './RefundCancelModal.vue'
+  import ApplyLoanModal from './ApplyLoanModal.vue'
+  import RefundConfModal from './RefundConfModal.vue'
 
   export default {
     name: 'order',
@@ -158,16 +172,61 @@
         stores: [],
         orders: [],
         GEEX_SHOW_STATUS_MEAN: [],
-        ONLINE_MERCHANT: [],
         type: '2',
+        ordersTotal: 0,
+        modal: {
+          refund: false,
+          refundCancel: false,
+          uploadProof: false,
+          applyLoan: false,
+          refundConf: false,
+        },
+        modalId: {
+          refund: '',
+          refundCancel: '',
+          uploadProof: '',
+          applyLoan: '',
+          refundConf: '',
+        },
+        file: []
+      }
+    },
+    computed: {
+      orderPageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
+      hasModal () {
+        for (var key in this.modal) {
+          if (this.modal[key]) {
+            return true
+          }
+        }
       }
     },
     components: {
-      Paginate
+      Paginate,
+      Datepicker,
+      RefundModal,
+      RefundCancelModal,
+      ApplyLoanModal,
+      RefundConfModal
+    },
+    mounted () {
+      this.queryOrder(1)
     },
     methods: {
-      change (param) {
-        console.log(param)
+      statusClass (status) {
+        return {
+          statusClass: status
+        }
+      },
+      queryOrder (page) {
+        api.queryOrder(page)
+          .then(({ rows, total }) => {
+            this.orders = rows
+            this.ordersTotal = total
+          })
+      },
+      closeModal(modalId) {
+        this.modal[modalId] = false
       }
     }
   }
@@ -340,7 +399,7 @@
 }
 .search-line { width: 79%;}
 .search-line >span:not(:last-of-type) { margin-right: 1%;}
- .search-line >span input {
+ .search-line >span input, .datepicker-input {
    height: 15px;
    line-height: 15px;
    width: 120px;
@@ -348,11 +407,12 @@
    margin-bottom: 6px;
    margin-top: 6px;
    min-width: 90px;
+   box-sizing: content-box;
  }
- .search-line >span input, .search-line >span .ui-select{
+ .search-line >span input, .search-line >span .ui-select, .datepicker-input{
   margin-left: 3px !important;
   margin-right: 5px;
-  width: 11%;
+  min-width: 150px;
  }
  .order-table thead th {
   box-sizing: content-box;
