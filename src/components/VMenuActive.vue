@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
   export default {
-    name: 'HomePoint'
+    name: 'VMenuActive'
   }
 </script>
 

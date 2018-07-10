@@ -36,8 +36,8 @@
               <div class="row-fluid filter-block">
                 <div class="pull-left search-line">
                   <span>
-                      时间：<datepicker input-class="datepicker-input" v-model="query.search_start"></datepicker>
-                  至：<datepicker input-class="datepicker-input" v-model="query.search_end"></datepicker></span>
+                      时间：<Datepicker input-class="datepicker-input" v-model="query.search_start" />
+                  至：<Datepicker input-class="datepicker-input" v-model="query.search_end" /></span>
                   <span>
                       <label style="display: inline">
                         <input style="width: 10px; min-width:0" type="radio" value="1" v-model="type">申请时间
@@ -77,7 +77,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="first" v-for="order of orders" :key="order.C_APP_ID" :value="order.C_APP_ID">
+                  <tr class="first" v-for="order of orders" :key="order.C_APP_ID">
                     <td>{{ order.D_APPLICATION }}</td>
                     <td>{{ order.C_NAME_CN }}</td>
                     <td>{{ order.C_MBL_TEL }}</td>
@@ -142,29 +142,27 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :page-count="orderPageCount" :page-range="5" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="queryOrder"></Paginate>
+        <Paginate :page-count="orderPageCount" @change="queryOrder" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <RefundModal v-if="modal.refund" width="560px" title="退贷预约" :modalId="modalId.refund" @close="closeModal('refund')"></RefundModal>
-    <RefundCancelModal v-if="modal.refundCancel" width="560px" title="退贷预约" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')"></RefundCancelModal>
-    <ApplyLoanModal v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')"></ApplyLoanModal>
-    <RefundConfModal v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')"></RefundConfModal>
+    <Refund v-if="modal.refund" width="560px" title="退贷预约" :modalId="modalId.refund" @close="closeModal('refund')" />
+    <RefundCancel v-if="modal.refundCancel" width="560px" title="退贷预约" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
+    <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" />
+    <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
   </div>
 </template>
 
 <script>
   import api from '@/api/api'
-  import Paginate from 'vuejs-paginate'
+  import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
-  
-  import RefundModal from './RefundModal.vue'
-  import RefundCancelModal from './RefundCancelModal.vue'
-  import ApplyLoanModal from './ApplyLoanModal.vue'
-  import RefundConfModal from './RefundConfModal.vue'
+  import Refund from './OrderRefund.vue'
+  import RefundCancel from './OrderRefundCancel.vue'
+  import ApplyLoan from './OrderApplyLoan.vue'
+  import RefundConf from './OrderRefundConf.vue'
 
   export default {
-    name: 'order',
     data () {
       return {
         account: {},
@@ -204,20 +202,15 @@
     components: {
       Paginate,
       Datepicker,
-      RefundModal,
-      RefundCancelModal,
-      ApplyLoanModal,
-      RefundConfModal
+      Refund,
+      RefundCancel,
+      ApplyLoan,
+      RefundConf
     },
     mounted () {
       this.queryOrder(1)
     },
     methods: {
-      statusClass (status) {
-        return {
-          statusClass: status
-        }
-      },
       queryOrder (page) {
         api.queryOrder(page)
           .then(({ rows, total }) => {

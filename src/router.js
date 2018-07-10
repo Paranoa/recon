@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './views/Login.vue'
-import Home from './views/Home.vue'
-import HomeIndex from './views/HomeIndex/HomeIndex.vue'
-import OpenAccount from './views/OpenAccount/OpenAccount.vue'
-import Order from './views/Order/Order.vue'
-import CardOrder from './views/CardOrder/CardOrder.vue'
-import RForder from './views/RForder/RForder.vue'
-import TkOrder from './views/TkOrder/TkOrder.vue'
-import Resetpwd from './views/Resetpwd/Resetpwd.vue'
+import Login from '@/views/Login.vue'
+import Home from '@/views/Home.vue'
+import HomeIndex from '@/views/HomeIndex/HomeIndex.vue'
+import OpenAccount from '@/views/OpenAccount/OpenAccount.vue'
+import Order from '@/views/Order/Order.vue'
+import CardOrder from '@/views/CardOrder/CardOrder.vue'
+import DdgOrder from '@/views/DdgOrder/DdgOrder.vue'
+import RForder from '@/views/RForder/RForder.vue'
+import TkOrder from '@/views/TkOrder/TkOrder.vue'
+import Resetpwd from '@/views/Resetpwd/Resetpwd.vue'
 
 
 Vue.use(Router)
@@ -47,6 +48,11 @@ export default new Router({
           path: 'cardOrder',
           component: CardOrder,
           name: 'cardOrder'
+        },
+        {
+          path: 'ddgOrder',
+          component: DdgOrder,
+          name: 'ddgOrder'
         },
         {
           path: 'rforder',

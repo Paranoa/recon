@@ -1,5 +1,5 @@
 <template>
-  <modal :title="title" :width="width" @close="close">
+  <BaseModal :title="title" :width="width" @close="close">
     <template slot="body">
       <div class="content-body">
         <div class="form-group clearfix">
@@ -39,11 +39,11 @@
       <button type="button" class="btn btn-primary" @click="cancel">取消预约</button>
       <button type="button" class="btn btn-default" @click="close">关闭</button>
     </template>   
-  </modal>
+  </BaseModal>
 </template>
 
 <script>
-  import Modal from '@/components/Modal.vue'
+  import BaseModal from '@/components/BaseModal.vue'
   import api from '@/api/api'
 
   export default {
@@ -54,7 +54,7 @@
       }
     },
     components: {
-      Modal,
+      BaseModal,
     },
     methods: {
       close () {

@@ -1,7 +1,7 @@
 <template>
-  <file-upload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" post-action="/upload/post.php">
+  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" post-action="/upload/post.php">
     <slot></slot>
-  </file-upload>
+  </FileUpload>
 </template>
 <script>
 import FileUpload from 'vue-upload-component'

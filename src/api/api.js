@@ -3,6 +3,7 @@ import { apiUrl } from '@/api/config'
 export default {
   test,
   login,
+  storeFundList,
   get,
   post,
   queryOrder
@@ -10,6 +11,10 @@ export default {
 
 function login (data) {
   return post(apiUrl.login, data)
+}
+
+function storeFundList(data) {
+  return get(apiUrl.storeFundList, data)
 }
 
 function test () {
@@ -22,7 +27,7 @@ function queryOrder (data) {
 
 function get (url, params) {
   return new Promise((resolve, reject) => {
-    $.get(url, { params })
+    $.get(url, params)
       .then(res => {
         if (res) {
           if (res.success) {

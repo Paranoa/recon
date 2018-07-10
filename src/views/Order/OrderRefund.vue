@@ -1,10 +1,10 @@
 <template>
-  <modal :title="title" :width="width" @close="close">
+  <BaseModal :title="title" :width="width" @close="close">
     <template slot="body">
       <div class="content-body">
         <div class="form-group clearfix">
           <label class="col-lg-2 fl" style="font-size:12px; margin-top: 10px">预约退贷打款日期：</label>
-          <datepicker input-class="datepicker-input" v-model="reserveDate" @input="findRefund"></datepicker>
+          <Datepicker input-class="datepicker-input" v-model="reserveDate" @input="findRefund" />
           <div style="width:240px;height:50px;float:right;">请在预约日期16:00之前完成打款，否则需要重新预约，可能会产生费用</div>
         </div>
         <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;">
@@ -40,11 +40,11 @@
       <button type="button" class="btn btn-primary" @click="yuyue">预约</button>
       <button type="button" class="btn btn-default" @click="close">关闭</button>
     </template>   
-  </modal>
+  </BaseModal>
 </template>
 
 <script>
-  import Modal from '@/components/Modal.vue'
+  import BaseModal from '@/components/BaseModal.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import api from '@/api/api'
 
@@ -56,7 +56,7 @@
       }
     },
     components: {
-      Modal,
+      BaseModal,
       Datepicker
     },
     methods: {

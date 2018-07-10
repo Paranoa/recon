@@ -1,5 +1,5 @@
 <template>
-  <Modal :title="title" :width="width" @close="close">
+  <BaseModal :title="title" :width="width" @close="close">
     <template slot="body">
       <div class="content-body form-horizontal">
         <div class="form-group clearfix">
@@ -36,11 +36,11 @@
       <button type="button" class="btn btn-primary" @click="submit">提交</button>
       <button type="button" class="btn btn-default" @click="close">关闭</button>
     </template>
-  </Modal>
+  </BaseModal>
 </template>
 
 <script>
-  import Modal from '@/components/Modal.vue'
+  import BaseModal from '@/components/BaseModal.vue'
   import FileUpload from '@/components/FileUpload.vue'
   import api from '@/api/api'
 
@@ -52,7 +52,7 @@
       }
     },
     components: {
-      Modal,
+      BaseModal,
       FileUpload,
     },
     methods: {

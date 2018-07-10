@@ -31,42 +31,49 @@
     <div id="sidebar-nav">
       <ul id="dashboard-menu">
         <li v-if="[1, 3, 4].includes(account.role)" :class="{ 'active': routeName === 'homeIndex' }">
-          <HomePoint v-if="routeName === 'homeIndex'" class="pointer"></HomePoint>
+          <VMenuActive v-if="routeName === 'homeIndex'" class="pointer"></VMenuActive>
           <router-link to="/home/index">
             <i class="icon-home"></i>
             <span>主页</span>
           </router-link>
         </li>
         <li v-if="[3, 4].includes(account.role)" :class="{ 'active': routeName === 'openAccount' }">
-          <HomePoint v-if="routeName === 'openAccount'" class="pointer"></HomePoint>
+          <VMenuActive v-if="routeName === 'openAccount'" class="pointer"></VMenuActive>
           <router-link to="/home/openAccount">
             <i class="icon-tasks"></i>
             <span>渠道管理</span>
           </router-link>
         </li>
         <li v-if="[1, 3, 4].includes(account.role)" :class="{ 'active': routeName === 'order' }">
-          <HomePoint v-if="routeName === 'order'" class="pointer"></HomePoint>
+          <VMenuActive v-if="routeName === 'order'" class="pointer"></VMenuActive>
           <router-link to="/home/order">
             <i class="icon-th-large"></i>
             <span>订单查询(无卡)</span>
           </router-link>
         </li>
         <li v-if="[1, 3, 4].includes(account.role)" :class="{ 'active': routeName === 'cardOrder' }">
-          <HomePoint v-if="routeName === 'cardOrder'" class="pointer"></HomePoint>
+          <VMenuActive v-if="routeName === 'cardOrder'" class="pointer"></VMenuActive>
           <router-link to="/home/cardOrder">
             <i class="icon-credit-card"></i>
             <span>刷卡消费</span>
           </router-link>
         </li>
+        <li v-if="[3, 4].includes(account.role)" :class="{ 'active': routeName === 'ddgOrder' }">
+          <VMenuActive v-if="routeName === 'ddgOrder'" class="pointer"></VMenuActive>
+          <router-link to="/home/ddgOrder">
+            <i class="icon-credit-card"></i>
+            <span>单单过订单</span>
+          </router-link>
+        </li>
         <li v-if="[1, 3, 4].includes(account.role) && REFUND_MERCHANT.includes(account.merchant_code)" :class="{ 'active': routeName === 'rforder' }">
-          <HomePoint v-if="routeName === 'rforder'" class="pointer"></HomePoint>
+          <VMenuActive v-if="routeName === 'rforder'" class="pointer"></VMenuActive>
           <router-link to="/home/rforder">
             <i class="icon-th-large"></i>
             <span>取消订单</span>
           </router-link>
         </li>
         <li v-if="[92].includes(account.role)" :class="{ 'active': routeName === 'tkorder' }">
-          <HomePoint v-if="routeName === 'tkorder'" class="pointer"></HomePoint>
+          <VMenuActive v-if="routeName === 'tkorder'" class="pointer"></VMenuActive>
           <router-link to="/home/tkorder">
             <i class="icon-th-large"></i>
             <span>退款处理</span>
@@ -80,7 +87,7 @@
 
 <script>
 import api from '@/api/api'
-import HomePoint from '@/components/HomePoint.vue'
+import VMenuActive from '@/components/VMenuActive.vue'
 
 export default {
   name: 'home',
@@ -94,7 +101,7 @@ export default {
     }
   },
   components: {
-    HomePoint
+    VMenuActive,
   },
   methods: {
     resetPwd () {
@@ -108,7 +115,7 @@ export default {
   },
   mounted () {
     api.test()
-      .then(res => this.account = { cname: res.name, role: 1 })
+      .then(res => this.account = { cname: res.name, role: 3 })
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
