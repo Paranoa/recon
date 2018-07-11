@@ -1,4 +1,7 @@
 import { apiUrl } from '@/api/config'
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
 
 export default {
   test,
@@ -10,6 +13,7 @@ export default {
   storeDeposit,
   storeDepositStatus,
   billingDetail,
+  cardOrderList
 }
 
 function login (data) {
@@ -40,42 +44,46 @@ function queryOrder (data) {
   return get(apiUrl.queryOrder, data)
 }
 
+function cardOrderList (data) {
+  return get(apiUrl.cardOrderList, data)
+}
+
 function get (url, params) {
   return new Promise((resolve, reject) => {
-    $.get(url, params)
-      .then(res => {
-        if (res) {
-          if (res.success) {
-            resolve(res.result)
+    axios.get(url, params)
+      .then(({ data }) => {
+        if (data) {
+          if (data.success) {
+            resolve(data.result)
           } else {
-            reject(res.errorMessage || '接口错误:' + url)
+            reject(data.errorMessage || '接口错误:' + url)
           }
         } else {
-          reject('错误:' + JSON.stringify(res))
+          reject('错误:' + JSON.stringify(data))
         }
       })
-      .catch(err => {
-        reject('错误:' + JSON.stringify(err))
+      .catch(({ response }) => {
+        reject('错误:' + JSON.stringify(response.data))
       })
   })
 }
 
 function post (url, body) {
   return new Promise((resolve, reject) => {
-    $.post(url, body)
-      .then(res => {
-        if (res) {
-          if (res.success) {
-            resolve(res.result)
+    axios.post(url, body)
+      .then(({ data }) => {
+        if (data) {
+          if (data.success) {
+            resolve(data.result)
           } else {
-            reject(res.errorMessage || '接口错误:' + url)
+            reject(data.errorMessage || '接口错误:' + url)
           }
         } else {
-          reject('错误:' + JSON.stringify(res))
+          reject('错误:' + JSON.stringify(data))
         }
       })
-      .catch(err => {
-        reject('错误:' +JSON.stringify(err))
+      .catch(({ response }) => {
+        reject('错误:' + JSON.stringify(response.data))
       })
   })
 }
