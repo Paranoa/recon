@@ -20,8 +20,8 @@
       Paginate
     },
     methods: {
-      change () {
-        this.$emit('change')
+      change (page) {
+        this.$emit('change', page)
       }
     }
   }
