@@ -2,21 +2,24 @@
   <BaseModal :title="title" :width="width" @close="close">
     <template slot="body">
       <div style="height: 430px">
-        <table class="table table-bordered table-hover table-condensed" id="cashRecordTable">
+        <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
-              <th data-column-id="requestId" style="width: 20em">提现批次号</th>
-              <th data-column-id="amount">提现金额(元)</th>
-              <th data-column-id="status">提现状态</th>
-              <th data-column-id="showTime">提现时间</th>
+              <th style="width: 20em">提现批次号</th>
+              <th>提现金额(元)</th>
+              <th>提现状态</th>
+              <th>提现时间</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="record of records" :key="record.id">
               <td>{{ record.requestId }}</td>
               <td>{{ record.amount }}</td>
-              <td>{{ record.status }}</td>
-              <td>{{ record.showTime }}</td>
+              <td>{{ record.status | cashStatus }}</td>
+              <td>{{ record.createTime }}</td>
+            </tr>
+            <tr v-if="!records.length">
+              <td colspan="4" class="txtcenter">加载中...</td>
             </tr>
           </tbody>
         </table>
@@ -35,21 +38,19 @@
 
 <script>
   import BaseModal from '@/components/BaseModal.vue'
-  import FileUpload from '@/components/FileUpload.vue'
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api/api'
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['title', 'width', 'modalParam'],
     data () {
       return {
-        mark: '',
-        ordersTotal: 0,
         records: []
       }
     },
     computed: {
       pageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
+      ordersTotal: vm => vm.records.length,
     },
     components: {
       BaseModal,
@@ -64,7 +65,13 @@
       }
     },
     mounted () {
-      console.log('load' + this.modalId)
+      console.log(this.modalParam)
+      api.storeDepositStatus({
+        storeCode: this.modalParam.storeCode,
+        fundId: this.modalParam.quDaoCode
+      })
+      .then(res => this.records = res)
+      .catch(err => alert(err))
     }
   }
 </script>

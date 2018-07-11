@@ -1,5 +1,5 @@
 <template>
-  <BaseModal :title="title" :width="width" @close=close>
+  <BaseModal :title="title" :width="width" @close="close">
     <template slot="body">
       <div>
         <div style="margin:10px auto; width: 400px;height: 50px">
@@ -27,16 +27,31 @@
         cashAmount: 100
       }
     },
+    computed: {
+      formValidate () {
+        return /^[1-9](\d+)?$/.test(this.cashAmount)
+      }
+    },
     components: {
       BaseModal
     },
     methods: {
       confirm () {
-        console.log(this.modalId + ' ' + cashAmount)
+        if (this.formValidate) {
+          console.log(this.modalId + ' ' + this.cashAmount)
+          this.$emit('inputed', this.cashAmount)
+        } else {
+          alert('提现金额1元起提，且金额为整数')
+        }
       },
       close () {
         this.$emit('close')
       }
     }
-  }  
+  }
+
+  function valForm () {
+
+  }
+
 </script>

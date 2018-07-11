@@ -6,15 +6,30 @@ export default {
   storeFundList,
   get,
   post,
-  queryOrder
+  queryOrder,
+  storeDeposit,
+  storeDepositStatus,
+  billingDetail,
 }
 
 function login (data) {
   return post(apiUrl.login, data)
 }
 
-function storeFundList(data) {
+function storeFundList (data) {
   return get(apiUrl.storeFundList, data)
+}
+
+function storeDeposit (data) {
+  return post(apiUrl.storeDeposit, data)
+}
+
+function storeDepositStatus (data) {
+  return post(apiUrl.storeDepositStatus, data)
+} 
+
+function billingDetail (data) {
+  return post(apiUrl.billingDetail, data)
 }
 
 function test () {
@@ -53,10 +68,10 @@ function post (url, body) {
           if (res.success) {
             resolve(res.result)
           } else {
-            reject(res.errMsg || '接口失败:' + url)
+            reject(res.errorMessage || '接口错误:' + url)
           }
         } else {
-          reject('接口错误:' + JSON.stringify(res))
+          reject('错误:' + JSON.stringify(res))
         }
       })
       .catch(err => {

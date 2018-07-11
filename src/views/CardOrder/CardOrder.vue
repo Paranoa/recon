@@ -331,9 +331,6 @@
         opacity: 1; }
   .table-products .label {
     position: relative; }
-  .table-products .pagination {
-    float: right;
-    margin-top: 35px; }
 .search-box label {
   display: inline-block;
   margin: 0 2%;
@@ -384,33 +381,7 @@
 #pad-wrapper {
   margin-top: 20px;
 }
-.pagination-aside {
-  padding: 0 46px;
-}
- .pagination-aside >span{
-  float: left;
-  line-height: 48px;
- }
- .pagination-aside > em{
-  margin: 0 2px;
-  color: #0088cc;
- }
- .pagination-aside > a{
-  margin: 0 3px;
-  cursor: pointer;
- }
- .pagination-aside .pagination{ 
-  display: inline-block; 
-  vertical-align: middle;
- }
- .pagination-aside .pagination ul > li >a{
-     font-size: 12px;
-     color: #4f4f4f;
- }
- .pagination ul {
-     vertical-align: middle;
-     margin-left: 10px;
- }
+
 /* responsive */
 @media (max-width: 767px) {
   #main-stats {
