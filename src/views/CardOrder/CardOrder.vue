@@ -111,7 +111,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :page-count="orderPageCount" @change="queryOrder" />
+        <Paginate :page-count="orderPageCount" @change="cardOrderList" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
@@ -157,11 +157,15 @@
       CCIRefund,
     },
     mounted () {
-      this.queryOrder(1)
+      this.cardOrderList(1)
     },
     methods: {
-      queryOrder (page) {
-        api.queryOrder(page)
+      cardOrderList (page) {
+        api.cardOrderList({
+          page,
+          store_code: 'shyj',
+          app_status: ''
+        })
           .then(({ rows, total }) => {
             this.orders = rows
             this.ordersTotal = total

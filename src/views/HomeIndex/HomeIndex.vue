@@ -37,9 +37,9 @@
           <div class="alert alert-success search-box">
             <div class="field-box">
               <label>开始时间:</label>
-              <datepicker input-class="datepicker-input" v-model="search_start" @input="getData"></datepicker>
+              <Datepicker input-class="datepicker-input" v-model="search_start" @input="getData" />
               <label>结束时间:</label>
-              <datepicker input-class="datepicker-input" v-model="search_end" @input="getData"></datepicker>
+              <Datepicker input-class="datepicker-input" v-model="search_end" @input="getData" />
             </div>
           </div>
         </div>
@@ -72,28 +72,31 @@ export default {
   },
   methods: {
     getData () {
-      console.log(this.search_start + ' ' + this.search_end)
-      return api.get('../mock/test.json')
-        .then(res => {
-          this.totalOrder = res.totalOrder;
-          this.totalOrderPass = res.totalOrderPass;
-          this.totalAmount = res.totalAmount;
-          this.totalAmountPass = res.totalAmountPass;
+      return api.homeInfo({
+        search_start: this.search_start,
+        search_end: this.search_end
+      })
+      .then(res => {
+        this.totalOrder = res.totalOrder;
+        this.totalOrderPass = res.totalOrderPass;
+        this.totalAmount = res.totalAmount;
+        this.totalAmountPass = res.totalAmountPass;
 
-          initCountUp([{
-            id: 'totalOrder',
-            value: this.totalOrder
-          },{
-            id: 'totalOrderPass',
-            value: this.totalOrderPass
-          },{
-            id: 'totalAmount',
-            value: this.totalAmount
-          },{
-            id: 'totalAmountPass',
-            value: this.totalAmountPass
-          }])
-        })
+        initCountUp([{
+          id: 'totalOrder',
+          value: this.totalOrder
+        },{
+          id: 'totalOrderPass',
+          value: this.totalOrderPass
+        },{
+          id: 'totalAmount',
+          value: this.totalAmount
+        },{
+          id: 'totalAmountPass',
+          value: this.totalAmountPass
+        }])
+      })
+      .catch(err => alert(err))
     }
   }
 }

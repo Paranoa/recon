@@ -6,6 +6,7 @@ axios.defaults.withCredentials = true
 export default {
   test,
   login,
+  homeInfo,
   storeFundList,
   get,
   post,
@@ -18,6 +19,10 @@ export default {
 
 function login (data) {
   return post(apiUrl.login, data)
+}
+
+function homeInfo (data) {
+  return post(apiUrl.homeInfo, data)
 }
 
 function storeFundList (data) {
@@ -50,7 +55,7 @@ function cardOrderList (data) {
 
 function get (url, params) {
   return new Promise((resolve, reject) => {
-    axios.get(url, params)
+    axios.get(url, { params })
       .then(({ data }) => {
         if (data) {
           if (data.success) {
@@ -68,9 +73,13 @@ function get (url, params) {
   })
 }
 
-function post (url, body) {
+function post (url, params) {
+  var urlParams = new URLSearchParams()
+  for (var key in params) {
+    urlParams.append(key, params[key])
+  }
   return new Promise((resolve, reject) => {
-    axios.post(url, body)
+    axios.post(url, urlParams)
       .then(({ data }) => {
         if (data) {
           if (data.success) {

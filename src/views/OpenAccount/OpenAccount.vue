@@ -115,12 +115,17 @@
         this.modal[modalId] = false
       },
       cashKL (fund) {
+        var newWin = window.open()
+        newWin.document.body.innerHTML = '加载中...';
+
         api.storeDeposit({
           storeCode: fund.storeCode,
-          fundId: 'KLJ01'
+          fundId: 'KLJ01',
+          depositAmount: 0,
         })
         .then(res => {
-
+          newWin.document.write(res)
+          newWin.focus()
         })
         .catch(err => alert(err))
       },
@@ -139,12 +144,6 @@
         .catch(err => {
           alert(err)
         })
-      },
-      cashRecordKL (fund) {
-        console.log(fund)
-      },
-      cashRecordSSJ (fund) {
-        console.log(fund)
       }
     },
     mounted () {

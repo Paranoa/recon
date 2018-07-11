@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="record of records" :key="record.id">
+            <tr v-for="record of recordsCurPage" :key="record.id">
               <td>{{ record.requestId }}</td>
               <td>{{ record.amount }}</td>
               <td>{{ record.status | cashStatus }}</td>
@@ -23,9 +23,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="pagination-aside">
+        <div class="pagination-aside" v-if="recordsCurPage.length">
           <div class="pagination">
-            <Paginate :page-count="pageCount" @change="getCashRecord" />
+            <Paginate :page-count="pageCount" @change="turnPage" />
           </div>
         </div>
       </div>
@@ -41,16 +41,23 @@
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api/api'
 
+  const ROWS_COUNT = 10
+
   export default {
     props: ['title', 'width', 'modalParam'],
     data () {
       return {
-        records: []
+        records: [],
+        curPage: 1,
       }
     },
     computed: {
-      pageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
+      pageCount: vm => (Math.ceil(vm.ordersTotal/ROWS_COUNT) || 1),
       ordersTotal: vm => vm.records.length,
+      recordsCurPage () {
+        var pageCount = this.curPage - 1
+        return this.records.slice( pageCount * ROWS_COUNT, (pageCount + 1) * ROWS_COUNT)
+      }
     },
     components: {
       BaseModal,
@@ -60,12 +67,11 @@
       close () {
         this.$emit('close')
       },
-      getCashRecord () {
-
+      turnPage (page) {
+        this.curPage = page
       }
     },
     mounted () {
-      console.log(this.modalParam)
       api.storeDepositStatus({
         storeCode: this.modalParam.storeCode,
         fundId: this.modalParam.quDaoCode
