@@ -1,8 +1,6 @@
 import { apiUrl } from '@/api/config'
 import axios from 'axios'
 
-axios.defaults.withCredentials = true
-
 export default {
   test,
   login,

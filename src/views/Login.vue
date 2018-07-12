@@ -28,12 +28,13 @@
 
 <script>
 import api from '../api/api'
+import { apiUrl } from '@/api/config'
 
 export default {
   name: 'home',
   data () {
     return {
-      captchaSrc: 'getCode',
+      captchaSrc: apiUrl.getCode,
       username: '',
       password: '',
       vercode: '',
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     change_vercode () {
-      this.captchaSrc =  'getCode?seed=' + Math.random()
+      this.captchaSrc =  apiUrl.getCode+'?seed=' + Math.random()
     },
     login () {
       this.valForm()
