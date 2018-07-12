@@ -34,7 +34,7 @@
                   <td>{{ fund.tMoney }}</td>
                   <td class="btns">
                     <template v-if="fund.quDaoCode === 'KLJ01'">
-                      <div v-if="fund.openStatus === 'APPLYING' || fund.openStatus ==='BACK'" class="btn-glow btn btn-lg" @click="openAccount(fund)">开户</div>
+                      <div v-if="fund.openStatus === 'APPLYING' || fund.openStatus ==='BACK'" class="btn-glow btn btn-lg" @click="openAccountKL(fund)">开户</div>
                       <div v-if="fund.openStatus === 'AUDIT'">--</div>
                       <div v-if="fund.openStatus === 'PASSED'" class="btn-glow btn btn-lg"
                         @click="cashKL(fund)">提现</div>
@@ -42,12 +42,14 @@
                         @click="modal.cashRecord = true, modalParam.cashRecord = fund">提现记录</div>
                     </template>
                     <template v-else-if="fund.quDaoCode === 'SSJ01'">
-                      <div v-if="fund.openStatus === '4' || fund.openStatus ==='2'" class="btn-glow btn btn-lg" @click="openAccount(fund)">开户</div>
+                      <div v-if="fund.openStatus === '4' || fund.openStatus ==='2'" class="btn-glow btn btn-lg" @click="openAccountSSJ(fund)">开户</div>
                       <div v-if="fund.openStatus === '3'">--</div>
                       <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg"
                         @click="modal.ssjCash = true, modalParam.ssjCash = fund.storeCode">提现</div>
                       <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg"
                         @click="modal.cashRecord = true, modalParam.cashRecord = fund">提现记录</div>
+                      <div v-if="fund.openStatus === '5'" class="btn-glow btn btn-lg" @click="unlockSSJ(fund)">解锁</div>
+                      <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg" @click="ResetPwdSSJ(fund)">重置密码</div>
                     </template>
                   </td>
                 </tr>
@@ -70,7 +72,6 @@
       :modalId="modalParam.ssjCash"
       @close="closeModal('ssjCash')"
       @inputed="amount => { depositAmount = amount; cashSSJ()}"></SSJCash>
-
   </div>
 </template>
 
@@ -114,32 +115,83 @@
       closeModal (modalId) {
         this.modal[modalId] = false
       },
-      cashKL (fund) {
-        var newWin = window.open()
-        newWin.document.body.innerHTML = '加载中...';
+      openAccountKL (fund) {
+        api.storeOpenAccount({
+          storeCode: fund.storeCode,
+          fundId: fund.quDaoCode
+        })
+        .then(res => {
+          window.open(res)
+        })
+        .catch(err => {
+          if (/未上传图片.*请上传图片/.test(err)) {
 
+          } else {
+            alert(err)
+          }
+        })
+      },
+      openAccountSSJ (fund) {
+        api.storeOpenAccount({
+          storeCode: fund.storeCode,
+          fundId: fund.quDaoCode
+        })
+        .then(res => {
+          window.open(res)
+        })
+        .catch(err => {
+          if (/未上传图片.*请上传图片/.test(err)) {
+            
+          } else {
+            alert(err)
+          }
+        })
+      },
+      cashKL (fund) {
         api.storeDeposit({
           storeCode: fund.storeCode,
           fundId: 'KLJ01',
           depositAmount: 0,
         })
         .then(res => {
+          var newWin = window.open()
+          newWin.document.body.innerHTML = '加载中...';
           newWin.document.write(res)
           newWin.focus()
         })
         .catch(err => alert(err))
       },
       cashSSJ (fund) {
-        var newWin = window.open()
-        newWin.document.body.innerHTML = '加载中...';
-
         api.storeDeposit({
           storeCode: this.modalParam.ssjCash,
           fundId: 'SSJ01',
           depositAmount: this.depositAmount
         })
         .then(res => {
-          newWin.location.href = res
+          window.open(res)
+        })
+        .catch(err => {
+          alert(err)
+        })
+      },
+      unlockSSJ ({ storeCode }) {
+        api.storeUnlock({
+          storeCode
+        })
+        .then(res => {
+          window.open(res)
+        })
+        .catch(err => {
+          alert(err)
+        })
+
+      },
+      ResetPwdSSJ ({ storeCode }) {
+        api.storeResetPwd({
+          storeCode
+        })
+        .then(res => {
+          window.open(res)
         })
         .catch(err => {
           alert(err)
@@ -147,7 +199,7 @@
       }
     },
     mounted () {
-      api.storeFundList({ storeCode: 'csyd' })
+      api.storeFundList({ storeCode: 'SHYF-777,BJYF,qqqq,csyd' })
         .then(res => {
           this.storeInfos = res
         })

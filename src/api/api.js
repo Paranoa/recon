@@ -8,6 +8,9 @@ export default {
   login,
   homeInfo,
   storeFundList,
+  storeOpenAccount,
+  storeUnlock,
+  storeResetPwd,
   get,
   post,
   queryOrder,
@@ -29,8 +32,20 @@ function storeFundList (data) {
   return get(apiUrl.storeFundList, data)
 }
 
+function storeOpenAccount (data) {
+  return post(apiUrl.storeOpenAccount, data)
+}
+
 function storeDeposit (data) {
   return post(apiUrl.storeDeposit, data)
+}
+
+function storeUnlock (data) {
+  return post(apiUrl.storeUnlock, data)
+}
+
+function storeResetPwd (data) {
+  return post(apiUrl.storeResetPwd, data)
 }
 
 function storeDepositStatus (data) {

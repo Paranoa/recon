@@ -1,5 +1,5 @@
 <template>
-  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" post-action="/upload/post.php">
+  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" post-action="/account/upload">
     <slot></slot>
   </FileUpload>
 </template>
@@ -7,7 +7,13 @@
 import FileUpload from 'vue-upload-component'
 
 export default {
-  props: ['data'],
+  props: {
+    data: Object,
+    postAction: {
+      type: String,
+      default: env.VUE_APP_BASE_URL + 'account/upload'
+    }
+  },
   components: {
     FileUpload
   },

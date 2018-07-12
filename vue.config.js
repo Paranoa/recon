@@ -14,5 +14,6 @@ module.exports = {
   },
   devServer: {
     proxy: 'https://beta.geexfinance.com/geex-merchant-recon/'
+    // proxy: 'http://192.168.8.59:8080/'
   }
 }
