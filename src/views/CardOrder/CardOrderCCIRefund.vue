@@ -30,7 +30,7 @@
         </div>
         <div style="margin-left: 20px; margin-top: 10px">
           <span >上传打款凭证：</span>
-          <FileUpload class="upload" action="refundPic" :data="{ appId: modalId }" @success="res => { this.uploaded = res}">选择文件</FileUpload>
+          <FileUpload class="upload" action="refundPic" :auto="false" :data="{ appId: modalId }" @selected="ref => { uploadRef = ref }">选择文件</FileUpload>
         </div>
       </div>
     </template>
@@ -52,7 +52,8 @@
         merchantAmount: '',
         name: '',
         mobile: '',
-        uploaded: ''
+        uploaded: '',
+        uploadRef: null,
       }
     },
     components: {
@@ -63,7 +64,7 @@
       reserve () {
         if (this.uploaded) {
           if(confirm('您确认要申请退贷吗？')) {
-            api
+            this.uploadRef = true
           }
         } else {
           alert('请选择打款凭证图片')

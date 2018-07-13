@@ -1,5 +1,5 @@
 <template>
-  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" :post-action="postAction">
+  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" :post-action="postAction" :multiple="multiple">
     <slot></slot>
   </FileUpload>
 </template>
@@ -16,6 +16,10 @@ export default {
     auto: {
       type: Boolean,
       default: true
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -39,12 +43,18 @@ export default {
         }
       }
 
-      // 自动上传
-      if (this.auto && (Boolean(newFile) !== Boolean(oldFile) || oldFile.error !== newFile.error)) {
-        if (!this.$refs.upload.active) {
-          this.$refs.upload.active = true
+      if (this.auto) {
+        // 自动上传
+        if (Boolean(newFile) !== Boolean(oldFile) || oldFile.error !== newFile.error) {
+          if (!this.$refs.upload.active) {
+            this.$refs.upload.active = true
+          }
         }
+      } else {
+        // 只在auto为false时会触发的事件。传出refs引用,父组件以ref.active = true的形式激活上传
+        this.$emit('selected', this.$refs.upload)
       }
+
     }
   }
 }
