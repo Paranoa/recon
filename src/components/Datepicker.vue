@@ -1,5 +1,5 @@
 <template>
-  <Datepicker format="yyyy-M-d" :input-class="inputClass" :language="zh" v-model="dateModel" @input="input" />
+  <Datepicker format="yyyy-MM-dd" :input-class="inputClass" :language="zh" v-model="dateModel" @input="input" />
 </template>
 
 <script>

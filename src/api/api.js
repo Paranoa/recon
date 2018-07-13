@@ -16,7 +16,9 @@ export default {
   storeDepositStatus,
   billingDetail,
   cardOrderList,
-  checkRefundLimit
+  checkRefundLimit,
+  getStoreCodes,
+  calculateRefund,
 }
 
 function login (data) {
@@ -60,7 +62,15 @@ function test () {
 }
 
 function queryOrder (data) {
-  return get(apiUrl.queryOrder, data)
+  return post(apiUrl.queryOrder, data)
+}
+
+function calculateRefund(data){
+  return post(apiUrl.calculateRefund,data)
+}
+
+function getStoreCodes(){
+  return post(apiUrl.getStoreCodes)
 }
 
 function cardOrderList (data) {
@@ -69,6 +79,10 @@ function cardOrderList (data) {
 
 function checkRefundLimit (data) {
   return post(apiUrl.checkRefundLimit, data)
+}
+
+function bookRefund(data){
+  return post(apiUrl.bookRefund)
 }
 
 function get (url, params) {

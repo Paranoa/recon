@@ -21,7 +21,7 @@ function fix2 (value) {
 }
 
 function len10 (value) {
-  if (value === null || typeof a === 'undefined') {
+  if (value === null || typeof value === 'undefined') {
     return ''
   } else {
     return value.toString().substring(0, 10)
@@ -29,7 +29,19 @@ function len10 (value) {
 }
 
 function statusMean (value) {
-  return 'statusMean' || value
+  return {
+    '99'       : '已取消',
+    '100'       :'已保存',
+    '103'      :'商户待审核',
+    '106'       :'商户拒绝',
+    '108'       :'商户通过',
+    '110'       : '审批中',
+    '130'       : '已批准,待放款',
+    '140'       : '已拒绝',
+    '150'       : '待补件',
+    '160'       : '已放款',
+    '162'       : '已终止',
+  }[value] || value
 }
 
 function statusClass (value) {
@@ -37,15 +49,35 @@ function statusClass (value) {
 }
 
 function fundMean (value) {
-  return 'fundMean' || value
+  return {
+    'FCS01':'富登小额贷款',
+    'DJU01':'即科金融'
+  }[value] || value
 }
 
 function appType (value) {
-  return 'appType' || value
+  return {
+    'GMAIN':'额度订单',
+    'GPAY':'放款订单',
+    'GUP':'提额订单',
+    'NORM':'普通订单',
+  }[value] || value
 }
 
 function loanAfterStatus (value) {
-  return 'loanAfterStatus' || value
+  return {
+    '0'       : '取消完成',
+    '1'       : '正常',
+    '2'       : '退货预约',
+    '3'       : '退贷完成',
+    '4'       : '提前还款预约',
+    '5'       : '提前还款完成',
+    '6'       : '逾期终止',
+    '7'       : '手动终止',
+    '8'       : '完成',
+    '20'      : '准备取消',
+    '21'      : '退货已打款',
+  }[value] || value
 }
 
 function fundName (key) {
