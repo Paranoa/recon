@@ -65,13 +65,6 @@
             <span>单单过订单</span>
           </router-link>
         </li>
-        <li v-if="[1, 3, 4].includes(account.role) && REFUND_MERCHANT.includes(account.merchant_code)" :class="{ 'active': routeName === 'rforder' }">
-          <VMenuActive v-if="routeName === 'rforder'" class="pointer"></VMenuActive>
-          <router-link to="/home/rforder">
-            <i class="icon-th-large"></i>
-            <span>取消订单</span>
-          </router-link>
-        </li>
         <li v-if="[92].includes(account.role)" :class="{ 'active': routeName === 'tkorder' }">
           <VMenuActive v-if="routeName === 'tkorder'" class="pointer"></VMenuActive>
           <router-link to="/home/tkorder">

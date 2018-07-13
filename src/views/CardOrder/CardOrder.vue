@@ -24,8 +24,8 @@
                     <span>状态： 
                       <div class="ui-select">
                         <select name="app_status" class="app_status" v-model="query.app_status">
-                          <option value="0">全部</option>
-                          <option v-for="status of GEEX_SHOW_STATUS_MEAN" :key="status.key" :value="status.key">
+                          <option value="">全部</option>
+                          <option v-for="status of orderStatus" :key="status.key" :value="status.key">
                             {{ status.val }}
                           </option>
                         </select>
@@ -48,7 +48,7 @@
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
+                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="cardOrderList()"><i class="icon-search"></i>查询</div>
                   <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
@@ -121,17 +121,21 @@
 
 <script>
   import api from '@/api/api'
+  import constant from '@/util/constant'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import CCIRefund from './CardOrderCCIRefund.vue'
+  const ROWS_COUNT = 10
 
   export default {
     data () {
       return {
-        query: {},
+        query: {
+          app_status: ''
+        },
         stores: [],
         orders: [],
-        GEEX_SHOW_STATUS_MEAN: [],
+        orderStatus: constant.ORDER_STATUS,
         ordersTotal: 0,
         modal: {
           cciRefund: false
@@ -142,7 +146,7 @@
       }
     },
     computed: {
-      orderPageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
+      orderPageCount: vm => (Math.ceil(vm.ordersTotal / ROWS_COUNT) || 1),
       hasModal () {
         for (var key in this.modal) {
           if (this.modal[key]) {
@@ -157,19 +161,24 @@
       CCIRefund,
     },
     mounted () {
-      this.cardOrderList(1)
+      this.cardOrderList()
     },
     methods: {
-      cardOrderList (page) {
+      cardOrderList (page = 1) {
         api.cardOrderList({
           page,
-          store_code: 'shyj',
-          app_status: ''
+          store_code: this.query.store_code || '',
+          app_status: this.query.app_status || '',
+          search_start: this.query.search_start || '',
+          search_end: this.query.search_end || '',
+          tp: this.query.type || '',
+          name: this.query.name || ''
         })
-          .then(({ rows, total }) => {
-            this.orders = rows
-            this.ordersTotal = total
-          })
+        .then(({ rows, total }) => {
+          this.orders = rows
+          this.ordersTotal = total
+        })
+        .catch(err => alert(err))
       },
       cancelReserve () {
         if (confirm('您确认要取消退贷申请吗？')) {

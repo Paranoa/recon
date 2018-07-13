@@ -5,13 +5,12 @@
         <div style="margin:10px auto; width: 400px;height: 50px">
           <div>
             <span style="color: red">请上传电子回单:</span>
-            <FileUpload @success="uploaded">点击上传文件</FileUpload>
+            <FileUpload @success="uploaded" action="account/file/upload" :data="{ storeCode }">点击上传文件</FileUpload>
           </div>
         </div>
       </div>
     </template>
     <template slot="footer">
-      <button type="button" class="btn btn-primary" @click="confirm">确认</button>
       <button type="button" class="btn btn-default" @click="close">关闭</button>
     </template>
   </BaseModal>
@@ -22,7 +21,7 @@
   import FileUpload from '@/components/FileUpload'
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['title', 'width', 'storeCode'],
     data () {
       return {
         uploadImg: ''
@@ -34,7 +33,7 @@
     },
     methods: {
       uploaded () {
-        tihs.$emit('upload')
+        alert('上传成功')
       },
       close () {
         this.$emit('close')

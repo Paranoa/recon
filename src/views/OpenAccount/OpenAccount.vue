@@ -72,6 +72,10 @@
       :modalId="modalParam.ssjCash"
       @close="closeModal('ssjCash')"
       @inputed="amount => { depositAmount = amount; cashSSJ()}"></SSJCash>
+
+    <UploadPic v-if="modal.uploadPic" width="500px" title="提示"
+      :storeCode="modalParam.uploadPic"
+      @close="closeModal('uploadPic')" />
   </div>
 </template>
 
@@ -79,6 +83,7 @@
   import api from '@/api/api'
   import CashRecord from './OpenAccountCashRecord.vue'
   import SSJCash from './OpenAccountSSJCash.vue'
+  import UploadPic from './OpenAccountUploadPic.vue'
 
   export default {
     data () {
@@ -86,11 +91,13 @@
         isMerchantFlag: true,
         modal: {
           cashRecord: false,
-          ssjCash: false
+          ssjCash: false,
+          uploadPic: false
         },
         modalParam: {
           cashRecord: '',
-          ssjCash: ''
+          ssjCash: '',
+          uploadPic: ''
         },
         storeInfos: {},
         storeName: ''
@@ -107,7 +114,8 @@
     },
     components: {
       CashRecord,
-      SSJCash
+      SSJCash,
+      UploadPic
     },
     methods: {
       search () {
@@ -125,7 +133,8 @@
         })
         .catch(err => {
           if (/未上传图片.*请上传图片/.test(err)) {
-
+            this.modal.uploadPic = true
+            this.modalParam.uploadPic = fund.storeCode
           } else {
             alert(err)
           }
@@ -141,7 +150,8 @@
         })
         .catch(err => {
           if (/未上传图片.*请上传图片/.test(err)) {
-            
+            this.modal.uploadPic = true
+            this.modalParam.uploadPic = fund.storeCode
           } else {
             alert(err)
           }
@@ -176,7 +186,8 @@
       },
       unlockSSJ ({ storeCode }) {
         api.storeUnlock({
-          storeCode
+          storeCode,
+          callbackUrl: process.env.VUE_APP_CB_URL + 'home/openAccount'
         })
         .then(res => {
           window.open(res)
@@ -199,7 +210,7 @@
       }
     },
     mounted () {
-      api.storeFundList({ storeCode: 'SHYF-777,BJYF,qqqq,csyd' })
+      api.storeFundList({ storeCode: 'csyd' })
         .then(res => {
           this.storeInfos = res
         })

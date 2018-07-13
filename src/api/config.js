@@ -14,6 +14,7 @@ const apiUrl = {
   billingDetail: env.VUE_APP_URL_BILLING_DETAIL,
   storeDepositStatus: env.VUE_APP_URL_STORE_DEPOSIT_STATUS,
   cardOrderList: env.VUE_APP_URL_CARD_ORDER_LIST,
+  checkRefundLimit: env.VUE_APP_URL_CHECK_REFUND_LIMIT
 }
 
 for (var key in apiUrl) {
