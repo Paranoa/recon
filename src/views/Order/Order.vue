@@ -14,9 +14,9 @@
                     <span>门店名称：
                       <div class="ui-select">
                         <select name="store_code" class="store_code" v-model="query.store_code">
-                          <option value="0">全部</option>
-                          <option v-for="store of stores" :key="store.key" :value="status.key">
-                            {{ store.val }}
+                          <option value="">全部</option>
+                          <option v-for="store of stores" :key="store.c_STORE_CODE" :value="store.c_STORE_CODE">
+                            {{ store.c_NAME }}
                           </option>
                         </select>
                       </div>
@@ -24,7 +24,7 @@
                     <span>状态： 
                       <div class="ui-select">
                         <select name="app_status" class="app_status" v-model="query.app_status">
-                          <option value="0">全部</option>
+                          <option value="">全部</option>
                           <option v-for="status of GEEX_SHOW_STATUS_MEAN" :key="status.key" :value="status.key">
                             {{ status.val }}
                           </option>
@@ -48,7 +48,7 @@
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
+                  <div class="btn-glow search_btn" @click="queryOrder" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
                   <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
@@ -113,9 +113,21 @@
                     </td>
                     <td>{{ order.STORE_NAME }}</td>
                     <td>{{ order.C_APP_ID }}</td>
-                    <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
-                      <template v-if="order.N_APP_STATUS === '160'">
+                      <template v-if="order.C_APP_TYPE ==='GMAIN'">
+                        <div v-if="order.C_MAIN_TYPE==='C_MAIN_TYPE'">
+                          
+                        </div>
+                        <div v-else>
+                        </div>
+                      </template>
+                      <template v-else>
+
+                      </template>
+                      {{ order.C_APP_TYPE | appType }}
+                    </td>
+                    <td>
+                      <template v-if="order.N_APP_STATUS == '160'">
                         <div v-if="!['0','2','3','4','5','8','21','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="modalId.refund = order.C_APP_ID, modal.refund = true">退贷预约
                         </div>
                         <template v-else>
@@ -155,12 +167,14 @@
 
 <script>
   import api from '@/api/api'
+  import { apiUrl } from '@/api/config'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import Refund from './OrderRefund.vue'
   import RefundCancel from './OrderRefundCancel.vue'
   import ApplyLoan from './OrderApplyLoan.vue'
   import RefundConf from './OrderRefundConf.vue'
+  
 
   export default {
     data () {
@@ -169,7 +183,12 @@
         query: {},
         stores: [],
         orders: [],
-        GEEX_SHOW_STATUS_MEAN: [],
+        GEEX_SHOW_STATUS_MEAN: [
+          {key:'110',val:'审批中'},
+          {key:'130',val:'已批准,待放款'},
+          {key:'140',val:'已拒绝'},
+          {key:'160',val:'已放款'}
+        ],
         type: '2',
         ordersTotal: 0,
         modal: {
@@ -209,14 +228,25 @@
     },
     mounted () {
       this.queryOrder(1)
+      this.getStoreCodes()
     },
     methods: {
       queryOrder (page) {
-        api.queryOrder(page)
-          .then(({ rows, total }) => {
-            this.orders = rows
-            this.ordersTotal = total
-          })
+        const self = this; 
+        api.queryOrder(self.query).then(resultData=>{
+          self.orders = resultData;
+        })
+        // api.queryOrder(page)
+        //   .then(({ rows, total }) => {
+        //     this.orders = rows
+        //     this.ordersTotal = total
+        //   })
+      },
+      getStoreCodes(){
+        const self = this;
+        api.getStoreCodes().then( storeCodes => {
+            self.stores=storeCodes
+        })
       },
       closeModal(modalId) {
         this.modal[modalId] = false

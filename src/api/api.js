@@ -12,7 +12,9 @@ export default {
   storeDeposit,
   storeDepositStatus,
   billingDetail,
-  cardOrderList
+  cardOrderList,
+  getStoreCodes,
+  calculateRefund
 }
 
 function login (data) {
@@ -44,11 +46,24 @@ function test () {
 }
 
 function queryOrder (data) {
-  return get(apiUrl.queryOrder, data)
+  return post(apiUrl.queryOrder, data)
+}
+
+function calculateRefund(data){
+  return post(apiUrl.calculateRefund,data)
+}
+
+
+function getStoreCodes(){
+  return post(apiUrl.getStoreCodes)
 }
 
 function cardOrderList (data) {
   return get(apiUrl.cardOrderList, data)
+}
+
+function bookRefund(data){
+  return post(apiUrl.bookRefund)
 }
 
 function get (url, params) {
