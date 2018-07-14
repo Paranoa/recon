@@ -25,11 +25,11 @@
               </tr>
               <tr>
                 <th>分期状态</th>
-                <td>{{ order.SELF_ADD_APPLY_STATUS }}</td>
+                <td>{{ order.SELF_ADD_APPLY_STATUS|statusMean }}</td>
                 <th>销售姓名</th>
                 <td>{{ order.C_SALES_ID }}</td>
                 <th>发货地址</th>
-                <td>{{ order.addr1 }}</td>
+                <td>{{ order.jiaJuDaiAddr1+' '+order.jiaJuDaiAddr2 }}</td>
               </tr>
             </tbody>
           </table>
@@ -113,10 +113,19 @@
       },
       submit () {
         api.test()
+      },
+      getOrderDetailInfo(){
+        const self = this
+        api.getOrderInfo({'cAppId':this.modalId})
+        .then(resultData=>{
+          console.log(resultData)
+          this.order = resultData.orderInfo
+        })
       }
     },
     mounted () {
       console.log('loadCancel' + this.modalId)
+      this.getOrderDetailInfo();
     }
   }
 </script>

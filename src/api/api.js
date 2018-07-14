@@ -19,6 +19,10 @@ export default {
   checkRefundLimit,
   getStoreCodes,
   calculateRefund,
+<<<<<<< HEAD
+  getOrderInfo
+=======
+>>>>>>> 26bf34dfffdd1a243cb6f962ecbfe52cefa32d95
 }
 
 function login (data) {
@@ -83,6 +87,10 @@ function checkRefundLimit (data) {
 
 function bookRefund(data){
   return post(apiUrl.bookRefund)
+}
+
+function getOrderInfo(data){
+  return post(apiUrl.getOrderInfo,data)
 }
 
 function get (url, params) {
