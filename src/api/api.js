@@ -14,7 +14,8 @@ export default {
   billingDetail,
   cardOrderList,
   getStoreCodes,
-  calculateRefund
+  calculateRefund,
+  getOrderInfo
 }
 
 function login (data) {
@@ -64,6 +65,10 @@ function cardOrderList (data) {
 
 function bookRefund(data){
   return post(apiUrl.bookRefund)
+}
+
+function getOrderInfo(data){
+  return post(apiUrl.getOrderInfo,data)
 }
 
 function get (url, params) {

@@ -13,7 +13,8 @@ const apiUrl = {
   cardOrderList: env.VUE_APP_URL_CARD_ORDER_LIST,
   getStoreCodes:env.VUE_APP_URL_GET_STORE_CODES,
   calculateRefund:env.VUE_APP_URL_CALCULATE_REFUND,
-  bookRefund:env.VUE_APP_URL_BOOK_REFUND
+  bookRefund:env.VUE_APP_URL_BOOK_REFUND,
+  getOrderInfo:env.VUE_APP_URL_GET_ORDER_INFO
 }
 
 for (var key in apiUrl) {
