@@ -138,7 +138,7 @@
         orderStatus: constant.ORDER_STATUS,
         ordersTotal: 0,
         modal: {
-          cciRefund: false
+          cciRefund: true
         },
         modalId: {
           cciRefund: ''

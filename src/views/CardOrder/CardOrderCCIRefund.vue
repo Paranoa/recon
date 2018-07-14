@@ -30,7 +30,7 @@
         </div>
         <div style="margin-left: 20px; margin-top: 10px">
           <span >上传打款凭证：</span>
-          <FileUpload class="upload" action="refundPic" :auto="false" :data="{ appId: modalId }" @selected="ref => { uploadRef = ref }">选择文件</FileUpload>
+          <FileUpload class="upload" action="refundPic" :auto="false" :data="{ appId: modalId }" @selected="ref => { uploadRef = ref }" @success="reserveSuccess" @error="reserveError">{{ uploadRef ? '已上传' : '选择文件' }}</FileUpload>
         </div>
       </div>
     </template>
@@ -52,7 +52,6 @@
         merchantAmount: '',
         name: '',
         mobile: '',
-        uploaded: '',
         uploadRef: null,
       }
     },
@@ -62,20 +61,26 @@
     },
     methods: {
       reserve () {
-        if (this.uploaded) {
+        if (this.uploadRef) {
           if(confirm('您确认要申请退贷吗？')) {
-            this.uploadRef = true
+            this.uploadRef.active = true
           }
         } else {
           alert('请选择打款凭证图片')
         }
+      },
+      reserveSuccess () {
+        alert('预约成功')
+        this.$emit('close')
+      },
+      reserveError (err) {
+        alert(err)
       },
       close () {
         this.$emit('close')
       },
     },
     mounted () {
-      console.log(this.modalId)
       api.checkRefundLimit({ appId: this.modalId})
         .then(res => {
           this.merchantAmount = res.merchantAmount

@@ -39,7 +39,11 @@ export default {
         }
 
         if (newFile.success !== oldFile.success) {
-          this.$emit('success', newFile.response)
+          if (newFile.response.success) {
+            this.$emit('success', newFile.response)
+          } else {
+            this.$emit('error', newFile.response.errorMessage)
+          }
         }
       }
 
@@ -51,7 +55,7 @@ export default {
           }
         }
       } else {
-        // 只在auto为false时会触发的事件。传出refs引用,父组件以ref.active = true的形式激活上传
+        // 只在auto为false时会触发的事件 传出refs引用,父组件以ref.active = true的形式激活上传
         this.$emit('selected', this.$refs.upload)
       }
 
