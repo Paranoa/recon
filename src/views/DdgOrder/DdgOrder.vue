@@ -58,20 +58,20 @@
               <table class="table table-hover order-table">
                 <thead>
                   <tr>
-                    <th class="span1"><span class="line"></span>申请时间</th>
-                    <th class="span1"><span class="line"></span>客户姓名</th>
-                    <th class="span1"><span class="line"></span>客户手机</th>
-                    <th class="span1"><span class="line"></span>申请金额</th>
-                    <th class="span1"><span class="line"></span>放款金额</th>
-                    <th class="span1"><span class="line"></span>放款户名</th>
-                    <th class="span1"><span class="line"></span>申请期数</th>
-                    <th class="span1"><span class="line"></span>分期类型</th>
-                    <th class="span1"><span class="line"></span>审批日期</th>
-                    <th class="span1"><span class="line"></span>放款日期</th>
-                    <th class="span1"><span class="line"></span>销售姓名</th>
-                    <th class="span1"><span class="line"></span>产品类型</th>
-                    <th class="span1"><span class="line"></span>状态</th>
-                    <th class="span1"><span class="line"></span>门店</th>
+                    <th class="span1">申请时间</th>
+                    <th class="span1">客户姓名</th>
+                    <th class="span1">客户手机</th>
+                    <th class="span1">申请金额</th>
+                    <th class="span1">放款金额</th>
+                    <th class="span1">放款户名</th>
+                    <th class="span1">申请期数</th>
+                    <th class="span1">分期类型</th>
+                    <th class="span1">审批日期</th>
+                    <th class="span1">放款日期</th>
+                    <th class="span1">销售姓名</th>
+                    <th class="span1">产品类型</th>
+                    <th class="span1">状态</th>
+                    <th class="span1">门店</th>
                     <th class="span1">申请编号</th>
                     <th class="span1">订单类型</th>
                     <th class="span1"><span class="line"></span>操作</th>
@@ -143,7 +143,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :page-count="orderPageCount" @change="queryOrder" />
+        <Paginate :page-count="orderPageCount" @change="queryOrder()" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
@@ -213,10 +213,10 @@
       CloseInfo,
     },
     mounted () {
-      this.queryOrder(1)
+      this.queryOrder()
     },
     methods: {
-      queryOrder (page) {
+      queryOrder (page = 1) {
         api.queryOrder(page)
           .then(({ rows, total }) => {
             this.orders = rows
@@ -239,7 +239,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 /* Main stats up of screen */
 #main-stats {
   margin-left: -20px;
