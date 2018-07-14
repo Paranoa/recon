@@ -19,10 +19,7 @@ export default {
   checkRefundLimit,
   getStoreCodes,
   calculateRefund,
-<<<<<<< HEAD
-  getOrderInfo
-=======
->>>>>>> 26bf34dfffdd1a243cb6f962ecbfe52cefa32d95
+  getOrderInfo,
 }
 
 function login (data) {
