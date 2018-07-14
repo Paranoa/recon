@@ -6,6 +6,9 @@ export default {
   login,
   homeInfo,
   storeFundList,
+  storeOpenAccount,
+  storeUnlock,
+  storeResetPwd,
   get,
   post,
   queryOrder,
@@ -13,9 +16,13 @@ export default {
   storeDepositStatus,
   billingDetail,
   cardOrderList,
+  checkRefundLimit,
   getStoreCodes,
   calculateRefund,
+<<<<<<< HEAD
   getOrderInfo
+=======
+>>>>>>> 26bf34dfffdd1a243cb6f962ecbfe52cefa32d95
 }
 
 function login (data) {
@@ -30,8 +37,20 @@ function storeFundList (data) {
   return get(apiUrl.storeFundList, data)
 }
 
+function storeOpenAccount (data) {
+  return post(apiUrl.storeOpenAccount, data)
+}
+
 function storeDeposit (data) {
   return post(apiUrl.storeDeposit, data)
+}
+
+function storeUnlock (data) {
+  return post(apiUrl.storeUnlock, data)
+}
+
+function storeResetPwd (data) {
+  return post(apiUrl.storeResetPwd, data)
 }
 
 function storeDepositStatus (data) {
@@ -54,13 +73,16 @@ function calculateRefund(data){
   return post(apiUrl.calculateRefund,data)
 }
 
-
 function getStoreCodes(){
   return post(apiUrl.getStoreCodes)
 }
 
 function cardOrderList (data) {
   return get(apiUrl.cardOrderList, data)
+}
+
+function checkRefundLimit (data) {
+  return post(apiUrl.checkRefundLimit, data)
 }
 
 function bookRefund(data){

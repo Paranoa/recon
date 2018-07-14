@@ -77,10 +77,10 @@ export default {
         search_end: this.search_end
       })
       .then(res => {
-        this.totalOrder = res.totalOrder;
-        this.totalOrderPass = res.totalOrderPass;
-        this.totalAmount = res.totalAmount;
-        this.totalAmountPass = res.totalAmountPass;
+        this.totalOrder = res.app_sum;
+        this.totalOrderPass = res.app_cnt;
+        this.totalAmount = res.pass_sum;
+        this.totalAmountPass = res.pass_cnt;
 
         initCountUp([{
           id: 'totalOrder',

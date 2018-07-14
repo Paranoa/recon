@@ -7,7 +7,6 @@ import OpenAccount from '@/views/OpenAccount/OpenAccount.vue'
 import Order from '@/views/Order/Order.vue'
 import CardOrder from '@/views/CardOrder/CardOrder.vue'
 import DdgOrder from '@/views/DdgOrder/DdgOrder.vue'
-import RForder from '@/views/RForder/RForder.vue'
 import TkOrder from '@/views/TkOrder/TkOrder.vue'
 import Resetpwd from '@/views/Resetpwd/Resetpwd.vue'
 
@@ -53,11 +52,6 @@ export default new Router({
           path: 'ddgOrder',
           component: DdgOrder,
           name: 'ddgOrder'
-        },
-        {
-          path: 'rforder',
-          component: RForder,
-          name: 'rforder'
         },
         {
           path: 'tkorder',
