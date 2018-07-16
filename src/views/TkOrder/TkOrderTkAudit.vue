@@ -1,5 +1,5 @@
 <template>
-  <BaseModal :width="width" title="退款确认">
+  <BaseModal :width="width" title="退款确认" @close="close">
     <template slot="body">
       <div class="modal-body">
         <div class="form-group">
@@ -71,7 +71,7 @@
         }
       },
       close () {
-
+        this.$emit('close')
       }
     }
   }

@@ -82,7 +82,7 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <TkAudit v-if="modal.tkAudit" width="600px" :modalParam="modalParam.tkAudit" />
+    <TkAudit v-if="modal.tkAudit" width="600px" :modalParam="modalParam.tkAudit" @close="closeModal('tkAudit')" />
   </div>
 </template>
 
@@ -144,7 +144,7 @@
         })
         .catch(err => alert(err))
       },
-      closeModal(modalId) {
+      closeModal (modalId) {
         this.modal[modalId] = false
       }
     }

@@ -19,6 +19,7 @@ const apiUrl = {
   calculateRefund:env.VUE_APP_URL_CALCULATE_REFUND,
   bookRefund:env.VUE_APP_URL_BOOK_REFUND,
   getOrderInfo:env.VUE_APP_URL_GET_ORDER_INFO,
+  tkOrderList: env.VUE_APP_URL_TK_ORDER_LIST,
 }
 
 for (var key in apiUrl) {

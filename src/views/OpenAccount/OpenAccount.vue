@@ -4,7 +4,7 @@
       <div id="pad-wrapper">
         <div v-if="isMerchantFlag">
           <div>门店搜索
-            <input name="searchStoreName" type="text" id="searchStoreName" v-model="storeName">
+            <input type="text" v-model="query.storeName">
             <button type="button" @click="search" style="margin-left: 15px; margin-bottom: 10px">点击搜索</button></div>
         </div>
         <div>
@@ -100,7 +100,9 @@
           uploadPic: ''
         },
         storeInfos: {},
-        storeName: ''
+        query: {
+          storeName: ''
+        }
       }
     },
     computed: {
@@ -119,6 +121,11 @@
     },
     methods: {
       search () {
+        api.storeFundList({ searchStoreName:  query.storeName })
+        .then(res => {
+          this.storeInfos = res
+        })
+        .catch(err => alert(err))
       },
       closeModal (modalId) {
         this.modal[modalId] = false
@@ -210,10 +217,7 @@
       }
     },
     mounted () {
-      api.storeFundList({ storeCode: 'csyd' })
-        .then(res => {
-          this.storeInfos = res
-        })
+      this.search()
     }
   }
 </script>

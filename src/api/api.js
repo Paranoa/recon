@@ -20,6 +20,7 @@ export default {
   getStoreCodes,
   calculateRefund,
   getOrderInfo,
+  tkOrderList,
 }
 
 function login (data) {
@@ -88,6 +89,10 @@ function bookRefund(data){
 
 function getOrderInfo(data){
   return post(apiUrl.getOrderInfo,data)
+}
+
+function tkOrderList (data) {
+  return post(apiUrl.tkOrderList, data)
 }
 
 function get (url, params) {
