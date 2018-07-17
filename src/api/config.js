@@ -20,6 +20,7 @@ const apiUrl = {
   bookRefund:env.VUE_APP_URL_BOOK_REFUND,
   getOrderInfo:env.VUE_APP_URL_GET_ORDER_INFO,
   tkOrderList: env.VUE_APP_URL_TK_ORDER_LIST,
+  tkAudit: env.VUE_APP_URL_TK_AUDIT
 }
 
 for (var key in apiUrl) {

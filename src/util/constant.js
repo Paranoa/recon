@@ -14,5 +14,15 @@ export default {
   },{
     key: '审批拒绝',
     val: '审批拒绝'
+  }],
+  PAY_STATUS: [{
+    key: '1',
+    val: '准备取消'
+  },{
+    key: '2',
+    val: '已确认取消'
+  },{
+    key: '3',
+    val: '取消完成'
   }]
 }

@@ -10,8 +10,8 @@
         <div class="form-group">
           <span class="col-lg-2">打款凭证：</span>
           <div class="col-lg-10">
-            <a :href="img.src" target="_blank" v-for="img of imgs" class="img-group">
-              <img :src="img.src">
+            <a :href="img.cFtpPath" target="_blank" v-for="img of imgs" class="img-group">
+              <img :src="img.cFtpPath">
             </a>
           </div>
         </div>
@@ -45,14 +45,20 @@
       },
       modalParam: {
         type: Object,
-        default: {}
+        default () {
+          return {
+            mark: '',
+            return_mark: '',
+            imgs: []
+          }
+        }
       }
     },
     data () {
       return {
-        show_mark: this.modalParam.show_mark || '',
+        show_mark: this.modalParam.mark || '',
         return_mark: this.modalParam.return_mark || '',
-        imgs: this.modalParam.imgs || [{src: 'https://cn.vuejs.org/images/logo.png'}, {src: 'https://cn.vuejs.org/images/logo.png'}, {src: 'https://cn.vuejs.org/images/logo.png'}]
+        imgs: this.modalParam.imgs 
       }
     },
     components: {
@@ -60,11 +66,30 @@
     },
     methods: {
       pass () {
-
+        api.tkAudit({
+          refund_audit: '3',
+          return_mark: this.return_mark,
+          app_id: this.modalParam.C_APP_ID
+        })
+        .then(() => {
+          alert('操作成功')
+          this.$emit('success')
+        })
+        .catch(err => alert(err))
       },
       reject () {
         if (this.return_mark) {
           if (confirm('确定要这样操作吗？')) {
+            api.tkAudit({
+              refund_audit: '23',
+              return_mark: this.return_mark,
+              app_id: this.modalParam.C_APP_ID
+            })
+            .then(() => {
+              alert('操作成功')
+              this.$emit('success')
+            })
+            .catch(err => alert(err))
           }
         } else {
           alert('提示：打回需要填写打回原因！')
@@ -73,6 +98,9 @@
       close () {
         this.$emit('close')
       }
+    },
+    mounted () {
+      console.log(this.modalParam)
     }
   }
 </script>

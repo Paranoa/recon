@@ -10,12 +10,12 @@
             <form class="order_list_frm">
               <div class="row-fluid filter-block">
                 <div class="pull-left search-line">
-                  <span>搜索：<input type="text" class='name' v-model="query.name" placeholder="姓名/手机号/申请编号" maxlength="25"></span>
+                  <span>搜索：<input type="text" class='name' v-model.trim="query.name" placeholder="姓名/手机号/申请编号" maxlength="25"></span>
                     <span>状态： 
                       <div class="ui-select">
                         <select name="app_status" class="app_status" v-model="query.status">
-                          <option value="">全部</option>
-                          <option v-for="status of orderStatus" :key="status.key" :value="status.key">
+                          <option value="0">全部</option>
+                          <option v-for="status of payStatus" :key="status.key" :value="status.key">
                             {{ status.val }}
                           </option>
                         </select>
@@ -52,21 +52,22 @@
                 </thead>
                 <tbody>
                   <tr class="first" v-for="order of orders" :key="order.orderNo">
-                    <td>{{ order.orderNo }}</td>
-                    <td>{{ order.name }}</td>
-                    <td>{{ order.C_MBL_TEL }}</td>
-                    <td>{{ order.mobile }}</td>
-                    <td>{{ order.orderAmount | fix2 }}</td>
-                    <td>{{ order.merchantAmount }}</td>
-                    <td>{{ order.tenor }}</td>
-                    <td>{{ order.drawdownTime || '-' }}</td>
-                    <td>{{ order.saleName }}</td>
-                    <td>{{ order.paymentStatus }}</td>
-                    <td>{{ order.storeName }}</td>
+                    <td>{{ order.C_APP_ID }}</td>
+                    <td>{{ order.C_NAME_CN }}</td>
+                    <td>{{ order.C_MBL_TEL}}</td>
+                    <td>{{ order.N_AMT_APPLIED | fix2 }}</td>
+                    <td class="{ red: order.N_APP_STATUS == 130 }">{{ order.N_AMT_DRAWDOWN | fix2 }}</td>
+                    <td>{{ order.N_TENOR_APPLIED }}</td>
+                    <td>{{ order.pdt }}</td>
+                    <td>{{ order.D_APPLICATION }}</td>
+                    <td>{{ order.D_DECISION }}</td>
+                    <td>{{ order.D_DRAWDOWN }}</td>
+                    <td>{{ order.STORE_NAME }}</td>
+                    <td>{{ order.C_SALES_ID }}</td>
+                    <td>{{ order.N_APP_STATUS | statusMean }}</td>
+                    <td>{{ order.uptime || '-' }}</td>
                     <td>
-                    </td>
-                    <td>
-                      <div class="btn-glow" @click="modal.tkAudit = true, modalParam = order">退款处理</div>
+                      <div class="btn-glow" @click="modal.tkAudit = true, modalParam.tkAudit = order">退款处理</div>
                     </td>
                   </tr>
                 </tbody>
@@ -82,7 +83,7 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <TkAudit v-if="modal.tkAudit" width="600px" :modalParam="modalParam.tkAudit" @close="closeModal('tkAudit')" />
+    <TkAudit v-if="modal.tkAudit" width="600px" :modalParam="modalParam.tkAudit" @close="closeModal('tkAudit')" @success="tkOrderList()"/>
   </div>
 </template>
 
@@ -99,14 +100,14 @@
     data () {
       return {
         query: {
-          status: ''
+          status: '0'
         },
         stores: [],
         orders: [],
-        orderStatus: constant.ORDER_STATUS,
+        payStatus: constant.PAY_STATUS,
         ordersTotal: 0,
         modal: {
-          tkAudit: true
+          tkAudit: false
         },
         modalParam: {
           tkAudit: {}

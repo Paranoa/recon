@@ -1,5 +1,9 @@
 import { apiUrl } from '@/api/config'
 import axios from 'axios'
+import app from '@/App.vue'
+
+app.data().loading = true
+console.log(app.data())
 
 export default {
   test,
@@ -21,6 +25,7 @@ export default {
   calculateRefund,
   getOrderInfo,
   tkOrderList,
+  tkAudit,
 }
 
 function login (data) {
@@ -95,6 +100,10 @@ function tkOrderList (data) {
   return post(apiUrl.tkOrderList, data)
 }
 
+function tkAudit (data) {
+  return post(apiUrl.tkAudit, data)
+} 
+
 function get (url, params) {
   return new Promise((resolve, reject) => {
     axios.get(url, { params })
@@ -109,7 +118,7 @@ function get (url, params) {
           reject('错误:' + JSON.stringify(data))
         }
       })
-      .catch(({ response }) => {
+      .catch(({ response } = {}) => {
         reject('错误:' + JSON.stringify(response.data))
       })
   })
@@ -133,7 +142,7 @@ function post (url, params) {
           reject('错误:' + JSON.stringify(data))
         }
       })
-      .catch(({ response }) => {
+      .catch(({ response } = {}) => {
         reject('错误:' + JSON.stringify(response.data))
       })
   })
