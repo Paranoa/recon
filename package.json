@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "dev-build": "vue-cli-service build --mode development",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev-build": "vue-cli-service build --mode development"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -16,7 +16,8 @@
     "vue-router": "^3.0.1",
     "vue-upload-component": "^2.8.9",
     "vuejs-datepicker": "^1.5.2",
-    "vuejs-paginate": "^1.9.3"
+    "vuejs-paginate": "^1.9.3",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",

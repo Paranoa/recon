@@ -45,7 +45,16 @@ function statusMean (value) {
 }
 
 function statusClass (value) {
-  return 'statusClass' || value
+  return {
+    '99' : 'label-error',
+    '100': '',
+    '110': 'label-info',
+    '130': 'label-alert',
+    '140': 'label-error',
+    '150': '',
+    '160': 'label-success',
+    '162': 'label-error',
+  }[value] || value
 }
 
 function fundMean (value) {

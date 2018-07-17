@@ -1,9 +1,6 @@
 import { apiUrl } from '@/api/config'
 import axios from 'axios'
-import app from '@/App.vue'
-
-app.data().loading = true
-console.log(app.data())
+import store from '@/store'
 
 export default {
   test,
@@ -20,6 +17,8 @@ export default {
   storeDepositStatus,
   billingDetail,
   cardOrderList,
+  exportExcel,
+  cancelRefund,
   checkRefundLimit,
   getStoreCodes,
   calculateRefund,
@@ -84,6 +83,14 @@ function cardOrderList (data) {
   return get(apiUrl.cardOrderList, data)
 }
 
+function exportExcel (data) {
+  return get(apiUrl.exportExcel, data)
+}
+
+function cancelRefund (data) {
+  return post(apiUrl.cancelRefund, data)
+}
+
 function checkRefundLimit (data) {
   return post(apiUrl.checkRefundLimit, data)
 }
@@ -106,8 +113,11 @@ function tkAudit (data) {
 
 function get (url, params) {
   return new Promise((resolve, reject) => {
+    store.commit('showLoadMask')
+
     axios.get(url, { params })
       .then(({ data }) => {
+        store.commit('hideLoadMask')
         if (data) {
           if (data.success) {
             resolve(data.result)
@@ -119,6 +129,7 @@ function get (url, params) {
         }
       })
       .catch(({ response } = {}) => {
+        store.commit('hideLoadMask')
         reject('错误:' + JSON.stringify(response.data))
       })
   })
@@ -129,9 +140,13 @@ function post (url, params) {
   for (var key in params) {
     urlParams.append(key, params[key])
   }
+
   return new Promise((resolve, reject) => {
+    store.commit('showLoadMask')
+
     axios.post(url, urlParams)
       .then(({ data }) => {
+        store.commit('hideLoadMask')
         if (data) {
           if (data.success) {
             resolve(data.result)
@@ -143,6 +158,7 @@ function post (url, params) {
         }
       })
       .catch(({ response } = {}) => {
+        store.commit('hideLoadMask')
         reject('错误:' + JSON.stringify(response.data))
       })
   })

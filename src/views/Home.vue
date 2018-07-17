@@ -107,7 +107,7 @@ export default {
   },
   mounted () {
     api.test()
-      .then(res => this.account = { cname: res.name, role: 92 })
+      .then(res => this.account = { cname: res.name, role: 3 })
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {

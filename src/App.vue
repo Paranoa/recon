@@ -1,14 +1,24 @@
 <template>
   <div id="app">
     <router-view/>
+    <VLoadMask v-if="showLoading" />
   </div>
 </template>
 
 <script>
   import 'bootstrap/dist/js/bootstrap.min.js'
+  import VLoadMask from '@/components/VLoadMask.vue'
 
   export default {
-    name: 'App'
+    name: 'App',
+    computed: {
+      showLoading () {
+        return this.$store.state.showLoading
+      }
+    },
+    components: {
+      VLoadMask
+    }
   }
 </script>
 

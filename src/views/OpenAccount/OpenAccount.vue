@@ -121,7 +121,7 @@
     },
     methods: {
       search () {
-        api.storeFundList({ searchStoreName:  query.storeName })
+        api.storeFundList({ searchStoreName: this.query.storeName })
         .then(res => {
           this.storeInfos = res
         })

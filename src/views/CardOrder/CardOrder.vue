@@ -49,7 +49,7 @@
                 </div>
                 <div class="pull-right search-buttons">
                   <div class="btn-glow search_btn" style="margin-right: 10px;" @click="cardOrderList()"><i class="icon-search"></i>查询</div>
-                  <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
+                  <div class="btn-glow out_btn" @click="exportExl"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
             </form>
@@ -133,6 +133,7 @@
         query: {
           app_status: ''
         },
+        currPage: 1,
         stores: [],
         orders: [],
         orderStatus: constant.ORDER_STATUS,
@@ -165,6 +166,8 @@
     },
     methods: {
       cardOrderList (page = 1) {
+        this.currPage = page
+
         api.cardOrderList({
           page,
           store_code: this.query.store_code || '',
@@ -180,8 +183,29 @@
         })
         .catch(err => alert(err))
       },
-      cancelReserve () {
+      exportExl () {
+        api.exportExcel({
+          page: this.currPage,
+          store_code: this.query.store_code || '',
+          app_status: this.query.app_status || '',
+          search_start: this.query.search_start || '',
+          search_end: this.query.search_end || '',
+          tp: this.query.type || '',
+          name: this.query.name || ''
+        })
+        .then(res => { 
+          alert('导出成功')
+        })
+        .catch(err => alert(err))
+      },
+      cancelReserve (appId) {
         if (confirm('您确认要取消退贷申请吗？')) {
+          api.cancelRefund({ appId })
+          .then(() => { 
+            alert('取消成功')
+            this.cardOrderList()
+          })
+          .catch(err => alert(err))
         }
       },
       closeModal(modalId) {
