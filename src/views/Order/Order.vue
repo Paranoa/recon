@@ -233,8 +233,10 @@
     methods: {
       queryOrder (page) {
         const self = this; 
+        self.query['page'] = page
         api.queryOrder(self.query).then(resultData=>{
-          self.orders = resultData;
+          self.orders = resultData.result
+          self.ordersTotal = resultData.resultCnt
         })
         // api.queryOrder(page)
         //   .then(({ rows, total }) => {
