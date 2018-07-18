@@ -5,6 +5,7 @@ import store from '@/store'
 export default {
   test,
   login,
+  resetPwd,
   homeInfo,
   storeFundList,
   storeOpenAccount,
@@ -29,6 +30,10 @@ export default {
 
 function login (data) {
   return post(apiUrl.login, data)
+}
+
+function resetPwd (data) {
+  return post(apiUrl.resetPwd, data)
 }
 
 function homeInfo (data) {

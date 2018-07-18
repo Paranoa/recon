@@ -4,6 +4,7 @@ const baseUrl = env.VUE_APP_BASE_URL
 const apiUrl = {
   queryOrder: env.VUE_APP_URL_QUERYORDER,
   login: env.VUE_APP_URL_LOGIN,
+  resetPwd: env.VUE_APP_URL_RESET_PWD,
   getCode:env.VUE_APP_URL_GET_CODE,
   homeInfo: env.VUE_APP_URL_HOME_INFO,
   storeFundList: env.VUE_APP_URL_STORE_FUND_LIST,

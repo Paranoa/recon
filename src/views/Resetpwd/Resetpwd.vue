@@ -7,19 +7,19 @@
           <div class="form-group">
               <label for="inputPassword1" class="col-sm-2 control-label">当前密码</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="请输入当前密码" v-model="pwd_cur">
+                <input type="password" class="form-control" placeholder="请输入当前密码" v-model="oldPwd">
               </div>
           </div>
           <div class="form-group" >
               <label for="inputPassword2" class="col-sm-2 control-label">设置密码</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="请输入新密码（至少8个字符）" v-model="pwd_new">
+                <input type="password" class="form-control" placeholder="请输入新密码（至少8个字符）" v-model="newPwd1">
               </div>
           </div>
           <div class="form-group">
               <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
               <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="请再次输入密码" v-model="pwd_re">
+                <input type="password" class="form-control" placeholder="请再次输入密码" v-model="newPwd2">
               </div>
           </div>
           <div class="form-group">
@@ -40,22 +40,26 @@
   export default {
     data () {
       return {
-        pwd_cur: '',
-        pwd_new: '',
-        pwd_re: '',
+        oldPwd: '',
+        newPwd1: '',
+        newPwd2: '',
       }
     },
     methods: {
       save () {
-        console.log(this.pwd_cur + ' ' + this.pwd_new + ' ' + this.pwd_re)
-        api.test()
-          .then(() => {
-            alert('修改密码成功')
-            this.$router.push('/')
-          })
+        api.resetPwd({
+          oldPwd: this.oldPwd,
+          newPwd1: this.newPwd1,
+          newPwd2: this.newPwd2
+        })
+        .then(() => {
+          alert('修改密码成功')
+          this.$router.push('/')
+        })
+        .catch(err => alert(err))
       },
       reset () {
-        this.pwd_cur = this.pwd_new = this.pwd_re = '';
+        this.oldPwd = this.newPwd1 = this.newPwd2 = '';
       }
     }
   }
