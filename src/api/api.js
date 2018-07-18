@@ -19,10 +19,9 @@ export default {
   checkRefundLimit,
   getStoreCodes,
   calculateRefund,
-<<<<<<< HEAD
-  getOrderInfo
-=======
->>>>>>> 26bf34dfffdd1a243cb6f962ecbfe52cefa32d95
+  getOrderInfo,
+  myApplyLoanType1,
+  doOut
 }
 
 function login (data) {
@@ -93,6 +92,12 @@ function getOrderInfo(data){
   return post(apiUrl.getOrderInfo,data)
 }
 
+function myApplyLoanType1(data){
+  return post(apiUrl.myApplyLoanType1,data)
+}
+function doOut(data){
+  return post(apiUrl.doOut,data);
+}
 function get (url, params) {
   return new Promise((resolve, reject) => {
     axios.get(url, { params })
