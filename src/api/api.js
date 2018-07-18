@@ -24,8 +24,10 @@ export default {
   getStoreCodes,
   calculateRefund,
   getOrderInfo,
+  myApplyLoanType1,
+  doOut,
   tkOrderList,
-  tkAudit,
+  tkAudit
 }
 
 function login (data) {
@@ -108,6 +110,12 @@ function getOrderInfo(data){
   return post(apiUrl.getOrderInfo,data)
 }
 
+function myApplyLoanType1(data){
+  return post(apiUrl.myApplyLoanType1,data)
+}
+function doOut(data){
+  return post(apiUrl.doOut,data);
+}
 function tkOrderList (data) {
   return post(apiUrl.tkOrderList, data)
 }

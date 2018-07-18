@@ -46,10 +46,10 @@
             <label class="fbld col-lg-2 control-label">下单凭证：请上传下单凭证</label>
             <div class="col-lg-10">
               <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
-                <img class="tinyImgUpload-thumb-icon" :src="file.src">
+                <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
                 <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
               </div>
-              <FileUpload @success="orderFileUploaded">
+              <FileUpload @success="orderFileUploaded" action="order/img/upload">
                 <div class="tinyImgUpload-img-up-add tinyImgUpload-img-item">
                   <span class="tinyImgUpload-img-add-icon">+</span>
                 </div>
@@ -60,10 +60,10 @@
             <label class="fbld col-lg-2 control-label ">打款记录：请上传打款记录</label>
             <div class="col-lg-10">
               <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of finaceFiles" :key="file.id">
-                <img class="tinyImgUpload-thumb-icon" :src="file.src">
+                <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
                 <i class="tinyImgUpload-img-remove" @click="finaceFiles.splice(index, 1)">x</i>
               </div>
-              <FileUpload @success="finaceFileUploaded">
+              <FileUpload @success="finaceFileUploaded" action="order/img/upload">
                 <div class="tinyImgUpload-img-up-add  tinyImgUpload-img-item">
                   <span class="tinyImgUpload-img-add-icon">+</span>
                 </div>
@@ -105,26 +105,43 @@
       close () {
         this.$emit('close')
       },
-      orderFileUploaded (res) {
-        this.orderFiles.push(res)
+      orderFileUploaded (res) { 
+        if(res.success){
+          var resultData = res.result
+          this.orderFiles.push(resultData) 
+        }else{
+          alert(res.errorMessage)
+        }
       },
       finaceFileUploaded (res) {
-        this.finaceFiles.push(res)
+          if(res.success){
+          var resultData = res.result
+          this.finaceFiles.push(resultData) 
+        }else{
+          alert(res.errorMessage)
+        }
       },
       submit () {
-        api.test()
+        var orderFilesJso = JSON.stringify(this.orderFiles)
+        var finaceFilesJso = JSON.stringify(this.finaceFiles)
+        var data = {
+          'appId':this.modalId,
+          'orderFiles':orderFilesJso,
+          'finaceFiles':finaceFilesJso,
+          'sendTime':this.sendTime
+        }
+        console.log(data)
+        api.myApplyLoanType1(data)
       },
       getOrderDetailInfo(){
         const self = this
         api.getOrderInfo({'cAppId':this.modalId})
         .then(resultData=>{
-          console.log(resultData)
           this.order = resultData.orderInfo
         })
       }
     },
     mounted () {
-      console.log('loadCancel' + this.modalId)
       this.getOrderDetailInfo();
     }
   }

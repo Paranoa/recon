@@ -49,7 +49,7 @@
                 </div>
                 <div class="pull-right search-buttons">
                   <div class="btn-glow search_btn" @click="queryOrder" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
-                  <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
+                  <div class="btn-glow out_btn" @click="doOut"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
             </form>
@@ -233,8 +233,10 @@
     methods: {
       queryOrder (page) {
         const self = this; 
+        self.query['page'] = page
         api.queryOrder(self.query).then(resultData=>{
-          self.orders = resultData;
+          self.orders = resultData.result
+          self.ordersTotal = resultData.resultCnt
         })
         // api.queryOrder(page)
         //   .then(({ rows, total }) => {
@@ -246,6 +248,12 @@
         const self = this;
         api.getStoreCodes().then( storeCodes => {
             self.stores=storeCodes
+        })
+      },
+      doOut(){
+        const self = this;
+        api.doOut(self.query).then(resultData=>{
+          console.log(resultData)
         })
       },
       closeModal(modalId) {
