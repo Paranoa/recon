@@ -49,7 +49,7 @@
                 </div>
                 <div class="pull-right search-buttons">
                   <div class="btn-glow search_btn" style="margin-right: 10px;" @click="cardOrderList()"><i class="icon-search"></i>查询</div>
-                  <div class="btn-glow out_btn"><i class="icon-download-alt"></i>导出</div>
+                  <div class="btn-glow out_btn" @click="exportExl"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
             </form>
@@ -57,19 +57,19 @@
               <table class="table table-hover order-table">
                 <thead>
                   <tr>
-                    <th class="span1"><span class="line"></span>订单号</th>
-                    <th class="span1"><span class="line"></span>申请时间</th>
-                    <th class="span1"><span class="line"></span>客户姓名</th>
-                    <th class="span1"><span class="line"></span>客户手机</th>
-                    <th class="span1"><span class="line"></span>申请金额</th>
-                    <th class="span1"><span class="line"></span>收款金额</th>
-                    <th class="span1"><span class="line"></span>申请期数</th>
-                    <th class="span1"><span class="line"></span>放款日期</th>
-                    <th class="span1"><span class="line"></span>销售姓名</th>
-                    <th class="span1"><span class="line"></span>状态</th>
-                    <th class="span1"><span class="line"></span>门店</th>
-                    <th class="span1"><span class="line"></span>退款状态</th>
-                    <th class="span1"><span class="line"></span>操作</th>
+                    <th class="span1">订单号</th>
+                    <th class="span1">申请时间</th>
+                    <th class="span1">客户姓名</th>
+                    <th class="span1">客户手机</th>
+                    <th class="span1">申请金额</th>
+                    <th class="span1">收款金额</th>
+                    <th class="span1">申请期数</th>
+                    <th class="span1">放款日期</th>
+                    <th class="span1">销售姓名</th>
+                    <th class="span1">状态</th>
+                    <th class="span1">门店</th>
+                    <th class="span1">退款状态</th>
+                    <th class="span1">操作</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,12 +133,13 @@
         query: {
           app_status: ''
         },
+        currPage: 1,
         stores: [],
         orders: [],
         orderStatus: constant.ORDER_STATUS,
         ordersTotal: 0,
         modal: {
-          cciRefund: true
+          cciRefund: false
         },
         modalId: {
           cciRefund: ''
@@ -165,6 +166,8 @@
     },
     methods: {
       cardOrderList (page = 1) {
+        this.currPage = page
+
         api.cardOrderList({
           page,
           store_code: this.query.store_code || '',
@@ -180,8 +183,29 @@
         })
         .catch(err => alert(err))
       },
-      cancelReserve () {
+      exportExl () {
+        api.exportExcel({
+          page: this.currPage,
+          store_code: this.query.store_code || '',
+          app_status: this.query.app_status || '',
+          search_start: this.query.search_start || '',
+          search_end: this.query.search_end || '',
+          tp: this.query.type || '',
+          name: this.query.name || ''
+        })
+        .then(res => { 
+          alert('导出成功')
+        })
+        .catch(err => alert(err))
+      },
+      cancelReserve (appId) {
         if (confirm('您确认要取消退贷申请吗？')) {
+          api.cancelRefund({ appId })
+          .then(() => { 
+            alert('取消成功')
+            this.cardOrderList()
+          })
+          .catch(err => alert(err))
         }
       },
       closeModal(modalId) {
@@ -191,7 +215,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 /* Main stats up of screen */
 #main-stats {
   margin-left: -20px;

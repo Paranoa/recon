@@ -87,7 +87,6 @@ export default {
   data () {
     return {
       routeName: '',
-      REFUND_MERCHANT: ['shyj'],
       account: {
         merchant_code: 'shyj' 
       }

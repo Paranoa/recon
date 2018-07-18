@@ -1,5 +1,5 @@
 <template>
-  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" :post-action="postAction" :multiple="multiple">
+  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" :post-action="postAction" :multiple="multiple" :size="2 * 1024 * 1024">
     <slot></slot>
   </FileUpload>
 </template>
