@@ -1,6 +1,7 @@
 import { apiUrl } from '@/api/config'
 import axios from 'axios'
-import store from '@/store'
+import util from '@/util/util'
+import loading from '@/util/loading'
 
 export default {
   test,
@@ -91,7 +92,11 @@ function cardOrderList (data) {
 }
 
 function exportExcel (data) {
-  return get(apiUrl.exportExcel, data)
+  return axios
+    .get(apiUrl.exportExcel, { params: data,  responseType: 'blob' })
+    .then(res => {
+      util.download(res, '刷卡消费列表.xls')
+    })
 }
 
 function cancelRefund (data) {
@@ -124,13 +129,13 @@ function tkAudit (data) {
   return post(apiUrl.tkAudit, data)
 } 
 
-function get (url, params) {
+function get (url, params, options) {
   return new Promise((resolve, reject) => {
-    store.commit('showLoadMask')
+    var load = loading.service()
 
-    axios.get(url, { params })
+    axios.get(url, { params, ...options })
       .then(({ data }) => {
-        store.commit('hideLoadMask')
+        load.close()
         if (data) {
           if (data.success) {
             resolve(data.result)
@@ -142,24 +147,28 @@ function get (url, params) {
         }
       })
       .catch(({ response } = {}) => {
-        store.commit('hideLoadMask')
-        reject('错误:' + JSON.stringify(response.data))
+        load.close()
+        reject('错误:' + JSON.stringify(response))
       })
   })
 }
 
 function post (url, params) {
-  var urlParams = new URLSearchParams()
+  var postParams = new URLSearchParams()
   for (var key in params) {
-    urlParams.append(key, params[key])
+    postParams.append(key, params[key])
   }
 
   return new Promise((resolve, reject) => {
-    store.commit('showLoadMask')
+    var load = loading.service()
 
-    axios.post(url, urlParams)
+    axios.post(url, postParams, {
+      headers: { 
+        'token': util.getToken()
+      }
+    })
       .then(({ data }) => {
-        store.commit('hideLoadMask')
+        load.close()
         if (data) {
           if (data.success) {
             resolve(data.result)
@@ -171,8 +180,8 @@ function post (url, params) {
         }
       })
       .catch(({ response } = {}) => {
-        store.commit('hideLoadMask')
-        reject('错误:' + JSON.stringify(response.data))
+        load.close()
+        reject('错误:' + JSON.stringify(response))
       })
   })
 }

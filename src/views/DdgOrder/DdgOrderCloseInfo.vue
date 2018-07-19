@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseModal :title="title" :width="width" @close="close">
+    <BaseModal title="结算信息" :width="width" @close="close">
       <template slot="body">
         <div style="height: 430px">
           <div class="search-line" style="margin-bottom: 20px">

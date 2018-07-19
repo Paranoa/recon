@@ -131,7 +131,8 @@
     data () {
       return {
         query: {
-          app_status: ''
+          app_status: '',
+          type: '1'
         },
         currPage: 1,
         stores: [],

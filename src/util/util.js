@@ -1,9 +1,29 @@
+import Cookies from 'js-cookie'
+
 export default {
   dateToString (date) {
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var date = date.getDate()
     return year + '-' + fixNum(month) + '-' + fixNum(date)
+  },
+  setToken (name, value) {
+    return Cookies.set(name, value)
+  },
+  getToken (name) {
+    return Cookies.get(name)
+  },
+  download (data, name) {
+    if (data) {
+      let url = window.URL.createObjectURL(new Blob([data]))
+      let link = document.createElement('a')
+      link.style.display = 'none'
+      link.href = url
+      link.setAttribute('download', name)
+      
+      document.body.appendChild(link)
+      link.click()
+    }
   }
 }
 

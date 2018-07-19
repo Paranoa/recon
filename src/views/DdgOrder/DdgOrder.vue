@@ -14,7 +14,7 @@
                     <span>门店名称：
                       <div class="ui-select">
                         <select name="store_code" class="store_code" v-model="query.store_code">
-                          <option value="0">全部</option>
+                          <option value="">全部</option>
                           <option v-for="store of stores" :key="store.key" :value="status.key">
                             {{ store.val }}
                           </option>
@@ -25,7 +25,7 @@
                       <div class="ui-select">
                         <select name="app_status" class="app_status" v-model="query.app_status">
                           <option value="0">全部</option>
-                          <option v-for="status of GEEX_SHOW_STATUS_MEAN" :key="status.key" :value="status.key">
+                          <option v-for="status of ddgStatus" :key="status.key" :value="status.key">
                             {{ status.val }}
                           </option>
                         </select>
@@ -40,15 +40,15 @@
                   至：<Datepicker input-class="datepicker-input" v-model="query.search_end" /></span>
                   <span>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="type">申请时间
+                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.type">申请时间
                       </label>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="type">放款时间
+                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="query.type">放款时间
                       </label>
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="search"><i class="icon-search"></i>查询</div>
+                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="queryOrder()"><i class="icon-search"></i>查询</div>
                   <div class="btn-glow out_btn" style="margin-right: 10px;"><i class="icon-download-alt" @click="exportResult"></i>导出</div>
                   <div class="btn-glow billing_btn" @click="modal.closeInfo = true"><i class="icon-tasks"></i>结算信息</div>
                 </div>
@@ -116,7 +116,8 @@
                     <td>{{ order.C_APP_ID }}</td>
                     <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
-                      <template v-if="order.N_APP_STATUS === '160'">
+                      <template v-if="order.N_APP_STATUS == '160'">
+                        <div class="btn-glow" @click="modal.pamentPlan = true, modalId.paymenPlan = order.C_APP_ID">收款计划</div>
                         <div v-if="!['0','2','3','4','5','8','21','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="modalId.refund = order.C_APP_ID, modal.refund = true">退贷预约
                         </div>
                         <template v-else>
@@ -128,6 +129,10 @@
                             {{ order.N_LOAN_AFTER_STATUS | loanAfterStatus }}
                           </span>
                         </template>
+                      </template>
+                      <template>
+                        <div class="btn-glow bt_tryddg" @click="modal.applyDdg = true, modalId.applyDdg = order.C_APP_ID">审核通过</div>
+                        <div class="btn-glow bt_refuseddg" @click="spReject(order.C_APP_ID)">审核拒绝</div>
                       </template>
                       <div v-if="order.SHOW_APPLY_BUTTON" class="btn-glow btn btn-lg bt_applyLoan" @click="modalId.applyLoan = order.C_APP_ID, modal.applyLoan = true">
                         {{ order.SHOW_APPLY_BUTTON_NAME }}
@@ -143,7 +148,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :page-count="orderPageCount" @change="queryOrder()" />
+        <Paginate :page-count="orderPageCount" @change="queryOrder" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
@@ -151,12 +156,15 @@
     <RefundCancel v-if="modal.refundCancel" width="560px" title="退贷预约" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
     <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" />
     <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
-    <CloseInfo v-if="modal.closeInfo" width="1200px" title="结算信息" :modalId="modalId.closeInfo"  @close="closeModal('closeInfo')"/>
+    <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"  @close="closeModal('closeInfo')"/>
+    <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg" @close="closeModal('applyDdg')"/>
+    <PaymentPlan v-if="modal.paymenPlan" width="1000px" :modalId="modalId.paymenPlan" @close="closeModal('paymenPlan')"/>
   </div>
 </template>
 
 <script>
   import api from '@/api/api'
+  import constant from '@/util/constant'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import Refund from '../Order/OrderRefund.vue'
@@ -164,16 +172,25 @@
   import ApplyLoan from '../Order/OrderApplyLoan.vue'
   import RefundConf from '../Order/OrderRefundConf.vue'
   import CloseInfo from './DdgOrderCloseInfo.vue'
+  import ApplyDdg from './DdgOrderApplyDdg.vue'
+  import PaymentPlan from './DdgOrderPaymentPlan.vue'
+
+  import loading from '@/util/loading'
 
   export default {
     data () {
       return {
-        account: {},
-        query: {},
-        stores: [],
         orders: [],
-        GEEX_SHOW_STATUS_MEAN: [],
-        type: '2',
+        query: {
+          name: '',
+          search_start: '',
+          search_end: '',
+          store_code: '',
+          app_status: '0',
+          type: '1',
+        },
+        stores: [],
+        ddgStatus: constant.DDG_STATUS,
         ordersTotal: 0,
         modal: {
           refund: false,
@@ -182,15 +199,11 @@
           applyLoan: false,
           refundConf: false,
           closeInfo: false,
+          pamentPlan: false,
+          applyDdg: false,
+          paymenPlan: false,
         },
-        modalId: {
-          refund: '',
-          refundCancel: '',
-          uploadProof: '',
-          applyLoan: '',
-          refundConf: '',
-        },
-        file: []
+        modalId: {},
       }
     },
     computed: {
@@ -211,6 +224,8 @@
       ApplyLoan,
       RefundConf,
       CloseInfo,
+      ApplyDdg,
+      PaymentPlan,
     },
     mounted () {
       this.queryOrder()
@@ -221,19 +236,23 @@
           .then(({ rows, total }) => {
             this.orders = rows
             this.ordersTotal = total
-          })
-      },
-      search () {
 
+          })
       },
       exportResult () {
 
       },
-      closedInfo () {
-
-      },
       closeModal(modalId) {
         this.modal[modalId] = false
+      },
+      spReject (appId) {
+        if (confirm('确定要拒绝这笔订单吗？')) {
+          api.test({
+            id: appId
+          })
+          .then(() => alert('拒绝成功'))
+          .catch(err => alert(err))
+        }
       }
     }
   }
