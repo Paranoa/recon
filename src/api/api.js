@@ -133,7 +133,11 @@ function get (url, params, options) {
   return new Promise((resolve, reject) => {
     var load = loading.service()
 
-    axios.get(url, { params, ...options })
+    axios.get(url, { params, ...options, 
+        headers: {
+          'token': util.getCookie('token')
+        }
+      })
       .then(({ data }) => {
         load.close()
         if (data) {
@@ -161,10 +165,9 @@ function post (url, params) {
 
   return new Promise((resolve, reject) => {
     var load = loading.service()
-
     axios.post(url, postParams, {
-      headers: { 
-        'token': util.getToken()
+      headers: {
+        'token': util.getCookie('token')
       }
     })
       .then(({ data }) => {

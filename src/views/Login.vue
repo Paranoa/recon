@@ -12,7 +12,7 @@
               <input v-model="username" class="span12 username" type="text" placeholder="用户名">
               <input v-model="password" class="span12 password" type="password" placeholder="密码">
               <input v-model='vercode' class="span7 password fl" type="text"  placeholder="请输入验证码" maxlength="4">
-              <img crossorigin="anonymous" :src="captchaSrc" @click="change_vercode" id="code_img">
+              <img :src="captchaSrc" @click="change_vercode" id="code_img">
               <div class="remember">
                 <input id="remember-me" type="checkbox" v-model="remb">
                 <label for="remember-me">记住我</label>
@@ -29,6 +29,7 @@
 <script>
 import api from '../api/api'
 import { apiUrl } from '@/api/config'
+import util from '@/util/util'
 
 export default {
   name: 'home',
@@ -48,7 +49,8 @@ export default {
     login () {
       this.valForm()
         .then(this.submit)
-        .then(() => {
+        .then(res => {
+          util.setCookie('token', res.token)
           this.$router.push('/home')
         })
         .catch(err => {

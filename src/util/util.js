@@ -7,10 +7,10 @@ export default {
     var date = date.getDate()
     return year + '-' + fixNum(month) + '-' + fixNum(date)
   },
-  setToken (name, value) {
+  setCookie (name, value) {
     return Cookies.set(name, value)
   },
-  getToken (name) {
+  getCookie (name) {
     return Cookies.get(name)
   },
   download (data, name) {
