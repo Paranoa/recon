@@ -8,7 +8,6 @@ const whiteList = ['/', '/login']
 router.beforeEach((to, from, next) => {
   let token = util.getCookie('token')
 
-  console.log(to.path)
   if (whiteList.includes(to.path)) {
     next()
   } else {

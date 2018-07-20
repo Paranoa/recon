@@ -98,9 +98,11 @@ function cardOrderList (data) {
 
 function exportExcel (data) {
   return axios
-    .get(apiUrl.exportExcel, { params: data,  responseType: 'blob' })
+    .get(apiUrl.exportExcel, { params: data,  responseType: 'blob',  headers: {
+        'token': util.getCookie('token')
+      }})
     .then(res => {
-      util.download(res, '刷卡消费列表.xls')
+      util.download(res.data, '刷卡消费列表.xls')
     })
 }
 
@@ -124,7 +126,13 @@ function myApplyLoanType1(data){
   return post(apiUrl.myApplyLoanType1,data)
 }
 function doOut(data){
-  return post(apiUrl.doOut,data);
+  return axios
+    .get(apiUrl.doOut, { params: data,  responseType: 'blob',  headers: {
+        'token': util.getCookie('token')
+      }})
+    .then(res => {
+      util.download(res.data, 'doout.xls')
+    })
 }
 function tkOrderList (data) {
   return post(apiUrl.tkOrderList, data)

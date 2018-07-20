@@ -14,8 +14,9 @@ export default {
     return Cookies.get(name)
   },
   download (data, name) {
+    console.log(data)
     if (data) {
-      let url = window.URL.createObjectURL(new Blob([data]))
+      let url = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.ms-excel' }))
       let link = document.createElement('a')
       link.style.display = 'none'
       link.href = url

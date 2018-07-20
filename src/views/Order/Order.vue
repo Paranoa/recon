@@ -48,7 +48,7 @@
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" @click="queryOrder" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
+                  <div class="btn-glow search_btn" @click="queryOrder()" style="margin-right: 10px;"><i class="icon-search"></i>查询</div>
                   <div class="btn-glow out_btn" @click="doOut"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
@@ -227,11 +227,11 @@
       RefundConf
     },
     mounted () {
-      this.queryOrder(1)
+      this.queryOrder()
       this.getStoreCodes()
     },
     methods: {
-      queryOrder (page) {
+      queryOrder (page = 1) {
         const self = this; 
         self.query['page'] = page
         api.queryOrder(self.query).then(resultData=>{
