@@ -5,7 +5,7 @@
 <script>
   import Datepicker from 'vuejs-datepicker'
   import { zh } from 'vuejs-datepicker/dist/locale'
-  import util from '@/util/util'
+  import util from '@/util'
 
   export default {
     props: ['value', 'inputClass'],

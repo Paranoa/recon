@@ -10,7 +10,7 @@
         </button>
         <router-link to="/home" class="brand"><img src="../assets/logo_wechat1.png" /></router-link>
         <ul class="nav pull-right">       
-          <li class="uname">你好，{{ account.cname }}</li>
+          <li class="uname">你好，{{ cName }}</li>
           <li class="dropdown" v-if="+account.role !== 92">
             <router-link to="" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
               你的账户
@@ -30,42 +30,42 @@
     </div>
     <div id="sidebar-nav">
       <ul id="dashboard-menu">
-        <li v-if="[1, 3, 4].includes(account.role)" :class="{ 'active': routeName === 'homeIndex' }">
+        <li v-if="[1, 3, 4].includes(+role)" :class="{ 'active': routeName === 'homeIndex' }">
           <VMenuActive v-if="routeName === 'homeIndex'" class="pointer"></VMenuActive>
           <router-link to="/home/index">
             <i class="icon-home"></i>
             <span>主页</span>
           </router-link>
         </li>
-        <li v-if="[3, 4].includes(account.role)" :class="{ 'active': routeName === 'openAccount' }">
+        <li v-if="[3, 4].includes(+role)" :class="{ 'active': routeName === 'openAccount' }">
           <VMenuActive v-if="routeName === 'openAccount'" class="pointer"></VMenuActive>
           <router-link to="/home/openAccount">
             <i class="icon-tasks"></i>
             <span>渠道管理</span>
           </router-link>
         </li>
-        <li v-if="[1, 3, 4].includes(account.role)" :class="{ 'active': routeName === 'order' }">
+        <li v-if="[1, 3, 4].includes(+role)" :class="{ 'active': routeName === 'order' }">
           <VMenuActive v-if="routeName === 'order'" class="pointer"></VMenuActive>
           <router-link to="/home/order">
             <i class="icon-th-large"></i>
             <span>订单查询(无卡)</span>
           </router-link>
         </li>
-        <li v-if="[1, 3, 4].includes(account.role)" :class="{ 'active': routeName === 'cardOrder' }">
+        <li v-if="[1, 3, 4].includes(+role)" :class="{ 'active': routeName === 'cardOrder' }">
           <VMenuActive v-if="routeName === 'cardOrder'" class="pointer"></VMenuActive>
           <router-link to="/home/cardOrder">
             <i class="icon-credit-card"></i>
             <span>刷卡消费</span>
           </router-link>
         </li>
-        <li v-if="[3, 4].includes(account.role)" :class="{ 'active': routeName === 'ddgOrder' }">
+        <li v-if="[3, 4].includes(+role)" :class="{ 'active': routeName === 'ddgOrder' }">
           <VMenuActive v-if="routeName === 'ddgOrder'" class="pointer"></VMenuActive>
           <router-link to="/home/ddgOrder">
             <i class="icon-credit-card"></i>
             <span>单单过订单</span>
           </router-link>
         </li>
-        <li v-if="[92].includes(account.role)" :class="{ 'active': routeName === 'tkorder' }">
+        <li v-if="[92].includes(+role)" :class="{ 'active': routeName === 'tkorder' }">
           <VMenuActive v-if="routeName === 'tkorder'" class="pointer"></VMenuActive>
           <router-link to="/home/tkorder">
             <i class="icon-th-large"></i>
@@ -79,8 +79,9 @@
 </template>
 
 <script>
-import api from '@/api/api'
+import api from '@/api'
 import VMenuActive from '@/components/VMenuActive.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'home',
@@ -91,6 +92,9 @@ export default {
         merchant_code: 'shyj' 
       }
     }
+  },
+  computed: {
+    ...mapGetters(['cName', 'role'])
   },
   components: {
     VMenuActive,
@@ -106,8 +110,6 @@ export default {
     }
   },
   mounted () {
-    api.test()
-      .then(res => this.account = { cname: res.name, role: 3 })
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {

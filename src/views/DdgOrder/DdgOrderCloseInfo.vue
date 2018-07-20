@@ -61,7 +61,7 @@
   import BaseModal from '@/components/BaseModal.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import Paginate from '@/components/Paginate.vue'
-  import api from '@/api/api'
+  import api from '@/api'
   import BillingDetail from './DdgOrderCloseInfoDetail.vue'
 
   export default {

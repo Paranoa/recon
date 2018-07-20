@@ -3,7 +3,10 @@ import App from './App.vue'
 import router from './router'
 import filters from './util/filter'
 import axios from 'axios'
+import store from '@/store'
 import loading from '@/components/VLoadMask.vue'
+
+import '@/permission' //权限控制
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
@@ -15,5 +18,6 @@ for (let name in filters) {
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import api from '../api/api'
+import api from '../api'
 import { apiUrl } from '@/api/config'
-import util from '@/util/util'
+import util from '@/util'
 
 export default {
   name: 'home',
@@ -71,7 +71,7 @@ export default {
       return Promise.resolve()
     },
     submit () {
-      return api.login({
+      return this.$store.dispatch('Login', {
         username: this.username,
         password: this.password,
         vercode: this.vercode,

@@ -46,7 +46,7 @@
 <script>
   import BaseModal from '@/components/BaseModal.vue'
   import Datepicker from '@/components/Datepicker.vue'
-  import api from '@/api/api'
+  import api from '@/api'
 
   export default {
     props: ['title', 'width', 'modalId'],

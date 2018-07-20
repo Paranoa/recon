@@ -39,7 +39,7 @@
 <script>
   import BaseModal from '@/components/BaseModal.vue'
   import Paginate from '@/components/Paginate.vue'
-  import api from '@/api/api'
+  import api from '@/api'
 
   const ROWS_COUNT = 10
 

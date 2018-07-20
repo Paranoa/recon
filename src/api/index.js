@@ -1,11 +1,12 @@
 import { apiUrl } from '@/api/config'
 import axios from 'axios'
-import util from '@/util/util'
+import util from '@/util'
 import loading from '@/util/loading'
 
 export default {
   test,
   login,
+  getUserInfo,
   resetPwd,
   homeInfo,
   storeFundList,
@@ -33,6 +34,10 @@ export default {
 
 function login (data) {
   return post(apiUrl.login, data)
+}
+
+function getUserInfo (data) {
+  return post(apiUrl.checkLogin, data)
 }
 
 function resetPwd (data) {

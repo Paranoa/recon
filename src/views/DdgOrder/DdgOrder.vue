@@ -163,7 +163,7 @@
 </template>
 
 <script>
-  import api from '@/api/api'
+  import api from '@/api'
   import constant from '@/util/constant'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
