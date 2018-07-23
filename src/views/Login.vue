@@ -15,7 +15,7 @@
             <div class="remember">
               <input id="remember-me" type="checkbox" v-model="remb">
               <label for="remember-me">记住我</label>
-              <a class="forgot" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</a>
+              <a class="forgot" style="padding-right: 5px; cursor: pointer" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</a>
             </div>
             <a class="btn-glow primary login" @click="login">登录</a>
         </div>
@@ -44,8 +44,8 @@ export default {
       this.captchaSrc =  apiUrl.getCode+'?seed=' + Math.random()
     },
     login () {
-      this.valForm()
-        .then(this.submit)
+      if (this.valForm()) {
+        this.submit()
         .then(res => {
           util.setCookie('token', res.token)
           this.$router.push('/home')
@@ -53,19 +53,23 @@ export default {
         .catch(err => {
           alert(err)
         })
+      }
     },
     valForm () {
       if (!this.username) {
-        return Promise.reject('对不起，账号不能为空！')
+        alert('对不起，账号不能为空！')
+        return false
       }
       if (!this.password) {
-        return Promise.reject('对不起，密码不能为空！')
+        alert('对不起，密码不能为空！')
+        return false
       }
       if (!this.vercode) {
-        return Promise.reject('对不起，请填写验证码！')
+        alert('对不起，请填写验证码！')
+        return false
       }
 
-      return Promise.resolve()
+      return true
     },
     submit () {
       return this.$store.dispatch('Login', {
@@ -80,6 +84,7 @@ export default {
 </script>
 
 <style>
+/*由于这个style, 该模块不能声明scoped*/
 html, body, #app, .login-bg {
   height: 100%
 }
