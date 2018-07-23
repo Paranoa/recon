@@ -30,7 +30,7 @@
         </div>
         <div style="margin-left: 20px; margin-top: 10px">
           <span>上传打款凭证：</span>
-          <FileUpload class="upload" action="refundPic" :auto="false" :data="{ appId: modalParam.appId }" @selected="ref => { uploadRef = ref }" @success="reserveSuccess" @error="reserveError">
+          <FileUpload class="upload" action="cardOrder/refundPic" :auto="false" :data="{ appId: modalParam.appId }" @selected="ref => { uploadRef = ref }" @success="reserveSuccess" @error="reserveError">
             <span class="btn btn-primary">{{ uploadRef ? '已上传' : '选择文件' }}</span>
           </FileUpload>
         </div>

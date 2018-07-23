@@ -6,21 +6,19 @@
       </a>
 
       <div class="span4 box">
-        <form action='' name='login_frm' method="POST" class='login_frm'>
-          <div class="content-wrap">
-              <h6>即科商户后台系统</h6>
-              <input v-model="username" class="span12 username" type="text" placeholder="用户名">
-              <input v-model="password" class="span12 password" type="password" placeholder="密码">
-              <input v-model='vercode' class="span7 password fl" type="text"  placeholder="请输入验证码" maxlength="4">
-              <img :src="captchaSrc" @click="change_vercode" id="code_img">
-              <div class="remember">
-                <input id="remember-me" type="checkbox" v-model="remb">
-                <label for="remember-me">记住我</label>
-                <a class="forgot" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</a>
-              </div>
-              <a class="btn-glow primary login" @click="login">登录</a>
-          </div>
-        </form>
+        <div class="content-wrap">
+            <h6>即科商户后台系统</h6>
+            <input v-model="username" class="span12 username" type="text" placeholder="用户名">
+            <input v-model="password" class="span12 password" type="password" placeholder="密码">
+            <input v-model='vercode' class="span7 password fl" type="text"  placeholder="请输入验证码" maxlength="4">
+            <img :src="captchaSrc" @click="change_vercode" id="code_img">
+            <div class="remember">
+              <input id="remember-me" type="checkbox" v-model="remb">
+              <label for="remember-me">记住我</label>
+              <a class="forgot" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</a>
+            </div>
+            <a class="btn-glow primary login" @click="login">登录</a>
+        </div>
       </div>
     </div>
   </div>
