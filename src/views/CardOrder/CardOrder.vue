@@ -95,7 +95,7 @@
                     </td>
                     <td>
                       <template v-if="order.refundStatus === '未退款' && order.paymentStatus === '支付成功' && order.refundFlag !== '0'">
-                        <div class="btn-glow" @click="modalId.cciRefund = order.orderNo, modal.cciRefund = true">退贷预约</div>
+                        <div class="btn-glow" @click="checkRefundLimit(order)">退贷预约</div>
                       </template>
                       <template v-else-if="order.refundStatus === '商户退货中' && order.paymentStatus === '支付成功' && order.refundFlag !== '0'">
                         <div class="btn-glow" @click="cancelReserve(order.orderNo)">取消预约</div>
@@ -115,7 +115,7 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <CCIRefund title="退贷预约" v-if="modal.cciRefund" width="550px" :modalId="modalId.cciRefund" @close="closeModal('cciRefund')" />
+    <CCIRefund title="退贷预约" v-if="modal.cciRefund" width="550px" :modalParam="modalParam.cciRefund" @close="closeModal('cciRefund')" />
   </div>
 </template>
 
@@ -136,6 +136,8 @@
         query: {
           store_code: '',
           app_status: '',
+          search_start: util.dateToString(constant.A_MONTH_BEFORE),
+          search_end: util.dateToString(constant.NOW),
           type: '1'
         },
         currPage: 1,
@@ -146,8 +148,8 @@
         modal: {
           cciRefund: false
         },
-        modalId: {
-          cciRefund: ''
+        modalParam: {
+          cciRefund: {}
         },
       }
     },
@@ -208,6 +210,18 @@
           }
         })
         .catch(err => alert(err))
+      },
+      checkRefundLimit (order) {
+        api.checkRefundLimit({ appId: order.orderNo})
+        .then(res => {
+          this.modalParam.cciRefund = {
+            appId: order.orderNo,
+            ...res
+          }
+          this.modal.cciRefund = true
+        })
+        .catch(err => alert(err))
+        
       },
       cancelReserve (appId) {
         if (confirm('您确认要取消退贷申请吗？')) {

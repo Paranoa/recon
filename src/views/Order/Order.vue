@@ -40,10 +40,10 @@
                   至：<Datepicker input-class="datepicker-input" v-model="query.search_end" /></span>
                   <span>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="type">申请时间
+                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.type">申请时间
                       </label>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="type">放款时间
+                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="query.type">放款时间
                       </label>
                   </span>
                 </div>
@@ -169,6 +169,7 @@
   import api from '@/api'
   import { mapGetters } from 'vuex'
   import util from '@/util'
+  import constant from '@/util/constant'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import Refund from './OrderRefund.vue'
@@ -183,7 +184,10 @@
         account: {},
         query: {
           store_code: '',
-          app_status: ''
+          app_status: '',
+          search_start: util.dateToString(constant.A_MONTH_BEFORE),
+          search_end: util.dateToString(constant.NOW),
+          type: 1,
         },
         orders: [],
         GEEX_SHOW_STATUS_MEAN: [

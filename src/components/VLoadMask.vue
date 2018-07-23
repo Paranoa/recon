@@ -32,7 +32,7 @@
 </script>
 
 <style scoped>
-  .ui-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99; background: rgba(255,255,255,.6); }
+  .ui-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 20000; background: rgba(255,255,255,.6); }
   .ui-loader .ui-spinner { position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto; }
 
   .fade-enter, .fade-leave-active { opacity: 0 }
