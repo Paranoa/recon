@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie'
 
 export default {
-  dateToString (date) {
-    var year = date.getFullYear()
-    var month = date.getMonth() + 1
-    var date = date.getDate()
+  dateToString (dateObj) {
+    var year = dateObj.getFullYear()
+    var month = dateObj.getMonth() + 1
+    var date = dateObj.getDate()
     return year + '-' + fixNum(month) + '-' + fixNum(date)
   },
   setCookie (name, value) {
@@ -13,8 +13,7 @@ export default {
   getCookie (name) {
     return Cookies.get(name)
   },
-  download (data, name) {
-    console.log(data)
+  downloadXls (data, name) {
     if (data) {
       let url = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.ms-excel' }))
       let link = document.createElement('a')
@@ -25,6 +24,16 @@ export default {
       document.body.appendChild(link)
       link.click()
     }
+  },
+  appendUrlParams (url, params) {
+    var qstr = ''
+    for (var key in params) {
+      qstr += ('&' + key + '=' + params[key])
+    }
+    if (!(/\/.+\?[^\\/]+$/).test(url)) {
+      qstr = qstr.replace('&', '?')
+    }
+    return url + qstr
   }
 }
 

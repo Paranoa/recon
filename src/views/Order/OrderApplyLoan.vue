@@ -134,7 +134,6 @@
         api.myApplyLoanType1(data)
       },
       getOrderDetailInfo(){
-        const self = this
         api.getOrderInfo({'cAppId':this.modalId})
         .then(resultData=>{
           this.order = resultData.orderInfo

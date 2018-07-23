@@ -49,9 +49,4 @@
       }
     }
   }
-
-  function valForm () {
-
-  }
-
 </script>

@@ -167,7 +167,8 @@
 
 <script>
   import api from '@/api'
-  import { apiUrl } from '@/api/config'
+  import { mapGetters } from 'vuex'
+  import util from '@/util'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import Refund from './OrderRefund.vue'
@@ -180,8 +181,10 @@
     data () {
       return {
         account: {},
-        query: {},
-        stores: [],
+        query: {
+          store_code: '',
+          app_status: ''
+        },
         orders: [],
         GEEX_SHOW_STATUS_MEAN: [
           {key:'110',val:'审批中'},
@@ -216,7 +219,10 @@
             return true
           }
         }
-      }
+      },
+      ...mapGetters({
+        stores: 'belowStores'
+      })
     },
     components: {
       Paginate,
@@ -228,7 +234,6 @@
     },
     mounted () {
       this.queryOrder()
-      this.getStoreCodes()
     },
     methods: {
       queryOrder (page = 1) {
@@ -238,22 +243,16 @@
           self.orders = resultData.result
           self.ordersTotal = resultData.resultCnt
         })
-        // api.queryOrder(page)
-        //   .then(({ rows, total }) => {
-        //     this.orders = rows
-        //     this.ordersTotal = total
-        //   })
-      },
-      getStoreCodes(){
-        const self = this;
-        api.getStoreCodes().then( storeCodes => {
-            self.stores=storeCodes
-        })
       },
       doOut(){
         const self = this;
-        api.doOut(self.query).then(resultData=>{
-          console.log(resultData)
+        api.doOut(self.query).then(res => { 
+          if (res instanceof Blob) {
+            util.downloadXls(res, '订单查询导出' + new Date().getTime() +'.xls')
+            alert('导出成功')
+          } else {
+            alert('导出失败:' + JSON.stringify(res))              
+          }
         })
       },
       closeModal(modalId) {

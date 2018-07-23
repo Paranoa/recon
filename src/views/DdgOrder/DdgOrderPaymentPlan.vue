@@ -55,11 +55,11 @@
       }
     },
     mounted () {
-      api.test({
-        id: this.modalId
+      api.ddgPaymentPlan({
+        orderNo: this.modalId
       })
       .then(res => {
-        this.repaymentPlan = [1,2,3]
+        this.repaymentPlan = res.rows
       })
     }
   }

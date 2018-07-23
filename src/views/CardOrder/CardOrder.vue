@@ -14,9 +14,9 @@
                     <span>门店名称：
                       <div class="ui-select">
                         <select name="store_code" class="store_code" v-model="query.store_code">
-                          <option value="0">全部</option>
-                          <option v-for="store of stores" :key="store.key" :value="status.key">
-                            {{ store.val }}
+                          <option value="">全部</option>
+                          <option v-for="store of belowStores" :key="store.c_STORE_CODE" :value="store.c_STORE_CODE">
+                            {{ store.c_NAME }}
                           </option>
                         </select>
                       </div>
@@ -121,16 +121,20 @@
 
 <script>
   import api from '@/api'
+  import { mapGetters } from 'vuex'
+  import util from '@/util'
   import constant from '@/util/constant'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import CCIRefund from './CardOrderCCIRefund.vue'
+
   const ROWS_COUNT = 10
 
   export default {
     data () {
       return {
         query: {
+          store_code: '',
           app_status: '',
           type: '1'
         },
@@ -155,7 +159,8 @@
             return true
           }
         }
-      }
+      },
+      ...mapGetters(['belowStores'])
     },
     components: {
       Paginate,
@@ -195,7 +200,12 @@
           name: this.query.name || ''
         })
         .then(res => { 
-          alert('导出成功')
+          if (res instanceof Blob) {
+            util.downloadXls(res, '刷卡消费导出' + new Date().getTime() +'.xls')
+            alert('导出成功')
+          } else {
+            alert('导出失败:' + JSON.stringify(res))
+          }
         })
         .catch(err => alert(err))
       },

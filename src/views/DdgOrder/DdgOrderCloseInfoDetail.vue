@@ -55,7 +55,6 @@
 
 <script>
   import BaseModal from '@/components/BaseModal.vue'
-  import Datepicker from '@/components/Datepicker.vue'
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api'
 
@@ -84,19 +83,11 @@
       },
       getCashRecordDetail () {
         api.billingDetail()
-          .then(res => records = res)
+          .then(res => this.records = res)
       }
     },
     mounted () {
       console.log(this.modalId)
-      api.test()
-        .then(() => {
-          this.records = [{
-            amount: 10000
-          },{
-            amount: 20000
-          }]
-        })
     }
   }
 </script>

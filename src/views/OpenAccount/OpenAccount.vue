@@ -10,7 +10,7 @@
         <div>
           <table class="table table-hover">
             <template v-for="(store, key) in storeInfos">
-              <tr>
+              <tr :key="key">
                 <th colspan="5" style="border-top: none; font-size: 17px; font-weight: bold; line-height: 3; padding: 6px">{{ key }}</th>
               </tr>
               <tr>
@@ -20,40 +20,38 @@
                 <th>可提现余额(元)</th>
                 <th>操作</th>
               </tr>
-              <template v-for="fund of store">
-                <tr>
-                  <td>{{ fund.quDaoCode | fundName }}</td>
-                  <td>
-                    <template v-if="fund.quDaoCode === 'KLJ01'">
-                      {{ fund.openStatus | openStatusKL }}
-                    </template>
-                    <template v-else-if="fund.quDaoCode === 'SSJ01'">
-                      {{ fund.openStatus | openStatusSSJ }}
-                    </template></td>
-                  <td>{{ fund.bankNo }}</td>
-                  <td>{{ fund.tMoney }}</td>
-                  <td class="btns">
-                    <template v-if="fund.quDaoCode === 'KLJ01'">
-                      <div v-if="fund.openStatus === 'APPLYING' || fund.openStatus ==='BACK'" class="btn-glow btn btn-lg" @click="openAccountKL(fund)">开户</div>
-                      <div v-if="fund.openStatus === 'AUDIT'">--</div>
-                      <div v-if="fund.openStatus === 'PASSED'" class="btn-glow btn btn-lg"
-                        @click="cashKL(fund)">提现</div>
-                      <div v-if="fund.openStatus === 'PASSED'" class="btn-glow btn btn-lg"
-                        @click="modal.cashRecord = true, modalParam.cashRecord = fund">提现记录</div>
-                    </template>
-                    <template v-else-if="fund.quDaoCode === 'SSJ01'">
-                      <div v-if="fund.openStatus === '4' || fund.openStatus ==='2'" class="btn-glow btn btn-lg" @click="openAccountSSJ(fund)">开户</div>
-                      <div v-if="fund.openStatus === '3'">--</div>
-                      <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg"
-                        @click="modal.ssjCash = true, modalParam.ssjCash = fund.storeCode">提现</div>
-                      <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg"
-                        @click="modal.cashRecord = true, modalParam.cashRecord = fund">提现记录</div>
-                      <div v-if="fund.openStatus === '5'" class="btn-glow btn btn-lg" @click="unlockSSJ(fund)">解锁</div>
-                      <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg" @click="ResetPwdSSJ(fund)">重置密码</div>
-                    </template>
-                  </td>
-                </tr>
-              </template>
+              <tr v-for="fund of store" :key="fund.fundName">
+                <td>{{ fund.quDaoCode | fundName }}</td>
+                <td>
+                  <template v-if="fund.quDaoCode === 'KLJ01'">
+                    {{ fund.openStatus | openStatusKL }}
+                  </template>
+                  <template v-else-if="fund.quDaoCode === 'SSJ01'">
+                    {{ fund.openStatus | openStatusSSJ }}
+                  </template></td>
+                <td>{{ fund.bankNo }}</td>
+                <td>{{ fund.tMoney }}</td>
+                <td class="btns">
+                  <template v-if="fund.quDaoCode === 'KLJ01'">
+                    <div v-if="fund.openStatus === 'APPLYING' || fund.openStatus ==='BACK'" class="btn-glow btn btn-lg" @click="openAccountKL(fund)">开户</div>
+                    <div v-if="fund.openStatus === 'AUDIT'">--</div>
+                    <div v-if="fund.openStatus === 'PASSED'" class="btn-glow btn btn-lg"
+                      @click="cashKL(fund)">提现</div>
+                    <div v-if="fund.openStatus === 'PASSED'" class="btn-glow btn btn-lg"
+                      @click="modal.cashRecord = true, modalParam.cashRecord = fund">提现记录</div>
+                  </template>
+                  <template v-else-if="fund.quDaoCode === 'SSJ01'">
+                    <div v-if="fund.openStatus === '4' || fund.openStatus ==='2'" class="btn-glow btn btn-lg" @click="openAccountSSJ(fund)">开户</div>
+                    <div v-if="fund.openStatus === '3'">--</div>
+                    <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg"
+                      @click="modal.ssjCash = true, modalParam.ssjCash = fund.storeCode">提现</div>
+                    <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg"
+                      @click="modal.cashRecord = true, modalParam.cashRecord = fund">提现记录</div>
+                    <div v-if="fund.openStatus === '5'" class="btn-glow btn btn-lg" @click="unlockSSJ(fund)">解锁</div>
+                    <div v-if="fund.openStatus === '1'" class="btn-glow btn btn-lg" @click="ResetPwdSSJ(fund)">重置密码</div>
+                  </template>
+                </td>
+              </tr>
             </template>
             <tr v-if="!Object.keys(storeInfos).length">
               <td colspan="5">加载中...</td>
@@ -123,7 +121,7 @@
       search () {
         api.storeFundList({ searchStoreName: this.query.storeName })
         .then(res => {
-          this.storeInfos = res
+          this.storeInfos = res || {}
         })
         .catch(err => alert(err))
       },
@@ -178,7 +176,7 @@
         })
         .catch(err => alert(err))
       },
-      cashSSJ (fund) {
+      cashSSJ () {
         api.storeDeposit({
           storeCode: this.modalParam.ssjCash,
           fundId: 'SSJ01',

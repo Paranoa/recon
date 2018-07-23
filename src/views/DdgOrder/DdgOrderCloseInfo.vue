@@ -6,12 +6,13 @@
           <div class="search-line" style="margin-bottom: 20px">
             <span>门店名称： 
               <div class="ui-select" style="width: auto">
-                  <select>
-                  </select>
+                <select v-model="query.code">
+                  <option value="0">全部</option>
+                </select>
               </div>
               <span>
-                  时间：<Datepicker v-model="search_start" />
-                  至：<Datepicker v-model="search_end" />
+                  时间：<Datepicker v-model="query.startDate" />
+                  至：<Datepicker v-model="query.endDate" />
               </span>
               <div id="billing_query" class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</div>
             </span>
@@ -64,12 +65,17 @@
   import api from '@/api'
   import BillingDetail from './DdgOrderCloseInfoDetail.vue'
 
+  const ROWS_COUNT = 10
+
   export default {
     props: ['title', 'width', 'modalId'],
     data () {
       return {
-        search_start: '',
-        search_end: '',
+        query: {
+          code: '0',
+          startDate: '',
+          endDate: ''
+        },
         ordersTotal: 0,
         records: [],
         showDetail: false,
@@ -89,20 +95,23 @@
       close () {
         this.$emit('close')
       },
-      getCashRecord () {
-
+      getCashRecord (page = 1) {
+        api.ddgBillingInfo({
+          page,
+          rows: ROWS_COUNT,
+          startDate: this.query.startDate,
+          endDate: this.query.endDate,
+          merchantCode: this.query.code === '0' ? this.$store.getters.merchantCode: '',
+          storeCode: this.query.code === '0'? '' : this.query.code,
+        })
+        .then(res => {
+          this.records = res.rows,
+          this.pageCount = res.total
+        })
       }
     },
     mounted () {
-      console.log(this.modalId)
-      api.test()
-        .then(() => {
-          this.records = [{
-            payAmount: 10000
-          },{
-            payAmount: 20000
-          }]
-        })
+      this.getCashRecord()
     }
   }
 </script>

@@ -79,7 +79,6 @@
 </template>
 
 <script>
-import api from '@/api'
 import VMenuActive from '@/components/VMenuActive.vue'
 import { mapGetters } from 'vuex'
 

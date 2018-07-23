@@ -61,11 +61,10 @@
         this.$emit('close')
       },
       cancel () {
-        api.test()
+        api.cancelRefund({
+          appId: this.modalId
+        })
       }
-    },
-    mounted () {
-      console.log('loadCancel' + this.modalId)
     }
   }
 </script>

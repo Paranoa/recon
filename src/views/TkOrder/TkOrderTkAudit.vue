@@ -10,7 +10,7 @@
         <div class="form-group">
           <span class="col-lg-2">打款凭证：</span>
           <div class="col-lg-10">
-            <a :href="img.cFtpPath" target="_blank" v-for="img of imgs" class="img-group">
+            <a :href="img.cFtpPath" target="_blank" v-for="img of imgs" :key="img.cFtpPath" class="img-group">
               <img :src="img.cFtpPath">
             </a>
           </div>

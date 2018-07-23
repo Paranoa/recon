@@ -1,5 +1,6 @@
 export default {
   cName: state => state.user.cName,
+  belowStores: state => state.user.belowStores,
   fundBank: state => state.user.fundBank,
   isShop: state => state.user.isShop,
   merchantCode: state => state.user.merchantCode,

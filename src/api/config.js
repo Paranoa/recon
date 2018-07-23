@@ -27,7 +27,14 @@ const apiUrl = {
   myApplyLoanType1:env.VUE_APP_URL_ORDER_MY_APPLY_LOAN_1,
   doOut:env.VUE_APP_URL_ORDER_DO_OUT,
   tkOrderList: env.VUE_APP_URL_TK_ORDER_LIST,
-  tkAudit: env.VUE_APP_URL_TK_AUDIT
+  tkAudit: env.VUE_APP_URL_TK_AUDIT,
+  ddgOrderList: env.VUE_APP_URL_DDG_ORDER_LIST,
+  ddgCpxy: env.VUE_APP_URL_DDG_CPXY,
+  ddgSubmit: env.VUE_APP_URL_DDG_SUBMIT,
+  ddgRefuse: env.VUE_APP_URL_DDG_REFUSE,
+  ddgBillingInfo: env.VUE_APP_URL_DDG_BILLING_INFO,
+  ddgBillingDetail: env.VUE_APP_URL_DDG_BILLING_DETAIL,
+  ddgPaymentPlan: env.VUE_APP_URL_DDG_PAYMENT_PLAN,
 }
 
 for (var key in apiUrl) {

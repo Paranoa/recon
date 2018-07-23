@@ -15,8 +15,8 @@
                       <div class="ui-select">
                         <select name="store_code" class="store_code" v-model="query.store_code">
                           <option value="">全部</option>
-                          <option v-for="store of stores" :key="store.key" :value="status.key">
-                            {{ store.val }}
+                          <option v-for="store of belowStores" :key="store.c_STORE_CODE" :value="store.c_STORE_CODE">
+                            {{ store.c_NAME }}
                           </option>
                         </select>
                       </div>
@@ -24,7 +24,7 @@
                     <span>状态： 
                       <div class="ui-select">
                         <select name="app_status" class="app_status" v-model="query.app_status">
-                          <option value="0">全部</option>
+                          <option value="">全部</option>
                           <option v-for="status of ddgStatus" :key="status.key" :value="status.key">
                             {{ status.val }}
                           </option>
@@ -117,7 +117,7 @@
                     <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
                       <template v-if="order.N_APP_STATUS == '160'">
-                        <div class="btn-glow" @click="modal.pamentPlan = true, modalId.paymenPlan = order.C_APP_ID">收款计划</div>
+                        <div class="btn-glow" @click="modal.paymenPlan = true, modalId.paymenPlan = order.C_APP_ID">收款计划</div>
                         <div v-if="!['0','2','3','4','5','8','21','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="modalId.refund = order.C_APP_ID, modal.refund = true">退贷预约
                         </div>
                         <template v-else>
@@ -157,13 +157,15 @@
     <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" />
     <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
     <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"  @close="closeModal('closeInfo')"/>
-    <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg" @close="closeModal('applyDdg')"/>
+    <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg" @close="closeModal('applyDdg')" @succeess="queryOrder()"/>
     <PaymentPlan v-if="modal.paymenPlan" width="1000px" :modalId="modalId.paymenPlan" @close="closeModal('paymenPlan')"/>
   </div>
 </template>
 
 <script>
   import api from '@/api'
+  import { mapGetters } from 'vuex'
+  import util from '@/util'
   import constant from '@/util/constant'
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
@@ -175,18 +177,16 @@
   import ApplyDdg from './DdgOrderApplyDdg.vue'
   import PaymentPlan from './DdgOrderPaymentPlan.vue'
 
-  import loading from '@/util/loading'
-
   export default {
     data () {
       return {
         orders: [],
         query: {
           name: '',
-          search_start: '',
-          search_end: '',
+          search_start: util.dateToString(new Date(new Date().getTime() - 30 * 24 * 3600 * 1000)),
+          search_end: util.dateToString(new Date()),
           store_code: '',
-          app_status: '0',
+          app_status: '',
           type: '1',
         },
         stores: [],
@@ -214,7 +214,8 @@
             return true
           }
         }
-      }
+      },
+      ...mapGetters(['belowStores'])
     },
     components: {
       Paginate,
@@ -232,12 +233,19 @@
     },
     methods: {
       queryOrder (page = 1) {
-        api.queryOrder(page)
-          .then(({ rows, total }) => {
-            this.orders = rows
-            this.ordersTotal = total
-
-          })
+        api.ddgOrderList({
+          page,
+          name: this.query.name,
+          store_code: this.query.store_code,
+          app_status: this.query.app_status,
+          search_start: this.query.search_start,
+          search_end: this.query.search_end,
+          tp: this.query.type,
+        })
+        .then(({ result, resultCnt }) => {
+          this.orders = result
+          this.ordersTotal = resultCnt
+        })
       },
       exportResult () {
 
@@ -247,8 +255,8 @@
       },
       spReject (appId) {
         if (confirm('确定要拒绝这笔订单吗？')) {
-          api.test({
-            id: appId
+          api.ddgRefuse({
+            appId: appId
           })
           .then(() => alert('拒绝成功'))
           .catch(err => alert(err))

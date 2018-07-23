@@ -23,13 +23,21 @@ export default {
   exportExcel,
   cancelRefund,
   checkRefundLimit,
+  bookRefund,
   getStoreCodes,
   calculateRefund,
   getOrderInfo,
   myApplyLoanType1,
   doOut,
   tkOrderList,
-  tkAudit
+  tkAudit,
+  ddgOrderList,
+  ddgCpxy,
+  ddgSubmit,
+  ddgRefuse,
+  ddgBillingInfo,
+  ddgBillingDetail,
+  ddgPaymentPlan,
 }
 
 function login (data) {
@@ -97,13 +105,7 @@ function cardOrderList (data) {
 }
 
 function exportExcel (data) {
-  return axios
-    .get(apiUrl.exportExcel, { params: data,  responseType: 'blob',  headers: {
-        'token': util.getCookie('token')
-      }})
-    .then(res => {
-      util.download(res.data, '刷卡消费列表.xls')
-    })
+  return get(apiUrl.exportExcel, data, { responseType: 'blob' }, true)
 }
 
 function cancelRefund (data) {
@@ -114,7 +116,7 @@ function checkRefundLimit (data) {
   return post(apiUrl.checkRefundLimit, data)
 }
 
-function bookRefund(data){
+function bookRefund(){
   return post(apiUrl.bookRefund)
 }
 
@@ -126,13 +128,7 @@ function myApplyLoanType1(data){
   return post(apiUrl.myApplyLoanType1,data)
 }
 function doOut(data){
-  return axios
-    .get(apiUrl.doOut, { params: data,  responseType: 'blob',  headers: {
-        'token': util.getCookie('token')
-      }})
-    .then(res => {
-      util.download(res.data, 'doout.xls')
-    })
+  return get(apiUrl.doOut, data, { responseType: 'blob' }, true)
 }
 function tkOrderList (data) {
   return post(apiUrl.tkOrderList, data)
@@ -142,25 +138,57 @@ function tkAudit (data) {
   return post(apiUrl.tkAudit, data)
 } 
 
-function get (url, params, options) {
+function ddgOrderList (data) {
+  return post(apiUrl.ddgOrderList, data)
+}
+
+function ddgCpxy (data) {
+  return post(apiUrl.ddgCpxy, data)
+}
+
+function ddgSubmit (data) {
+  return post(apiUrl.ddgSubmit, data)
+}
+
+function ddgRefuse (data) {
+  return post(apiUrl.ddgRefuse, data)
+}
+
+function ddgBillingInfo (data) {
+  return post(apiUrl.ddgBillingInfo, data)
+}
+
+function ddgBillingDetail (data) {
+  return post(apiUrl.ddgBillingDetail, data)
+}
+
+function ddgPaymentPlan (data) {
+  return post(apiUrl.ddgPaymentPlan, data)
+}
+
+function get (url, params, options, originResponse) { // originResponse为true时,返回原始响应数据
   return new Promise((resolve, reject) => {
     var load = loading.service()
 
-    axios.get(url, { params, ...options, 
+    axios.get(url, { params, ...options,
         headers: {
           'token': util.getCookie('token')
         }
       })
       .then(({ data }) => {
         load.close()
-        if (data) {
-          if (data.success) {
-            resolve(data.result)
-          } else {
-            reject(data.errorMessage || '接口错误:' + url)
-          }
+        if (originResponse) {
+          resolve(data)
         } else {
-          reject('错误:' + JSON.stringify(data))
+          if (data) {
+            if (data.success) {
+              resolve(data.result)
+            } else {
+              reject(data.errorMessage || '接口错误:' + url)
+            }
+          } else {
+            reject('错误:' + JSON.stringify(data))
+          }
         }
       })
       .catch(({ response } = {}) => {
@@ -170,7 +198,7 @@ function get (url, params, options) {
   })
 }
 
-function post (url, params) {
+function post (url, params, options, originResponse) {
   var postParams = new URLSearchParams()
   for (var key in params) {
     postParams.append(key, params[key])
@@ -179,20 +207,25 @@ function post (url, params) {
   return new Promise((resolve, reject) => {
     var load = loading.service()
     axios.post(url, postParams, {
+      ...options,
       headers: {
         'token': util.getCookie('token')
       }
     })
       .then(({ data }) => {
         load.close()
-        if (data) {
-          if (data.success) {
-            resolve(data.result)
-          } else {
-            reject(data.errorMessage || '接口错误:' + url)
-          }
+        if (originResponse) {
+          resolve(data)
         } else {
-          reject('错误:' + JSON.stringify(data))
+          if (data) {
+            if (data.success) {
+              resolve(data.result)
+            } else {
+              reject(data.errorMessage || '接口错误:' + url)
+            }
+          } else {
+            reject('错误:' + JSON.stringify(data))
+          }
         }
       })
       .catch(({ response } = {}) => {

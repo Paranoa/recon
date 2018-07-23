@@ -4,8 +4,6 @@ import router from './router'
 import filters from './util/filter'
 import axios from 'axios'
 import store from '@/store'
-import loading from '@/components/VLoadMask.vue'
-
 import '@/permission' //权限控制
 
 axios.defaults.withCredentials = true

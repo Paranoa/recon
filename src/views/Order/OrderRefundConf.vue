@@ -60,11 +60,7 @@
         this.$emit('close')
       },
       submit () {
-        api.test()
       }
-    },
-    mounted () {
-      console.log('load' + this.modalId)
     }
   }
 </script>

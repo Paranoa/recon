@@ -19,7 +19,8 @@ router.beforeEach((to, from, next) => {
         next()  
       })
       .catch(err => {
-        alert(err)
+        alert('登录超时')
+        console.error(err)
         next('/login')
       })
     } else {

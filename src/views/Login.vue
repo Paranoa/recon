@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import api from '../api'
 import { apiUrl } from '@/api/config'
 import util from '@/util'
 

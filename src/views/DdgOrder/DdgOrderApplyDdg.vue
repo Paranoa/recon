@@ -18,6 +18,7 @@
 <script>
   import BaseModal from '@/components/BaseModal.vue'
   import api from '@/api'
+  import util from '@/util'
 
   export default {
     props: ['width', 'modalId'],
@@ -33,12 +34,13 @@
     methods: {
       apply () {
         if (this.agreed) {
-          api.test({
-            id: this.modalId
+          api.ddgSubmit({
+            appId: this.modalId
           })
           .then(() => {
             alert('申请成功')
             this.$emit('close')
+            this.$emit('success')
           })
           .catch(err => alert(err))
         } else {
@@ -50,11 +52,11 @@
       }
     },
     mounted () {
-      api.test({
-        id: this.modalId
+      api.ddgCpxy({
+        appId: this.modalId
       })
       .then(res => {
-        this.agreeLink = '//baidu.com'
+        this.agreeLink = util.appendUrlParams(process.env.VUE_APP_DDG_CPXY, res)
       })
     }
   }
