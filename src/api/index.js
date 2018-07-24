@@ -4,7 +4,6 @@ import util from '@/util'
 import loading from '@/util/loading'
 
 export default {
-  test,
   login,
   getUserInfo,
   resetPwd,
@@ -82,10 +81,6 @@ function storeDepositStatus (data) {
 
 function billingDetail (data) {
   return post(apiUrl.billingDetail, data)
-}
-
-function test () {
-  return get('../mock/test.json')
 }
 
 function queryOrder (data) {

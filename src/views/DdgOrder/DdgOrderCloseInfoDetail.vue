@@ -4,7 +4,7 @@
       <div style="height: 430px">
         <div class="search-line" style="margin-bottom: 20px">
           <span>
-              搜索：<input type="text" v-model="keyword" class="input-large search_start" maxlength="20">
+            搜索：<input type="text" v-model="keyword" class="input-large search_start" maxlength="20">
           </span>
           <div class="btn-glow" style="margin-left: 20px;" @click="query"><i class="icon-search"></i>查询</div>
         </div>
@@ -25,19 +25,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="record of records" :key="record.extId">
-              <td>{{ record.extId }}</td>
-              <td>{{ record.name }}</td>
-              <td>{{ record.mobile }}</td>
-              <td>{{ record.storeName }}</td>
-              <td>{{ record.payDate }}</td>
-              <td>{{ record.tenor }}</td>
-              <td>{{ record.payAmount }}</td>
-              <td>{{ record.payCorpus }}</td>
-              <td>{{ record.charge }}</td>
-              <td>{{ record.payRisk }}</td>
-              <td>{{ record.payRepayAllFee }}</td>
-            </tr>
+            <template v-if="records.length">
+              <tr v-for="record of records" :key="record.extId">
+                <td>{{ record.extId }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.mobile }}</td>
+                <td>{{ record.storeName }}</td>
+                <td>{{ record.payDate }}</td>
+                <td>{{ record.tenor }}</td>
+                <td>{{ record.payAmount }}</td>
+                <td>{{ record.payCorpus }}</td>
+                <td>{{ record.charge }}</td>
+                <td>{{ record.payRisk }}</td>
+                <td>{{ record.payRepayAllFee }}</td>
+              </tr>
+            </template>
+            <template v-else>
+              <tr>
+                <td class="txtcenter" colspan="11">未查询到结果</td>
+              </tr>             
+            </template>
           </tbody>
         </table>
         <div class="pagination-aside">
@@ -57,6 +64,8 @@
   import BaseModal from '@/components/BaseModal.vue'
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api'
+
+  const ROWS_COUNT = 10
 
   export default {
     props: ['title', 'width', 'modalId'],
@@ -79,28 +88,24 @@
         this.$emit('close')
       },
       query () {
-        this.getCashRecordDetail()
+        this.getCashRecordDetail(1)
       },
-      getCashRecordDetail () {
-        api.billingDetail()
-          .then(res => this.records = res)
+      getCashRecordDetail (page = 1) {
+        api.billingDetail({
+          page,
+          rows: ROWS_COUNT,
+          paymentNo: this.modalId,
+          searchKey: this.keyword
+        })
+        .then(({ rows, total }) => { 
+          this.records = rows
+          this.ordersTotal = total
+        })
+        .catch(err => alert(err))
       }
     },
     mounted () {
-      console.log(this.modalId)
+      this.query()
     }
   }
 </script>
-
-<style scoped>
-  .ico-help {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background: url(../../assets/help.png);
-    background-size: 100% 100%;
-    vertical-align: middle;
-    margin: -5px 5px 0;
-    cursor: pointer;
-    }
-</style>

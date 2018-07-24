@@ -43,7 +43,6 @@
   </BaseModal>
 </template>
 <script>
-  import api from '@/api'
   import BaseModal from '@/components/BaseModal.vue'
   import FileUpload from '@/components/FileUpload.vue'
 

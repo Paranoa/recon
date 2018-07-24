@@ -2,7 +2,7 @@
   <div>
     <BaseModal title="结算信息" :width="width" @close="close">
       <template slot="body">
-        <div style="height: 430px">
+        <div>
           <div class="search-line" style="margin-bottom: 20px">
             <span>门店名称： 
               <div class="ui-select" style="width: auto">
@@ -11,8 +11,8 @@
                 </select>
               </div>
               <span>
-                  时间：<Datepicker v-model="query.startDate" />
-                  至：<Datepicker v-model="query.endDate" />
+                时间：<Datepicker v-model="query.startDate" />
+                至：<Datepicker v-model="query.endDate" />
               </span>
               <div id="billing_query" class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</div>
             </span>
@@ -35,7 +35,7 @@
                 <td>{{ record.storeName }}</td>
                 <td>{{ record.paymentNo }}</td>
                 <td>{{ record.payDate }}</td>
-                <td><a @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount }}</a></td>
+                <td><a class="link" @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount }}</a></td>
                 <td>{{ record.payCorpus }}</td>
                 <td>{{ record.charge }}</td>
                 <td>{{ record.payRisk }}</td>
@@ -106,7 +106,7 @@
         })
         .then(res => {
           this.records = res.rows,
-          this.pageCount = res.total
+          this.ordersTotal = res.total
         })
       }
     },
@@ -117,6 +117,9 @@
 </script>
 
 <style scoped>
+  .link { 
+    cursor: pointer;
+  }
   .ico-help {
     display: inline-block;
     width: 15px;
