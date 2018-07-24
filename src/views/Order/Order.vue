@@ -43,7 +43,7 @@
                         <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.tp">申请时间
                       </label>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" tp="radio" value="2" v-model="query.tp">放款时间
+                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="query.tp">放款时间
                       </label>
                   </span>
                 </div>
