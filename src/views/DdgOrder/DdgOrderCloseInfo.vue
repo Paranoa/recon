@@ -8,6 +8,7 @@
               <div class="ui-select" style="width: auto">
                 <select v-model="query.code">
                   <option value="0">全部</option>
+                  <option v-for="store of belowStores" :value="store.c_STORE_CODE" :key="store.c_STORE_CODE">{{ store.c_NAME }}</option>
                 </select>
               </div>
               <span>
@@ -31,16 +32,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="record of records" :key="record.id">
-                <td>{{ record.storeName }}</td>
-                <td>{{ record.paymentNo }}</td>
-                <td>{{ record.payDate }}</td>
-                <td><a class="link" @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount }}</a></td>
-                <td>{{ record.payCorpus }}</td>
-                <td>{{ record.charge }}</td>
-                <td>{{ record.payRisk }}</td>
-                <td>{{ record.payRepayAllFee }}</td>
-              </tr>
+              <template v-if="records.length">
+                <tr v-for="record of records" :key="record.id">
+                  <td>{{ record.storeName }}</td>
+                  <td>{{ record.paymentNo }}</td>
+                  <td>{{ record.payDate }}</td>
+                  <td><a class="link" @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount }}</a></td>
+                  <td>{{ record.payCorpus }}</td>
+                  <td>{{ record.charge }}</td>
+                  <td>{{ record.payRisk }}</td>
+                  <td>{{ record.payRepayAllFee }}</td>
+                </tr>
+              </template>
+              <template v-else>
+                  <tr>
+                    <td class="txtcenter" colspan="8">未查询到结果</td>
+                  </tr>
+              </template>
             </tbody>
           </table>
           <div class="pagination-aside">
@@ -59,6 +67,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import BaseModal from '@/components/BaseModal.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import Paginate from '@/components/Paginate.vue'
@@ -84,6 +93,7 @@
     },
     computed: {
       pageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
+      ...mapGetters(['belowStores'])
     },
     components: {
       BaseModal,
