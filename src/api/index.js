@@ -111,8 +111,8 @@ function checkRefundLimit (data) {
   return post(apiUrl.checkRefundLimit, data)
 }
 
-function bookRefund(){
-  return post(apiUrl.bookRefund)
+function bookRefund(data){
+  return post(apiUrl.bookRefund,data)
 }
 
 function getOrderInfo(data){
