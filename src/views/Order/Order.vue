@@ -40,10 +40,10 @@
                   至：<Datepicker input-class="datepicker-input" v-model="query.search_end" /></span>
                   <span>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.type">申请时间
+                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.tp">申请时间
                       </label>
                       <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="query.type">放款时间
+                        <input style="width: 10px; min-width:0" tp="radio" value="2" v-model="query.tp">放款时间
                       </label>
                   </span>
                 </div>
@@ -187,7 +187,7 @@
           app_status: '',
           search_start: util.dateToString(constant.A_MONTH_BEFORE),
           search_end: util.dateToString(constant.NOW),
-          type: 1,
+          tp: 1,
         },
         orders: [],
         GEEX_SHOW_STATUS_MEAN: [
@@ -196,7 +196,6 @@
           {key:'140',val:'已拒绝'},
           {key:'160',val:'已放款'}
         ],
-        type: '2',
         ordersTotal: 0,
         modal: {
           refund: false,
