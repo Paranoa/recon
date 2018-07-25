@@ -1,15 +1,17 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="退贷预约" :width="width" @close="close">
     <template slot="body">
       <div class="content-body">
         <div class="form-group clearfix">
           <label class="col-lg-2 fl" style="font-size:12px; margin-top: 10px">预约退贷打款日期：</label>
-          <Datepicker input-class="datepicker-input" v-model="reserveDate" @input="findRefund" />
+          <Datepicker input-class="datepicker-input" v-model="reserveDate" @input="findRefund" :disabledDates="{ to: today}" />
           <div style="width:240px;height:50px;float:right;">请在预约日期16:00之前完成打款，否则需要重新预约，可能会产生费用</div>
         </div>
         <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;" v-show="refundShow">
           贷款本金：<span class="benjin">{{ loanAmt }}</span> <i class="icon-question-sign" title="客户申请的借款金额"></i><br>
-          已还本金：<span class="yihuanbenjin">{{ paidAmt }}</span> <i class="icon-question-sign"  title="客户已归还的贷款本金部分"></i><br>
+          <template v-if="!hidePrincipal">
+            已还本金：<span class="yihuanbenjin">{{ paidAmt }}</span> <i class="icon-question-sign"  title="客户已归还的贷款本金部分"></i><br>
+          </template>
           剩余本金：<span class="shengyubenjin">{{ corpus }}</span> <i class="icon-question-sign"  title="贷款本金-已还本金"></i><br>
           +应还手续费：<span class="yinghuanshouxufei">{{ fee }}</span> <i class="icon-question-sign"  title="到当期为止全部应还手续费-已还手续费"></i><br>
           <div class="zhilajindiv" v-show="showLateFee">
@@ -47,9 +49,10 @@
   import BaseModal from '@/components/BaseModal.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import api from '@/api'
+  import constant from '@/util/constant'
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['width', 'modalId', 'hidePrincipal'],
     data () {
       return {
         reserveDate: null,
@@ -67,7 +70,8 @@
         showLateFee:false,
         penaltiesShow:false,
         otherFeeShow:false,
-        refundShow:false
+        refundShow:false,
+        today:constant.TODAY
       }
     },
     components: {
@@ -120,9 +124,10 @@
           'refund_id':this.modalId,
           'refund_end':this.reserveDate
         }).then(resultData=>{
-            console.log(resultData)
-            this.$emit('close')
-        })
+          console.log(resultData)
+          alert(resultData.msg)
+          this.$emit('success')
+        }).catch(err => alert(err))
       },
       close () {
         this.$emit('close')

@@ -54,5 +54,6 @@ export default {
     }
   ],
   NOW: new Date(),
+  TODAY: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
   A_MONTH_BEFORE: new Date(new Date().getTime() - 30 * 24 * 3600 * 1000)  
 }

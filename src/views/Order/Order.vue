@@ -158,9 +158,9 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <Refund v-if="modal.refund" width="560px" title="退贷预约" :modalId="modalId.refund" @close="closeModal('refund')" />
+    <Refund v-if="modal.refund" width="560px" :modalId="modalId.refund" @close="closeModal('refund')" @success="closeModal('refund'); queryOrder()"/>
     <RefundCancel v-if="modal.refundCancel" width="560px" title="退贷预约" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
-    <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" />
+    <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" @success="closeModal('applyLoan'); queryOrder()"/>
     <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
   </div>
 </template>
@@ -264,6 +264,24 @@
     }
   }
 </script>
+
+<style>
+  .search-line >span input, .datepicker-input {
+    height: 15px;
+    line-height: 15px;
+    width: 120px;
+    vertical-align: middle;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    min-width: 90px;
+    box-sizing: content-box;
+  }
+  .search-line >span input, .search-line >span .ui-select, .datepicker-input{
+    margin-left: 3px !important;
+    margin-right: 5px;
+    min-width: 150px;
+  }
+</style>
 
 <style>
 /* Main stats up of screen */
@@ -429,21 +447,6 @@
 }
 .search-line { width: 79%;}
 .search-line >span:not(:last-of-type) { margin-right: 1%;}
- .search-line >span input, .datepicker-input {
-   height: 15px;
-   line-height: 15px;
-   width: 120px;
-   vertical-align: middle;
-   margin-bottom: 6px;
-   margin-top: 6px;
-   min-width: 90px;
-   box-sizing: content-box;
- }
- .search-line >span input, .search-line >span .ui-select, .datepicker-input{
-  margin-left: 3px !important;
-  margin-right: 5px;
-  min-width: 150px;
- }
  .order-table thead th {
   box-sizing: content-box;
   min-width: 5em;

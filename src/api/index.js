@@ -37,6 +37,7 @@ export default {
   ddgBillingInfo,
   ddgBillingDetail,
   ddgPaymentPlan,
+  ddgDoOut,
 }
 
 function login (data) {
@@ -161,6 +162,10 @@ function ddgPaymentPlan (data) {
   return post(apiUrl.ddgPaymentPlan, data)
 }
 
+function ddgDoOut (data) {
+  return post(apiUrl.ddgDoOut, data, { responseType: 'blob' }, true)
+}
+
 function get (url, params, options, originResponse) { // originResponse为true时,返回原始响应数据
   return new Promise((resolve, reject) => {
     var load = loading.service()
@@ -169,8 +174,7 @@ function get (url, params, options, originResponse) { // originResponse为true�
         headers: {
           'token': util.getCookie('token')
         }
-      })
-      .then(({ data }) => {
+      }).then(({ data }) => {
         load.close()
         if (originResponse) {
           resolve(data)
@@ -206,8 +210,7 @@ function post (url, params, options, originResponse) {
       headers: {
         'token': util.getCookie('token')
       }
-    })
-      .then(({ data }) => {
+    }).then(({ data }) => {
         load.close()
         if (originResponse) {
           resolve(data)

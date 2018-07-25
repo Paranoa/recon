@@ -75,8 +75,8 @@
                 <tbody>
                   <tr class="first" v-for="order of orders" :key="order.orderNo">
                     <td>{{ order.orderNo }}</td>
+                    <td>{{ order.createTime }}</td>
                     <td>{{ order.name }}</td>
-                    <td>{{ order.C_MBL_TEL }}</td>
                     <td>{{ order.mobile }}</td>
                     <td>{{ order.orderAmount | fix2 }}</td>
                     <td>{{ order.merchantAmount }}</td>
@@ -239,6 +239,24 @@
     }
   }
 </script>
+
+<style>
+  .search-line >span input, .datepicker-input {
+    height: 15px;
+    line-height: 15px;
+    width: 120px;
+    vertical-align: middle;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    min-width: 90px;
+    box-sizing: content-box;
+  }
+  .search-line >span input, .search-line >span .ui-select, .datepicker-input{
+    margin-left: 3px !important;
+    margin-right: 5px;
+    min-width: 150px;
+  }
+</style>
 
 <style scoped>
 /* Main stats up of screen */
@@ -404,21 +422,6 @@
 }
 .search-line { width: 79%;}
 .search-line >span:not(:last-of-type) { margin-right: 1%;}
- .search-line >span input, .datepicker-input {
-   height: 15px;
-   line-height: 15px;
-   width: 120px;
-   vertical-align: middle;
-   margin-bottom: 6px;
-   margin-top: 6px;
-   min-width: 90px;
-   box-sizing: content-box;
- }
- .search-line >span input, .search-line >span .ui-select, .datepicker-input{
-  margin-left: 3px !important;
-  margin-right: 5px;
-  min-width: 150px;
- }
  .order-table thead th {
   box-sizing: content-box;
   min-width: 5em;

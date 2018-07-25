@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/views/Login.vue'
-import Home from '@/views/Home.vue'
-import HomeIndex from '@/views/HomeIndex/HomeIndex.vue'
-import OpenAccount from '@/views/OpenAccount/OpenAccount.vue'
-import Order from '@/views/Order/Order.vue'
-import CardOrder from '@/views/CardOrder/CardOrder.vue'
-import DdgOrder from '@/views/DdgOrder/DdgOrder.vue'
-import TkOrder from '@/views/TkOrder/TkOrder.vue'
-import Resetpwd from '@/views/Resetpwd/Resetpwd.vue'
 
+const Login = () => import('@/views/Login.vue')
+const Home = () => import('@/views/Home.vue')
+const HomeIndex = () => import('@/views/HomeIndex/HomeIndex.vue')
+const OpenAccount = () => import('@/views/OpenAccount/OpenAccount.vue')
+const Order = () => import('@/views/Order/Order.vue')
+const CardOrder = () => import('@/views/CardOrder/CardOrder.vue')
+const TkOrder = () => import('@/views/TkOrder/TkOrder.vue')
+const Resetpwd = () => import('@/views/Resetpwd/Resetpwd.vue')
+const DdgOrder = () => import('@/views/DdgOrder/DdgOrder.vue')
 
 Vue.use(Router)
 

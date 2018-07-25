@@ -35,6 +35,7 @@ const apiUrl = {
   ddgBillingInfo: env.VUE_APP_URL_DDG_BILLING_INFO,
   ddgBillingDetail: env.VUE_APP_URL_DDG_BILLING_DETAIL,
   ddgPaymentPlan: env.VUE_APP_URL_DDG_PAYMENT_PLAN,
+  ddgDoOut: env.VUE_APP_URL_DDG_DO_OUT,
 }
 
 for (var key in apiUrl) {

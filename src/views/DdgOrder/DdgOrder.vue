@@ -49,7 +49,7 @@
                 </div>
                 <div class="pull-right search-buttons">
                   <div class="btn-glow search_btn" style="margin-right: 10px;" @click="queryOrder()"><i class="icon-search"></i>查询</div>
-                  <div class="btn-glow out_btn" style="margin-right: 10px;"><i class="icon-download-alt" @click="exportResult"></i>导出</div>
+                  <div class="btn-glow out_btn" style="margin-right: 10px;" @click="exportResult"><i class="icon-download-alt" ></i>导出</div>
                   <div class="btn-glow billing_btn" @click="modal.closeInfo = true"><i class="icon-tasks"></i>结算信息</div>
                 </div>
               </div>
@@ -152,7 +152,7 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <Refund v-if="modal.refund" width="560px" title="退贷预约" :modalId="modalId.refund" @close="closeModal('refund')" />
+    <Refund v-if="modal.refund" width="560px" title="退贷预约" :hidePrincipal="true" :modalId="modalId.refund" @close="closeModal('refund')" />
     <RefundCancel v-if="modal.refundCancel" width="560px" title="退贷预约" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
     <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" />
     <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
@@ -189,6 +189,7 @@
           app_status: '',
           type: '1',
         },
+        currPage: 1,
         stores: [],
         ddgStatus: constant.DDG_STATUS,
         ordersTotal: 0,
@@ -233,6 +234,8 @@
     },
     methods: {
       queryOrder (page = 1) {
+        this.currPage = page
+
         api.ddgOrderList({
           page,
           name: this.query.name,
@@ -248,7 +251,24 @@
         })
       },
       exportResult () {
-
+        api.ddgDoOut({
+          page: this.currPage,
+          name: this.query.name,
+          store_code: this.query.store_code,
+          app_status: this.query.app_status,
+          search_start: this.query.search_start,
+          search_end: this.query.search_end,
+          tp: this.query.type,
+        })
+        .then(res => {
+          if (res instanceof Blob) {
+            util.downloadXls(res, '单单过订单导出' + new Date().getTime() +'.xls')
+            alert('导出成功')
+          } else {
+            alert('导出失败:' + JSON.stringify(res))
+          }
+        })
+        .catch(err => alert(err))
       },
       closeModal(modalId) {
         this.modal[modalId] = false
@@ -265,6 +285,24 @@
     }
   }
 </script>
+
+<style>
+  .search-line >span input, .datepicker-input {
+    height: 15px;
+    line-height: 15px;
+    width: 120px;
+    vertical-align: middle;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    min-width: 90px;
+    box-sizing: content-box;
+  }
+  .search-line >span input, .search-line >span .ui-select, .datepicker-input{
+    margin-left: 3px !important;
+    margin-right: 5px;
+    min-width: 150px;
+  }
+</style>
 
 <style scoped>
 /* Main stats up of screen */
@@ -430,21 +468,6 @@
 }
 .search-line { width: 79%;}
 .search-line >span:not(:last-of-type) { margin-right: 1%;}
- .search-line >span input, .datepicker-input {
-   height: 15px;
-   line-height: 15px;
-   width: 120px;
-   vertical-align: middle;
-   margin-bottom: 6px;
-   margin-top: 6px;
-   min-width: 90px;
-   box-sizing: content-box;
- }
- .search-line >span input, .search-line >span .ui-select, .datepicker-input{
-  margin-left: 3px !important;
-  margin-right: 5px;
-  min-width: 150px;
- }
  .order-table thead th {
   box-sizing: content-box;
   min-width: 5em;

@@ -39,7 +39,7 @@
           <hr style="width: 80%; margin: 10px 0"/>
           <div class="form-group clearfix">
             <div class="col-lg-10">
-              发货时间: <Datepicker v-model="sendTime" />
+              发货时间: <Datepicker v-model="sendTime" :disabledDates="{ to: today }" />
             </div>
           </div>
           <div class="form-group clearfix">
@@ -49,7 +49,7 @@
                 <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
                 <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
               </div>
-              <FileUpload @success="orderFileUploaded" action="order/img/upload">
+              <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
                 <div class="tinyImgUpload-img-up-add tinyImgUpload-img-item">
                   <span class="tinyImgUpload-img-add-icon">+</span>
                 </div>
@@ -63,7 +63,7 @@
                 <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
                 <i class="tinyImgUpload-img-remove" @click="finaceFiles.splice(index, 1)">x</i>
               </div>
-              <FileUpload @success="finaceFileUploaded" action="order/img/upload">
+              <FileUpload @success="finaceFileUploaded" action="order/img/upload" @error="uploadErr">
                 <div class="tinyImgUpload-img-up-add  tinyImgUpload-img-item">
                   <span class="tinyImgUpload-img-add-icon">+</span>
                 </div>
@@ -85,6 +85,7 @@
   import Datepicker from '@/components/Datepicker.vue'
   import FileUpload from '@/components/FileUpload.vue'
   import api from '@/api'
+  import constant from '@/util/constant'
 
   export default {
     props: ['title', 'width', 'modalId'],
@@ -94,6 +95,7 @@
         orderFiles: [],
         finaceFiles: [],
         sendTime: '',
+        today: constant.TODAY,
       }
     },
     components: {
@@ -121,6 +123,9 @@
           alert(res.errorMessage)
         }
       },
+      uploadErr (err) {
+        alert(err)
+      },
       submit () {
         var orderFilesJso = JSON.stringify(this.orderFiles)
         var finaceFilesJso = JSON.stringify(this.finaceFiles)
@@ -131,13 +136,18 @@
           'sendTime':this.sendTime
         }
         console.log(data)
-        api.myApplyLoanType1(data)
+        api.myApplyLoanType1(data).then(() => {
+          alert('申请成功')
+          this.$emit('success')
+        })
+        .catch(err => alert(err))
       },
       getOrderDetailInfo(){
         api.getOrderInfo({'cAppId':this.modalId})
-        .then(resultData=>{
+        .then(resultData => {
           this.order = resultData.orderInfo
         })
+        .catch(err => alert(err))
       }
     },
     mounted () {
