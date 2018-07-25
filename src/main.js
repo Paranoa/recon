@@ -6,7 +6,6 @@ import axios from 'axios'
 import store from '@/store'
 import '@/permission' //权限控制
 
-axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
 // 注册全局过滤器
