@@ -116,12 +116,12 @@
                     <td>{{ order.C_APP_ID }}</td>
                     <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
-                      <template v-if="order.N_APP_STATUS == '160'">
+                      <template v-if="+order.N_APP_STATUS == 160">
                         <div class="btn-glow" @click="modal.paymenPlan = true, modalId.paymenPlan = order.C_APP_ID">收款计划</div>
-                        <div v-if="!['0','2','3','4','5','8','21','23'].includes(order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="modalId.refund = order.C_APP_ID, modal.refund = true">退贷预约
+                        <div v-if="![0,2,3,4,5,8,21,23].includes(+order.N_LOAN_AFTER_STATUS)" class="btn-glow bt_tryrefund" @click="modalId.refund = order.C_APP_ID, modal.refund = true">退贷预约
                         </div>
                         <template v-else>
-                          <template v-if="['2','23'].includes(order.N_LOAN_AFTER_STATUS)">
+                          <template v-if="[2,23].includes(+order.N_LOAN_AFTER_STATUS)">
                             <div class="btn-glow bt_cancelrefund" @click="modalId.refundCancel = order.C_APP_ID, modal.refundCancel = true">查看/取消预约</div>
                             <div class="btn-glow bt_refund" @click="modalId.refundConf = order.C_APP_ID, modal.refundConf = true">上传凭证</div>
                           </template>
@@ -130,7 +130,7 @@
                           </span>
                         </template>
                       </template>
-                      <template v-else-if="order.N_APP_STATUS == '103'">
+                      <template v-else-if="+order.N_APP_STATUS === 103">
                         <div class="btn-glow bt_tryddg" @click="modal.applyDdg = true, modalId.applyDdg = order.C_APP_ID">审核通过</div>
                         <div class="btn-glow bt_refuseddg" @click="spReject(order.C_APP_ID)">审核拒绝</div>
                       </template>
