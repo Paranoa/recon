@@ -50,7 +50,12 @@ export default {
         this.submit()
         .then(res => {
           util.setCookie('token', res.token)
-          this.$router.push('/home')
+          if (+res.role === 92) {
+            // 财务默认首页是退款处理
+            this.$router.push('/home/tkorder')
+          } else {
+            this.$router.push('/home')
+          }
         })
         .catch(err => {
           alert(err)

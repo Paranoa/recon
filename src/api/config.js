@@ -17,6 +17,7 @@ const apiUrl = {
   storeDepositStatus: env.VUE_APP_URL_STORE_DEPOSIT_STATUS,
   cardOrderList: env.VUE_APP_URL_CARD_ORDER_LIST,
   exportExcel: env.VUE_APP_URL_EXPORT_EXL,
+  findRefundByExtId: env.VUE_APP_URL_FIND_REFUND_BY_EXT_ID,
   cancelRefund: env.VUE_APP_URL_CANCEL_REFUND,
   checkRefundLimit: env.VUE_APP_URL_CHECK_REFUND_LIMIT,
   getStoreCodes:env.VUE_APP_URL_GET_STORE_CODES,

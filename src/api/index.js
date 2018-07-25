@@ -20,6 +20,7 @@ export default {
   billingDetail,
   cardOrderList,
   exportExcel,
+  findRefundByExtId,
   cancelRefund,
   checkRefundLimit,
   bookRefund,
@@ -102,6 +103,10 @@ function cardOrderList (data) {
 
 function exportExcel (data) {
   return get(apiUrl.exportExcel, data, { responseType: 'blob' }, true)
+}
+
+function findRefundByExtId (data) {
+  return post(apiUrl.findRefundByExtId, data)
 }
 
 function cancelRefund (data) {
