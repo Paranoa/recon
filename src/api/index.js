@@ -5,6 +5,7 @@ import loading from '@/util/loading'
 
 export default {
   login,
+  logout,
   getUserInfo,
   resetPwd,
   homeInfo,
@@ -22,6 +23,7 @@ export default {
   exportExcel,
   findRefundByExtId,
   cancelRefund,
+  cancelRefundByExtId,
   checkRefundLimit,
   bookRefund,
   getStoreCodes,
@@ -43,6 +45,10 @@ export default {
 
 function login (data) {
   return post(apiUrl.login, data)
+}
+
+function logout (data) {
+  return post(apiUrl.logout, data)
 }
 
 function getUserInfo (data) {
@@ -111,6 +117,10 @@ function findRefundByExtId (data) {
 
 function cancelRefund (data) {
   return post(apiUrl.cancelRefund, data)
+}
+
+function cancelRefundByExtId (data) {
+  return post(apiUrl.cancelRefundByExtId, data)
 }
 
 function checkRefundLimit (data) {

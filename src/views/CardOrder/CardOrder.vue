@@ -115,7 +115,7 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <CCIRefund title="退贷预约" v-if="modal.cciRefund" width="550px" :modalParam="modalParam.cciRefund" @close="closeModal('cciRefund')" />
+    <CCIRefund title="退贷预约" v-if="modal.cciRefund" width="550px" :modalParam="modalParam.cciRefund" @close="closeModal('cciRefund')" @success="closeModal('cciRefund'); cardOrderList()" />
   </div>
 </template>
 

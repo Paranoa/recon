@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import api from '@/api'
 import VMenuActive from '@/components/VMenuActive.vue'
 import { mapGetters } from 'vuex'
 
@@ -104,7 +105,9 @@ export default {
     },
     logout () {
       if (confirm('确定要退出吗？')) {
-        this.$router.push('/')
+        api.logout()
+        .then(() => this.$router.push('/'))
+        .catch(err => alert(err))
       }
     }
   },

@@ -4,6 +4,7 @@ const baseUrl = env.VUE_APP_BASE_URL
 const apiUrl = {
   queryOrder: env.VUE_APP_URL_QUERYORDER,
   login: env.VUE_APP_URL_LOGIN,
+  logout: env.VUE_APP_URL_LOGOUT,
   checkLogin: env.VUE_APP_URL_GET_USER_INFO,
   resetPwd: env.VUE_APP_URL_RESET_PWD,
   getCode:env.VUE_APP_URL_GET_CODE,
@@ -19,6 +20,7 @@ const apiUrl = {
   exportExcel: env.VUE_APP_URL_EXPORT_EXL,
   findRefundByExtId: env.VUE_APP_URL_FIND_REFUND_BY_EXT_ID,
   cancelRefund: env.VUE_APP_URL_CANCEL_REFUND,
+  cancelRefundByExtId: env.VUE_APP_URL_CANCEL_REFUND_BY_EXT_ID,
   checkRefundLimit: env.VUE_APP_URL_CHECK_REFUND_LIMIT,
   getStoreCodes:env.VUE_APP_URL_GET_STORE_CODES,
   calculateRefund:env.VUE_APP_URL_CALCULATE_REFUND,

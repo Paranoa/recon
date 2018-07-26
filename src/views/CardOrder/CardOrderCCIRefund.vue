@@ -72,7 +72,7 @@
       },
       reserveSuccess () {
         alert('预约成功')
-        this.$emit('close')
+        this.$emit('success')
       },
       reserveError (err) {
         alert(err)

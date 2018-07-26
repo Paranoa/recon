@@ -79,8 +79,8 @@
         this.$emit('close')
       },
       cancel () {
-        api.cancelRefund({
-          appId: this.modalId
+        api.cancelRefundByExtId({
+          cancelrefund_id: this.modalId
         })
         .then(() => {
           alert('取消预约成功')
