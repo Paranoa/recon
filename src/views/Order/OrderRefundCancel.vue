@@ -4,7 +4,7 @@
       <div class="content-body">
         <div class="form-group clearfix">
           <label class="col-lg-2 fl" style="font-size:12px; margin-top: 10px">预约退贷打款日期：</label>
-          <span>{{ payDate }}</span>
+          <span class="reserve-date">{{ payDate }}</span>
           <div style="width:240px;height:50px;float:right;">请在预约日期16:00之前完成打款，否则需要重新预约，可能会产生费用</div>
         </div>
         <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;">
@@ -116,6 +116,7 @@
 </script>
 
 <style scoped>
+  .reserve-date { display: inline-block; vertical-align: middle; margin-top: 10px; }
   .content-body { height: 400px }
   .icon-question-sign { font-size: 14px; float: right; margin-right: 20px; margin-top: 3px;}
 </style>

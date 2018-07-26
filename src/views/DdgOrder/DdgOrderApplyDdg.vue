@@ -39,7 +39,6 @@
           })
           .then(() => {
             alert('申请成功')
-            this.$emit('close')
             this.$emit('success')
           })
           .catch(err => alert(err))

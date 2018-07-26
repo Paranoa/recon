@@ -1,5 +1,5 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="申请放款" :width="width" @close="close">
     <template slot="body">
       <div class="content-body">
         <div>
@@ -88,7 +88,7 @@
   import constant from '@/util/constant'
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['width', 'modalId'],
     data () {
       return {
         order: {},
@@ -116,7 +116,7 @@
         }
       },
       finaceFileUploaded (res) {
-          if(res.success){
+        if(res.success){
           var resultData = res.result
           this.finaceFiles.push(resultData) 
         }else{

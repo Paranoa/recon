@@ -1,24 +1,40 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="退款确认" :width="width" @close="close">
     <template slot="body">
       <div class="content-body form-horizontal">
         <div class="form-group clearfix">
           <label for="return_img0" class="col-lg-2 control-label">上传打款凭证：</label>
           <div class="col-lg-10">
-            <FileUpload>选择文件</FileUpload>
+            <FileUpload
+              action="order/img/upload"
+              @success="res => { uploadSuccess(0, res) }"
+              @selected="(ref, name) => { imgFileNames[0] = name }"
+              @error="uploadErr">
+                {{ imgFileNames[0] || '选择文件' }}
+             </FileUpload>
             <span class="fr">*仅限jpg/png/bmp/gif</span>
           </div>
         </div>
         <div class="form-group clearfix">
           <label for="return_img1" class="col-lg-2 control-label"></label>
           <div class="col-lg-10">
-           <FileUpload>选择文件</FileUpload>
+           <FileUpload
+            action="order/img/upload"
+            @selected="(ref, name) => { imgFileNames[1] = name }"
+            @success="res => { uploadSuccess(1, res) }"
+            @error="uploadErr">
+            {{ imgFileNames[1] || '选择文件' }}</FileUpload>
           </div>
         </div>
         <div class="form-group clearfix">
           <label for="return_img2" class="col-lg-2 control-label"></label>
           <div class="col-lg-10">
-            <FileUpload>选择文件</FileUpload>
+            <FileUpload
+              action="order/img/upload"
+              @selected="(ref, name) => { imgFileNames[2] = name }"
+              @success="res => { uploadSuccess(2, res) }"
+              @error="uploadErr">
+              {{ imgFileNames[2] || '选择文件' }}</FileUpload>
           </div>
         </div>
         <div class="form-group clearfix">
@@ -45,9 +61,11 @@
   import api from '@/api'
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['width', 'modalId'],
     data () {
       return {
+        imgFiles: [],
+        imgFileNames: ['','',''],
         mark: ''
       }
     },
@@ -59,7 +77,28 @@
       close () {
         this.$emit('close')
       },
+      uploadSuccess (index, res) {
+        imgFiles[index] = res.result
+      },
+      uploadErr (err) {
+        alert(err)
+      },
       submit () {
+        if (imgFiles.length) {
+          var imgFileStr = JSON.stringify(this.imgFiles.filter(img => img))
+          api.sendFile({
+            app_id: this.modalId,
+            imgFileStr,
+            mark,
+          })
+          .then(() => {
+            alert('上传凭证成功')
+            this.$emit('success ')
+          })
+          .catch(err => alert(err))
+        } else {
+          alert('请上传打款凭证')
+        }
       }
     }
   }

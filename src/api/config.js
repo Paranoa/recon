@@ -28,6 +28,7 @@ const apiUrl = {
   getOrderInfo:env.VUE_APP_URL_GET_ORDER_INFO,
   orderFileUpload:env.VUE_APP_URL_ORDER_FILE_UPLOAD,
   myApplyLoanType1:env.VUE_APP_URL_ORDER_MY_APPLY_LOAN_1,
+  sendFile: env.VUE_APP_URL_ORDER_SEND_FILE,
   doOut:env.VUE_APP_URL_ORDER_DO_OUT,
   tkOrderList: env.VUE_APP_URL_TK_ORDER_LIST,
   tkAudit: env.VUE_APP_URL_TK_AUDIT,

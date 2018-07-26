@@ -30,6 +30,7 @@ export default {
   calculateRefund,
   getOrderInfo,
   myApplyLoanType1,
+  sendFile,
   doOut,
   tkOrderList,
   tkAudit,
@@ -138,6 +139,11 @@ function getOrderInfo(data){
 function myApplyLoanType1(data){
   return post(apiUrl.myApplyLoanType1,data)
 }
+
+function sendFile (data) {
+  return post(apiUrl.sendFile, data)
+}
+
 function doOut(data){
   return get(apiUrl.doOut, data, { responseType: 'blob' }, true)
 }

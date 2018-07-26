@@ -30,9 +30,14 @@
         </div>
         <div style="margin-left: 20px; margin-top: 10px">
           <span>上传打款凭证：</span>
-          <FileUpload class="upload" action="cardOrder/refundPic" :auto="false" :data="{ appId: modalParam.appId }" @selected="ref => { uploadRef = ref }" @success="reserveSuccess" @error="reserveError">
+          <FileUpload class="upload"
+            :auto="false" :data="{ appId: modalParam.appId }" action="cardOrder/refundPic"
+            @selected="(ref, name) => { uploadRef = ref; uploadName = name }"
+            @success="reserveSuccess"
+            @error="reserveError">
             <span class="btn btn-primary">{{ uploadRef ? '已上传' : '选择文件' }}</span>
           </FileUpload>
+          <span style="margin-left: 5px">{{ uploadName }}</span>
         </div>
       </div>
     </template>
@@ -54,6 +59,7 @@
         name: '',
         mobile: '',
         uploadRef: null,
+        uploadName: '',
       }
     },
     components: {

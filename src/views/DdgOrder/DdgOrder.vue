@@ -152,13 +152,30 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <Refund v-if="modal.refund" width="560px" :hidePrincipal="true" :modalId="modalId.refund" @close="closeModal('refund')" @success="closeModal('refund'); queryOrder()" />
-    <RefundCancel v-if="modal.refundCancel" width="560px" :hidePrincipal="true" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
-    <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" @success="closeModal('applyLoan'); queryOrder()" />
-    <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
-    <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"  @close="closeModal('closeInfo')"/>
-    <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg" @close="closeModal('applyDdg')" @succeess="queryOrder()"/>
-    <PaymentPlan v-if="modal.paymenPlan" width="1000px" :modalId="modalId.paymenPlan" @close="closeModal('paymenPlan')"/>
+    <Refund v-if="modal.refund" width="560px" :hidePrincipal="true" :modalId="modalId.refund"
+      @close="closeModal('refund')"
+      @success="closeModal('refund'); queryOrder()" />
+
+    <RefundCancel v-if="modal.refundCancel" width="560px" :hidePrincipal="true" :modalId="modalId.refundCancel" 
+      @close="closeModal('refundCancel')" 
+      @success="closeModal('refundCancel'); queryOrder()" />
+
+    <ApplyLoan v-if="modal.applyLoan" width="1100px" :modalId="modalId.applyLoan"
+      @close="closeModal('applyLoan')"
+      @success="closeModal('applyLoan'); queryOrder()" />
+
+    <RefundConf v-if="modal.refundConf" width="500px" :modalId="modalId.refundConf"
+      @close="closeModal('refundConf')" />
+
+    <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"
+      @close="closeModal('closeInfo')"/>
+
+    <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg"
+      @close="closeModal('applyDdg')"
+      @succeess="closeModal('applyDdg'); queryOrder()"/>
+
+    <PaymentPlan v-if="modal.paymenPlan" width="1000px" :modalId="modalId.paymenPlan"
+      @close="closeModal('paymenPlan')"/>
   </div>
 </template>
 
