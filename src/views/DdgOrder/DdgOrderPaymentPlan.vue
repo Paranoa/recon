@@ -21,12 +21,12 @@
               <td>{{ item.tenor }}</td>
               <td>{{ item.payDate }}</td>
               <td>{{ item.finishDate }}</td>
-              <td>{{ item.payAmount }}</td>
+              <td class="txtrt">{{ item.payAmount | fix2 }}</td>
               <td>{{ item.status }}</td>
-              <td>{{ item.payCorpus }}</td>
-              <td>{{ item.charge }}</td>
-              <td>{{ item.payRisk }}</td>
-              <td>{{ item.payRepayAllFee }}</td>
+              <td class="txtrt">{{ item.payCorpus | fix2 }}</td>
+              <td class="txtrt">{{ item.charge | fix2 }}</td>
+              <td class="txtrt">{{ item.payRisk | fix2 }}</td>
+              <td class="txtrt">{{ item.payRepayAllFee | fix2 }}</td>
             </tr>
           </tbody>
         </table>
@@ -61,6 +61,7 @@
       .then(res => {
         this.repaymentPlan = res.rows
       })
+      .catch(err => alert(err))
     }
   }
 </script>

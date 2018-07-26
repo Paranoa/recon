@@ -202,7 +202,7 @@
           name: this.query.name || ''
         })
         .then(res => { 
-          if (res instanceof Blob) {
+          if (res && res.type === 'text/xml') {
             util.downloadXls(res, '刷卡消费导出' + new Date().getTime() +'.xls')
             alert('导出成功')
           } else {

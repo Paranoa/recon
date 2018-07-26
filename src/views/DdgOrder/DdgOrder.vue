@@ -154,7 +154,7 @@
     <aside class="backdrop" v-show="hasModal"></aside>
     <Refund v-if="modal.refund" width="560px" :hidePrincipal="true" :modalId="modalId.refund" @close="closeModal('refund')" @success="closeModal('refund'); queryOrder()" />
     <RefundCancel v-if="modal.refundCancel" width="560px" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
-    <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" />
+    <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" @success="closeModal('applyLoan'); queryOrder()" />
     <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
     <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"  @close="closeModal('closeInfo')"/>
     <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg" @close="closeModal('applyDdg')" @succeess="queryOrder()"/>
@@ -261,7 +261,7 @@
           tp: this.query.type,
         })
         .then(res => {
-          if (res instanceof Blob) {
+          if (res && res.type === 'text/xml') {
             util.downloadXls(res, '单单过订单导出' + new Date().getTime() +'.xls')
             alert('导出成功')
           } else {

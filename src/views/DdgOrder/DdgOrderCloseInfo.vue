@@ -20,7 +20,7 @@
           </div>
           <table class="table table-bordered table-hover table-condensed">
             <thead>
-              <tr>
+              <tr class="ddg-thead">
                 <th>门店</th>
                 <th>结算流水号</th>
                 <th>结算日期</th>
@@ -36,12 +36,12 @@
                 <tr v-for="record of records" :key="record.id">
                   <td>{{ record.storeName }}</td>
                   <td>{{ record.paymentNo }}</td>
-                  <td>{{ record.payDate }}</td>
-                  <td><a class="link" @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount }}</a></td>
-                  <td>{{ record.payCorpus }}</td>
-                  <td>{{ record.charge }}</td>
-                  <td>{{ record.payRisk }}</td>
-                  <td>{{ record.payRepayAllFee }}</td>
+                  <td>{{ record.payDate | simpleDate }}</td>
+                  <td class="txtrt"><a class="link" @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount | fix2 }}</a></td>
+                  <td class="txtrt">{{ record.payCorpus | fix2 }}</td>
+                  <td class="txtrt">{{ record.charge | fix2 }}</td>
+                  <td class="txtrt">{{ record.payRisk | fix2 }}</td>
+                  <td class="txtrt">{{ record.payRepayAllFee | fix2 }}</td>
                 </tr>
               </template>
               <template v-else>
@@ -139,5 +139,11 @@
     vertical-align: middle;
     margin: -5px 5px 0;
     cursor: pointer;
-    }
+  }
+
+  .ddg-thead th {
+    padding-bottom: 5px;
+    background: #eee;
+    text-align: center
+  }
 </style>

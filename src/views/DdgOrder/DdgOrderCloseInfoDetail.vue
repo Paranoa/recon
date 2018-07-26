@@ -33,11 +33,11 @@
                 <td>{{ record.storeName }}</td>
                 <td>{{ record.payDate }}</td>
                 <td>{{ record.tenor }}</td>
-                <td>{{ record.payAmount }}</td>
-                <td>{{ record.payCorpus }}</td>
-                <td>{{ record.charge }}</td>
-                <td>{{ record.payRisk }}</td>
-                <td>{{ record.payRepayAllFee }}</td>
+                <td class="txtrt">{{ record.payAmount | fix2 }}</td>
+                <td class="txtrt">{{ record.payCorpus| fix2 }}</td>
+                <td class="txtrt">{{ record.charge | fix2 }}</td>
+                <td class="txtrt">{{ record.payRisk | fix2 }}</td>
+                <td class="txtrt">{{ record.payRepayAllFee | fix2 }}</td>
               </tr>
             </template>
             <template v-else>

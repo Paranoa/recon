@@ -250,7 +250,7 @@
       doOut(){
         const self = this;
         api.doOut(self.query).then(res => { 
-          if (res instanceof Blob) {
+          if (res && res.type === 'text/xml') {
             util.downloadXls(res, '订单查询导出' + new Date().getTime() +'.xls')
             alert('导出成功')
           } else {
