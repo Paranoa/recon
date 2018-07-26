@@ -50,10 +50,11 @@
   import api from '@/api'
 
   export default {
-    props: ['width', 'modalId'],
+    props: ['width', 'modalId', 'hidePrincipal'],
     data () {
       return {
-        reserveDate: null,
+        payDate: '',
+        reserveDate: '',
         loanAmt: '',
         paidAmt: '',
         corpus: '',

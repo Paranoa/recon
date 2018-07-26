@@ -153,7 +153,7 @@
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
     <Refund v-if="modal.refund" width="560px" :hidePrincipal="true" :modalId="modalId.refund" @close="closeModal('refund')" @success="closeModal('refund'); queryOrder()" />
-    <RefundCancel v-if="modal.refundCancel" width="560px" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
+    <RefundCancel v-if="modal.refundCancel" width="560px" :hidePrincipal="true" :modalId="modalId.refundCancel" @close="closeModal('refundCancel')" />
     <ApplyLoan v-if="modal.applyLoan" width="1100px" title="申请放款" :modalId="modalId.applyLoan" @close="closeModal('applyLoan')" @success="closeModal('applyLoan'); queryOrder()" />
     <RefundConf v-if="modal.refundConf" width="500px" title="退款确认" :modalId="modalId.refundConf"  @close="closeModal('refundConf')" />
     <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"  @close="closeModal('closeInfo')"/>
