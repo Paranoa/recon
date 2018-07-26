@@ -84,7 +84,7 @@
         alert(err)
       },
       submit () {
-        if (imgFiles.length) {
+        if (this.imgFiles.length) {
           var imgFileStr = JSON.stringify(this.imgFiles.filter(img => img))
           api.sendFile({
             app_id: this.modalId,
@@ -93,7 +93,7 @@
           })
           .then(() => {
             alert('上传凭证成功')
-            this.$emit('success ')
+            this.$emit('success')
           })
           .catch(err => alert(err))
         } else {
