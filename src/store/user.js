@@ -45,9 +45,9 @@ export default {
       commit('SET_USERINFOS', await api.getUserInfo({ token }))
       await dispatch('GetStoreCodes')
     },
-    async GetStoreCodes ({ isShop, commit }) {
+    async GetStoreCodes ({ state, commit }) {
       // 如果是门店则没有下属门店
-      if (isShop) {
+      if (state.isShop) {
         return
       } else {
         commit('SET_BELOW_STORES', await api.getStoreCodes())

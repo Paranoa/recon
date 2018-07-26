@@ -7,7 +7,7 @@
           <span>{{ payDate }}</span>
           <div style="width:240px;height:50px;float:right;">请在预约日期16:00之前完成打款，否则需要重新预约，可能会产生费用</div>
         </div>
-        <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;" v-show="refundShow">
+        <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;">
           贷款本金：<span class="benjin">{{ loanAmt }}</span> <i class="icon-question-sign" title="客户申请的借款金额"></i><br>
           <template v-if="!hidePrincipal">
             已还本金：<span class="yihuanbenjin">{{ paidAmt }}</span> <i class="icon-question-sign"  title="客户已归还的贷款本金部分"></i><br>
@@ -27,7 +27,7 @@
           -贴息金额：<span class="tiexi">{{ merchantRefundFee }}</span> <i class="icon-question-sign" title="商户贴息金额"></i><br>
           <b>合计：<span class="heji">{{ heji }}</span></b>
         </div>
-        <div class="form-group clearfix refund_show" style="width:254px;float:left;line-height:17px;padding-top:20px" v-show="refundShow">
+        <div class="form-group clearfix refund_show" style="width:254px;float:left;line-height:17px;padding-top:20px">
           <b>请将款项打入以下账户：</b><br><br>
           金额：<span class="heji">{{ heji }}</span><br>
           户名：即科金融信息服务（上海）有限公司<br>
@@ -69,7 +69,6 @@
         showLateFee: false,
         penaltiesShow: false,
         otherFeeShow: false,
-        refundShow: false,
       }
     },
     components: {
@@ -93,7 +92,8 @@
     mounted () {
       api.findRefundByExtId({
         cancelrefund_id: this.modalId,
-      }).then(result => {
+      })
+      .then(result => {
         this.payDate = result.payDate
         this.loanAmt = result.loanAmt
         this.paidAmt = result.paidAmt
@@ -110,6 +110,7 @@
         this.otherFee = result.otherFee
         this.otherFeeShow =  this.otherFee > 0
       })
+      .catch(err => alert(err))
     }
   }
 </script>
