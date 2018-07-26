@@ -40,7 +40,7 @@ export default {
 
         if (newFile.success !== oldFile.success) {
           if (newFile.response.success) {
-            this.$emit('success', newFile.response, newFile,name)
+            this.$emit('success', newFile.response, newFile.name)
           } else {
             this.$emit('error', newFile.response.errorMessage)
           }
