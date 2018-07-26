@@ -42,11 +42,16 @@ export default {
     },
     async GetUserInfo ({ dispatch, commit }, { token }) {
       // 门店信息也视为用户信息的一部分
-      await dispatch('GetStoreCodes')
       commit('SET_USERINFOS', await api.getUserInfo({ token }))
+      await dispatch('GetStoreCodes')
     },
-    async GetStoreCodes ({ commit }) {
-      commit('SET_BELOW_STORES', await api.getStoreCodes())
+    async GetStoreCodes ({ isShop, commit }) {
+      // 如果是门店则没有下属门店
+      if (isShop) {
+        return
+      } else {
+        commit('SET_BELOW_STORES', await api.getStoreCodes())
+      }
     }
   }
 }
