@@ -7,8 +7,7 @@
           <div class="col-lg-10">
             <FileUpload
               action="order/img/upload"
-              @success="res => { uploadSuccess(0, res) }"
-              @selected="(ref, name) => { imgFileNames[0] = name }"
+              @success="(res, name) => { uploadSuccess(0, res, name) }"
               @error="uploadErr">
                 {{ imgFileNames[0] || '选择文件' }}
              </FileUpload>
@@ -18,11 +17,10 @@
         <div class="form-group clearfix">
           <label for="return_img1" class="col-lg-2 control-label"></label>
           <div class="col-lg-10">
-           <FileUpload
-            action="order/img/upload"
-            @selected="(ref, name) => { imgFileNames[1] = name }"
-            @success="res => { uploadSuccess(1, res) }"
-            @error="uploadErr">
+            <FileUpload
+              action="order/img/upload"
+              @success="(res, name) => { uploadSuccess(1, res, name) }"
+              @error="uploadErr">
             {{ imgFileNames[1] || '选择文件' }}</FileUpload>
           </div>
         </div>
@@ -31,8 +29,7 @@
           <div class="col-lg-10">
             <FileUpload
               action="order/img/upload"
-              @selected="(ref, name) => { imgFileNames[2] = name }"
-              @success="res => { uploadSuccess(2, res) }"
+              @success="(res, name) => { uploadSuccess(2, res, name) }"
               @error="uploadErr">
               {{ imgFileNames[2] || '选择文件' }}</FileUpload>
           </div>
@@ -77,8 +74,9 @@
       close () {
         this.$emit('close')
       },
-      uploadSuccess (index, res) {
+      uploadSuccess (index, res, name) {
         this.imgFiles[index] = res.result
+        this.imgFileNames[index] = name
       },
       uploadErr (err) {
         alert(err)
@@ -89,7 +87,7 @@
           api.sendFile({
             app_id: this.modalId,
             imgFileStr,
-            mark,
+            mark: this.mark,
           })
           .then(() => {
             alert('上传凭证成功')
