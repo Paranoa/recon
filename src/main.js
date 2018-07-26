@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import filters from './util/filter'
-import axios from 'axios'
 import store from '@/store'
 import '@/permission' //权限控制
 

@@ -32,7 +32,7 @@
                 <td>{{ fund.bankNo }}</td>
                 <td>{{ fund.tMoney }}</td>
                 <td class="btns">
-                  <template v-if="fund.quDaoCode === 'KLJ01'">
+                  <template v-if="false && fund.quDaoCode === 'KLJ01'"> <!-- 考拉操作禁用 -->
                     <div v-if="fund.openStatus === 'APPLYING' || fund.openStatus ==='BACK'" class="btn-glow btn btn-lg" @click="openAccountKL(fund)">开户</div>
                     <div v-if="fund.openStatus === 'AUDIT'">--</div>
                     <div v-if="fund.openStatus === 'PASSED'" class="btn-glow btn btn-lg"
@@ -53,8 +53,11 @@
                 </td>
               </tr>
             </template>
-            <tr v-if="!Object.keys(storeInfos).length">
+            <tr v-if="loading">
               <td colspan="5">加载中...</td>
+            </tr>
+            <tr v-else-if="!Object.keys(storeInfos).length">
+              <td colspan="5">无门店</td>
             </tr>
           </table>
         </div>
@@ -86,6 +89,7 @@
   export default {
     data () {
       return {
+        loading: true,
         isMerchantFlag: true,
         modal: {
           cashRecord: false,
@@ -118,15 +122,20 @@
       UploadPic
     },
     methods: {
-      search () {
-        api.storeFundList({ searchStoreName: this.query.storeName })
-        .then(res => {
-          this.storeInfos = res || {}
-        })
-        .catch(err => alert(err))
-      },
       closeModal (modalId) {
         this.modal[modalId] = false
+      },
+      search () {
+        this.loading = true
+        api.storeFundList({ searchStoreName: this.query.storeName })
+        .then(res => {
+          this.loading = false
+          this.storeInfos = res || {}
+        })
+        .catch(err => {
+          this.loading = false
+          alert(err)
+        })
       },
       openAccountKL (fund) {
         api.storeOpenAccount({

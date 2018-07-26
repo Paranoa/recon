@@ -17,7 +17,7 @@ export default {
     SET_BELOW_STORES (state, res) {
       state.belowStores = res
     },
-    SET_USERINFOS (state, res) {
+    SET_USERINFOS (state, res = {}) {
       state.cName = res.cname
       state.fundBank = res.fund_bank
       state.isShop = res.is_shop

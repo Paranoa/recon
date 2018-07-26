@@ -83,6 +83,11 @@
         api.cancelRefund({
           appId: this.modalId
         })
+        .then(() => {
+          alert('取消预约成功')
+          this.$emit('success')
+        })
+        .catch(err => alert(err))
       }
     },
     mounted () {
