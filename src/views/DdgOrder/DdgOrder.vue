@@ -7,7 +7,7 @@
             <div class="row-fluid head" style="margin: 15px;">
               <div class="span12"><h4>订单查询</h4></div>
             </div>
-            <form class="order_list_frm">
+            <form class="order_list_frm" @submit.prevent="queryOrder()">
               <div class="row-fluid filter-block">
                 <div class="pull-left search-line">
                   <span>搜索：<input type="text" class='name' v-model="query.name" placeholder="姓名/手机号/申请编号" maxlength="25"></span>
@@ -48,7 +48,7 @@
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="queryOrder()"><i class="icon-search"></i>查询</div>
+                  <button class="btn-glow search_btn" style="margin-right: 10px;"><i class="icon-search"></i>查询</button>
                   <div class="btn-glow out_btn" style="margin-right: 10px;" @click="exportResult"><i class="icon-download-alt" ></i>导出</div>
                   <div class="btn-glow billing_btn" @click="modal.closeInfo = true"><i class="icon-tasks"></i>结算信息</div>
                 </div>
@@ -165,7 +165,8 @@
       @success="closeModal('applyLoan'); queryOrder()" />
 
     <RefundConf v-if="modal.refundConf" width="500px" :modalId="modalId.refundConf"
-      @close="closeModal('refundConf')" />
+      @close="closeModal('refundConf')"
+      @success="closeModal('refundConf'); queryOrder()" />
 
     <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"
       @close="closeModal('closeInfo')"/>
@@ -505,6 +506,7 @@
   height: 13px;
   line-height: 13px;
   margin-top: 4px;
+  box-sizing: content-box;
 }
 #pad-wrapper {
   margin-top: 20px;

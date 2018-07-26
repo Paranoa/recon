@@ -7,7 +7,7 @@
             <div class="row-fluid head" style="margin: 15px;">
               <div class="span12"><h4>刷卡消费</h4></div>
             </div>
-            <form class="order_list_frm">
+            <form class="order_list_frm" @submit.prevent="cardOrderList()">
               <div class="row-fluid filter-block">
                 <div class="pull-left search-line">
                   <span>搜索：<input type="text" class='name' v-model="query.name" placeholder="姓名/手机号/申请编号" maxlength="25"></span>
@@ -48,7 +48,7 @@
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="cardOrderList()"><i class="icon-search"></i>查询</div>
+                  <button class="btn-glow search_btn" style="margin-right: 10px;"><i class="icon-search"></i>查询</button>
                   <div class="btn-glow out_btn" @click="exportExl"><i class="icon-download-alt"></i>导出</div>
                 </div>
               </div>
@@ -442,6 +442,7 @@
   height: 13px;
   line-height: 13px;
   margin-top: 4px;
+  box-sizing: content-box;
 }
 #pad-wrapper {
   margin-top: 20px;

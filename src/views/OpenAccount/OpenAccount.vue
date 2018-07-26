@@ -3,9 +3,10 @@
     <div class="container-fluid">
       <div id="pad-wrapper">
         <div v-if="isMerchantFlag">
-          <div>门店搜索
+          <form @submit.prevent="search">门店搜索
             <input type="text" v-model="query.storeName">
-            <button type="button" @click="search" style="margin-left: 15px; margin-bottom: 10px">点击搜索</button></div>
+            <button style="margin-left: 15px; margin-bottom: 10px">点击搜索</button>
+          </form>
         </div>
         <div>
           <table class="table table-hover">

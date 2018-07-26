@@ -9,7 +9,7 @@
               action="order/img/upload"
               @success="(res, name) => { uploadSuccess(0, res, name) }"
               @error="uploadErr">
-                {{ imgFileNames[0] || '选择文件' }}
+              {{ imgFileNames[0] || '选择文件' }}
              </FileUpload>
             <span class="fr">*仅限jpg/png/bmp/gif</span>
           </div>
@@ -21,7 +21,7 @@
               action="order/img/upload"
               @success="(res, name) => { uploadSuccess(1, res, name) }"
               @error="uploadErr">
-            {{ imgFileNames[1] || '选择文件' }}</FileUpload>
+              {{ imgFileNames[1] || '选择文件' }}</FileUpload>
           </div>
         </div>
         <div class="form-group clearfix">
@@ -76,7 +76,7 @@
       },
       uploadSuccess (index, res, name) {
         this.imgFiles[index] = res.result
-        this.imgFileNames[index] = name
+        this.imgFileNames.splice(index, 1, name)
       },
       uploadErr (err) {
         alert(err)

@@ -326,6 +326,7 @@ export default {
   height: 13px;
   line-height: 13px;
   margin-top: 4px;
+  box-sizing: content-box;
 }
 #pad-wrapper {
   margin-top: 20px;

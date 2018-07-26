@@ -2,9 +2,9 @@
   <BaseModal title="收款计划" :width="width" @close="close">
     <template slot="body">
       <div>
-        <table class="table table-bordered table-hover table-condensed deep-table" id="paymentPlanTable">
+        <table class="table table-bordered table-hover table-condensed deep-table ddg-table">
           <thead>
-            <tr>
+            <tr class="ddg-thead">
               <th>期数</th>
               <th>计划收款日期</th>
               <th>实际收款日期</th>
@@ -65,3 +65,15 @@
     }
   }
 </script>
+
+<style scoped>
+  .ddg-table td {
+    text-align: center;
+  }
+  
+  .ddg-thead th {
+    padding-bottom: 5px;
+    background: #eee;
+    text-align: center
+  }
+</style>

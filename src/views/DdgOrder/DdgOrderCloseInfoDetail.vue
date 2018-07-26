@@ -2,15 +2,15 @@
   <BaseModal :title="title" :width="width" @close="close">
     <template slot="body">
       <div style="height: 430px">
-        <div class="search-line" style="margin-bottom: 20px">
+        <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecordDetail()">
           <span>
             搜索：<input type="text" v-model="keyword" class="input-large search_start" maxlength="20">
           </span>
-          <div class="btn-glow" style="margin-left: 20px;" @click="query"><i class="icon-search"></i>查询</div>
-        </div>
-        <table class="table table-bordered table-hover table-condensed">
+          <button class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
+        </form>
+        <table class="table table-bordered table-hover table-condensed ddg-table">
           <thead>
-            <tr>
+            <tr class="ddg-thead">
               <th>申请编号</th>
               <th>客户姓名</th>
               <th>客户手机</th>
@@ -87,9 +87,6 @@
       close () {
         this.$emit('close')
       },
-      query () {
-        this.getCashRecordDetail(1)
-      },
       getCashRecordDetail (page = 1) {
         api.billingDetail({
           page,
@@ -105,7 +102,19 @@
       }
     },
     mounted () {
-      this.query()
+      this.getCashRecordDetail()
     }
   }
 </script>
+
+<style scoped>
+  .ddg-table td {
+    text-align: center;
+  }
+  
+  .ddg-thead th {
+    padding-bottom: 5px;
+    background: #eee;
+    text-align: center
+  }
+</style>

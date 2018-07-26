@@ -3,7 +3,7 @@
     <BaseModal title="结算信息" :width="width" @close="close">
       <template slot="body">
         <div>
-          <div class="search-line" style="margin-bottom: 20px">
+          <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecord()">
             <span>门店名称： 
               <div class="ui-select" style="width: auto">
                 <select v-model="query.code">
@@ -15,10 +15,10 @@
                 时间：<Datepicker v-model="query.startDate" />
                 至：<Datepicker v-model="query.endDate" />
               </span>
-              <div id="billing_query" class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</div>
+              <button id="billing_query" class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
             </span>
-          </div>
-          <table class="table table-bordered table-hover table-condensed">
+          </form>
+          <table class="table table-bordered table-hover table-condensed ddg-table">
             <thead>
               <tr class="ddg-thead">
                 <th>门店</th>
@@ -139,6 +139,10 @@
     vertical-align: middle;
     margin: -5px 5px 0;
     cursor: pointer;
+  }
+
+  .ddg-table td {
+    text-align: center;
   }
 
   .ddg-thead th {
