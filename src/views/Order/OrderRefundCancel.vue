@@ -53,8 +53,22 @@
     props: ['width', 'modalId'],
     data () {
       return {
-        reserveDate: null
-      }
+        reserveDate: null,
+        loanAmt:'',
+        paidAmt:'',
+        corpus:'',
+        fee:'',
+        refundFee:'',
+        merchantRefundFee:'',
+        heji:'',
+        remark:'',
+        lateFee:'',
+        penalties:'',
+        otherFee:'',
+        showLateFee:false,
+        penaltiesShow:false,
+        otherFeeShow:false,
+        refundShow:false,
     },
     components: {
       BaseModal,
