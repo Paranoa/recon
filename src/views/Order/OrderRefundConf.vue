@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="form-group clearfix">
-          <label for="inputPassword1" class="col-lg-2 control-label">备注:</label>
+          <label for="inputPassword1" class="col-lg-2 control-label">备注: </label>
           <div class="col-lg-10"><input type="text" class="form-control" v-model="mark" maxlength="100"></div>
         </div>
         <div class="form-group clearfix">
@@ -78,7 +78,7 @@
         this.$emit('close')
       },
       uploadSuccess (index, res) {
-        imgFiles[index] = res.result
+        this.imgFiles[index] = res.result
       },
       uploadErr (err) {
         alert(err)
@@ -104,5 +104,6 @@
   }
 </script>
 
-<style>
+<style scoped>
+  label.file-uploads { line-height: 30px }
 </style>

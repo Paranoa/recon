@@ -81,7 +81,6 @@
     methods: {
       findRefund () {
         const self = this
-        console.log(this.reserveDate + ' ' + this.modalId)
         api.calculateRefund({
           'refund_id':this.modalId,
           'refund_end':this.reserveDate
@@ -113,7 +112,6 @@
               self.otherFeeShow = false
             }
             self.refundShow= true
-          console.log(result)
         })
       },
       yuyue () {
@@ -124,7 +122,6 @@
           'refund_id':this.modalId,
           'refund_end':this.reserveDate
         }).then(resultData=>{
-          console.log(resultData)
           alert(resultData.msg)
           this.$emit('success')
         }).catch(err => alert(err))
