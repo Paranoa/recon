@@ -1,30 +1,30 @@
 <template>
   <div class="content">
     <div class="container-fluid">
-      <div id="main-stats">
+      <div>
         <div class="row-fluid stats-row">
           <div class="span3 stat">
             <div class="data">
               <p>总订单数</p>
-              <span class="number" id="totalOrder">{{ totalOrder }}</span>
+              <span class="number">{{ totalOrder }}</span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
               <p>已通过订单数</p>
-              <span class="number" id="totalOrderPass">{{ totalOrderPass }}</span>
+              <span class="number">{{ totalOrderPass }}</span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
-              <p> 总贷款金额</p>
-              <span class="number">¥</span><span class="number" id="totalAmount">{{ totalAmount }}</span>
+              <p>总贷款金额</p>
+              <span class="number">¥</span><span class="number">{{ totalAmount }}</span>
             </div>
           </div>
           <div class="span3 stat last">
             <div class="data">
               <p>已通过贷款金额</p>
-              <span class="number">¥</span><span class="number" id="totalAmountPass">{{ totalAmountPass }}</span>
+              <span class="number">¥</span><span class="number">{{ totalAmountPass }}</span>
             </div>
           </div>
         </div>
@@ -73,11 +73,11 @@ export default {
         search_start: this.search_start,
         search_end: this.search_end
       })
-      .then(res => {
-        this.totalOrder = res.app_cnt;
-        this.totalOrderPass = res.pass_cnt;
-        this.totalAmount = res.app_sum;
-        this.totalAmountPass = res.pass_sum;
+      .then(({ app_cnt, pass_cnt, app_sum, pass_sum }) => {
+        this.totalOrder = app_cnt;
+        this.totalOrderPass = pass_cnt;
+        this.totalAmount = app_sum;
+        this.totalAmountPass = pass_sum;
 
         initCountUp([{
           id: 'totalOrder',

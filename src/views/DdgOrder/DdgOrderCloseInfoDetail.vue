@@ -1,5 +1,5 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="结算信息详情" :width="width" @close="close">
     <template slot="body">
       <div style="height: 430px">
         <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecordDetail()">
@@ -65,11 +65,12 @@
   import BaseModal from '@/components/BaseModal.vue'
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api'
+  import util from '@/util'
 
   const ROWS_COUNT = 10
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['width', 'modalId'],
     data () {
       return {
         keyword: '',

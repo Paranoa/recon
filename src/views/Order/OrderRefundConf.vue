@@ -67,7 +67,7 @@
     data () {
       return {
         imgFiles: [],
-        imgFileNames: ['','',''],
+        imgFileNames: ['', '', ''],
         mark: ''
       }
     },
@@ -81,7 +81,7 @@
       },
       uploadSuccess (index, res, name) {
         this.imgFiles[index] = res.result
-        this.imgFileNames.splice(index, 1, name)
+        this.imgFileNames.splice(index, 1, name) // 数组以splice方法操作确保数据响应式
       },
       uploadErr (err) {
         alert(err)

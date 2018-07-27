@@ -1,6 +1,6 @@
 const env = process.env
-const baseUrl = env.VUE_APP_BASE_URL
 
+const baseUrl = env.VUE_APP_BASE_URL
 const apiUrl = {
   queryOrder: env.VUE_APP_URL_QUERYORDER,
   login: env.VUE_APP_URL_LOGIN,
@@ -49,4 +49,4 @@ for (var key in apiUrl) {
   apiUrl[key] = baseUrl + apiUrl[key]
 }
 
-export { apiUrl }
+export { apiUrl, baseUrl }

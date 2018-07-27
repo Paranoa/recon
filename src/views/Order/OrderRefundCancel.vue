@@ -8,23 +8,37 @@
           <div style="width:240px;height:50px;float:right;">请在预约日期16:00之前完成打款，否则需要重新预约，可能会产生费用</div>
         </div>
         <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;">
-          贷款本金：<span class="benjin">{{ loanAmt | fix2 }}</span> <i class="icon-question-sign" title="客户申请的借款金额"></i><br>
+          贷款本金：<span class="benjin">{{ loanAmt | fix2 }}</span>
+          <i class="icon-question-sign" title="客户申请的借款金额"></i>
+          <br>
           <template v-if="!hidePrincipal">
-            已还本金：<span class="yihuanbenjin">{{ paidAmt | fix2 }}</span> <i class="icon-question-sign"  title="客户已归还的贷款本金部分"></i><br>
+            已还本金：<span class="yihuanbenjin">{{ paidAmt | fix2 }}</span>
+            <i class="icon-question-sign"  title="客户已归还的贷款本金部分"></i>
+            <br>
           </template>
-          剩余本金：<span class="shengyubenjin">{{ corpus | fix2 }}</span> <i class="icon-question-sign"  title="贷款本金-已还本金"></i><br>
-          +应还手续费：<span class="yinghuanshouxufei">{{ fee | fix2 }}</span> <i class="icon-question-sign"  title="到当期为止全部应还手续费-已还手续费"></i><br>
+          剩余本金：<span class="shengyubenjin">{{ corpus | fix2 }}</span>
+          <i class="icon-question-sign"  title="贷款本金-已还本金"></i>
+          <br>
+          +应还手续费：<span class="yinghuanshouxufei">{{ fee | fix2 }}</span>
+          <i class="icon-question-sign"  title="到当期为止全部应还手续费-已还手续费"></i>
+          <br>
           <div class="zhilajindiv" v-show="showLateFee">
-            +滞纳金：<span class="zhilajin">{{ lateFee | fix2 }}</span> <i class="icon-question-sign" title="逾期应还金额5%（每个账单日计算一次并累加）"></i>
+            +滞纳金：<span class="zhilajin">{{ lateFee | fix2 }}</span>
+            <i class="icon-question-sign" title="逾期应还金额5%（每个账单日计算一次并累加）"></i>
           </div>
           <div class="faxidiv" v-show="penaltiesShow">
-            +罚息：<span class="faxi">{{ penalties | fix2 }}</span> <i class="icon-question-sign"  title="贷款本金*0.5‰逾期天数"></i>
+            +罚息：<span class="faxi">{{ penalties | fix2 }}</span>
+            <i class="icon-question-sign"  title="贷款本金*0.5‰逾期天数"></i>
           </div>
           <div class="qitafeiyongdiv" v-show="otherFeeShow">
             +其他费用：<span class="qitafeiyong">{{ otherFee | fix2 }}</span>
           </div>
-          +退贷手续费：<span class="shouxufei">{{ refundFee | fix2 }}</span> <i class="icon-question-sign" title="贷款本金*1%"></i><br>
-          -贴息金额：<span class="tiexi">{{ merchantRefundFee | fix2 }}</span> <i class="icon-question-sign" title="商户贴息金额"></i><br>
+          +退贷手续费：<span class="shouxufei">{{ refundFee | fix2 }}</span>
+          <i class="icon-question-sign" title="贷款本金*1%"></i>
+          <br>
+          -贴息金额：<span class="tiexi">{{ merchantRefundFee | fix2 }}</span>
+          <i class="icon-question-sign" title="商户贴息金额"></i>
+          <br>
           <b>合计：<span class="heji">{{ heji | fix2 }}</span></b>
         </div>
         <div class="form-group clearfix refund_show" style="width:254px;float:left;line-height:17px;padding-top:20px">
@@ -50,7 +64,7 @@
   import api from '@/api'
 
   export default {
-    props: ['width', 'modalId', 'hidePrincipal'],
+    props: ['width', 'modalId', 'hidePrincipal'], // hidePrincipal控制是否显示已还本金(单单过的取消退款不显示)
     data () {
       return {
         payDate: '',

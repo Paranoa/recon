@@ -108,18 +108,18 @@
         this.$emit('close')
       },
       orderFileUploaded (res) { 
-        if(res.success){
+        if (res.success) {
           var resultData = res.result
           this.orderFiles.push(resultData) 
-        }else{
+        } else {
           alert(res.errorMessage)
         }
       },
       finaceFileUploaded (res) {
-        if(res.success){
+        if (res.success) {
           var resultData = res.result
           this.finaceFiles.push(resultData) 
-        }else{
+        } else {
           alert(res.errorMessage)
         }
       },
@@ -136,7 +136,8 @@
           'sendTime':this.sendTime
         }
         console.log(data)
-        api.myApplyLoanType1(data).then(() => {
+        api.myApplyLoanType1(data)
+        .then(() => {
           alert('申请成功')
           this.$emit('success')
         })
@@ -151,7 +152,7 @@
       }
     },
     mounted () {
-      this.getOrderDetailInfo();
+      this.getOrderDetailInfo()
     }
   }
 </script>

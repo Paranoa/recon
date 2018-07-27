@@ -4,7 +4,7 @@
       <template slot="body">
         <div>
           <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecord()">
-            <span>门店名称： 
+            <div>门店名称： 
               <div class="ui-select" style="width: auto">
                 <select v-model="query.code">
                   <option value="0">全部</option>
@@ -17,8 +17,7 @@
               </span>
               <button class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
               <button type="button" class="btn-glow" style="margin-left: 10px" @click="exportXls"><i class="icon-search"></i>导出</button>
-            </span>
-            </span>
+            </div>
           </form>
           <table class="table table-bordered table-hover table-condensed ddg-table">
             <thead>
@@ -74,6 +73,7 @@
   import Datepicker from '@/components/Datepicker.vue'
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api'
+  import util from '@/util'
   import BillingDetail from './DdgOrderCloseInfoDetail.vue'
 
   const ROWS_COUNT = 10

@@ -14,7 +14,7 @@
               <tr :key="key">
                 <th colspan="5" style="border-top: none; font-size: 17px; font-weight: bold; line-height: 3; padding: 6px">{{ key }}</th>
               </tr>
-              <tr>
+              <tr :key="key">
                 <th>渠道名称</th>
                 <th>开户状态</th>
                 <th>银行账号</th>

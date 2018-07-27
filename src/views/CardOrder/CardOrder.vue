@@ -36,15 +36,15 @@
               <div class="row-fluid filter-block">
                 <div class="pull-left search-line">
                   <span>
-                      时间：<Datepicker input-class="datepicker-input" v-model="query.search_start" />
+                    时间：<Datepicker input-class="datepicker-input" v-model="query.search_start" />
                   至：<Datepicker input-class="datepicker-input" v-model="query.search_end" /></span>
                   <span>
-                      <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.type">申请时间
-                      </label>
-                      <label style="display: inline">
-                        <input style="width: 10px; min-width:0" type="radio" value="2" v-model="query.type">放款时间
-                      </label>
+                    <label style="display: inline">
+                      <input style="width: 10px; min-width:0" type="radio" value="1" v-model="query.type">申请时间
+                    </label>
+                    <label style="display: inline">
+                      <input style="width: 10px; min-width:0" type="radio" value="2" v-model="query.type">放款时间
+                    </label>
                   </span>
                 </div>
                 <div class="pull-right search-buttons">
@@ -57,19 +57,19 @@
               <table class="table table-hover order-table">
                 <thead>
                   <tr>
-                    <th class="span1">订单号</th>
-                    <th class="span1">申请时间</th>
-                    <th class="span1">客户姓名</th>
-                    <th class="span1">客户手机</th>
-                    <th class="span1">申请金额</th>
-                    <th class="span1">收款金额</th>
-                    <th class="span1">申请期数</th>
-                    <th class="span1">放款日期</th>
-                    <th class="span1">销售姓名</th>
-                    <th class="span1">状态</th>
-                    <th class="span1">门店</th>
-                    <th class="span1">退款状态</th>
-                    <th class="span1">操作</th>
+                    <th>订单号</th>
+                    <th>申请时间</th>
+                    <th>客户姓名</th>
+                    <th>客户手机</th>
+                    <th>申请金额</th>
+                    <th>收款金额</th>
+                    <th>申请期数</th>
+                    <th>放款日期</th>
+                    <th>销售姓名</th>
+                    <th>状态</th>
+                    <th>门店</th>
+                    <th>退款状态</th>
+                    <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>

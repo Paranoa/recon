@@ -3,8 +3,10 @@
     <slot></slot>
   </FileUpload>
 </template>
+
 <script>
 import FileUpload from 'vue-upload-component'
+import { baseUrl } from '@/api/config'
 
 export default {
   props: {
@@ -28,7 +30,7 @@ export default {
   data() {
     return {
       files: [],
-      postAction: process.env.VUE_APP_BASE_URL + this.action
+      postAction: baseUrl + this.action
     }
   },
   methods: {

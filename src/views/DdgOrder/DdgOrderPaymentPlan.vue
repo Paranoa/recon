@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item of repaymentPlan">
+            <tr v-for="item of repaymentPlan" :key="item.key">
               <td>{{ item.tenor }}</td>
               <td>{{ item.payDate }}</td>
               <td>{{ item.finishDate }}</td>
@@ -41,6 +41,7 @@
 <script>
   import BaseModal from '@/components/BaseModal.vue'
   import api from '@/api'
+  import util from '@/util'
 
   export default {
     props: ['width', 'modalId'],
