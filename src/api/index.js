@@ -42,6 +42,9 @@ export default {
   ddgBillingDetail,
   ddgPaymentPlan,
   ddgDoOut,
+  ddgExportBillingInfo,
+  ddgExportBillingDetail,
+  ddgExportPaymentPlan,
 }
 
 function login (data) {

@@ -16,7 +16,7 @@
                 至：<Datepicker v-model="query.endDate" />
               </span>
               <button class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
-              <button type="button" class="btn-glow" @click="exportXls"><i class="icon-search"></i>导出</button>
+              <button type="button" class="btn-glow" style="margin-left: 10px" @click="exportXls"><i class="icon-search"></i>导出</button>
             </span>
             </span>
           </form>
