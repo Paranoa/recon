@@ -6,25 +6,25 @@
           <div class="span3 stat">
             <div class="data">
               <p>总订单数</p>
-              <span class="number">{{ totalOrder }}</span>
+              <span class="number" id="totalOrder">{{ totalOrder }}</span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
               <p>已通过订单数</p>
-              <span class="number">{{ totalOrderPass }}</span>
+              <span class="number" id="totalOrderPass">{{ totalOrderPass }}</span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
               <p>总贷款金额</p>
-              <span class="number">¥</span><span class="number">{{ totalAmount }}</span>
+              <span class="number">¥</span><span class="number" id="totalAmount">{{ totalAmount }}</span>
             </div>
           </div>
           <div class="span3 stat last">
             <div class="data">
               <p>已通过贷款金额</p>
-              <span class="number">¥</span><span class="number">{{ totalAmountPass }}</span>
+              <span class="number">¥</span><span class="number" id="totalAmountPass">{{ totalAmountPass }}</span>
             </div>
           </div>
         </div>
