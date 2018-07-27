@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="container-fluid">
-      <div>
+      <div id="main-stats">
         <div class="row-fluid stats-row">
           <div class="span3 stat">
             <div class="data">
