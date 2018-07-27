@@ -200,6 +200,7 @@
       return {
         orders: [],
         query: {
+          page: 1,
           name: '',
           search_start: util.dateToString(constant.A_MONTH_BEFORE),
           search_end: util.dateToString(constant.NOW),
@@ -207,7 +208,6 @@
           app_status: '',
           type: '1',
         },
-        currPage: 1,
         stores: [],
         ddgStatus: constant.DDG_STATUS,
         ordersTotal: 0,
@@ -252,10 +252,10 @@
     },
     methods: {
       queryOrder (page = 1) {
-        this.currPage = page
+        this.query.page = page
 
         api.ddgOrderList({
-          page,
+          page: this.query.page,
           name: this.query.name,
           store_code: this.query.store_code,
           app_status: this.query.app_status,
@@ -270,7 +270,7 @@
       },
       exportResult () {
         api.ddgDoOut({
-          page: this.currPage,
+          page: this.query.page,
           name: this.query.name,
           store_code: this.query.store_code,
           app_status: this.query.app_status,

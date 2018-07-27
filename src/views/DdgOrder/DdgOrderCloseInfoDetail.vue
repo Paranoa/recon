@@ -7,6 +7,7 @@
             搜索：<input type="text" v-model="keyword" class="input-large search_start" maxlength="20">
           </span>
           <button class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
+          <button type="button" class="btn-glow" @click="exportXls"><i class="icon-search"></i>导出</button>
         </form>
         <table class="table table-bordered table-hover table-condensed ddg-table">
           <thead>
@@ -72,6 +73,7 @@
     data () {
       return {
         keyword: '',
+        page: 1,
         ordersTotal: 0,
         records: []
       }
@@ -88,8 +90,10 @@
         this.$emit('close')
       },
       getCashRecordDetail (page = 1) {
+        this.page = page
+
         api.billingDetail({
-          page,
+          page: this.page,
           rows: ROWS_COUNT,
           paymentNo: this.modalId,
           searchKey: this.keyword
@@ -97,6 +101,23 @@
         .then(({ rows, total }) => { 
           this.records = rows
           this.ordersTotal = total
+        })
+        .catch(err => alert(err))
+      },
+      exportXls () {
+        api.ddgExportBillingDetail({
+          page: this.page,
+          rows: ROWS_COUNT,
+          paymentNo: this.modalId,
+          searchKey: this.keyword
+        })
+        .then(res => {
+          if (res && res.type === 'text/xml') {
+            util.downloadXls(res, '结算信息详情导出' + new Date().getTime() +'.xls')
+            alert('导出成功')
+          } else {
+            alert('导出失败:' + JSON.stringify(res))              
+          }
         })
         .catch(err => alert(err))
       }

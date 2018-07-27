@@ -133,7 +133,7 @@
                         <template v-else>
                           <template v-if="[2, 23].includes(+order.N_LOAN_AFTER_STATUS)">
                             <div class="btn-glow bt_cancelrefund" @click="modalId.refundCancel = order.C_APP_ID, modal.refundCancel = true">查看/取消预约</div>
-                            <div class="btn-glow bt_refund" @click="modalId.refundConf = order.C_APP_ID, modal.refundConf = true">上传凭证</div>
+                            <div class="btn-glow bt_refund" @click="modalId.refundConf = order, modal.refundConf = true">上传凭证</div>
                           </template>
                           <span v-else-if="order.N_LOAN_AFTER_STATUS" class="label">
                             {{ order.N_LOAN_AFTER_STATUS | loanAfterStatus }}
@@ -170,7 +170,7 @@
       @close="closeModal('applyLoan')"
       @success="closeModal('applyLoan'); queryOrder()" />
 
-    <RefundConf v-if="modal.refundConf" width="500px" :modalId="modalId.refundConf"
+    <RefundConf v-if="modal.refundConf" width="500px" :modalParam="modalId.refundConf"
       @close="closeModal('refundConf')"
       @success="closeModal('refundConf'); queryOrder()" />
   </div>
@@ -215,13 +215,7 @@
           applyLoan: false,
           refundConf: false,
         },
-        modalId: {
-          refund: '',
-          refundCancel: '',
-          uploadProof: '',
-          applyLoan: '',
-          refundConf: '',
-        },
+        modalId: {},
         file: []
       }
     },
@@ -260,7 +254,7 @@
       },
       doOut(){
         const self = this;
-        api.doOut(self.query).then(res => { 
+        api.doOut(self.query).then(res => {
           if (res && res.type === 'text/xml') {
             util.downloadXls(res, '订单查询导出' + new Date().getTime() +'.xls')
             alert('导出成功')

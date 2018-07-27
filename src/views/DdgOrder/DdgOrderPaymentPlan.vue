@@ -2,6 +2,9 @@
   <BaseModal title="收款计划" :width="width" @close="close">
     <template slot="body">
       <div>
+        <div class="search-line" style="margin-bottom: 20px; text-align: right; width: auto;">
+          <button type="button" class="btn-glow" style="margin-left: 20px;" @click="exportXls"><i class="icon-search"></i>导出</button>
+        </div>
         <table class="table table-bordered table-hover table-condensed deep-table ddg-table">
           <thead>
             <tr class="ddg-thead">
@@ -52,6 +55,20 @@
     methods: {
       close () {
         this.$emit('close')
+      },
+      exportXls () {
+        api.ddgPaymentPlan({
+          orderNo: this.modalId
+        })
+        .then(res => {
+          if (res && res.type === 'text/xml') {
+            util.downloadXls(res, '收款计划导出' + new Date().getTime() +'.xls')
+            alert('导出成功')
+          } else {
+            alert('导出失败:' + JSON.stringify(res))              
+          }
+        })
+        .catch(err => alert(err))
       }
     },
     mounted () {

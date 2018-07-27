@@ -15,7 +15,9 @@
                 时间：<Datepicker v-model="query.startDate" />
                 至：<Datepicker v-model="query.endDate" />
               </span>
-              <button id="billing_query" class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
+              <button class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
+              <button type="button" class="btn-glow" @click="exportXls"><i class="icon-search"></i>导出</button>
+            </span>
             </span>
           </form>
           <table class="table table-bordered table-hover table-condensed ddg-table">
@@ -77,10 +79,11 @@
   const ROWS_COUNT = 10
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['width', 'modalId'],
     data () {
       return {
         query: {
+          page: 1,
           code: '0',
           startDate: '',
           endDate: ''
@@ -106,8 +109,10 @@
         this.$emit('close')
       },
       getCashRecord (page = 1) {
+        this.query.page = page
+
         api.ddgBillingInfo({
-          page,
+          page: this.query.page,
           rows: ROWS_COUNT,
           startDate: this.query.startDate,
           endDate: this.query.endDate,
@@ -118,6 +123,25 @@
           this.records = res.rows,
           this.ordersTotal = res.total
         })
+      },
+      exportXls () {
+        api.ddgExportBillingInfo({
+          page: this.query.page,
+          rows: ROWS_COUNT,
+          startDate: this.query.startDate,
+          endDate: this.query.endDate,
+          merchantCode: this.query.code === '0' ? this.$store.getters.merchantCode: '',
+          storeCode: this.query.code === '0'? '' : this.query.code,
+        })
+        .then(res => {
+          if (res && res.type === 'text/xml') {
+            util.downloadXls(res, '结算信息导出' + new Date().getTime() +'.xls')
+            alert('导出成功')
+          } else {
+            alert('导出失败:' + JSON.stringify(res))              
+          }
+        })
+        .catch(err => alert(err))
       }
     },
     mounted () {

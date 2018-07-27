@@ -187,6 +187,18 @@ function ddgDoOut (data) {
   return post(apiUrl.ddgDoOut, data, { responseType: 'blob' }, true)
 }
 
+function ddgExportPaymentPlan (data) {
+  return post(apiUrl.ddgExportPaymentPlan, data, { responseType: 'blob' }, true)
+}
+
+function ddgExportBillingInfo (data) {
+  return post(apiUrl.ddgExportBillingInfo, data, { responseType: 'blob' }, true)
+}
+
+function ddgExportBillingDetail (data) {
+  return post(apiUrl.ddgExportBillingDetail, data, { responseType: 'blob' }, true)
+}
+
 function get (url, params, options, originResponse) { // originResponse为true时,返回原始响应数据
   return new Promise((resolve, reject) => {
     var load = loading.service()

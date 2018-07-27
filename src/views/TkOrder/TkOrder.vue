@@ -83,7 +83,7 @@
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
-    <TkAudit v-if="modal.tkAudit" width="600px" :modalParam="modalParam.tkAudit" @close="closeModal('tkAudit')" @success="tkOrderList()"/>
+    <TkAudit v-if="modal.tkAudit" width="600px" :modalParam="modalParam.tkAudit" @close="closeModal('tkAudit')" @success="closeModal('tkAudit'); tkOrderList()"/>
   </div>
 </template>
 

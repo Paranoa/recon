@@ -134,13 +134,13 @@
     data () {
       return {
         query: {
+          page: 1,
           store_code: '',
           app_status: '',
           search_start: util.dateToString(constant.A_MONTH_BEFORE),
           search_end: util.dateToString(constant.NOW),
           type: '1'
         },
-        currPage: 1,
         stores: [],
         orders: [],
         orderStatus: constant.ORDER_STATUS,
@@ -174,10 +174,10 @@
     },
     methods: {
       cardOrderList (page = 1) {
-        this.currPage = page
+        this.query.page = page
 
         api.cardOrderList({
-          page,
+          page: this.query.page,
           store_code: this.query.store_code || '',
           app_status: this.query.app_status || '',
           search_start: this.query.search_start || '',
@@ -193,7 +193,7 @@
       },
       exportExl () {
         api.exportExcel({
-          page: this.currPage,
+          page: this.query.page,
           store_code: this.query.store_code || '',
           app_status: this.query.app_status || '',
           search_start: this.query.search_start || '',

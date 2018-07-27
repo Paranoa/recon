@@ -9,8 +9,9 @@
               action="order/img/upload"
               @success="(res, name) => { uploadSuccess(0, res, name) }"
               @error="uploadErr">
-              {{ imgFileNames[0] || '选择文件' }}
-             </FileUpload>
+              <span class="btn">选择文件</span>
+            </FileUpload>
+            <span>{{ imgFileNames[0] || '未选择任何文件' }}</span>
             <span class="fr">*仅限jpg/png/bmp/gif</span>
           </div>
         </div>
@@ -21,7 +22,9 @@
               action="order/img/upload"
               @success="(res, name) => { uploadSuccess(1, res, name) }"
               @error="uploadErr">
-              {{ imgFileNames[1] || '选择文件' }}</FileUpload>
+              <span class="btn">选择文件</span>
+           </FileUpload>
+           <span>{{ imgFileNames[1] || '未选择任何文件' }}</span>
           </div>
         </div>
         <div class="form-group clearfix">
@@ -31,7 +34,9 @@
               action="order/img/upload"
               @success="(res, name) => { uploadSuccess(2, res, name) }"
               @error="uploadErr">
-              {{ imgFileNames[2] || '选择文件' }}</FileUpload>
+              <span class="btn">选择文件</span>
+            </FileUpload>
+            <span>{{ imgFileNames[2] || '未选择任何文件' }}</span>
           </div>
         </div>
         <div class="form-group clearfix">
@@ -40,7 +45,7 @@
         </div>
         <div class="form-group clearfix">
           <div class="col-lg-10">
-            <span style="color:red;font-size: 14px;" class="return_mark"></span>
+            <span style="color:red;font-size: 14px;">【打回原因：{{ modalParam.mark }}】</span>
           </div>
         </div>
       </div>
@@ -58,7 +63,7 @@
   import api from '@/api'
 
   export default {
-    props: ['width', 'modalId'],
+    props: ['width', 'modalParam'],
     data () {
       return {
         imgFiles: [],
@@ -85,7 +90,7 @@
         if (this.imgFiles.length) {
           var imgFileStr = JSON.stringify(this.imgFiles.filter(img => img))
           api.sendFile({
-            app_id: this.modalId,
+            app_id: this.modalParam.C_APP_ID,
             imgFileStr,
             mark: this.mark,
           })
