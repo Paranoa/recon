@@ -18,15 +18,17 @@ export default {
       state.belowStores = res
     },
     SET_USERINFOS (state, res) {
-      state.cName = res.cname
-      state.fundBank = res.fund_bank
-      state.isShop = res.is_shop
-      state.merchantCode = res.merchant_code
-      state.merchantInuse = res.merchant_inuse
-      state.role = res.role
-      state.storeCode = res.store_code
-      state.token = res.token
-      state.userName = res.username
+      if (res) {
+        state.cName = res.cname
+        state.fundBank = res.fund_bank
+        state.isShop = res.is_shop
+        state.merchantCode = res.merchant_code
+        state.merchantInuse = res.merchant_inuse
+        state.role = res.role
+        state.storeCode = res.store_code
+        state.token = res.token
+        state.userName = res.username
+      }
     }
   },
   actions: {
@@ -37,7 +39,7 @@ export default {
         vercode,
         remb,
       })
-      commit('SET_USERINFOS', res || {})
+      commit('SET_USERINFOS')
       return res
     },
     async GetUserInfo ({ dispatch, commit }, { token }) {

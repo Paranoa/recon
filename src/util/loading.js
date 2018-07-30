@@ -17,7 +17,7 @@ export default {
     }
 
     var div = document.createElement('div')
-    document.getElementById('app').append(div)
+    document.getElementById('app').appendChild(div)
 
     if (!fullScreenLoading) {
       fullScreenLoading = new LoadingConstructor({
