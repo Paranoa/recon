@@ -58,7 +58,7 @@
         this.$emit('close')
       },
       exportXls () {
-        api.ddgPaymentPlan({
+        api.ddgExportPaymentPlan({
           orderNo: this.modalId
         })
         .then(res => {

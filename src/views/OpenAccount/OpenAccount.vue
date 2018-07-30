@@ -21,7 +21,7 @@
                 <th>可提现余额(元)</th>
                 <th>操作</th>
               </tr>
-              <tr v-for="fund of store" :key="fund.quDaoCode">
+              <tr v-for="fund of store">
                 <td>{{ fund.quDaoCode | fundName }}</td>
                 <td>
                   <template v-if="fund.quDaoCode === 'KLJ01'">

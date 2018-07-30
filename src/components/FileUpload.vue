@@ -5,16 +5,30 @@
 </template>
 
 <script>
+/***
+* 文件上传组件
+* @prop: 
+* action {String} : post地址
+* data {Object} : post附加参数
+* auto {Boolean} : 是否自动上传
+* multiple {Boolean} : 是否可多选
+*
+* @event 
+* success: 上传成功
+* error: 上传错误
+  selected: 已选择(仅auto为false时)
+* @method format
+*/
 import FileUpload from 'vue-upload-component'
 import { baseUrl } from '@/api/config'
 
 export default {
   props: {
-    data: Object,
     action: {
       type: String,
       default: 'account/upload'
     },
+    data: Object,
     auto: {
       type: Boolean,
       default: true
@@ -61,7 +75,6 @@ export default {
         var fileName = newFile ? newFile.name : ''
         this.$emit('selected', this.$refs.upload, fileName)
       }
-
     }
   }
 }
