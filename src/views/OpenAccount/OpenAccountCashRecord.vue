@@ -1,7 +1,7 @@
 <template>
   <BaseModal title="提现记录" :width="width" @close="close">
     <template slot="body">
-      <div style="height: 430px">
+      <div>
         <table class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
