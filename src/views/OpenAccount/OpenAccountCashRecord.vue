@@ -12,14 +12,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="record of recordsCurPage" :key="record.id">
+            <tr v-for="record of recordsCurPage" :key="record.requestId">
               <td>{{ record.requestId }}</td>
               <td>{{ record.amount }}</td>
               <td>{{ record.status | cashStatus }}</td>
               <td>{{ record.createTime }}</td>
             </tr>
-            <tr v-if="!records.length">
+            <tr v-if="loading">
               <td colspan="4" class="txtcenter">加载中...</td>
+            </tr>
+            <tr v-else-if="!records.length">
+              <td colspan="4" class="txtcenter">未查询到结果...</td>
             </tr>
           </tbody>
         </table>
@@ -49,6 +52,7 @@
       return {
         records: [],
         curPage: 1,
+        loading: true
       }
     },
     computed: {
@@ -71,12 +75,19 @@
       }
     },
     mounted () {
+      this.loading = true
       api.storeDepositStatus({
         storeCode: this.modalParam.storeCode,
         fundId: this.modalParam.quDaoCode
       })
-      .then(res => this.records = res)
-      .catch(err => alert(err))
+      .then(res => {
+        this.loading = false
+        this.records = res
+      })
+      .catch(err => {
+        this.loading = false
+        alert(err)
+      })
     }
   }
 </script>

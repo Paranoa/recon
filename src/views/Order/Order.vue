@@ -114,16 +114,6 @@
                     <td>{{ order.STORE_NAME }}</td>
                     <td>{{ order.C_APP_ID }}</td>
                     <td>
-                      <template v-if="order.C_APP_TYPE ==='GMAIN'">
-                        <div v-if="order.C_MAIN_TYPE==='C_MAIN_TYPE'">
-                          
-                        </div>
-                        <div v-else>
-                        </div>
-                      </template>
-                      <template v-else>
-
-                      </template>
                       {{ order.C_APP_TYPE | appType }}
                     </td>
                     <td>
