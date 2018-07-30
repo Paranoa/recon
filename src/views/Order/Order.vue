@@ -154,7 +154,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :page-count="orderPageCount" @change="queryOrder" />
+        <Paginate :total="ordersTotal" @change="queryOrder" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
@@ -220,7 +220,6 @@
       }
     },
     computed: {
-      orderPageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
       hasModal () {
         for (var key in this.modal) {
           if (this.modal[key]) {

@@ -16,14 +16,20 @@
 </template>
 
 <script>
-  export default {
-    props: ['width', 'title'],
-    methods: {
-      close () {
-        this.$emit('close')
-      }
+/***
+* 模态框基组件
+* @prop: 
+* width {String} : 对应css width属性值
+* title {String} : 模态框标题
+*/
+export default {
+  props: ['width', 'title'],
+  methods: {
+    close () {
+      this.$emit('close')
     }
   }
+}
 </script>
 
 <style>

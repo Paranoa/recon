@@ -1,11 +1,11 @@
 import Cookies from 'js-cookie'
 
 export default {
-  dateToString (dateObj) {
+  dateToString (dateObj, separator = '-') {
     var year = dateObj.getFullYear()
     var month = dateObj.getMonth() + 1
     var date = dateObj.getDate()
-    return year + '-' + fixNum(month) + '-' + fixNum(date)
+    return [year, fixNum(month), fixNum(date)].join(separator)
   },
   setCookie (name, value) {
     return Cookies.set(name, value)

@@ -3,28 +3,47 @@
 </template>
 
 <script>
-  import Paginate from 'vuejs-paginate'
+/***
+* 页码显示组件
+* @prop: 
+* total {Number} : 数据总数
+* rowsCount {Number} : 每页条数(默认10)
+* pageRange {Number} : 不包括首页 末页 包括省略号的页码按钮总数(不应小于3)
+*
+* @event 
+* change: 页码变更时触发
+*/
+import Paginate from 'vuejs-paginate'
 
-  export default {
-    props: {
-      pageCount: {
-        type: Number,
-        default: 1
-      },
-      pageRange: {
-        type: Number,
-        default: 5
-      }
+export default {
+  props: {
+    total: {
+      type: Number,
+      default: 0
     },
-    components: {
-      Paginate
+    rowsCount: {
+      type: Number,
+      default: 10
     },
-    methods: {
-      change (page) {
-        this.$emit('change', page)
-      }
+    pageRange: {
+      type: Number,
+      default: 5
+    }
+  },
+  computed: {
+    pageCount () {
+      return (Math.ceil(this.total / this.rowsCount) || 1)
+    }
+  },
+  components: {
+    Paginate
+  },
+  methods: {
+    change (page) {
+      this.$emit('change', page)
     }
   }
+}
 </script>
 <style>
 </style>

@@ -79,7 +79,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :page-count="orderPageCount" @change="tkOrderList" />
+        <Paginate :total="ordersTotal" @change="tkOrderList" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
@@ -93,8 +93,6 @@
   import Paginate from '@/components/Paginate.vue'
   import Datepicker from '@/components/Datepicker.vue'
   import TkAudit from './TkOrderTkAudit.vue'
-
-  const ROWS_COUNT = 10
 
   export default {
     data () {
@@ -115,7 +113,6 @@
       }
     },
     computed: {
-      orderPageCount: vm => (Math.ceil(vm.ordersTotal / ROWS_COUNT) || 1),
       hasModal () {
         for (var key in this.modal) {
           if (this.modal[key]) {

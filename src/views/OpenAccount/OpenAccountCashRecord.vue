@@ -25,7 +25,7 @@
         </table>
         <div class="pagination-aside" v-if="recordsCurPage.length">
           <div class="pagination">
-            <Paginate :page-count="pageCount" @change="turnPage" />
+            <Paginate :total="ordersTotal" @change="turnPage" />
           </div>
         </div>
       </div>
@@ -41,8 +41,6 @@
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api'
 
-  const ROWS_COUNT = 10
-
   export default {
     props: ['width', 'modalParam'],
     data () {
@@ -52,7 +50,6 @@
       }
     },
     computed: {
-      pageCount: vm => (Math.ceil(vm.ordersTotal/ROWS_COUNT) || 1),
       ordersTotal: vm => vm.records.length,
       recordsCurPage () {
         var pageCount = this.curPage - 1

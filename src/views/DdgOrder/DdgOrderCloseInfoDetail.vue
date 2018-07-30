@@ -50,7 +50,7 @@
         </table>
         <div class="pagination-aside">
           <div class="pagination">
-            <Paginate :page-count="pageCount" @change="getCashRecordDetail" />
+            <Paginate :total="ordersTotal" @change="getCashRecordDetail" />
           </div>
         </div>
       </div>
@@ -67,8 +67,6 @@
   import api from '@/api'
   import util from '@/util'
 
-  const ROWS_COUNT = 10
-
   export default {
     props: ['width', 'modalId'],
     data () {
@@ -78,9 +76,6 @@
         ordersTotal: 0,
         records: []
       }
-    },
-    computed: {
-      pageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
     },
     components: {
       BaseModal,

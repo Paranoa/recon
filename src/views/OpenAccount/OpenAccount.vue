@@ -215,7 +215,8 @@
       },
       ResetPwdSSJ ({ storeCode }) {
         api.storeResetPwd({
-          storeCode
+          storeCode,
+          callbackUrl: process.env.VUE_APP_CB_URL + 'home/openAccount'
         })
         .then(res => {
           window.open(res)

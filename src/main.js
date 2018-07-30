@@ -6,7 +6,6 @@ import store from '@/store'
 import '@/permission' //权限控制
 
 Vue.config.productionTip = false
-
 // 注册全局过滤器
 for (let name in filters) {
   Vue.filter(name, filters[name])

@@ -54,7 +54,7 @@
           </table>
           <div class="pagination-aside">
             <div class="pagination">
-              <Paginate :page-count="pageCount" @change="getCashRecord" />
+              <Paginate :total="ordersTotal" @change="getCashRecord" />
             </div>
           </div>
         </div>
@@ -76,8 +76,6 @@
   import util from '@/util'
   import BillingDetail from './DdgOrderCloseInfoDetail.vue'
 
-  const ROWS_COUNT = 10
-
   export default {
     props: ['width', 'modalId'],
     data () {
@@ -95,7 +93,6 @@
       }
     },
     computed: {
-      pageCount: vm => (Math.ceil(vm.ordersTotal/10) || 1),
       ...mapGetters(['belowStores'])
     },
     components: {
