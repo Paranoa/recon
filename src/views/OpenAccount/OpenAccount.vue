@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div id="pad-wrapper">
         <div v-if="isMerchantFlag">
-          <form @submit.prevent="search">门店搜索
+          <form @submit.prevent="storeFundList">门店搜索
             <input type="text" v-model="query.storeName">
             <button style="margin-left: 15px; margin-bottom: 10px">点击搜索</button>
           </form>
@@ -11,17 +11,17 @@
         <div>
           <table class="table table-hover">
             <template v-for="(store, key) in storeInfos">
-              <tr :key="key">
+              <tr>
                 <th colspan="5" style="border-top: none; font-size: 17px; font-weight: bold; line-height: 3; padding: 6px">{{ key }}</th>
               </tr>
-              <tr :key="key">
+              <tr>
                 <th>渠道名称</th>
                 <th>开户状态</th>
                 <th>银行账号</th>
                 <th>可提现余额(元)</th>
                 <th>操作</th>
               </tr>
-              <tr v-for="fund of store" :key="fund.fundName">
+              <tr v-for="fund of store" :key="fund.quDaoCode">
                 <td>{{ fund.quDaoCode | fundName }}</td>
                 <td>
                   <template v-if="fund.quDaoCode === 'KLJ01'">
@@ -66,17 +66,18 @@
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
 
-    <CashRecord v-if="modal.cashRecord" width="1000px" title="提现记录" 
+    <CashRecord v-if="modal.cashRecord" width="1000px"
       :modalParam="modalParam.cashRecord"
       @close="closeModal('cashRecord')" />
 
-    <SSJCash v-if="modal.ssjCash" width="500px" title="提示" 
+    <SSJCash v-if="modal.ssjCash" width="500px" 
       :modalId="modalParam.ssjCash"
       @close="closeModal('ssjCash')"
       @inputed="amount => { depositAmount = amount; cashSSJ()}"></SSJCash>
 
-    <UploadPic v-if="modal.uploadPic" width="500px" title="提示"
+    <UploadPic v-if="modal.uploadPic" width="500px"
       :storeCode="modalParam.uploadPic"
+      @success="closeModal('uploadPic'); storeFundList()"
       @close="closeModal('uploadPic')" />
   </div>
 </template>
@@ -126,7 +127,7 @@
       closeModal (modalId) {
         this.modal[modalId] = false
       },
-      search () {
+      storeFundList () {
         this.loading = true
         api.storeFundList({ searchStoreName: this.query.storeName })
         .then(res => {
@@ -225,7 +226,7 @@
       }
     },
     mounted () {
-      this.search()
+      this.storeFundList()
     }
   }
 </script>

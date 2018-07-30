@@ -1,11 +1,14 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="提示" :width="width" @close="close">
     <template slot="body">
       <div>
         <div style="margin:10px auto; width: 400px;height: 50px">
           <div>
             <span style="color: red">请上传电子回单:</span>
-            <FileUpload @success="uploaded" action="account/file/upload" :data="{ storeCode }">点击上传文件</FileUpload>
+            <FileUpload @success="uploaded" action="account/file/upload" :data="{ storeCode }">
+              <span class="btn" style="margin: 0 10px">点击上传文件</span>
+            </FileUpload>
+            <span>{{ fileName || '未选择任何文件' }}</span>
           </div>
         </div>
       </div>
@@ -21,7 +24,7 @@
   import FileUpload from '@/components/FileUpload'
 
   export default {
-    props: ['title', 'width', 'storeCode'],
+    props: ['width', 'storeCode'],
     data () {
       return {
         uploadImg: ''
@@ -32,8 +35,10 @@
       FileUpload
     },
     methods: {
-      uploaded () {
+      uploaded (res, fileName) {
+        this.fileName = fileName
         alert('上传成功')
+        this.$emit('success')
       },
       close () {
         this.$emit('close')

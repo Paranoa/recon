@@ -3,6 +3,8 @@ import axios from 'axios'
 import util from '@/util'
 import loading from '@/util/loading'
 
+axios.default.withCredentials = true
+
 export default {
   login,
   logout,

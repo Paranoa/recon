@@ -1,5 +1,5 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="提示" :width="width" @close="close">
     <template slot="body">
       <div>
         <div style="margin:10px auto; width: 400px;height: 50px">
@@ -21,7 +21,7 @@
   import BaseModal from '@/components/BaseModal'
 
   export default {
-    props: ['title', 'width', 'modalId'],
+    props: ['width', 'modalId'],
     data () {
       return {
         cashAmount: 100

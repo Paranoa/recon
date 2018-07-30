@@ -1,5 +1,5 @@
 <template>
-  <BaseModal :title="title" :width="width" @close="close">
+  <BaseModal title="提现记录" :width="width" @close="close">
     <template slot="body">
       <div style="height: 430px">
         <table class="table table-bordered table-hover table-condensed">
@@ -44,7 +44,7 @@
   const ROWS_COUNT = 10
 
   export default {
-    props: ['title', 'width', 'modalParam'],
+    props: ['width', 'modalParam'],
     data () {
       return {
         records: [],
