@@ -67,6 +67,8 @@
   import api from '@/api'
   import util from '@/util'
 
+  const ROWS_COUNT = 10
+
   export default {
     props: ['width', 'modalId'],
     data () {

@@ -76,6 +76,8 @@
   import util from '@/util'
   import BillingDetail from './DdgOrderCloseInfoDetail.vue'
 
+  const ROWS_COUNT = 10
+  
   export default {
     props: ['width', 'modalId'],
     data () {

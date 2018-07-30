@@ -41,6 +41,8 @@
   import Paginate from '@/components/Paginate.vue'
   import api from '@/api'
 
+  const ROWS_COUNT = 10
+
   export default {
     props: ['width', 'modalParam'],
     data () {
