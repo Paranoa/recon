@@ -154,7 +154,7 @@
 
     <RefundCancel v-if="modal.refundCancel" width="560px" :modalId="modalId.refundCancel"
       @close="closeModal('refundCancel')"
-      @success="closeModal('refund'); queryOrder()" />
+      @success="closeModal('refundCancel'); queryOrder()" />
 
     <ApplyLoan v-if="modal.applyLoan" width="1100px" :modalId="modalId.applyLoan"
       @close="closeModal('applyLoan')"
