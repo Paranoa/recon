@@ -7,7 +7,7 @@
             <div>门店名称： 
               <div class="ui-select" style="width: auto">
                 <select v-model="query.code">
-                  <option value="0">全部</option>
+                  <option value="">全部</option>
                   <option v-for="store of belowStores" :value="store.c_STORE_CODE" :key="store.c_STORE_CODE">{{ store.c_NAME }}</option>
                 </select>
               </div>
