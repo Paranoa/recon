@@ -28,10 +28,11 @@ export default {
     pageRange: {
       type: Number,
       default: 5
-    },
-    page: {
-      type: Number,
-      default: 1
+    }
+  },
+  data () {
+    return {
+      page: 1
     }
   },
   computed: {
@@ -45,7 +46,9 @@ export default {
   methods: {
     change (page) {
       this.$emit('change', page)
-      this.$emit('input', page)
+    },
+    resetPage () {
+      this.page = 1
     }
   }
 }
