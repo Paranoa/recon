@@ -144,7 +144,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate ref="paginate" :page.sync="ordersCurrPage" :total="ordersTotal" @change="queryOrder" />
+        <Paginate ref="paginate" :total="ordersTotal" @change="queryOrder" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
@@ -195,7 +195,6 @@
     data () {
       return {
         orders: [],
-        ordersCurrPage: { page: 1 },
         query: {
           page: 1,
           name: '',

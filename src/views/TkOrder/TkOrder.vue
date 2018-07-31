@@ -25,7 +25,9 @@
               </div>
               <div class="row-fluid filter-block">
                 <div class="pull-right search-buttons">
-                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="tkOrderList()"><i class="icon-search"></i>查询</div>
+                  <div class="btn-glow search_btn" style="margin-right: 10px;" @click="tkOrderList(); $refs.paginate.resetPage()">
+                    <i class="icon-search"></i>查询
+                  </div>
                 </div>
               </div>
             </form>
@@ -79,7 +81,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate :total="ordersTotal" @change="tkOrderList" />
+        <Paginate ref="paginate" :total="ordersTotal" @change="tkOrderList" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>

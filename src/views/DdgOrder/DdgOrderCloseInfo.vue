@@ -3,7 +3,7 @@
     <BaseModal title="结算信息" :width="width" @close="close">
       <template slot="body">
         <div>
-          <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecord()">
+          <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecord(); $refs.paginate.resetPage()">
             <div>门店名称： 
               <div class="ui-select" style="width: auto">
                 <select v-model="query.code">
@@ -54,7 +54,7 @@
           </table>
           <div class="pagination-aside">
             <div class="pagination">
-              <Paginate :total="ordersTotal" @change="getCashRecord" />
+              <Paginate ref="paginate" :total="ordersTotal" @change="getCashRecord" />
             </div>
           </div>
         </div>

@@ -1,8 +1,5 @@
 <template>
-  <div>
-  {{ page }}
   <Paginate v-model="page" :page-count="pageCount" :page-range="pageRange" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="change"/>
-  </div>
 </template>
 
 <script>
@@ -50,7 +47,7 @@ export default {
     change (page) {
       this.$emit('change', page)
     },
-    resetPage () {
+    resetPage () {    // 暴露该方法操作model以重置页码
       this.page = 1
     }
   }
