@@ -69,7 +69,6 @@
                     <th class="span1">审批日期</th>
                     <th class="span1">放款日期</th>
                     <th class="span1">销售姓名</th>
-                    <th class="span1">产品类型</th>
                     <th class="span1">状态</th>
                     <th class="span1">门店</th>
                     <th class="span1">申请编号</th>
@@ -99,9 +98,6 @@
                     <td>{{ order.D_DECISION | len10 }}</td>
                     <td>{{ order.D_DRAWDOWN | len10 }}</td>
                     <td>{{ order.C_SALES_ID }}</td>
-                    <td>
-                      <template v-if="order.N_DDG_FLAG === '1'">单单过</template>
-                    </td>
                     <td>
                       <span class="label" :class="order.N_APP_STATUS | statusClass">
                         <template v-if="order.N_APP_STATUS === '130' && order.D_SEND_FUND_TIME">
