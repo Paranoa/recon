@@ -35,7 +35,9 @@ export default {
     }
   },
   data () {
-    page: this.value
+    return {
+      page: this.value
+    }
   },
   computed: {
     pageCount () {

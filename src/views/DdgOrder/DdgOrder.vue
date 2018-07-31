@@ -195,6 +195,7 @@
     data () {
       return {
         orders: [],
+        ordersCurrPage: 1,
         query: {
           page: 1,
           name: '',
