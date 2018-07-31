@@ -2,7 +2,7 @@
   <div>
     <div class="container-fluid">
       <div id="pad-wrapper">
-        <div v-if="isMerchantFlag">
+        <div v-if="isShop">
           <form @submit.prevent="storeFundList">门店搜索
             <input type="text" v-model="query.storeName">
             <button style="margin-left: 15px; margin-bottom: 10px">点击搜索</button>
@@ -87,12 +87,12 @@
   import CashRecord from './OpenAccountCashRecord.vue'
   import SSJCash from './OpenAccountSSJCash.vue'
   import UploadPic from './OpenAccountUploadPic.vue'
+  import { mapGetters } from 'vuex'
 
   export default {
     data () {
       return {
         loading: true,
-        isMerchantFlag: true,
         modal: {
           cashRecord: false,
           ssjCash: false,
@@ -110,6 +110,7 @@
       }
     },
     computed: {
+      ...mapGetters(['isShop']),
       hasModal () {
         for (var key in this.modal) {
           if (this.modal[key]) {

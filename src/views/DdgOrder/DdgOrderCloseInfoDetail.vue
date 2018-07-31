@@ -32,7 +32,7 @@
                 <td>{{ record.name }}</td>
                 <td>{{ record.mobile }}</td>
                 <td>{{ record.storeName }}</td>
-                <td>{{ record.payDate }}</td>
+                <td>{{ record.payDate | simpleDate }}</td>
                 <td>{{ record.tenor }}</td>
                 <td class="txtrt">{{ record.payAmount | fix2 }}</td>
                 <td class="txtrt">{{ record.payCorpus| fix2 }}</td>

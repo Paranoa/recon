@@ -6,6 +6,7 @@
 
 <script>
   import 'bootstrap/dist/js/bootstrap.min.js'
+  import 'url-search-params-polyfill'
 
   export default {
     name: 'App'

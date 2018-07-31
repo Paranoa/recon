@@ -22,8 +22,8 @@
           <tbody>
             <tr v-for="item of repaymentPlan" :key="item.key">
               <td>{{ item.tenor }}</td>
-              <td>{{ item.payDate }}</td>
-              <td>{{ item.finishDate }}</td>
+              <td>{{ item.payDate | simpleDate }}</td>
+              <td>{{ item.finishDate | simpleDate }}</td>
               <td class="txtrt">{{ item.payAmount | fix2 }}</td>
               <td>{{ item.status }}</td>
               <td class="txtrt">{{ item.payCorpus | fix2 }}</td>
