@@ -45,7 +45,7 @@
         </div>
         <div class="form-group clearfix">
           <div class="col-lg-10">
-            <span style="color:red;font-size: 14px;">【打回原因：{{ modalParam.mark }}】</span>
+            <span style="color:red;font-size: 14px;" v-if="modalParam.mark">【打回原因：{{ modalParam.mark }}】</span>
           </div>
         </div>
       </div>

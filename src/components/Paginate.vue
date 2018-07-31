@@ -1,5 +1,5 @@
 <template>
-  <Paginate :page-count="pageCount" :page-range="pageRange" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="change"/>
+  <Paginate v-model="page" :page-count="pageCount" :page-range="pageRange" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="change"/>
 </template>
 
 <script>
@@ -28,7 +28,14 @@ export default {
     pageRange: {
       type: Number,
       default: 5
+    },
+    value: {
+      type: Number,
+      default: 1
     }
+  },
+  data () {
+    page: this.value
   },
   computed: {
     pageCount () {
@@ -41,6 +48,7 @@ export default {
   methods: {
     change (page) {
       this.$emit('change', page)
+      this.$emit('input', page)
     }
   }
 }
