@@ -29,6 +29,19 @@ export default {
         state.token = res.token
         state.userName = res.username
       }
+    },
+    RESET_USERINFOS (state) {
+        state.cName = ''
+        state.fundBank = ''
+        state.isShop = false
+        state.merchantCode = ''
+        state.merchantInuse = false
+        state.role = ''
+        state.storeCode = ''
+        state.token = ''
+        state.userName = ''
+
+        state.belowStores = []
     }
   },
   actions: {
@@ -41,6 +54,9 @@ export default {
       })
       commit('SET_USERINFOS')
       return res
+    },
+    async Logout ({ commit }) {
+      commit('RESET_USERINFOS', await api.logout())
     },
     async GetUserInfo ({ dispatch, commit }, { token }) {
       // 门店信息也视为用户信息的一部分

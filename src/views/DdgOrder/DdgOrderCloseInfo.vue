@@ -95,7 +95,7 @@
       }
     },
     computed: {
-      ...mapGetters(['belowStores'])
+      ...mapGetters(['belowStores', 'merchantCode', 'storeCode', 'isShop'])
     },
     components: {
       BaseModal,
@@ -115,8 +115,8 @@
           rows: ROWS_COUNT,
           startDate: this.query.startDate,
           endDate: this.query.endDate,
-          merchantCode: this.query.code === '0' ? this.$store.getters.merchantCode: '',
-          storeCode: this.query.code === '0'? '' : this.query.code,
+          merchantCode: this.merchantCode,
+          storeCode: this.isShop ? this.storeCode : this.query.code,
         })
         .then(res => {
           this.records = res.rows,
@@ -129,7 +129,7 @@
           rows: 9999,
           startDate: this.query.startDate,
           endDate: this.query.endDate,
-          merchantCode: this.query.code === '0' ? this.$store.getters.merchantCode: '',
+          merchantCode: this.$store.getters.merchantCode,
           storeCode: this.query.code === '0'? '' : this.query.code,
         })
         .then(res => {

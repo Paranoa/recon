@@ -105,7 +105,7 @@ export default {
     },
     logout () {
       if (confirm('确定要退出吗？')) {
-        api.logout()
+        this.$store.dispatch('Logout')
         .then(() => this.$router.push('/'))
         .catch(err => alert(err))
       }
