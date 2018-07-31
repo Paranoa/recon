@@ -22,17 +22,4 @@
   .backdrop { background: rgba(0,0,0,.5); position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 10000; }
   .modal-dialog { z-index: 11000; position: fixed; top: 10%; left: 0; right: 0; }
   .modal-dialog .modal-content { margin: auto; background: #fff; border-radius: 5px;}
-
-  .vdp-datepicker { display: inline-block; color: #555; }
-  .vdp-datepicker__calendar { width: 220px; border-radius: 5px }
-  .vdp-datepicker__calendar .cell { border-radius: 2px; line-height: 30px; height: 30px }
-  .vdp-datepicker__calendar .cell.selected { color: #fff }
-  .vdp-datepicker__calendar header .prev:after {
-    border-right: 10px solid #666;
-    margin-left: -5px;
-  }
-  .vdp-datepicker__calendar header .next:after {
-    border-left: 10px solid #666;
-    margin-left: 5px;
-  }
 </style>
