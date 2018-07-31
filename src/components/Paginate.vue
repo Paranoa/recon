@@ -34,13 +34,9 @@ export default {
       default: 1
     }
   },
-  data () {
-    return {
-      page: this.value
-    }
-  },
   computed: {
     pageCount () {
+      page: this.value,
       return (Math.ceil(this.total / this.rowsCount) || 1)
     }
   },
