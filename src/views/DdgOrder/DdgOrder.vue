@@ -169,7 +169,7 @@
 
     <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg"
       @close="closeModal('applyDdg')"
-      @succeess="closeModal('applyDdg'); queryOrder()"/>
+      @success="closeModal('applyDdg'); queryOrder()"/>
 
     <PaymentPlan v-if="modal.paymenPlan" width="1000px" :modalId="modalId.paymenPlan"
       @close="closeModal('paymenPlan')"/>
