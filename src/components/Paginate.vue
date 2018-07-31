@@ -1,5 +1,8 @@
 <template>
-  <Paginate v-model="page" :page-count="pageCount" :page-range="pageRange" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="change" @resetPage="resetPage"/>
+  <div>
+  {{ page }}
+  <Paginate v-model="page" :page-count="pageCount" :page-range="pageRange" :prev-text="'上一页'" :next-text="'下一页'" :click-handler="change"/>
+  </div>
 </template>
 
 <script>

@@ -7,7 +7,7 @@
             <div class="row-fluid head" style="margin: 15px;">
               <div class="span12"><h4>订单查询</h4></div>
             </div>
-            <form class="order_list_frm" @submit.prevent="queryOrder(); $refs.paginate.$emit('resetPage')">
+            <form class="order_list_frm" @submit.prevent="queryOrder(); $refs.paginate.resetPage()">
               <div class="row-fluid filter-block">
                 <div class="pull-left search-line">
                   <span>搜索：<input type="text" class='name' v-model="query.name" placeholder="姓名/手机号/申请编号" maxlength="25"></span>
