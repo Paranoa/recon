@@ -190,7 +190,6 @@
       },
       exportExl () {
         api.exportExcel({
-          page: this.query.page,
           store_code: this.query.store_code || '',
           app_status: this.query.app_status || '',
           search_start: this.query.search_start || '',

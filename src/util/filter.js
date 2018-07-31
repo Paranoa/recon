@@ -127,6 +127,7 @@ function cashStatus (value) {
 }
 
 function simpleDate (value) {
+  value = value ? value.toString() : ''
   var result = value.match(/\d{4}.?\d{1,2}.?\d{1,2}/)
   return result ? result[0] : value
 }

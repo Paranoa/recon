@@ -2,7 +2,7 @@
   <div>
     <div class="container-fluid">
       <div id="pad-wrapper">
-        <div v-if="isShop">
+        <div v-if="!isShop">
           <form @submit.prevent="storeFundList">门店搜索
             <input type="text" v-model="query.storeName">
             <button style="margin-left: 15px; margin-bottom: 10px">点击搜索</button>

@@ -125,8 +125,8 @@
       },
       exportXls () {
         api.ddgExportBillingInfo({
-          page: this.query.page,
-          rows: ROWS_COUNT,
+          page: 1,
+          rows: 9999,
           startDate: this.query.startDate,
           endDate: this.query.endDate,
           merchantCode: this.query.code === '0' ? this.$store.getters.merchantCode: '',

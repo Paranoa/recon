@@ -104,8 +104,8 @@
       },
       exportXls () {
         api.ddgExportBillingDetail({
-          page: this.page,
-          rows: ROWS_COUNT,
+          page: 1,
+          rows: 9999,
           paymentNo: this.modalId,
           searchKey: this.keyword
         })
