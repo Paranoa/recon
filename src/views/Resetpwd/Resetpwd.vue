@@ -13,7 +13,7 @@
           <div class="form-group" >
             <label for="inputPassword2" class="col-sm-2 control-label">设置密码</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" placeholder="请输入新密码（至少8个字符" v-model="newPwd1">
+              <input type="password" class="form-control" placeholder="请输入新密码(至少8个字符)" v-model="newPwd1">
             </div>
           </div>
           <div class="form-group">
@@ -47,16 +47,31 @@
     },
     methods: {
       save () {
-        api.resetPwd({
-          oldPwd: this.oldPwd,
-          newPwd1: this.newPwd1,
-          newPwd2: this.newPwd2
-        })
-        .then(() => {
-          alert('修改密码成功')
-          this.$router.push('/')
-        })
-        .catch(err => alert(err))
+        if (this.valForm()) {
+          api.resetPwd({
+            oldPwd: this.oldPwd,
+            newPwd1: this.newPwd1,
+            newPwd2: this.newPwd2
+          })
+          .then(() => {
+            alert('修改密码成功')
+            this.$router.push('/')
+          })
+          .catch(err => alert(err))
+        }
+      },
+      valForm () {
+        if (!this.oldPwd) {
+          alert('当前密码不能为空')
+          return false
+        } else if (!this.newPwd1) {
+          alert('新密码不能为空')
+          return false
+        } else if (!this.newPwd2) {
+          alert('确认密码不能为空')
+          return false
+        }
+        return true
       }
     }
   }
