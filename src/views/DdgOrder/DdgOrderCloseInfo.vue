@@ -84,7 +84,7 @@
       return {
         query: {
           page: 1,
-          code: '0',
+          code: '',
           startDate: '',
           endDate: ''
         },
