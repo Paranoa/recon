@@ -29,14 +29,13 @@ export default {
       type: Number,
       default: 5
     },
-    value: {
+    page: {
       type: Number,
       default: 1
     }
   },
   computed: {
     pageCount () {
-      page: this.value,
       return (Math.ceil(this.total / this.rowsCount) || 1)
     }
   },

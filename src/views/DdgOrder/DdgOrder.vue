@@ -144,7 +144,7 @@
     </div>
     <div class="pagination-aside">
       <div class="pagination">
-        <Paginate v-model="ordersCurrPage" :total="ordersTotal" @change="queryOrder" />
+        <Paginate :page.sync="ordersCurrPage" :total="ordersTotal" @change="queryOrder" />
       </div>
     </div>
     <aside class="backdrop" v-show="hasModal"></aside>
