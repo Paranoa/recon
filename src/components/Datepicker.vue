@@ -37,17 +37,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-  .vdp-datepicker { display: inline-block; color: #555; }
-  .vdp-datepicker__calendar { width: 220px; border-radius: 5px }
-  .vdp-datepicker__calendar .cell { border-radius: 2px; line-height: 30px; height: 30px }
-  .vdp-datepicker__calendar .cell.selected { color: #fff }
-  .vdp-datepicker__calendar header .prev:after {
-    border-right: 10px solid #666;
-    margin-left: -5px;
-  }
-  .vdp-datepicker__calendar header .next:after {
-    border-left: 10px solid #666;
-    margin-left: 5px;
-  }
-</style>
