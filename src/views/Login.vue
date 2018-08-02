@@ -34,7 +34,7 @@ export default {
   name: 'home',
   data () {
     return {
-      captchaSrc: apiUrl.getCode,
+      captchaSrc: apiUrl.getCode + '?seed=' + Math.random(),
       username: '',
       password: '',
       vercode: '',
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     change_vercode () {
-      this.captchaSrc =  apiUrl.getCode+'?seed=' + Math.random()
+      this.captchaSrc =  apiUrl.getCode + '?seed=' + Math.random()
     },
     login () {
       if (this.valForm()) {
