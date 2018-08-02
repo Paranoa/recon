@@ -8,7 +8,7 @@ const whiteList = ['/', '/login']
 router.beforeEach((to, from, next) => {
   let token = util.getCookie('token')
 
-  if (whiteList.includes(to.path)) {
+  if (whiteList.includes(to.path) || !to.matched.length) { // 白名单与不匹配任何路由规则的直接跳转
     next()
   } else {
     if (token) {
