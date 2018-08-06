@@ -7,6 +7,7 @@
 <script>
   import 'bootstrap/dist/js/bootstrap.min.js'
   import 'url-search-params-polyfill'
+  import 'object-assign'
 
   export default {
     name: 'App'
