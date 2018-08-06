@@ -13,7 +13,7 @@
     "bootstrap": "^3.3.7",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
-    "object-assign": "^4.1.1",
+    "object.assign": "^4.1.0",
     "url-search-params-polyfill": "^4.0.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
