@@ -274,7 +274,7 @@
           tp: this.query.type,
         })
         .then(res => {
-          if (res && res.type === 'text/xml') {
+          if (res && res.size) {
             util.downloadXls(res, '单单过订单导出' + new Date().getTime() +'.xls')
             alert('导出成功')
           } else {

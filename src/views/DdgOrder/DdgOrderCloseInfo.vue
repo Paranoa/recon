@@ -133,7 +133,7 @@
           storeCode: this.query.code === '0'? '' : this.query.code,
         })
         .then(res => {
-          if (res && res.type === 'text/xml') {
+          if (res && res.size) {
             util.downloadXls(res, '结算信息导出' + new Date().getTime() +'.xls')
             alert('导出成功')
           } else {
