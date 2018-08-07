@@ -38,6 +38,7 @@ export default {
 }
 </script>
 <style>
+  .vdp-datepicker input { box-sizing: content-box }
   .vdp-datepicker { display: inline-block; color: #555; }
   .vdp-datepicker__calendar { width: 220px; border-radius: 5px }
   .vdp-datepicker__calendar .cell { border-radius: 2px; line-height: 30px; height: 30px }
