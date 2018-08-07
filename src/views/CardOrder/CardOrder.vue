@@ -198,9 +198,7 @@
           name: this.query.name || ''
         })
         .then(res => {
-          console.log('res')
-          console.log(res)
-          if (res && res.type === 'text/xml' || !res) {
+          if (res && res.size) {
             util.downloadXls(res, '刷卡消费导出' + new Date().getTime() +'.xls')
             alert('导出成功')
           } else {
