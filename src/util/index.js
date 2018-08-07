@@ -18,7 +18,7 @@ export default {
       console.log(window.navigator)
       if('msSaveOrOpenBlob' in window.navigator){
         // window.URL.createObjectURL Blob URL无法在Microsoft IE和Edge中打开 
-        window.navigator.msSaveOrOpenBlob(new Blob([data], name);
+        window.navigator.msSaveOrOpenBlob(new Blob([data], name));
       } else {
         let url = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.ms-excel' }))
         let link = document.createElement('a')
