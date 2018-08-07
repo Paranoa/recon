@@ -15,7 +15,8 @@ export default {
   },
   downloadXls (data, name) {
     if (data) {
-      if('msSaveOrOpenBlob' in navigator){
+      console.log(window.navigator)
+      if('msSaveOrOpenBlob' in window.navigator){
         // window.URL.createObjectURL Blob URL无法在Microsoft IE和Edge中打开 
         window.navigator.msSaveOrOpenBlob(new Blob([data], name);
       } else {
