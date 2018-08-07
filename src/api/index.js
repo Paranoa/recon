@@ -206,7 +206,12 @@ function get (url, params, options, originResponse) { // originResponseä¸ºtrueæ—
   return new Promise((resolve, reject) => {
     var load = loading.service()
 
-    axios.get(url, { params, ...options,
+    axios.get(url, { 
+        params: { 
+          timeStamp: new Date().getTime(),
+          ...params
+        },
+        ...options,
         headers: {
           'token': util.getCookie('token')
         }
