@@ -6,25 +6,35 @@
           <div class="span3 stat">
             <div class="data">
               <p>总订单数</p>
-              <span class="number" id="totalOrder">{{ totalOrder }}</span>
+              <span class="number" id="totalOrder">
+                <ICountUp :endVal="totalOrder"/>
+              </span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
               <p>已通过订单数</p>
-              <span class="number" id="totalOrderPass">{{ totalOrderPass }}</span>
+              <span class="number" id="totalOrderPass">
+                <ICountUp :endVal="totalOrderPass"/>
+              </span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
               <p>总贷款金额</p>
-              <span class="number">¥</span><span class="number" id="totalAmount">{{ totalAmount }}</span>
+              <span class="number">¥</span>
+              <span class="number" id="totalAmount">
+                <ICountUp :endVal="totalAmount"/>
+              </span>
             </div>
           </div>
           <div class="span3 stat last">
             <div class="data">
               <p>已通过贷款金额</p>
-              <span class="number">¥</span><span class="number" id="totalAmountPass">{{ totalAmountPass }}</span>
+              <span class="number">¥</span>
+              <span class="number" id="totalAmountPass">
+                <ICountUp :endVal="totalAmountPass"/>
+              </span>
             </div>
           </div>
         </div>
@@ -48,6 +58,7 @@ import api from '@/api'
 import util from '@/util'
 import constant from '@/util/constant'
 import Datepicker from '@/components/Datepicker.vue'
+import ICountUp from 'vue-countup-v2'
 
 export default {
   name: "homeIndex",
@@ -62,7 +73,8 @@ export default {
     }
   },
   components: {
-    Datepicker
+    Datepicker,
+    ICountUp
   },
   mounted: function () {
     this.getData()
@@ -78,33 +90,9 @@ export default {
         this.totalOrderPass = pass_cnt;
         this.totalAmount = app_sum;
         this.totalAmountPass = pass_sum;
-
-        initCountUp([{
-          id: 'totalOrder',
-          value: this.totalOrder
-        },{
-          id: 'totalOrderPass',
-          value: this.totalOrderPass
-        },{
-          id: 'totalAmount',
-          value: this.totalAmount
-        },{
-          id: 'totalAmountPass',
-          value: this.totalAmountPass
-        }])
       })
       .catch(err => alert(err))
     }
-  }
-}
-
-function initCountUp (num) {
-  if (num instanceof Array) {
-    for (var each of num) {
-      initCountUp(each)
-    }
-  } else {
-    new CountUp(num.id, 0, num.value, 0, 2).start();
   }
 }
 </script>
