@@ -69,7 +69,13 @@
                     <td>{{ order.N_APP_STATUS | statusMean }}</td>
                     <td>{{ order.uptime || '-' }}</td>
                     <td>
-                      <div class="btn-glow" @click="modal.tkAudit = true, modalParam.tkAudit = order">退款处理</div>
+                      <template v-if="order.N_APP_STATUS === 160">
+                        <div v-if="+order.N_LOAN_AFTER_STATUS === 21" class="btn-glow" @click="modal.tkAudit = true, modalParam.tkAudit = order">退款处理
+                        </div>
+                        <div v-else>
+                          {{ order.N_LOAN_AFTER_STATUS | loanAfterStatus}}
+                        </div>
+                      </template>
                     </td>
                   </tr>
                 </tbody>
