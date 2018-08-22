@@ -3,7 +3,7 @@ import util from '@/util'
 import store from './store'
 
 // 白名单中的路由不检验权限
-const whiteList = ['/', '/login']
+const whiteList = ['/', '/login', '/mobile/', '/mobile/login']
 
 router.beforeEach((to, from, next) => {
   let token = util.getCookie('token')
@@ -21,10 +21,10 @@ router.beforeEach((to, from, next) => {
       .catch(err => {
         alert('登录超时')
         console.error(err)
-        next('/login')
+        next(/mobile/.test(to.path) ? '/mobile/login' : '/login')
       })
     } else {
-      next('/login')
+      next(/mobile/.test(to.path) ? '/mobile/login' : '/login')
     }
   }
 })
