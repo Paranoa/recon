@@ -102,6 +102,7 @@
           app_status: '',
           type: '1',
         },
+        isBottomed: false;
         stores: [],
         ddgStatus: constant.DDG_STATUS,
         modal: {
@@ -156,11 +157,12 @@
     },
     methods: {
       queryOrder (isCover) {
-        if (!this.loading) {
-          if (isCover) {
-            // 改变条件重新查询时,页码变更为1
-            this.query.page = 1
-          }
+        if (isCover) {
+          // 改变条件重新查询时,页码变更为1,已到底重置为false
+          this.query.page = 1
+          this.isBottomed = false
+        }
+        if (!this.loading && !this.isBottomed) {
           this.loading = true
           return api.ddgOrderList({
             page: this.query.page,
@@ -173,8 +175,11 @@
           })
           .then(({ result, resultCnt }) => {
             this.loading = false
-            if (result && result.length === 10) {
+            // 到最后一页时标记为已到底
+            if (result && this.query.page < Math.ceil(resultCnt/10)) {
               this.query.page++
+            } else {
+              this.isBottomed = true
             }
             if (isCover) {
               // 改变条件重新查询时,滑动到顶部
