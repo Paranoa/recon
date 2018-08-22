@@ -102,7 +102,7 @@
           app_status: '',
           type: '1',
         },
-        isBottomed: false;
+        isBottomed: false,
         stores: [],
         ddgStatus: constant.DDG_STATUS,
         modal: {
