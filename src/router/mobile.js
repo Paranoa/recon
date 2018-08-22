@@ -7,6 +7,7 @@ export default [
   },
   {
     path: '/mobile/ddgOrder',
+    alias: '/mobile/home',
     name: 'mobileDdgOrder',
     component: () => import('@/viewsMobile/DdgOrder/DdgOrder.vue')
   }

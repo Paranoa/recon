@@ -4,7 +4,7 @@
       <header class="logo-header">
         <img class="logo" src="../assets/logo_geex_mobile.png">
       </header>
-      <div class="span4 box">
+      <div class="box">
         <div class="content-wrap">
           <form @submit.prevent="login">
             <p>
@@ -18,7 +18,7 @@
               <i class="ico fr mgt5" :class="showPwd ? 'ico-eye': 'ico-eye-close'" @click="showPwd = !showPwd"></i>
               <span v-if="validMsg.password" class="valid-error">{{ validMsg.password }}</span>
             </p>
-            <p>
+            <p style="position: relative">
               <i class="ico ico-key"></i>
               <input v-model='vercode' class="password" type="text"  placeholder="请输入验证码" maxlength="4">
               <img class="fr" :src="captchaSrc" @click="change_vercode" id="code_img">
@@ -65,7 +65,7 @@ export default {
         this.submit()
         .then(res => {
           util.setCookie('token', res.token)
-          this.$router.push('/home')
+          this.$router.push('/mobile/ddgOrder')
         })
         .catch(err => {
           alert(err)
@@ -103,6 +103,7 @@ export default {
 
 <style>
   html, body, #app, .login-bg { height: 100% }
+  #code_img { position: absolute; right: 0; width: 75px; }
   .logo-header { text-align: center; margin: 50px auto; }
   .logo { width: 300px }
   .login-bg { background-image: url(../assets/bgs/mobieLogin.png); background-size: cover }

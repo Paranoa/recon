@@ -34,7 +34,7 @@
       return {
         agreed: true,
         showAgeee: false,
-        agreeLink: '//baidu.com'
+        agreeLink: ''
       }
     },
     components: {

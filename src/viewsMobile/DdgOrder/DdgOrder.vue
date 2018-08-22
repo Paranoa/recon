@@ -173,7 +173,9 @@
           })
           .then(({ result, resultCnt }) => {
             this.loading = false
-            this.query.page++
+            if (result && result.length === 10) {
+              this.query.page++
+            }
             if (isCover) {
               // 改变条件重新查询时,滑动到顶部
               $(window).scrollTop(0)

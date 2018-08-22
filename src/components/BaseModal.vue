@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
   .modal-body { max-height: none }
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     .modal-title { font-size: 17px }
     .modal-header { color: #212121; text-align: center; border-bottom: 1px solid #E7E7E7 }
     .modal-footer { padding: 0; background: none; border-top: 1px solid #E7E7E7; overflow: hidden; }
