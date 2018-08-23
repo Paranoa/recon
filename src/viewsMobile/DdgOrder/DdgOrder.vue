@@ -163,6 +163,7 @@
           // 改变条件重新查询时,页码变更为1,已到底重置为false
           this.query.page = 1
           this.isBottomed = false
+          $('.vdp-datepicker__calendar').hide()
         }
         if (this.paramValid() && !this.loading && !this.isBottomed) {
           this.loading = true

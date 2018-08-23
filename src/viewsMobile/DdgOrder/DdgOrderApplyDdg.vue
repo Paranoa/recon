@@ -17,7 +17,7 @@
       </template>
     </BaseModal>
     <aside class="backdrop" @click="close"></aside>
-    <div class="iframe-box" v-show="showAgeee">
+    <div class="iframe-box fix-apple-iframe" v-show="showAgeee">
       <iframe :src="agreeLink"></iframe>
     </div>
   </div>
