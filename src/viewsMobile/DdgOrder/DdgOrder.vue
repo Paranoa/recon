@@ -151,6 +151,7 @@
       hackDatePickerInput()
       window.addEventListener('scroll', this.windowScroll)
       this.queryOrder(true).then(() => {
+        // 初始化查询第一页后仍不足一屏的高度。则查询下一页
         if (document.documentElement.offsetHeight < document.documentElement.clientHeight) {
           this.queryOrder()
         }
@@ -163,7 +164,7 @@
           this.query.page = 1
           this.isBottomed = false
         }
-        if (!this.loading && !this.isBottomed) {
+        if (this.paramValid() && !this.loading && !this.isBottomed) {
           this.loading = true
           return api.ddgOrderList({
             page: this.query.page,
@@ -209,8 +210,11 @@
         }
       },
       searchDateOpened () {
-        // datepicker显示位置临时解决方案
+        // datepicker显示位置调整,临时解决方案
         $('#searchDateEnd').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').css({ marginLeft: '-85px'})
+      },
+      paramValid () {
+
       },
       windowScroll (event) {
         if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
@@ -222,6 +226,7 @@
     }
   }
 
+  // 防止datePicker的input被点击到,临时解决方案
   function hackDatePickerInput () {
     var div = document.createElement('div')
     var div2 = document.createElement('div')
@@ -229,8 +234,14 @@
     $(div).addClass('datepicker-mask')
     $(div2).addClass('datepicker-mask')
 
-    $(div).click(() => { $('#searchDateStart').click(); $('#searchDateEnd').focus().blur() })
-    $(div2).click(() => { $('#searchDateEnd').click(); $('#searchDateStart').focus().blur() })
+    $(div).click(() => {
+      $('#searchDateEnd').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').hide()
+      $('#searchDateStart').click()
+    })
+    $(div2).click(() => { 
+      $('#searchDateStart').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').hide()
+      $('#searchDateEnd').click()
+    })
 
     $('#searchDateStart').parent().addClass('rel').append(div)
     $('#searchDateEnd').parent().addClass('rel').append(div2)

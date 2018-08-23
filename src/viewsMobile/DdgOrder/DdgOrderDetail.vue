@@ -53,8 +53,8 @@
         <span class="info-text">{{ order.C_SALES_ID }}</span>
       </li>
     </ul>
-    <div class="txtcenter mgt20" v-if="order.N_APP_STATUS === 103">
-      <div class="ui-btn ui-btn-white" @click="showRefuseDdg = true">审核拒绝</div>
+    <div class="txtcenter mgt20 mgb20" v-if="order.N_APP_STATUS === 103">
+      <div class="ui-btn ui-btn-white" @click="showRefuseDdg = true, applyDdgId = order.C_APP_ID">审核拒绝</div>
       <div class="ui-btn ui-btn-blue" @click="showApplyDdg = true, applyDdgId = order.C_APP_ID">审核通过</div>
     </div>
     <RefuseDdg v-if="showRefuseDdg" width="85%" 
@@ -98,7 +98,7 @@
       },
       spReject (appId) {
         api.ddgRefuse({
-          appId: appId
+          appId: this.applyDdgId
         })
         .then(() => { 
           alert('拒绝成功')
@@ -115,7 +115,7 @@
   .ico { display: inline-block; width: 20px; height: 20px; vertical-align: middle; margin-right: 10px; background-repeat: no-repeat; background-size: 10px; background-position: center }
   .ico-back { background-image: url(../../assets/ico/ico-arr-gray-left.png); position: absolute; left: 15px; top: 12px; } 
   .info-title { line-height: 44px; text-align: center; font-size: 17px; border-bottom: 1px solid #d7d7d7 }
-  .detail-win { position: fixed; width: 100%; height: 100%; left: 0; top: 0; z-index: 10; background: #f5f5f5;}
+  .detail-win { position: fixed; width: 100%; height: 100%; left: 0; top: 0; z-index: 10; background: #f5f5f5; overflow: auto }
   ul.info-box { background: #fff; list-style: none; margin-left: 0; margin-bottom: 10px; padding: 0 10px }
   ul.info-box li { line-height: 20px; padding: 12px 0; }
   ul.info-box span.info-label { font-size: 15px; color: #444444; display: inline-block; min-width: 6em }
@@ -124,4 +124,8 @@
   .ui-btn-white, .ui-btn-blue { width: 160px; margin: 0 10px  }
   .ui-btn-white { color: #1AB3FF; border-color: #1AB3FF; background: #fff; }
   .ui-btn-blue { color: #fff; border-color: #1AB3FF; background: #1AB3FF; }
+
+  @media (max-width: 370px) {
+    .ui-btn-white, .ui-btn-blue { width: 130px; margin: 0 10px  }
+  }
 </style>

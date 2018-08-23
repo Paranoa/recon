@@ -31,6 +31,7 @@
   .mgt5 { margin-top: 5px }
   .mgt10 { margin-top: 10px }
   .mgt20 { margin-top: 20px }
+  .mgb20 { margin-bottom: 20px }
   .wd50p { width: 50% }
   .wd25p { width: 25% }
 </style>
