@@ -214,7 +214,10 @@
         $('#searchDateEnd').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').css({ marginLeft: '-85px'})
       },
       paramValid () {
-
+        if (this.query.search_start > this.query.search_end) {
+          alert('开始时间不能大于结束时间')
+        }
+        return true
       },
       windowScroll (event) {
         if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
