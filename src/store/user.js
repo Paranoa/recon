@@ -31,17 +31,17 @@ export default {
       }
     },
     RESET_USERINFOS (state) {
-        state.cName = ''
-        state.fundBank = ''
-        state.isShop = false
-        state.merchantCode = ''
-        state.merchantInuse = false
-        state.role = ''
-        state.storeCode = ''
-        state.token = ''
-        state.userName = ''
+      state.cName = ''
+      state.fundBank = ''
+      state.isShop = false
+      state.merchantCode = ''
+      state.merchantInuse = false
+      state.role = ''
+      state.storeCode = ''
+      state.token = ''
+      state.userName = ''
 
-        state.belowStores = []
+      state.belowStores = []
     }
   },
   actions: {
@@ -59,15 +59,14 @@ export default {
       commit('RESET_USERINFOS', await api.logout())
     },
     async GetUserInfo ({ dispatch, commit }, { token }) {
-      // 门店信息也视为用户信息的一部分
+      commit('RESET_USERINFOS')
       commit('SET_USERINFOS', await api.getUserInfo({ token }))
+      // 门店信息也视为用户信息的一部分
       await dispatch('GetStoreCodes')
     },
     async GetStoreCodes ({ state, commit }) {
       // 如果是门店则没有下属门店
-      if (state.isShop) {
-        return
-      } else {
+      if (!state.isShop) {
         commit('SET_BELOW_STORES', await api.getStoreCodes())
       }
     }

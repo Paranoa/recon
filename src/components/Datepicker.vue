@@ -1,5 +1,5 @@
 <template>
-  <Datepicker format="yyyy-MM-dd" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" />
+  <Datepicker format="yyyy-MM-dd" :id="id" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" @opened="opened"/>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ import { zh } from 'vuejs-datepicker/dist/locale'
 import util from '@/util'
 
 export default {
-  props: ['value', 'inputClass', 'disabledDates'],
+  props: ['value', 'id', 'inputClass', 'disabledDates'],
   data () {
     return {
       dateModel: this.value,
@@ -33,6 +33,9 @@ export default {
   methods: {
     input () {
       this.$emit('input', util.dateToString(this.dateModel), '-')
+    },
+    opened () {
+      this.$emit('opened')
     }
   }
 }
