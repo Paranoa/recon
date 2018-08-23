@@ -86,6 +86,6 @@
   .iframe-box iframe { width: 100%; height: 100%; border: none; border-radius: 10px; overflow: auto; }
 
   @media (max-height: 620px) {
-    .iframe-box { height: 460px }
+    .iframe-box { height: 460px; top: 30px; }
   }
 </style>
