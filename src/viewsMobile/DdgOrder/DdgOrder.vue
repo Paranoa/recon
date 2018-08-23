@@ -32,8 +32,8 @@
                 </span>
               </div>
               <div class="fix mgt10">
-                <span class="fl wd50p box">时间：<Datepicker input-class="ui-mb-datepicker" id="searchDateStart" v-model="query.search_start"/></span>
-                <span class="fl wd50p box">至：<Datepicker input-class="ui-mb-datepicker" id="searchDateEnd" v-model="query.search_end" @opened="searchDateOpened" /></span>
+                <span class="fl wd50p box">时间<Datepicker input-class="ui-mb-datepicker" id="searchDateStart" v-model="query.search_start"/></span>
+                <span class="fl wd50p box">至<Datepicker input-class="ui-mb-datepicker" id="searchDateEnd" v-model="query.search_end" @opened="searchDateOpened" /></span>
               </div>
             </div>
           </form>
