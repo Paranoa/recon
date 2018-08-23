@@ -58,7 +58,7 @@ export default {
     }
   },
   mounted () {
-    $('body').css({ minHeight: $(window).height()})
+    $('body').css({ minHeight: $(window).height() > 443 ? $(window).height() : 443 })
   },
   methods: {
     change_vercode () {
