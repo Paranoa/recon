@@ -79,6 +79,6 @@
   .btn-white, .btn-blue { text-align: center; line-height: 40px; font-size: 17px }
   .btn-white { color: #585858; background: #fff  }
   .btn-blue { color: #fff; background: #1BB3FD }
-  .iframe-box { position: fixed; top: 50px; left: 5%; width: 90%; height: 550px; z-index: 20000; border-radius: 10px; background: #fff; }
-  .iframe-box iframe { width: 100%; height: 100%; border: none; border-radius: 10px;}
+  .iframe-box { position: fixed; top: 50px; left: 5%; width: 90%; height: 550px; z-index: 20000; border-radius: 10px; background: #fff; overflow: auto; }
+  .iframe-box iframe { width: 100%; height: 100%; border: none; border-radius: 10px; overflow: auto; }
 </style>

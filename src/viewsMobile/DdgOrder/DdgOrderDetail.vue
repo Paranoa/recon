@@ -59,7 +59,7 @@
     </div>
     <RefuseDdg v-if="showRefuseDdg" width="85%" 
       @close="showRefuseDdg = false"
-      @confirm="spReject"/>
+      @confirm="showRefuseDdg = false; spReject()"/>
 
     <ApplyDdg v-if="showApplyDdg" width="85%" :modalId="applyDdgId"
       @close="showApplyDdg = false"

@@ -197,18 +197,6 @@
           })
         }
       },
-      spReject (appId) {
-        if (confirm('确定要拒绝这笔订单吗？')) {
-          api.ddgRefuse({
-            appId: appId
-          })
-          .then(() => { 
-            alert('拒绝成功')
-            this.queryOrder()
-          })
-          .catch(err => alert(err))
-        }
-      },
       searchDateOpened () {
         // datepicker显示位置调整,临时解决方案
         $('#searchDateEnd').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').css({ marginLeft: '-85px'})
@@ -268,7 +256,7 @@
   .order-table thead th { background: #FAFAFA; color: #444444; vertical-align: middle; padding-top: 0; padding-bottom: 0 }
   .order-table tr { height: 50px; border: .5px solid #D7D7D7 }
   .submit-btn, .submit-btn:focus { color: #1AB3FF; background: none; border: none; outline: none }
-  .ui-mb-select, .ui-mb-input, .ui-mb-datepicker { display: inline-block; width: 120px; height: 26px; line-height: 18px; border: 1px solid #BDBDBD }
+  .ui-mb-select, .ui-mb-input, .ui-mb-datepicker { display: inline-block; width: 118px; height: 26px; line-height: 18px; border: 1px solid #BDBDBD }
   .ui-mb-select { background: url(../../assets/ico/ico-arr-blue-down.png) #FAFAFA right no-repeat; padding-right: 24px; background-size: 24px 24px; -webkit-appearance: none;}
   .ui-mb-input { background: #FAFAFA; padding: 4px 6px; box-sizing: border-box; }
   .ui-mb-datepicker { width: 120px; background: url(../../assets/ico/ico-calendar.png) #FAFAFA right no-repeat; padding-right: 24px; background-size: 24px 24px; }
