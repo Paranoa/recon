@@ -18,6 +18,7 @@
   .fl { float: left !important }
   .fr { float: right !important }
   .fbld { font-weight: bold; }
+  .rel { position: relative; }
   .txtcenter { text-align: center !important }
   .txtright { text-align: right !important }
   .txtrt { text-align: right !important }
