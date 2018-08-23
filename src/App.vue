@@ -27,6 +27,7 @@
   .modal-dialog { z-index: 11000; position: fixed; top: 10%; left: 0; right: 0; }
   .modal-dialog .modal-content { margin: auto; background: #fff; border-radius: 5px;}
   .fix:after { content: ''; display: table; clear: both }
+  .fix-apple-iframe { -webkit-overflow-scrolling:touch; overflow:auto; }
 
   .mgt5 { margin-top: 5px }
   .mgt10 { margin-top: 10px }
