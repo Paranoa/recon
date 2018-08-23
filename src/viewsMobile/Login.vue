@@ -57,6 +57,9 @@ export default {
       remb: false
     }
   },
+  mounted () {
+    $('body').css({ minHeight: $(window).height()})
+  },
   methods: {
     change_vercode () {
       this.captchaSrc =  apiUrl.getCode + '?seed=' + Math.random()

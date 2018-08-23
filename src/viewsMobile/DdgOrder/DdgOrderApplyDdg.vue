@@ -6,7 +6,7 @@
           <div>确认该订单进行单单过申请吗？</div>
           <div>
             <input type="checkbox" v-model="agreed" id="agree" style="margin: 0">
-            <label style="display: inline; font-size: 17px" for="agree">我已阅读并同意</label>
+            <label style="display: inline; font-size: 16px" for="agree">我已阅读并同意</label>
             <a @click="showAgeee=true" style="text-decoration: underline; cursor: pointer;">《单单过产品协议》</a>
           </div>
         </div>
@@ -75,7 +75,7 @@
 </script>
 
 <style scoped>
-  .main-text { font-size: 17px; line-height: 2; padding: 15px 0; }
+  .main-text { font-size: 16px; line-height: 2; padding: 15px 0; }
   .btn-white, .btn-blue { text-align: center; line-height: 40px; font-size: 17px }
   .btn-white { color: #585858; background: #fff  }
   .btn-blue { color: #fff; background: #1BB3FD }
