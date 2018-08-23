@@ -11,7 +11,7 @@
         <div class="fl wd50p btn-blue" @click="$emit('confirm')">确定</div>
       </template>
     </BaseModal>
-    <aside class="backdrop" @click="close"></aside>
+    <aside class="backdrop" @click="$emit('close')"></aside>
   </div>
 </template>
 
