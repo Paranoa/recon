@@ -163,7 +163,8 @@
           // 改变条件重新查询时,页码变更为1,已到底重置为false
           this.query.page = 1
           this.isBottomed = false
-          $('.vdp-datepicker__calendar').hide()
+          selectDateStart()
+          selectDateEnd()
         }
         if (this.paramValid() && !this.loading && !this.isBottomed) {
           this.loading = true
@@ -218,6 +219,14 @@
     }
   }
 
+  function selectDateStart () {
+    $('#searchDateStart').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').eq(0).find('.cell.day.selected').click()
+  }
+
+  function selectDateEnd () {
+    $('#searchDateEnd').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').eq(0).find('.cell.day.selected').click()
+  }
+
   // 防止datePicker的input被点击到,临时解决方案
   function hackDatePickerInput () {
     var div = document.createElement('div')
@@ -227,11 +236,11 @@
     $(div2).addClass('datepicker-mask')
 
     $(div).click(() => {
-      $('#searchDateEnd').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').hide()
+      selectDateEnd()
       $('#searchDateStart').click()
     })
     $(div2).click(() => { 
-      $('#searchDateStart').parents('.vdp-datepicker').find('.vdp-datepicker__calendar').hide()
+      selectDateStart()
       $('#searchDateEnd').click()
     })
 
