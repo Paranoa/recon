@@ -38,6 +38,7 @@
 <script>
 import { apiUrl } from '@/api/config'
 import util from '@/util'
+import Datepicker from '@/components/Datepicker.vue'
 
 export default {
   name: 'home',
@@ -75,17 +76,19 @@ export default {
     valForm () {
       var flag = true
       if (!this.username) {
-        this.validMsg.username = '对不起，账号不能为空！'
         flag = false
       }
+      this.validMsg.username = this.username ? '' : '对不起，账号不能为空！'
+
       if (!this.password) {
-        this.validMsg.password = '对不起，密码不能为空！'
         flag = false
       }
+      this.validMsg.password = this.password ? '' : '对不起，密码不能为空！'
+
       if (!this.vercode) {
-        this.validMsg.vercode = '对不起，请填写验证码！'
         flag = false
       }
+      this.validMsg.vercode = this.vercode ? '': '对不起，请填写验证码！'
 
       return flag
     },

@@ -32,7 +32,7 @@
                 </span>
               </div>
               <div class="fix mgt10">
-                <span class="fl wd50p box">时间：<Datepicker input-class="ui-mb-datepicker" v-model="query.search_start"/></span>
+                <span class="fl wd50p box">时间：<Datepicker input-class="ui-mb-datepicker" id="searchDateStart" v-model="query.search_start"/></span>
                 <span class="fl wd50p box">至：<Datepicker input-class="ui-mb-datepicker" id="searchDateEnd" v-model="query.search_end" @opened="searchDateOpened" /></span>
               </div>
             </div>
@@ -77,7 +77,7 @@
         </div>
       </div>
     </div>
-    <OrderDetail v-show="showDetail" :order="detailOrder" @close="showDetail = false" @refresh="queryOrder"/>
+    <OrderDetail v-show="showDetail" :order="detailOrder" @close="showDetail = false" @refresh="queryOrder(true)"/>
   </div>
 </template>
 
@@ -148,8 +148,9 @@
       }
     },
     mounted () {
+      hackDatePickerInput()
       window.addEventListener('scroll', this.windowScroll)
-      this.queryOrder().then(() => {
+      this.queryOrder(true).then(() => {
         if (document.documentElement.offsetHeight < document.documentElement.clientHeight) {
           this.queryOrder()
         }
@@ -220,6 +221,20 @@
       }
     }
   }
+
+  function hackDatePickerInput () {
+    var div = document.createElement('div')
+    var div2 = document.createElement('div')
+
+    $(div).addClass('datepicker-mask')
+    $(div2).addClass('datepicker-mask')
+
+    $(div).click(() => { $('#searchDateStart').click(); $('#searchDateEnd').focus().blur() })
+    $(div2).click(() => { $('#searchDateEnd').click(); $('#searchDateStart').focus().blur() })
+
+    $('#searchDateStart').parent().addClass('rel').append(div)
+    $('#searchDateEnd').parent().addClass('rel').append(div2)
+  }
 </script>
 
 <style>
@@ -248,4 +263,10 @@
   .color-alert { color: rgb(255,69,0) }
   .color-success { color: rgb(129, 189, 130) }
   .color-error { color: #b94a48 }
+
+  .datepicker-mask { position:  absolute; width: 100%; height: 100%; left: 0; top: 0; background: none; z-index: 1}
+
+  @media (max-width: 370px) {
+    .ui-mb-select, .ui-mb-input, .ui-mb-datepicker { width: 90px }
+  }
 </style>

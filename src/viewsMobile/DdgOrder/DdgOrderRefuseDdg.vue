@@ -27,8 +27,8 @@
 </script>
 
 <style scoped>
-  .main-box { font-size: 16px; min-height: 80px; line-height: 80px; }
-  .main-text { line-height: 1.2 }
+  .main-box { font-size: 16px; min-height: 60px; line-height: 60px; }
+  .main-text { line-height: 1.2; font-size: 17px }
   .btn-white, .btn-blue { text-align: center; line-height: 40px; font-size: 17px }
   .btn-white { color: #585858; background: #fff  }
   .btn-blue { color: #fff; background: #1BB3FD }
