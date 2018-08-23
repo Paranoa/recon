@@ -40,6 +40,9 @@
     components: {
       BaseModal
     },
+    mounted () {
+
+    },
     methods: {
       apply () {
         if (this.agreed) {
@@ -81,4 +84,8 @@
   .btn-blue { color: #fff; background: #1BB3FD }
   .iframe-box { position: fixed; top: 50px; left: 5%; width: 90%; height: 550px; z-index: 20000; border-radius: 10px; background: #fff; overflow: auto; }
   .iframe-box iframe { width: 100%; height: 100%; border: none; border-radius: 10px; overflow: auto; }
+
+  @media (max-height: 620px) {
+    .iframe-box { height: 500px }
+  }
 </style>
