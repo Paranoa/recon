@@ -53,7 +53,7 @@
                 </div>
               </div>
             </form>
-            <div class="row-fluid">
+            <div class="row-fluid ofauto">
               <table class="table table-hover order-table">
                 <thead>
                   <tr>

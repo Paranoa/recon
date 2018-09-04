@@ -28,6 +28,7 @@
   .modal-dialog .modal-content { margin: auto; background: #fff; border-radius: 5px;}
   .fix:after { content: ''; display: table; clear: both }
   .fix-apple-iframe { -webkit-overflow-scrolling:touch; overflow:auto; }
+  .ofauto { overflow: auto }
 
   .mgt5 { margin-top: 5px }
   .mgt10 { margin-top: 10px }
