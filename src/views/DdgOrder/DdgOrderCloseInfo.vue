@@ -63,7 +63,7 @@
         <button type="button" class="btn btn-default" @click="close">关闭</button>
       </template>
     </BaseModal>
-    <BillingDetail title="结算信息详情" width="1400px" v-if="showDetail" :modalId="paymentNo" @close="showDetail = false"/>
+    <BillingDetail title="结算信息详情" width="1000px" v-if="showDetail" :modalId="paymentNo" @close="showDetail = false"/>
   </div>
 </template>
 
