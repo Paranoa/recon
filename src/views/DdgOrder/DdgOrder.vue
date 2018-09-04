@@ -70,7 +70,6 @@
                     <th class="span1">状态</th>
                     <th class="span1">门店</th>
                     <th class="span1">申请编号</th>
-                    <th class="span1">订单类型</th>
                     <th class="span1">操作</th>
                   </tr>
                 </thead>
@@ -97,7 +96,6 @@
                     </td>
                     <td>{{ order.STORE_NAME }}</td>
                     <td>{{ order.C_APP_ID }}</td>
-                    <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
                       <template v-if="+order.N_APP_STATUS == 160">
                         <div class="btn-glow" @click="modal.paymenPlan = true, modalId.paymenPlan = order.C_APP_ID">收款计划</div>
