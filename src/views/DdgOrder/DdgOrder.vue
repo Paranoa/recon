@@ -58,7 +58,6 @@
               <table class="table table-hover order-table">
                 <thead>
                   <tr>
-                    <th class="span1">操作</th>
                     <th class="span1">申请时间</th>
                     <th class="span1">客户姓名</th>
                     <th class="span1">客户手机</th>
@@ -72,10 +71,33 @@
                     <th class="span1">门店</th>
                     <th class="span1">申请编号</th>
                     <th class="span1">订单类型</th>
+                    <th class="span1">操作</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr class="first" v-for="order of orders" :key="order.C_APP_ID">
+                    <td>{{ order.D_APPLICATION }}</td>
+                    <td>{{ order.C_NAME_CN }}</td>
+                    <td>{{ order.C_MBL_TEL }}</td>
+                    <td>{{ order.N_AMT_APPLIED | fix2 }}</td>
+                    <td>{{ order.N_TENOR_APPLIED }}</td>
+                    <td>{{ order.pdt }}</td>
+                    <td>{{ order.D_DECISION | len10 }}</td>
+                    <td>{{ order.D_DRAWDOWN | len10 }}</td>
+                    <td>{{ order.C_SALES_ID }}</td>
+                    <td>
+                      <span class="label" :class="order.N_APP_STATUS | statusClass">
+                        <template v-if="order.N_APP_STATUS === '130' && order.D_SEND_FUND_TIME">
+                          已通知银行放款
+                        </template>
+                        <template v-else>
+                          {{ order.N_APP_STATUS | statusMean }}
+                        </template>
+                      </span>
+                    </td>
+                    <td>{{ order.STORE_NAME }}</td>
+                    <td>{{ order.C_APP_ID }}</td>
+                    <td>{{ order.C_APP_TYPE | appType }}</td>
                     <td>
                       <template v-if="+order.N_APP_STATUS == 160">
                         <div class="btn-glow" @click="modal.paymenPlan = true, modalId.paymenPlan = order.C_APP_ID">收款计划</div>
@@ -99,28 +121,6 @@
                         {{ order.SHOW_APPLY_BUTTON_NAME }}
                       </div>
                     </td>
-                    <td>{{ order.D_APPLICATION }}</td>
-                    <td>{{ order.C_NAME_CN }}</td>
-                    <td>{{ order.C_MBL_TEL }}</td>
-                    <td>{{ order.N_AMT_APPLIED | fix2 }}</td>
-                    <td>{{ order.N_TENOR_APPLIED }}</td>
-                    <td>{{ order.pdt }}</td>
-                    <td>{{ order.D_DECISION | len10 }}</td>
-                    <td>{{ order.D_DRAWDOWN | len10 }}</td>
-                    <td>{{ order.C_SALES_ID }}</td>
-                    <td>
-                      <span class="label" :class="order.N_APP_STATUS | statusClass">
-                        <template v-if="order.N_APP_STATUS === '130' && order.D_SEND_FUND_TIME">
-                          已通知银行放款
-                        </template>
-                        <template v-else>
-                          {{ order.N_APP_STATUS | statusMean }}
-                        </template>
-                      </span>
-                    </td>
-                    <td>{{ order.STORE_NAME }}</td>
-                    <td>{{ order.C_APP_ID }}</td>
-                    <td>{{ order.C_APP_TYPE | appType }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -497,7 +497,9 @@
   margin-top: 20px;
 }
 
-.btn-glow { min-width: 4em }
+.table .btn-glow { 
+  min-width: 4em 
+}
 
 /* responsive */
 @media (max-width: 767px) {

@@ -462,6 +462,10 @@
   margin-top: 20px;
 }
 
+.table .btn-glow { 
+  min-width: 4em 
+}
+
 /* responsive */
 @media (max-width: 767px) {
   #main-stats {
