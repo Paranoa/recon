@@ -151,7 +151,7 @@
       @close="closeModal('refundConf')"
       @success="closeModal('refundConf'); queryOrder()" />
 
-    <CloseInfo v-if="modal.closeInfo" width="1200px" :modalId="modalId.closeInfo"
+    <CloseInfo v-if="modal.closeInfo" width="1000px" :modalId="modalId.closeInfo"
       @close="closeModal('closeInfo')"/>
 
     <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg"
@@ -496,6 +496,8 @@
 #pad-wrapper {
   margin-top: 20px;
 }
+
+.btn-glow { min-width: 4em }
 
 /* responsive */
 @media (max-width: 767px) {
