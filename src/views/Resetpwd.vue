@@ -102,7 +102,7 @@
             },
             save1 () {
                 if (this.valForm()) {
-                    api.resetPwd({
+                    api.checkSmsCodeByAccount({
                         account: this.username,
                         smsCode: this.veriCode
                     })
@@ -115,7 +115,7 @@
             },
             save2 () {
                 if (this.valForm()) {
-                    api.resetPwd({
+                    api.resetPasswordBySmsCode({
                         account: this.username,
                         smsCode: this.veriCode,
                         newPwd: this.newPwd1
