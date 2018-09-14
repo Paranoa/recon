@@ -77,9 +77,13 @@
                     api.sendSmsCode({
                         account: this.username
                     })
-                        .then(() => {
+                        .then((data) => {
+                        if (data) {
                             alert('验证码发送成功');
-                        })
+                        } else {
+                            _this.veriCodeSecond = 1
+                        }
+                    })
                         .catch(err => alert(err))
                 }
             },
@@ -120,7 +124,7 @@
                             this.step = 3;
                             setTimeout(function () {
                                 this.$router.push('/login')
-                            })
+                            },3000)
                         })
                         .catch(err => alert(err))
 
