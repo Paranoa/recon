@@ -8,6 +8,9 @@ export default {
   logout,
   getUserInfo,
   resetPwd,
+  sendSmsCode,
+  checkSmsCodeByAccount,
+  resetPasswordBySmsCode,
   homeInfo,
   storeFundList,
   storeOpenAccount,
@@ -61,6 +64,18 @@ function getUserInfo (data) {
 
 function resetPwd (data) {
   return post(apiUrl.resetPwd, data)
+}
+
+function sendSmsCode (data) {
+  return post(apiUrl.sendSmsCode, data)
+}
+
+function checkSmsCodeByAccount (data) {
+  return post(apiUrl.checkSmsCodeByAccount, data)
+}
+
+function resetPasswordBySmsCode (data) {
+  return post(apiUrl.resetPasswordBySmsCode, data)
 }
 
 function homeInfo (data) {

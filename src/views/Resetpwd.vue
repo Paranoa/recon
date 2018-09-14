@@ -71,19 +71,16 @@
         methods: {
             veriCodeSubmit () {
                 let _this = this;
-                if (_this.valForm() && _this.veriCodeText === "获取手机验证码") {
+                if (_this.username && _this.veriCodeText === "获取手机验证码") {
                     _this.veriCodeSecond = 60;
                     _this.veriCodeTimeOut();
-//                    api.resetPwd({
-//                        oldPwd: this.oldPwd,
-//                        newPwd1: this.newPwd1,
-//                        newPwd2: this.newPwd2
-//                    })
-//                        .then(() => {
-//                            alert('修改密码成功')
-//                            this.$router.push('/')
-//                        })
-//                        .catch(err => alert(err))
+                    api.sendSmsCode({
+                        account: this.username
+                    })
+                        .then(() => {
+                            alert('验证码发送成功');
+                        })
+                        .catch(err => alert(err))
                 }
             },
             veriCodeTimeOut () {
@@ -101,32 +98,32 @@
             },
             save1 () {
                 if (this.valForm()) {
-//                    api.resetPwd({
-//                        oldPwd: this.oldPwd,
-//                        newPwd1: this.newPwd1,
-//                        newPwd2: this.newPwd2
-//                    })
-//                        .then(() => {
-//                            alert('修改密码成功')
-//                            this.$router.push('/')
-//                        })
-//                        .catch(err => alert(err))
-                    this.step = 2;
+                    api.resetPwd({
+                        account: this.username,
+                        smsCode: this.veriCode
+                    })
+                        .then(() => {
+                            this.step = 2;
+                        })
+                        .catch(err => alert(err))
+
                 }
             },
             save2 () {
                 if (this.valForm()) {
-//                    api.resetPwd({
-//                        oldPwd: this.oldPwd,
-//                        newPwd1: this.newPwd1,
-//                        newPwd2: this.newPwd2
-//                    })
-//                        .then(() => {
-//                            alert('修改密码成功');
-//                            this.$router.push('/')
-//                        })
-//                        .catch(err => alert(err))
-                    this.step = 1;
+                    api.resetPwd({
+                        account: this.username,
+                        smsCode: this.veriCode,
+                        newPwd: this.newPwd1
+                    })
+                        .then(() => {
+                            this.step = 3;
+                            setTimeout(function () {
+                                this.$router.push('/login')
+                            })
+                        })
+                        .catch(err => alert(err))
+
                 }
             },
             valForm () {
