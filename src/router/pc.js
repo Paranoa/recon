@@ -6,6 +6,11 @@ export default [
     component: () => import('@/views/Login.vue')
   },
   {
+    path: '/resetpwd',
+    name: 'resetpwd',
+    component: () => import('@/views/Resetpwd.vue')
+  },
+  {
     path: '/home',
     name: 'home',
     component: () => import('@/views/Home.vue'),
