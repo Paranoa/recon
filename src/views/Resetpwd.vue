@@ -77,13 +77,9 @@
                     api.sendSmsCode({
                         account: this.username
                     })
-                        .then((data) => {
-                        if (data) {
-                            alert('验证码发送成功');
-                        } else {
-                            _this.veriCodeSecond = 1
-                        }
-                    })
+                        .then(() => {
+                          alert('验证码发送成功');
+                        })
                         .catch(err => alert(err))
                 }
             },
