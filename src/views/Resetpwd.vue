@@ -25,12 +25,12 @@
                 </div>
                 <p class="clearfix">
                     <span class="text flt">设置新密码</span>
-                    <input type="text" v-model="newPwd1" class="input270 newPwd1 flt" placeholder="请输入校验码">
+                    <input type="password" v-model="newPwd1" class="input270 newPwd1 flt" placeholder="请输入校验码">
                     <span class="error flt" v-if="newPwdErr1"><img src="../assets/pwdError.png">{{newPwdErr1}}</span>
                 </p>
                 <p class="clearfix">
                     <span class="text flt">确认新密码</span>
-                    <input type="text" v-model="newPwd2" class="input270 newPwd2 flt" placeholder="请再次输入校验码">
+                    <input type="password" v-model="newPwd2" class="input270 newPwd2 flt" placeholder="请再次输入校验码">
                     <span class="error flt" v-if="newPwdErr2"><img src="../assets/pwdError.png">{{newPwdErr2}}</span>
                 </p>
                 <div class="submitButton stepButton2" @click="save2">下一步</div>
@@ -115,15 +115,16 @@
             },
             save2 () {
                 if (this.valForm()) {
+                    var _this = this;
                     api.resetPasswordBySmsCode({
-                        account: this.username,
-                        smsCode: this.veriCode,
-                        newPwd: this.newPwd1
+                        account: _this.username,
+                        smsCode: _this.veriCode,
+                        newPwd: _this.newPwd1
                     })
                         .then(() => {
-                            this.step = 3;
+                            _this.step = 3;
                             setTimeout(function () {
-                                this.$router.push('/login')
+                                _this.$router.push('/login')
                             },3000)
                         })
                         .catch(err => alert(err))
