@@ -123,7 +123,7 @@
                             _this.second3 = 3;
                             timeout3();
                             function timeout3 () {
-                                if (_this.second3 <= 0) {
+                                if (_this.second3 <= 1) {
                                     _this.$router.push('/login')
                                 }
                                 setTimeout(function () {
