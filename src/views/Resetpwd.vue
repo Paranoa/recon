@@ -39,7 +39,7 @@
                 <div class="setp-box">
                     <img  src="../assets/step3.png">
                     <div class="pwdComplete">
-                        <img src="../assets/pwdComplete.png">找回密码完成！3秒后自动跳转到登录页！
+                        <img src="../assets/pwdComplete.png">找回密码完成！{{second3}}秒后自动跳转到登录页！
                     </div>
                 </div>
             </div>
@@ -60,6 +60,7 @@
                 veriCodeSecond: 0,
                 newPwd1: '',
                 newPwd2: '',
+                second3: 3,
                 usernameErr: "",
                 veriCodeErr: "",
                 newPwdErr1: "",
@@ -119,9 +120,17 @@
                     })
                         .then(() => {
                             _this.step = 3;
-                            setTimeout(function () {
-                                _this.$router.push('/login')
-                            },3000)
+                            _this.second3 = 3;
+                            timeout3();
+                            function timeout3 () {
+                                if (_this.second3 <= 0) {
+                                    _this.$router.push('/login')
+                                }
+                                setTimeout(function () {
+                                    _this.second3--;
+                                    timeout3();
+                                },1000)
+                            }
                         })
                         .catch(err => alert(err))
 
