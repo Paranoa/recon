@@ -78,8 +78,8 @@
                     api.sendSmsCode({
                         account: this.username
                     })
-                        .then(() => {
-                          alert('验证码发送成功');
+                        .then((data) => {
+                          alert(data || '验证码发送成功');
                         })
                         .catch(err => alert(err))
                 }
