@@ -16,7 +16,8 @@
             <div class="remember">
               <input id="remember-me" type="checkbox" v-model="remb">
               <label for="remember-me">记住我</label>
-              <a class="forgot"><span style="padding-right: 5px; cursor: pointer" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</span></a>
+              <!--<a class="forgot"><span style="padding-right: 5px; cursor: pointer" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</span></a>-->
+              <a class="forgot" @click="resetpwd"><span style="padding-right: 5px; cursor: pointer">忘记密码?</span></a>
             </div>
             <button class="btn-glow primary login">登录</button>
           </form>
@@ -77,6 +78,9 @@ export default {
       }
 
       return true
+    },
+    resetpwd () {
+        this.$router.push('/resetpwd');
     },
     submit () {
       return this.$store.dispatch('Login', {

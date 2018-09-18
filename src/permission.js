@@ -3,7 +3,7 @@ import util from '@/util'
 import store from './store'
 
 // 白名单中的路由不检验权限
-const whiteList = ['/', '/login', '/mobile/', '/mobile/login']
+const whiteList = ['/', '/login', '/resetpwd', '/mobile/', '/mobile/login']
 
 router.beforeEach((to, from, next) => {
   let token = util.getCookie('token')
