@@ -115,9 +115,6 @@
                         <div class="btn-glow bt_tryddg" @click="modal.applyDdg = true, modalId.applyDdg = order.C_APP_ID">审核通过</div>
                         <div class="btn-glow bt_refuseddg" @click="spReject(order.C_APP_ID)">审核拒绝</div>
                       </template>
-                      <template v-else-if="+order.N_APP_STATUS === 130">
-                        <div class="btn-glow bt_applyddg" @click="applDdgReject(order.C_APP_ID)">单单过申请</div>
-                      </template>
                       <div v-if="order.SHOW_APPLY_BUTTON" class="btn-glow btn btn-lg bt_applyLoan" @click="modalId.applyLoan = order.C_APP_ID, modal.applyLoan = true">
                         {{ order.SHOW_APPLY_BUTTON_NAME }}
                       </div>
@@ -284,20 +281,6 @@
             this.queryOrder()
           })
           .catch(err => alert(err))
-        }
-      },
-      applDdgReject (appId) {
-        alert('该订单已申请单单过，请耐心等待处理');
-        if (confirm('是否确认该笔订单申请单单过？')) {
-            this.queryOrder();
-//          api.ddgRefuse({
-//            appId: appId
-//          })
-//          .then(() => {
-//            alert('拒绝成功')
-//            this.queryOrder()
-//          })
-//          .catch(err => alert(err))
         }
       }
     }

@@ -126,7 +126,7 @@
                           </span>
                         </template>
                       </template>
-                      <template v-else-if="+order.N_APP_STATUS == '130'">
+                      <template v-else-if="order.N_APP_STATUS == '130'">
                         <div class="btn-glow bt_applyddg" @click="applDdgReject(order.C_APP_ID)">单单过申请</div>
                       </template>
                       <div v-if="order.SHOW_APPLY_BUTTON" class="btn-glow btn btn-lg bt_applyLoan" @click="modalId.applyLoan = order.C_APP_ID, modal.applyLoan = true">
