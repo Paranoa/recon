@@ -126,6 +126,9 @@
                           </span>
                         </template>
                       </template>
+                      <template v-else-if="+order.N_APP_STATUS == '130'">
+                        <div class="btn-glow bt_applyddg" @click="applDdgReject(order.C_APP_ID)">单单过申请</div>
+                      </template>
                       <div v-if="order.SHOW_APPLY_BUTTON" class="btn-glow btn btn-lg bt_applyLoan" @click="modalId.applyLoan = order.C_APP_ID, modal.applyLoan = true">
                         {{ order.SHOW_APPLY_BUTTON_NAME }}
                       </div>
@@ -249,7 +252,19 @@
       },
       closeModal(modalId) {
         this.modal[modalId] = false
-      }
+      },
+      applDdgReject (appId) {
+         if (confirm('是否确认该笔订单申请单单过？')) {
+//                 api.ddgRefuse({
+//                      appId: appId
+//                  })
+//                  .then(() => {
+//                      alert('申请成功');
+//                      this.queryOrder()
+//                  })
+//                  .catch(err => alert(err))
+            }
+        }
     }
   }
 </script>
