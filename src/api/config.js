@@ -1,7 +1,6 @@
 const env = process.env
 
 const baseUrl = env.VUE_APP_BASE_URL
-const ddgApplyUrl = env.VUE_APP_DDG_APPLY
 const apiUrl = {
   queryOrder: env.VUE_APP_URL_QUERYORDER,
   login: env.VUE_APP_URL_LOGIN,
@@ -47,10 +46,11 @@ const apiUrl = {
   ddgExportPaymentPlan: env.VUE_APP_URL_DDG_EXPORT_PAYMENT_PLAN,
   ddgExportBillingInfo: env.VUE_APP_URL_DDG_EXPORT_BILLING_INFO,
   ddgExportBillingDetail: env.VUE_APP_URL_DDG_EXPORT_BILLING_DETAIL,
+  noCardTurnSingleAcross: env.VUE_APP_URL_NO_CARD_TURN_SINGLE_ACROSS
 }
 
 for (var key in apiUrl) {
   apiUrl[key] = baseUrl + apiUrl[key]
 }
 
-export { apiUrl, baseUrl, ddgApplyUrl}
+export { apiUrl, baseUrl }
