@@ -1,4 +1,4 @@
-import { apiUrl } from '@/api/config'
+import { apiUrl, ddgApplyUrl} from '@/api/config'
 import axios from 'axios'
 import util from '@/util'
 import loading from '@/util/loading'
@@ -48,6 +48,7 @@ export default {
   ddgExportBillingInfo,
   ddgExportBillingDetail,
   ddgExportPaymentPlan,
+  ddgApply
 }
 
 function login (data) {
@@ -199,6 +200,10 @@ function ddgBillingDetail (data) {
 
 function ddgPaymentPlan (data) {
   return post(apiUrl.ddgPaymentPlan, data)
+}
+
+function ddgApply (data) {
+  return post(ddgApplyUrl, data)
 }
 
 function ddgDoOut (data) {
