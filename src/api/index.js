@@ -1,4 +1,4 @@
-import { apiUrl, ddgApplyUrl} from '@/api/config'
+import { apiUrl } from '@/api/config'
 import axios from 'axios'
 import util from '@/util'
 import loading from '@/util/loading'
@@ -203,7 +203,7 @@ function ddgPaymentPlan (data) {
 }
 
 function ddgApply (data) {
-  return post(ddgApplyUrl, data)
+  return post(apiUrl.noCardTurnSingleAcross, data)
 }
 
 function ddgDoOut (data) {
