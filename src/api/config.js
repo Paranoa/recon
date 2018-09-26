@@ -49,8 +49,4 @@ const apiUrl = {
   noCardTurnSingleAcross: env.VUE_APP_URL_NO_CARD_TURN_SINGLE_ACROSS
 }
 
-for (var key in apiUrl) {
-  apiUrl[key] = baseUrl + apiUrl[key]
-}
-
 export { apiUrl, baseUrl }
