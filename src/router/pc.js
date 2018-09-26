@@ -49,7 +49,7 @@ export default [
       {
         path: 'resetpwd',
         component: () => import('@/views/Resetpwd/Resetpwd.vue'),
-        name: 'resetpwd'
+        name: 'forgetpwd'
       },
     ]
   }
