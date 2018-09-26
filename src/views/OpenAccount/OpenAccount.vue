@@ -84,6 +84,7 @@
 
 <script>
   import api from '@/api'
+  import { apiUrl } from '@/api/config'
   import CashRecord from './OpenAccountCashRecord.vue'
   import SSJCash from './OpenAccountSSJCash.vue'
   import UploadPic from './OpenAccountUploadPic.vue'
@@ -204,7 +205,7 @@
       unlockSSJ ({ storeCode }) {
         api.storeUnlock({
           storeCode,
-          callbackUrl: process.env.VUE_APP_CB_URL + 'home/openAccount'
+          callbackUrl: apiUrl.cbUrl + '/home/openAccount'
         })
         .then(res => {
           window.open(res)
@@ -217,7 +218,7 @@
       ResetPwdSSJ ({ storeCode }) {
         api.storeResetPwd({
           storeCode,
-          callbackUrl: process.env.VUE_APP_CB_URL + 'home/openAccount'
+          callbackUrl: apiUrl.cbUrl + '/home/openAccount'
         })
         .then(res => {
           window.open(res)
