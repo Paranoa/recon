@@ -51,6 +51,7 @@ const apiUrl = {
   ddgExportPaymentPlan: 'ddg/paymentPlan/export',
   ddgExportBillingInfo: 'ddg/billingInfo/export',
   ddgExportBillingDetail: 'ddg/billingDetail/export',
+  noCardTurnSingleAcross: 'order/noCardTurnSingleAcross'
 }
 
 export { apiUrl, baseURL }
