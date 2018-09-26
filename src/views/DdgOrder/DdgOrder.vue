@@ -276,8 +276,8 @@
           api.ddgRefuse({
             appId: appId
           })
-          .then(() => { 
-            alert('拒绝成功')
+          .then(() => {
+            alert('拒绝成功');
             this.queryOrder()
           })
           .catch(err => alert(err))

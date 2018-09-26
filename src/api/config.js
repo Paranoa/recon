@@ -46,6 +46,7 @@ const apiUrl = {
   ddgExportPaymentPlan: env.VUE_APP_URL_DDG_EXPORT_PAYMENT_PLAN,
   ddgExportBillingInfo: env.VUE_APP_URL_DDG_EXPORT_BILLING_INFO,
   ddgExportBillingDetail: env.VUE_APP_URL_DDG_EXPORT_BILLING_DETAIL,
+  noCardTurnSingleAcross: env.VUE_APP_URL_NO_CARD_TURN_SINGLE_ACROSS
 }
 
 for (var key in apiUrl) {
