@@ -40,9 +40,6 @@
     components: {
       BaseModal
     },
-    mounted () {
-
-    },
     methods: {
       apply () {
         if (this.agreed) {
