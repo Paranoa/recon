@@ -6,20 +6,20 @@ var fullScreenLoading
 
 export default {
   service: function () {
-    var LoadingConstructor = Vue.extend(Loading)
-
-    LoadingConstructor.prototype.close = function () {
-      fullScreenLoading = undefined
-      if (this.$el && this.$el.parentNode) {
-        this.$el.parentNode.removeChild(this.$el);
-      }
-      this.$destroy();
-    }
-
-    var div = document.createElement('div')
-    document.getElementById('app').appendChild(div)
-
     if (!fullScreenLoading) {
+      var LoadingConstructor = Vue.extend(Loading)
+
+      LoadingConstructor.prototype.close = function () {
+        fullScreenLoading = undefined
+        if (this.$el && this.$el.parentNode) {
+          this.$el.parentNode.removeChild(this.$el);
+        }
+        this.$destroy();
+      }
+
+      var div = document.createElement('div')
+      document.getElementById('app').appendChild(div)
+
       fullScreenLoading = new LoadingConstructor({
         el: div
       })

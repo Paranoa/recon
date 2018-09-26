@@ -221,8 +221,9 @@ function get (url, params, options, originResponse) { // originResponseä¸ºtrueæ—
   return new Promise((resolve, reject) => {
     var load = loading.service()
 
-    axios.get(url, { 
-        params: { 
+    axios.get(url, {
+        baseURL: process.env.VUE_APP_BASE_URL,
+        params: {
           timeStamp: new Date().getTime(),
           ...params
         },
@@ -262,10 +263,12 @@ function post (url, params, options, originResponse) {
   return new Promise((resolve, reject) => {
     var load = loading.service()
     axios.post(url, postParams, {
-      ...options,
       headers: {
         'token': util.getCookie('token')
-      }
+      },
+      baseURL: process.env.VUE_APP_BASE_URL,
+      withCredentials: true,
+      ...options
     }).then(({ data }) => {
         load.close()
         if (originResponse) {

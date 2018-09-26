@@ -48,8 +48,4 @@ const apiUrl = {
   ddgExportBillingDetail: env.VUE_APP_URL_DDG_EXPORT_BILLING_DETAIL,
 }
 
-for (var key in apiUrl) {
-  apiUrl[key] = baseUrl + apiUrl[key]
-}
-
 export { apiUrl, baseUrl }
