@@ -11,17 +11,17 @@
         <div>
           <table class="table table-hover">
             <template v-for="(store, key) in storeInfos">
-              <tr>
+              <tr :key="key">
                 <th colspan="5" style="border-top: none; font-size: 17px; font-weight: bold; line-height: 3; padding: 6px">{{ key }}</th>
               </tr>
-              <tr>
+              <tr :key="key">
                 <th>渠道名称</th>
                 <th>开户状态</th>
                 <th>银行账号</th>
                 <th>可提现余额(元)</th>
                 <th>操作</th>
               </tr>
-              <tr v-for="fund of store">
+              <tr v-for="fund of store" :key="fund.quDaoCode">
                 <td>{{ fund.quDaoCode | fundName }}</td>
                 <td>
                   <template v-if="fund.quDaoCode === 'KLJ01'">

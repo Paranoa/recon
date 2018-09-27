@@ -11,6 +11,7 @@ export default {
   openStatusSSJ,
   cashStatus,
   simpleDate,
+  numFormat,
 }
 
 function fix2 (value) {
@@ -130,4 +131,12 @@ function simpleDate (value) {
   value = value ? value.toString() : ''
   var result = value.match(/\d{4}.?\d{1,2}.?\d{1,2}/)
   return result ? result[0] : value
+}
+
+function numFormat(num){
+  return num.toString().replace(/\d+/, function (n) { // 先提取整数部分
+      return n.replace(/(\d)(?=(\d{3})+$)/g, function ($1) { // 对整数部分添加分隔符
+          return $1 + ",";
+      });
+  });
 }
