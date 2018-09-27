@@ -263,6 +263,7 @@ function post (url, params, options, originResponse) {
     var load = loading.service()
     axios.post(url, postParams, {
       ...options,
+      withCredentials : true,
       headers: {
         'token': util.getCookie('token')
       }
