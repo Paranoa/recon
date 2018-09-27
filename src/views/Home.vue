@@ -37,13 +37,6 @@
             <span>主页</span>
           </router-link>
         </li>
-        <li v-if="[3, 4].includes(+role)" :class="{ 'active': routeName === 'openAccount' }">
-          <VMenuActive v-if="routeName === 'openAccount'" class="pointer"></VMenuActive>
-          <router-link to="/home/openAccount">
-            <i class="icon-tasks"></i>
-            <span>渠道管理</span>
-          </router-link>
-        </li>
         <li v-if="[1, 3, 4].includes(+role)" :class="{ 'active': routeName === 'order' }">
           <VMenuActive v-if="routeName === 'order'" class="pointer"></VMenuActive>
           <router-link to="/home/order">

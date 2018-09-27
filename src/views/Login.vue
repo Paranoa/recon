@@ -12,11 +12,10 @@
             <input v-model="username" class="span12 username" type="text" placeholder="用户名">
             <input v-model="password" class="span12 password" type="password" placeholder="密码">
             <input v-model='vercode' class="span7 password fl" type="text"  placeholder="请输入验证码" maxlength="4">
-            <img :src="captchaSrc" @click="change_vercode" id="code_img">
+            <img :src="captchaSrc" @click="change_vercode" id="code_img" class="fr">
             <div class="remember">
               <input id="remember-me" type="checkbox" v-model="remb">
               <label for="remember-me">记住我</label>
-              <!--<a class="forgot"><span style="padding-right: 5px; cursor: pointer" onclick="alert('请联系即科金融的业务员帮您重置密码！')">忘记密码?</span></a>-->
               <a class="forgot" @click="resetpwd"><span style="padding-right: 5px; cursor: pointer">忘记密码?</span></a>
             </div>
             <button class="btn-glow primary login">登录</button>
@@ -35,7 +34,7 @@ export default {
   name: 'home',
   data () {
     return {
-      captchaSrc: apiUrl.getCode + '?seed=' + Math.random(),
+      captchaSrc: process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random(),
       username: '',
       password: '',
       vercode: '',
@@ -44,7 +43,7 @@ export default {
   },
   methods: {
     change_vercode () {
-      this.captchaSrc =  apiUrl.getCode + '?seed=' + Math.random()
+      this.captchaSrc =  process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random()
     },
     login () {
       if (this.valForm()) {
