@@ -1,21 +1,23 @@
 <template>
   <header id="headerLayout">
-    <!-- 左侧log -->
-    <div class="left">
-      <router-link :to="{name:'home'}" tag="div" class="hand" style="margin-left:20px;"><img src="../assets/logo_wechat1.png" /></router-link>
-    </div>
-    <!-- 右侧菜单 -->
-    <div class="right">
-      <div v-if="false" class="hand" style="margin-right:30px;">
-        消息中心
-        <el-badge class="mark" v-if="messageNum!=0" :value="messageNum" />
+    <div id="pcHeader">
+      <!-- 左侧log -->
+      <div class="left">
+        <router-link :to="{name:'home'}" tag="div" class="hand" style="margin-left:20px;"><img src="../assets/logo_wechat1.png" /></router-link>
       </div>
-      <div class="hand" style="margin-right:45px;" @click="resetPwd">
-        修改密码
-      </div>
-      <div class="hand" @click="logout">
-        <img style="margin-right:5px;" src="../assets/ico/ico-logout.png" />
-        <span>退出</span>
+      <!-- 右侧菜单 -->
+      <div class="right">
+        <div v-if="false" class="hand" style="margin-right:30px;">
+          消息中心
+          <el-badge class="mark" v-if="messageNum!=0" :value="messageNum" />
+        </div>
+        <div class="hand" style="margin-right:45px;" @click="resetPwd">
+          修改密码
+        </div>
+        <div class="hand" @click="logout">
+          <img style="margin-right:5px;" src="../assets/ico/ico-logout.png" />
+          <span>退出</span>
+        </div>
       </div>
     </div>
   </header>
@@ -55,16 +57,16 @@ export default {
 }
 </script>
 <style>
-#headerLayout{
+#pcHeader{
   display: flex;
   height: 60px;
   align-items: center;
   background: #1A2D4A;
 }
-#headerLayout .left{
+#pcHeader .left{
   width: 300px;
 }
-#headerLayout .right{
+#pcHeader .right{
   display: flex;
   flex: 1;
   justify-content:flex-end;
@@ -72,7 +74,7 @@ export default {
   font-size: 16px;
   margin-right: 25px;
 }
-#headerLayout .right .el-badge__content{
+#pcHeader .right .el-badge__content{
   display: initial;
   width: 14px;
   height: 14px;

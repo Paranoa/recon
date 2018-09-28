@@ -44,6 +44,7 @@ export default {
   #home{
     display: flex;
     flex-direction:column;
+    min-width: 1366px;
   }
   #home .menuleft{
     width: 180px;

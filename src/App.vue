@@ -10,7 +10,15 @@
   import 'es6-object-assign/dist//object-assign-auto.min.js' // object.assign polyfill
 
   export default {
-    name: 'App'
+    name: 'App',
+    mounted:function(){
+      let _this = this;
+      //监听分辨率变化判断终端类型
+      _this.$store.commit('common/setTerminal',$(window).width()>767?'pc':'mobile'); 
+      $(window).resize(function () {
+        _this.$store.commit('common/setTerminal',$(window).width()>767?'pc':'mobile'); 
+      });
+    }
   }
 </script>
 
