@@ -11,7 +11,7 @@
 
   export default {
     name: 'App',
-    mounted:function(){
+    mounted(){
       let _this = this;
       //监听分辨率变化判断终端类型
       _this.$store.commit('common/setTerminal',$(window).width()>767?'pc':'mobile'); 
