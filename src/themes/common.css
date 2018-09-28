@@ -12,9 +12,13 @@
 .heightCenter{
   align-items: center;
 }
+.rightAlignment{
+  justify-content: flex-end;
+}
 .hand{
     cursor: pointer;
 }
+
 
 
 
