@@ -47,7 +47,7 @@ export default {
       username: '',
       password: '',
       vercode: '',
-      captchaSrc: apiUrl.getCode + '?seed=' + Math.random(),
+      captchaSrc: process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random(),
       validMsg: {
         username: '',
         password: '',
