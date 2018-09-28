@@ -9,6 +9,9 @@
 .flex1{
     flex: 1;
 }
+.heightCenter{
+  align-items: center;
+}
 .hand{
     cursor: pointer;
 }
