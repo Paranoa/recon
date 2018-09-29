@@ -1,7 +1,7 @@
 import { apiUrl } from '@/api/config'
 import axios from 'axios'
 import util from '@/util'
-import loading from '@/util/loading'
+import ui from '@/util/ui'
 
 export default {
   login,
@@ -219,7 +219,7 @@ function ddgExportBillingDetail (data) {
 
 function get (url, params, options, originResponse) { // originResponse为true时,返回原始响应数据
   return new Promise((resolve, reject) => {
-    var load = loading.service()
+    var load = ui.loading.service()
 
     axios.get(url, { 
         params: { 
@@ -260,7 +260,7 @@ function post (url, params, options, originResponse) {
   }
 
   return new Promise((resolve, reject) => {
-    var load = loading.service()
+    var load = ui.loading.service()
     axios.post(url, postParams, {
       ...options,
       headers: {

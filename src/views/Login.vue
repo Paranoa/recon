@@ -30,6 +30,7 @@
 <script>
 import { apiUrl } from '@/api/config'
 import util from '@/util'
+import ui from '@/util/ui'
 
 export default {
   name: 'home',
@@ -59,21 +60,21 @@ export default {
           }
         })
         .catch(err => {
-          alert(err)
+          var alertWin = ui.alert(err.toString())
         })
       }
     },
     valForm () {
       if (!this.username) {
-        alert('对不起，账号不能为空！')
+        ui.alert('对不起，账号不能为空！')
         return false
       }
       if (!this.password) {
-        alert('对不起，密码不能为空！')
+        ui.alert('对不起，密码不能为空！')
         return false
       }
       if (!this.vercode) {
-        alert('对不起，请填写验证码！')
+        ui.alert('对不起，请填写验证码！')
         return false
       }
 
