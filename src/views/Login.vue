@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { apiUrl } from '@/api/config'
+import { apiUrl, baseURL } from '@/api/config'
 import util from '@/util'
 import ui from '@/util/ui'
 
@@ -36,7 +36,7 @@ export default {
   name: 'home',
   data () {
     return {
-      captchaSrc: apiUrl.getCode + '?seed=' + Math.random(),
+      captchaSrc: baseURL + apiUrl.getCode + '?seed=' + Math.random(),
       username: '',
       password: '',
       vercode: '',
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     change_vercode () {
-      this.captchaSrc =  apiUrl.getCode + '?seed=' + Math.random()
+      this.captchaSrc =  baseURL + apiUrl.getCode + '?seed=' + Math.random()
     },
     login () {
       if (this.valForm()) {

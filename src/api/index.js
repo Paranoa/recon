@@ -1,4 +1,4 @@
-import { apiUrl } from '@/api/config'
+import { apiUrl, baseURL } from '@/api/config'
 import axios from 'axios'
 import util from '@/util'
 import ui from '@/util/ui'
@@ -221,8 +221,9 @@ function get (url, params, options, originResponse) { // originResponseä¸ºtrueæ—
   return new Promise((resolve, reject) => {
     var load = ui.loading.service()
 
-    axios.get(url, { 
-        params: { 
+    axios.get(url, {
+        baseURL,
+        params: {
           timeStamp: new Date().getTime(),
           ...params
         },
@@ -262,10 +263,12 @@ function post (url, params, options, originResponse) {
   return new Promise((resolve, reject) => {
     var load = ui.loading.service()
     axios.post(url, postParams, {
-      ...options,
+      baseURL,
       headers: {
         'token': util.getCookie('token')
-      }
+      },
+      withCredentials: true,
+      ...options
     }).then(({ data }) => {
         load.close()
         if (originResponse) {

@@ -26,6 +26,7 @@
 <script>
   import BaseModal from '@/components/BaseModal.vue'
   import api from '@/api'
+  import { apiUrl } from '@/api/config'
   import util from '@/util'
 
   export default {
@@ -39,9 +40,6 @@
     },
     components: {
       BaseModal
-    },
-    mounted () {
-
     },
     methods: {
       apply () {
@@ -71,7 +69,7 @@
         appId: this.modalId
       })
       .then(res => {
-        this.agreeLink = util.appendUrlParams(process.env.VUE_APP_DDG_CPXY, res)
+        this.agreeLink = util.appendUrlParams(apiUrl.ddgCPXY, res)
       })
     }
   }

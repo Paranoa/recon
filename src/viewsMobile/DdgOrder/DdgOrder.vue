@@ -209,7 +209,7 @@
         }
         return true
       },
-      windowScroll (event) {
+      windowScroll () {
         if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
           if (!this.showDetail) {
             this.queryOrder()
