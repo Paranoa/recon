@@ -84,10 +84,10 @@
           <el-table-column header-align="center" align="center" label="操作" sortable>
             <template slot-scope="scope">
               <div v-if="scope.row.refundStatus === '未退款' && scope.row.paymentStatus === '支付成功' && scope.row.refundFlag !== '0'">
-                <div class="tableBtn marginCenter" @click="checkRefundLimit(scope.row)">退贷预约</div>
+                <div class="tableBtn tableCommonBtn marginCenter" @click="checkRefundLimit(scope.row)">退贷预约</div>
               </div>
               <div v-else-if="scope.row.refundStatus === '商户退货中' && scope.row.paymentStatus === '支付成功' && scope.row.refundFlag !== '0'">
-                <div class="cancelReservationBtn marginCenter" @click="cancelReserve(scope.row.orderNo)">取消预约</div>
+                <div class="tableBtn tableCancelReservationBtn marginCenter" @click="cancelReserve(scope.row.orderNo)">取消预约</div>
               </div>
             </template>
           </el-table-column>

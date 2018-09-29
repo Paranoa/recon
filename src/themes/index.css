@@ -57,26 +57,42 @@
 }
 #app .exportBtn{
     background: #149AFF;
-    box-shadow: 0 1px 3px 0 #149AFF;
+    box-shadow: 0 1px 3px 0 #44A5FA;
+}
+#app .settlementInfoBtn{
+    background: #FF6701;
+    box-shadow: 0 1px 3px 0 #FF7212;
 }
 #app .tableBtn{
     width: 80px;
     height: 26px;
-    background: #F6A623;
-    box-shadow: 0 1px 3px 0 #EFB657;
     border-radius: 100px;
     text-align: center;
-    color: #fff;
     cursor: pointer;
 }
-#app .cancelReservationBtn{
-    width: 80px;
-    height: 26px;
+#app .tableCommonBtn{
+    background: #F6A623;
+    box-shadow: 0 1px 3px 0 #EFB657;
+    color: #fff;
+}
+#app .tableCancelReservationBtn{
     background: #FAFAFA;
     border: 1px solid #A0A0A0;
     box-shadow: 0 1px 3px 0 rgba(210,210,210,0.92);
-    border-radius: 100px;
-    text-align: center;
     color: #777777;
-    cursor: pointer;
-  }
+}
+#app .tableReceivablesPlanBtn{
+    background: #1AB3FF;
+    box-shadow: 0 1px 3px 0 #5DC1F3;
+    color: #fff;
+}
+#app .tableAuditRefuseBtn{
+    background: #FF5C5C;
+    box-shadow: 0 1px 3px 0 #F8A2A2;
+    color: #fff;
+}
+#app .tableAuditthroughBtn{
+    background: #1FCFCC;
+    box-shadow: 0 1px 3px 0 #31BAB8;
+    color: #fff;
+}

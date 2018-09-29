@@ -91,13 +91,13 @@
           <el-table-column header-align="center" align="center" label="操作" sortable>
             <template slot-scope="scope">
               <div v-if="scope.row.N_APP_STATUS == '160'">
-                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" class="tableBtn marginCenter" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
+                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" class="tableBtn tableCommonBtn marginCenter" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
                   退贷预约
                 </div>
                 <div v-else>
                   <div v-if="[2, 23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
-                    <div class="cancelReservationBtn marginCenter" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">查看/取消预约</div>
-                    <div class="tableBtn marginCenter" @click="modalId.refundConf = scope.row, modal.refundConf = true">上传凭证</div>
+                    <div class="tableBtn tableCancelReservationBtn marginCenter" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">取消预约</div>
+                    <div class="tableBtn tableCommonBtn marginCenter" @click="modalId.refundConf = scope.row, modal.refundConf = true">上传凭证</div>
                   </div>
                   <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" class="label">
                     {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
@@ -105,9 +105,9 @@
                 </div>
               </div>
               <div v-else-if="scope.row.N_APP_STATUS == '130' && scope.row.FINANCE_CODE == 'DDG'">
-                <div class="tableBtn marginCenter" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
+                <div class="tableBtn tableCommonBtn marginCenter" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
               </div>
-              <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn marginCenter" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
+              <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn marginCenter" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
                 {{ scope.row.SHOW_APPLY_BUTTON_NAME }}
               </div>
             </template>
