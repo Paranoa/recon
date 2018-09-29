@@ -118,6 +118,23 @@
         <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal"  @current-change="queryOrder"></el-pagination>
       </div>
     </div>
+    <!-- 弹框区域 -->
+    <aside class="backdrop" v-show="hasModal"></aside>
+    <Refund v-if="modal.refund" width="560px" :modalId="modalId.refund"
+      @close="closeModal('refund')"
+      @success="closeModal('refund'); queryOrder()" />
+
+    <RefundCancel v-if="modal.refundCancel" width="560px" :modalId="modalId.refundCancel"
+      @close="closeModal('refundCancel')"
+      @success="closeModal('refundCancel'); queryOrder()" />
+
+    <ApplyLoan v-if="modal.applyLoan" width="1100px" :modalId="modalId.applyLoan"
+      @close="closeModal('applyLoan')"
+      @success="closeModal('applyLoan'); queryOrder()" />
+
+    <RefundConf v-if="modal.refundConf" width="500px" :modalParam="modalId.refundConf"
+      @close="closeModal('refundConf')"
+      @success="closeModal('refundConf'); queryOrder()" />
   </section>
 </template>
 
@@ -126,6 +143,11 @@ import api from '@/api'
 import Datepicker from '@/components/Datepicker.vue'
 import util from '@/util'
 import constant from '@/util/constant'
+
+import Refund from './OrderRefund.vue'
+import RefundCancel from './OrderRefundCancel.vue'
+import ApplyLoan from './OrderApplyLoan.vue'
+import RefundConf from './OrderRefundConf.vue'
 export default {
   data () {
     return {
@@ -190,11 +212,27 @@ export default {
         })
         .catch(err => alert(err))
       }
+    },
+    closeModal(modalId) {
+      this.modal[modalId] = false
     }
+  },
+  computed: {
+    hasModal () {
+      for (var key in this.modal) {
+        if (this.modal[key]) {
+          return true
+        }
+      }
+    },
   },
   components: {
     Datepicker,
-    util
+    util,
+    Refund,
+    RefundCancel,
+    ApplyLoan,
+    RefundConf
   }
 }
 </script>
