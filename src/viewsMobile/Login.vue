@@ -46,7 +46,7 @@ export default {
       username: '',
       password: '',
       vercode: '',
-      captchaSrc: apiUrl.getCode + '?seed=' + Math.random(),
+      captchaSrc: process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random(),
       validMsg: {
         username: '',
         password: '',
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     change_vercode () {
-      this.captchaSrc =  apiUrl.getCode + '?seed=' + Math.random()
+      this.captchaSrc =  process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random()
     },
     login () {
       if (this.valForm()) {
