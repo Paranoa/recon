@@ -54,7 +54,7 @@
     <!-- 表格区域 -->
     <div class="tableRegion">
       <div class="flex1">
-        <el-table :data="orders" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" header-cell-style="background:#FAFAFA;" border>
+        <el-table :data="orders" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
           <el-table-column header-align="center" align="center" prop="C_APP_ID" label="申请编号" sortable></el-table-column>
           <el-table-column header-align="center" align="center" prop="D_APPLICATION" label="申请时间" sortable></el-table-column>
           <el-table-column header-align="center" align="center" prop="C_NAME_CN" label="客户姓名" sortable></el-table-column>
