@@ -2,10 +2,10 @@
   <div id="home">
     <headerlayout></headerlayout>
     <div class="flex flex1">
-      <div class="menuleft">
+      <div class="leftMenu">
         <menuleft></menuleft>
       </div>
-      <div class="flex1">
+      <div class="rightContent">
         <router-view></router-view>
       </div>
     </div>
@@ -46,8 +46,12 @@ export default {
     flex-direction:column;
     min-width: 1366px;
   }
-  #home .menuleft{
+  #home .leftMenu{
     width: 180px;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+  }
+  #home .rightContent{
+    display: flex;
+    width: calc(100% - 180px);
   }
 </style>

@@ -80,6 +80,10 @@ export default {
 }
 </script>
 <style>
+  #homeIndex{
+    flex: 1;
+    width: 100%;
+  }
   #homeIndex .dataShow{
     display: flex;
     justify-content:space-around;

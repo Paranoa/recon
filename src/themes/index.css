@@ -49,3 +49,13 @@
     background: #149AFF;
     box-shadow: 0 1px 3px 0 #149AFF;
 }
+#app .tableBtn{
+    width: 80px;
+    height: 26px;
+    background: #F6A623;
+    box-shadow: 0 1px 3px 0 #EFB657;
+    border-radius: 100px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
