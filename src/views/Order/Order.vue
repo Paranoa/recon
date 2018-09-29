@@ -243,16 +243,6 @@ export default {
     flex: 1;
     width: 100%;
   }
-  #order .searchRegion{
-    height: 135px;
-    margin-top: 10px;
-    background: #fff;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.09);
-    padding: 30px 25px;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing:2px;
-  }
   #order .datepicker-input{
     width: 176px;
   }
@@ -267,15 +257,4 @@ export default {
   /* #order .el-table__body-wrapper.is-scrolling-none::-webkit-scrollbar{
     width:0;
   } */
-  #order .cancelReservationBtn{
-    width: 80px;
-    height: 26px;
-    background: #FAFAFA;
-    border: 1px solid #A0A0A0;
-    box-shadow: 0 1px 3px 0 rgba(210,210,210,0.92);
-    border-radius: 100px;
-    text-align: center;
-    color: #777777;
-    cursor: pointer;
-  }
 </style>
