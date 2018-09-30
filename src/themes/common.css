@@ -12,6 +12,9 @@
 .flexAuto{
   flex: auto;
 }
+.flexCenter{
+  justify-content:center;
+}
 .heightCenter{
   align-items: center;
 }

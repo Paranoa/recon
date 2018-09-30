@@ -88,7 +88,7 @@
           </el-table-column>
           <el-table-column header-align="center" align="center" min-width="180" label="操作" sortable>
             <template slot-scope="scope">
-              <div class="flex marginCenter" v-if="+scope.row.N_APP_STATUS == 160">
+              <div class="flex flexCenter" v-if="+scope.row.N_APP_STATUS == 160">
                 <div class="tableBtn tableReceivablesPlanBtn" style="margin:0px 10px;" @click="modal.paymentPlan = true, modalId.paymentPlan = scope.row.C_APP_ID">
                   收款计划
                 </div>
@@ -109,7 +109,7 @@
                   </span>
                 </div>
               </div>
-              <div class="flex marginCenter" v-else-if="+scope.row.N_APP_STATUS === 103">
+              <div class="flex flexCenter" v-else-if="+scope.row.N_APP_STATUS === 103">
                 <div class="tableBtn  tableAuditthroughBtn" style="margin:0px 10px;" @click="modal.applyDdg = true, modalId.applyDdg = scope.row.C_APP_ID">
                   审核通过
                 </div>
