@@ -39,11 +39,14 @@ export default {
       this.$router.push('/home/resetpwd')
     },
     logout () {
-      if (confirm('确定要退出吗？')) {
+      this.$ui.confirm('确定要退出吗？', (confirm) => {
         this.$store.dispatch('Logout')
-        .then(() => this.$router.push('/'))
-        .catch(err => alert(err))
-      }
+        .then(() => {
+          confirm.close()
+          this.$router.push('/')
+        })
+        .catch(err => this.$ui.alert(err))
+      })
     }
   },
   beforeRouteEnter(to, from, next) {
