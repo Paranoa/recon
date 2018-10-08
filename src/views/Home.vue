@@ -28,7 +28,19 @@ export default {
     headerlayout,
   },
   methods: {
-
+    resetPwd () {
+      this.$router.push('/home/resetpwd')
+    },
+    logout () {
+      this.$ui.confirm('确定要退出吗？', (confirm) => {
+        this.$store.dispatch('Logout')
+        .then(() => {
+          confirm.close()
+          this.$router.push('/')
+        })
+        .catch(err => this.$ui.alert(err))
+      })
+    }
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {

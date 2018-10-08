@@ -74,7 +74,7 @@ export default {
         this.totalAmount = app_sum;
         this.totalAmountPass = pass_sum;
       })
-      .catch(err => alert(err))
+      .catch(err => this.$ui.alert(err))
     }
   }
 }

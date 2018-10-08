@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import router from './router'
 import util from '@/util'
 import store from './store'
@@ -19,7 +20,7 @@ router.beforeEach((to, from, next) => {
         next()  
       })
       .catch(err => {
-        alert('登录超时')
+        Vue.$ui.alert('登录超时')
         console.error(err)
         next(/mobile/.test(to.path) ? '/mobile/login' : '/login')
       })

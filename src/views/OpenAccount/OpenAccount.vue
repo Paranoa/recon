@@ -138,7 +138,7 @@
         })
         .catch(err => {
           this.loading = false
-          alert(err)
+          this.$ui.alert(err)
         })
       },
       openAccountKL (fund) {
@@ -154,7 +154,7 @@
             this.modal.uploadPic = true
             this.modalParam.uploadPic = fund.storeCode
           } else {
-            alert(err)
+            this.$ui.alert(err)
           }
         })
       },
@@ -171,7 +171,7 @@
             this.modal.uploadPic = true
             this.modalParam.uploadPic = fund.storeCode
           } else {
-            alert(err)
+            this.$ui.alert(err)
           }
         })
       },
@@ -187,7 +187,7 @@
           newWin.document.write(res)
           newWin.focus()
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       cashSSJ () {
         api.storeDeposit({
@@ -199,7 +199,7 @@
           window.open(res)
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err)
         })
       },
       unlockSSJ ({ storeCode }) {
@@ -211,7 +211,7 @@
           window.open(res)
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err)
         })
 
       },
@@ -224,7 +224,7 @@
           window.open(res)
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err)
         })
       }
     },

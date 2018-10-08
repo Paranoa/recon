@@ -37,7 +37,7 @@
     methods: {
       uploaded (res, fileName) {
         this.fileName = fileName
-        alert('上传成功')
+        this.$ui.alert('上传成功')
         this.$emit('success')
       },
       close () {

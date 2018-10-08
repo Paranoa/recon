@@ -54,21 +54,21 @@
             newPwd2: this.newPwd2
           })
           .then(() => {
-            alert('修改密码成功')
+            this.$ui.alert('修改密码成功')
             this.$router.push('/')
           })
-          .catch(err => alert(err))
+          .catch(err => this.$ui.alert(err))
         }
       },
       valForm () {
         if (!this.oldPwd) {
-          alert('当前密码不能为空')
+          this.$ui.alert('当前密码不能为空')
           return false
         } else if (!this.newPwd1) {
-          alert('新密码不能为空')
+          this.$ui.alert('新密码不能为空')
           return false
         } else if (!this.newPwd2) {
-          alert('确认密码不能为空')
+          this.$ui.alert('确认密码不能为空')
           return false
         }
         return true

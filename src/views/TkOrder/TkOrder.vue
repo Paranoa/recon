@@ -148,7 +148,7 @@
           this.orders = rows
           this.ordersTotal = total
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       closeModal (modalId) {
         this.modal[modalId] = false

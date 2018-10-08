@@ -134,7 +134,7 @@
       @close="closeModal('refund')"
       @success="closeModal('refund'); queryOrder()" />
 
-    <RefundCancel v-if="modal.refundCancel" width="560px" :hidePrincipal="true" :modalId="modalId.refundCancel" 
+    <RefundCancel v-if="modal.refundCancel" width="560px" :hidePrincipal="true" :modalId="modalId.refundCancel"
       @close="closeModal('refundCancel')" 
       @success="closeModal('refundCancel'); queryOrder()" />
 
@@ -250,9 +250,9 @@
         .then(res => {
           if (res && res.size) {
             util.downloadXls(res, '单单过订单导出' + new Date().getTime() +'.xls')
-            alert('导出成功')
+            this.$ui.alert('导出成功')
           } else {
-            alert('导出失败:' + JSON.stringify(res))
+            this.$ui.alert('导出失败:' + JSON.stringify(res))
           }
         })
         .catch(err => alert(err))
@@ -261,16 +261,17 @@
         this.modal[modalId] = false
       },
       spReject (appId) {
-        if (confirm('确定要拒绝这笔订单吗？')) {
+        this.$ui.confirm('确定要拒绝这笔订单吗？', (confirm) => {
           api.ddgRefuse({
             appId: appId
           })
-          .then(() => {
-            alert('拒绝成功');
+          .then(() => { 
+            confirm.close()
+            this.$ui.alert('拒绝成功')
             this.queryOrder()
           })
           .catch(err => alert(err))
-        }
+        })
       }
     }
   }

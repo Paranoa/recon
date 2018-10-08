@@ -58,21 +58,21 @@ export default {
           }
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err.toString())
         })
       }
     },
     valForm () {
       if (!this.username) {
-        alert('对不起，账号不能为空！')
+        this.$ui.alert('对不起，账号不能为空！')
         return false
       }
       if (!this.password) {
-        alert('对不起，密码不能为空！')
+        this.$ui.alert('对不起，密码不能为空！')
         return false
       }
       if (!this.vercode) {
-        alert('对不起，请填写验证码！')
+        this.$ui.alert('对不起，请填写验证码！')
         return false
       }
 

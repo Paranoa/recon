@@ -207,7 +207,7 @@ export default {
           storeCode: storeCode
         })
         .then(() => {
-          alert('申请成功');
+          this.$ui.alert('申请成功');
           this.queryOrder()
         })
         .catch(err => alert(err))

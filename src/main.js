@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import filters from './util/filter'
+import filters from '@/util/filter'
 import store from '@/store'
+import '@/ui'
 import '@/permission' //权限控制
 
 import ElementUI from 'element-ui'

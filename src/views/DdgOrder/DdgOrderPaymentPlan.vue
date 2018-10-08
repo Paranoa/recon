@@ -64,12 +64,12 @@
         .then(res => {
           if (res && res.size) {
             util.downloadXls(res, '收款计划导出' + new Date().getTime() +'.xls')
-            alert('导出成功')
+            this.$ui.alert('导出成功')
           } else {
-            alert('导出失败:' + JSON.stringify(res))              
+            this.$ui.alert('导出失败:' + JSON.stringify(res))              
           }
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       }
     },
     mounted () {
@@ -79,7 +79,7 @@
       .then(res => {
         this.repaymentPlan = res.rows
       })
-      .catch(err => alert(err))
+      .catch(err => this.$ui.alert(err))
     }
   }
 </script>
