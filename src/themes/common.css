@@ -9,6 +9,9 @@
 .flex1{
     flex: 1;
 }
+.flexColumn{
+  flex-direction:column;
+}
 .flexAuto{
   flex: auto;
 }

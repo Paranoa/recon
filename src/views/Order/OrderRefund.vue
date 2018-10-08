@@ -185,7 +185,7 @@
 
 <style scoped>
   .content-body { 
-    height: 400px;
+    height: 430px;
     padding: 30px; 
   }
   .left strong{
@@ -193,7 +193,7 @@
   }
   .left>div,.right>div{
     font-size: 14px;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
   .right{
     margin-left: 32px;

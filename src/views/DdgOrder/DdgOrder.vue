@@ -76,7 +76,7 @@
           </el-table-column>
           <el-table-column header-align="center" align="center" label="状态" sortable>
             <template slot-scope="scope">
-              <span class="label" :class="scope.row.N_APP_STATUS | statusClass">
+              <span>
                 <span v-if="scope.row.N_APP_STATUS === '130' && scope.row.D_SEND_FUND_TIME">
                    已通知银行放款
                 </span>
@@ -104,7 +104,7 @@
                       上传凭证
                     </div>
                   </div>
-                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" class="label" style="margin:0px 10px;">
+                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:0px 10px;">
                     {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
                   </span>
                 </div>
@@ -149,7 +149,7 @@
     <CloseInfo v-if="modal.closeInfo" width="1000px" :modalId="modalId.closeInfo"
       @close="closeModal('closeInfo')"/>
 
-    <ApplyDdg v-if="modal.applyDdg" width="600px" :modalId="modalId.applyDdg"
+    <ApplyDdg v-if="modal.applyDdg" width="430px" :modalId="modalId.applyDdg"
       @close="closeModal('applyDdg')"
       @success="closeModal('applyDdg'); queryOrder()"/>
 
