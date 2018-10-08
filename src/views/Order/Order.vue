@@ -78,7 +78,7 @@
           </el-table-column>
           <el-table-column header-align="center" align="center" label="状态" sortable>
             <template slot-scope="scope">
-              <span class="label" :class="scope.row.N_APP_STATUS | statusClass">
+              <span>
                 <span v-if="scope.row.N_APP_STATUS === '130' && scope.row.D_SEND_FUND_TIME">
                   已通知银行放款
                 </span>
@@ -120,7 +120,7 @@
     </div>
     <!-- 弹框区域 -->
     <aside class="backdrop" v-show="hasModal"></aside>
-    <Refund v-if="modal.refund" width="560px" :modalId="modalId.refund"
+    <Refund v-if="modal.refund" width="670px" :modalId="modalId.refund"
       @close="closeModal('refund')"
       @success="closeModal('refund'); queryOrder()" />
 
