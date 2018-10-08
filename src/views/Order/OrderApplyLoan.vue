@@ -112,7 +112,7 @@
           var resultData = res.result
           this.orderFiles.push(resultData) 
         } else {
-          alert(res.errorMessage)
+          this.$ui.alert(res.errorMessage)
         }
       },
       finaceFileUploaded (res) {
@@ -120,11 +120,11 @@
           var resultData = res.result
           this.finaceFiles.push(resultData) 
         } else {
-          alert(res.errorMessage)
+          this.$ui.alert(res.errorMessage)
         }
       },
       uploadErr (err) {
-        alert(err)
+        this.$ui.alert(err)
       },
       submit () {
         var orderFilesJso = JSON.stringify(this.orderFiles)
@@ -138,17 +138,17 @@
         console.log(data)
         api.myApplyLoanType1(data)
         .then(() => {
-          alert('申请成功')
+          this.$ui.alert('申请成功')
           this.$emit('success')
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       getOrderDetailInfo(){
         api.getOrderInfo({'cAppId':this.modalId})
         .then(resultData => {
           this.order = resultData.orderInfo
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       }
     },
     mounted () {

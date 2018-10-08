@@ -86,7 +86,7 @@
                     <td>{{ order.paymentStatus }}</td>
                     <td>{{ order.storeName }}</td>
                     <td>
-                      <template v-if="+order.refundFlag === 0">
+                      <template v-if="order.refundFlag === 0">
                         已退贷
                       </template>
                       <template v-else>
@@ -186,7 +186,7 @@
           this.orders = rows
           this.ordersTotal = total
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       exportExl () {
         api.exportExcel({
@@ -200,12 +200,12 @@
         .then(res => {
           if (res && res.size) {
             util.downloadXls(res, '刷卡消费导出' + new Date().getTime() +'.xls')
-            alert('导出成功')
+            this.$ui.alert('导出成功')
           } else {
-            alert('导出失败:' + JSON.stringify(res))
+            this.$ui.alert('导出失败:' + JSON.stringify(res))
           }
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       checkRefundLimit (order) {
         api.checkRefundLimit({ appId: order.orderNo})
@@ -216,18 +216,19 @@
           }
           this.modal.cciRefund = true
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
         
       },
       cancelReserve (appId) {
-        if (confirm('您确认要取消退贷申请吗？')) {
+        this.$ui.confirm('您确认要取消退贷申请吗？', (confirm) => {
           api.cancelRefund({ appId })
-          .then(() => { 
-            alert('取消成功')
+          .then(() => {
+            confirm.close()
+            this.$ui.alert('取消成功')
             this.cardOrderList()
           })
-          .catch(err => alert(err))
-        }
+          .catch(err => this.$ui.alert(err))
+        })
       },
       closeModal(modalId) {
         this.modal[modalId] = false

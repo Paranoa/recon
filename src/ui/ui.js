@@ -3,7 +3,7 @@ import Loading from '@/components/VLoadMask.vue'
 import Mask from '@/components/VBackDropMask.vue'
 import Messager from '@/components/Messager.vue'
 
-// 全屏的loading层 是一个单例
+// 单例组件 (loading层，背景层)
 var fullScreenLoading
 var backDropMask
 
@@ -79,8 +79,20 @@ var confirm = function (props, confirm, cancel) {
       ...props
     },
     methods: {
-      confirm: confirm || (() => { instance.close() }),
-      cancel: cancel || (() => { instance.close() })
+      confirm: function () {
+        if (confirm && typeof confirm === 'function') {
+          confirm(instance)
+        } else {
+          instance.close()
+        }
+      },
+      cancel: function () {
+        if (cancel && typeof cancel === 'function') {
+          cancel(instance)
+        } else {
+          instance.close()
+        }
+      }
     }
   })
 
@@ -114,8 +126,20 @@ var alert = function (props, confirm, cancel) {
       ...props
     },
     methods: {
-      confirm: confirm || (() => { instance.close() }),
-      cancel: cancel || (() => { instance.close() })
+      confirm: function () {
+        if (confirm && typeof confirm === 'function') {
+          confirm(instance)
+        } else {
+          instance.close()
+        }
+      },
+      cancel: function () {
+        if (cancel && typeof cancel === 'function') {
+          cancel(instance)
+        } else {
+          instance.close()
+        }
+      }
     }
   })
 
@@ -134,7 +158,7 @@ function apendComponent (constructor, options) {
   return instance
 }
 
-export default { 
+export default {
   loading,
   mask,
   confirm,

@@ -86,7 +86,7 @@
       })
       .catch(err => {
         this.loading = false
-        alert(err)
+        this.$ui.alert(err)
       })
     }
   }

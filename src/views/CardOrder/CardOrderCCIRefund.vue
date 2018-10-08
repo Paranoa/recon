@@ -69,19 +69,20 @@
     methods: {
       reserve () {
         if (this.uploadRef) {
-          if(confirm('您确认要申请退贷吗？')) {
+          this.$ui.confirm('您确认要申请退贷吗？', (confirm) => {
+            confirm.close()
             this.uploadRef.active = true
-          }
+          })
         } else {
-          alert('请选择打款凭证图片')
+          this.$ui.alert('请选择打款凭证图片')
         }
       },
       reserveSuccess () {
-        alert('预约成功')
+        this.$ui.alert('预约成功')
         this.$emit('success')
       },
       reserveError (err) {
-        alert(err)
+        this.$ui.alert(err)
       },
       close () {
         this.$emit('close')

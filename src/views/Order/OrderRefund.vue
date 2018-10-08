@@ -129,16 +129,16 @@
         })
       },
       yuyue () {
-        if(!confirm("确定要这样操作吗？")){
-          return false;
-        }
-        api.bookRefund({
-          'refund_id':this.modalId,
-          'refund_end':this.reserveDate
-        }).then(resultData=>{
-          alert(resultData.msg)
-          this.$emit('success')
-        }).catch(err => alert(err))
+        this.$ui.confirm('确定要这样操作吗？', (confirm) => {
+          api.bookRefund({
+            'refund_id':this.modalId,
+            'refund_end':this.reserveDate
+          }).then(resultData=>{
+            confirm.close()
+            this.$ui.alert(resultData.msg)
+            this.$emit('success')
+          }).catch(err => alert(err))
+        })
       },
       close () {
         this.$emit('close')

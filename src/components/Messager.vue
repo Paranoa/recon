@@ -5,14 +5,16 @@
         <i class="ico ico-notice"></i>{{ title }}<i class="ico ico-close" @click="cancel"></i>
       </header>
       <div class="ui-msg-text">
-        <p>{{ message }}</p>
+        <div>
+          {{ message }}
+          <slot></slot>
+        </div>
       </div>
-      <slot></slot>
       <footer class="btn-groups">
-        <template v-if="type==='alert'">
+        <template v-if="type === 'alert'">
           <a class="btn btn-blue" @click="confirm">{{ confirmBtnTxt }}</a>
         </template>
-        <template v-else-if="type==='confirm'">
+        <template v-else-if="type === 'confirm'">
           <a class="btn btn-white" @click="cancel">{{ cancelBtnTxt }}</a>
           <a class="btn btn-blue" @click="confirm">{{ confirmBtnTxt }}</a>
         </template>
@@ -68,8 +70,7 @@
   .ui-msg-box { margin: auto; background: #fff; border-radius: 6px; overflow: hidden; }
   .ui-msg-title { background: #192C4A; color: #fff; font-size: 18px; text-align: center; line-height: 20px; padding: 15px ; }
   .ui-msg-text { height: 110px; line-height: 110px; text-align: center; overflow: auto; padding: 5px; margin: 0; vertical-align: middle;}
-  .ui-msg-text >p { display: inline-block; line-height: 1.5; font-size: 17px;
-color: #212121;}
+  .ui-msg-text >div { display: inline-block; line-height: 1.5; font-size: 17px; color: #212121; vertical-align: middle;}
   .ico { display: inline-block; width: 20px; height: 20px; vertical-align: middle; background-size: 100% 100%; margin: -4px 5px 0;}
   .ico-notice { background-image: url(../assets/ico/ico-light.png); }
   .ico-close { background-image: url(../assets/ico/ico-close-white.png); float: right; margin-top: 0; cursor: pointer; }

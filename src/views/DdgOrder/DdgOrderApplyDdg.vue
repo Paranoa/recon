@@ -39,12 +39,12 @@
             appId: this.modalId
           })
           .then(() => {
-            alert('申请成功')
+            this.$ui.alert('申请成功')
             this.$emit('success')
           })
-          .catch(err => alert(err))
+          .catch(err => this.$ui.alert(err))
         } else {
-          alert('请阅读并同意《单单过产品协议》') 
+          this.$ui.alert('请阅读并同意《单单过产品协议》') 
         }
       },
       close () {

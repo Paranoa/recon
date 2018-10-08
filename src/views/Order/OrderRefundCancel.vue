@@ -97,10 +97,10 @@
           cancelrefund_id: this.modalId
         })
         .then(() => {
-          alert('取消预约成功')
+          this.$ui.alert('取消预约成功')
           this.$emit('success')
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       }
     },
     mounted () {
@@ -124,7 +124,7 @@
         this.otherFee = result.otherFee
         this.otherFeeShow =  this.otherFee > 0
       })
-      .catch(err => alert(err))
+      .catch(err => this.$ui.alert(err))
     }
   }
 </script>

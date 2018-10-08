@@ -84,7 +84,7 @@
         this.imgFileNames.splice(index, 1, name) // 数组以splice方法操作确保数据响应式
       },
       uploadErr (err) {
-        alert(err)
+        this.$ui.alert(err)
       },
       submit () {
         if (this.imgFiles.length) {
@@ -95,12 +95,12 @@
             mark: this.mark,
           })
           .then(() => {
-            alert('上传凭证成功')
+            this.$ui.alert('上传凭证成功')
             this.$emit('success')
           })
-          .catch(err => alert(err))
+          .catch(err => this.$ui.alert(err))
         } else {
-          alert('请上传打款凭证')
+          this.$ui.alert('请上传打款凭证')
         }
       }
     }

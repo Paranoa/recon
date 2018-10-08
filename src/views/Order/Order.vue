@@ -241,9 +241,9 @@
         api.doOut(self.query).then(res => {
           if (res && res.size) {
             util.downloadXls(res, '订单查询导出' + new Date().getTime() +'.xls')
-            alert('导出成功')
+            this.$ui.alert('导出成功')
           } else {
-            alert('导出失败:' + JSON.stringify(res))              
+            this.$ui.alert('导出失败:' + JSON.stringify(res))              
           }
         })
       },
