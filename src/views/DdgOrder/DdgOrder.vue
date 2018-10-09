@@ -165,7 +165,7 @@
       @close="closeModal('applyDdg')"
       @success="closeModal('applyDdg'); queryOrder()"/>
 
-    <PaymentPlan v-if="modal.paymentPlan" width="1000px" :modalId="modalId.paymentPlan"
+    <PaymentPlan v-if="modal.paymentPlan" width="1200px" :modalId="modalId.paymentPlan"
       @close="closeModal('paymentPlan')"/>
   </div>
 </template>

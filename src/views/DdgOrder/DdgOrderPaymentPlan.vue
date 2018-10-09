@@ -1,38 +1,54 @@
 <template>
   <BaseModal title="收款计划" :width="width" @close="close">
     <template slot="body">
-      <div>
-        <div class="search-line" style="margin-bottom: 20px; text-align: right; width: auto;">
-          <button type="button" class="btn-glow" style="margin-left: 20px;" @click="exportXls"><i class="icon-search"></i>导出</button>
+      <div class="content-body">
+        <div class="flex rightAlignment">
+          <div class="button exportBtn" @click="exportXls">
+            导出
+          </div>
         </div>
-        <table class="table table-bordered table-hover table-condensed deep-table ddg-table">
-          <thead>
-            <tr class="ddg-thead">
-              <th>期数</th>
-              <th>计划收款日期</th>
-              <th>实际收款日期</th>
-              <th>应收金额</th>
-              <th>收款状态</th>
-              <th>应收本金</th>
-              <th>应收手续费</th>
-              <th>应收风险管理费</th>
-              <th>应收提前还款手续费</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item of repaymentPlan" :key="item.key">
-              <td>{{ item.tenor }}</td>
-              <td>{{ item.payDate | simpleDate }}</td>
-              <td>{{ item.finishDate | simpleDate }}</td>
-              <td class="txtrt">{{ item.payAmount | fix2 }}</td>
-              <td>{{ item.status }}</td>
-              <td class="txtrt">{{ item.payCorpus | fix2 }}</td>
-              <td class="txtrt">{{ item.charge | fix2 }}</td>
-              <td class="txtrt">{{ item.payRisk | fix2 }}</td>
-              <td class="txtrt">{{ item.payRepayAllFee | fix2 }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- 表格区域 -->
+        <div class="tableRegion" style="padding:0px;">
+          <el-table :data="repaymentPlan" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
+            <el-table-column min-width="105" header-align="center" align="center" prop="tenor" label="期数"></el-table-column>
+            <el-table-column min-width="105" header-align="center" align="center" label="计划收款日期">
+                <template slot-scope="scope">
+                  {{ scope.row.payDate | simpleDate }}
+                </template>
+            </el-table-column>
+            <el-table-column min-width="105" header-align="center" align="center" label="实际收款日期">
+                <template slot-scope="scope">
+                  {{ scope.row.finishDate | simpleDate }}
+                </template>
+            </el-table-column>
+            <el-table-column min-width="140" header-align="center" align="center" label="应收金额">
+                <template slot-scope="scope">
+                  {{ scope.row.payAmount | fix2 }}
+                </template>
+            </el-table-column>
+            <el-table-column min-width="105" header-align="center" align="center" prop="status" label="收款状态"></el-table-column>
+            <el-table-column min-width="140" header-align="center" align="center" label="应收本金">
+                <template slot-scope="scope">
+                  {{ scope.row.payCorpus | fix2 }}
+                </template>
+            </el-table-column>
+            <el-table-column min-width="140" header-align="center" align="center" label="应收手续费">
+                <template slot-scope="scope">
+                  {{ scope.row.charge | fix2 }}
+                </template>
+            </el-table-column>
+            <el-table-column min-width="140" header-align="center" align="center" label="应收风险管理费">
+                <template slot-scope="scope">
+                  {{ scope.row.payRisk | fix2 }}
+                </template>
+            </el-table-column>
+            <el-table-column min-width="150" header-align="center" align="center" label="应收提前还款手续费">
+                <template slot-scope="scope">
+                  {{ scope.row.payRepayAllFee | fix2 }}
+                </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
     </template>
   </BaseModal>
@@ -85,13 +101,8 @@
 </script>
 
 <style scoped>
-  .ddg-table td {
-    text-align: center;
-  }
-  
-  .ddg-thead th {
-    padding-bottom: 5px;
-    background: #eee;
-    text-align: center
+  .content-body{
+    padding: 20px 25px;
+    height: 550px;
   }
 </style>
