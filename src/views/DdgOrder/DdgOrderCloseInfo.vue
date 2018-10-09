@@ -77,7 +77,7 @@
       </template>
     </BaseModal>
     <aside style="z-index:11111;" class="backdrop" v-show="showDetail"></aside>
-    <BillingDetail style="z-index:12111;top:13%;" title="结算信息详情" width="1000px" v-if="showDetail" :modalId="paymentNo" @close="showDetail = false"/>
+    <BillingDetail style="z-index:12111;top:13%;" title="结算信息详情" width="1300px" v-if="showDetail" :modalId="paymentNo" @close="showDetail = false"/>
   </div>
 </template>
 
