@@ -58,23 +58,33 @@
     <div class="tableRegion">
       <div class="flex1">
         <el-table :data="orders" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-          <el-table-column header-align="center" align="center" min-width="90" prop="C_APP_ID" label="申请编号" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" prop="D_APPLICATION" label="申请时间" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" prop="C_NAME_CN" label="客户姓名" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" prop="C_MBL_TEL" label="客户手机" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" label="申请金额" sortable>
+          <el-table-column min-width="105" header-align="center" align="center" prop="D_APPLICATION" label="申请时间" sortable></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="C_NAME_CN" label="客户姓名"></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="C_MBL_TEL" label="客户手机"></el-table-column>
+          <el-table-column min-width="150" header-align="center" align="center" label="申请金额">
             <template slot-scope="scope">
               {{ scope.row.N_AMT_APPLIED | fix2 | numFormat }}
             </template>
           </el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" prop="N_TENOR_APPLIED" label="申请期数" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" prop="pdt" label="分期类型" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" min-width="90" label="订单类型" sortable>
+          <el-table-column min-width="105" header-align="center" align="center" prop="N_TENOR_APPLIED" label="申请期数" sortable></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="pdt" label="分期类型"></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" label="审批日期">
+            <template slot-scope="scope">
+              {{ scope.row.D_DECISION | len10 }}
+            </template>
+          </el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" label="放款日期">
+            <template slot-scope="scope">
+              {{ scope.row.D_DRAWDOWN | len10 }}
+            </template>
+          </el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="C_SALES_ID" label="销售姓名"></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" label="订单类型">
             <template slot-scope="scope">
               {{ scope.row.C_APP_TYPE | appType }}
             </template>
           </el-table-column>
-          <el-table-column header-align="center" align="center" label="状态" sortable>
+          <el-table-column min-width="150" header-align="center" align="center" label="状态">
             <template slot-scope="scope">
               <span>
                 <span v-if="scope.row.N_APP_STATUS === '130' && scope.row.D_SEND_FUND_TIME">
@@ -86,7 +96,9 @@
               </span>
             </template>
           </el-table-column>
-          <el-table-column header-align="center" align="center" min-width="180" label="操作" sortable>
+          <el-table-column min-width="105" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
+          <el-table-column min-width="150" header-align="center" align="center" prop="C_APP_ID" label="申请编号" sortable></el-table-column>
+          <el-table-column min-width="280" header-align="center" align="center" label="操作">
             <template slot-scope="scope">
               <div class="flex flexCenter" v-if="+scope.row.N_APP_STATUS == 160">
                 <div class="tableBtn tableReceivablesPlanBtn" style="margin:0px 10px;" @click="modal.paymentPlan = true, modalId.paymentPlan = scope.row.C_APP_ID">
@@ -130,7 +142,7 @@
     </div>
     <!-- 弹框区域 -->
     <aside class="backdrop" v-show="hasModal"></aside>
-    <Refund v-if="modal.refund" width="560px" :hidePrincipal="true" :modalId="modalId.refund"
+    <Refund v-if="modal.refund" width="670px" :hidePrincipal="true" :modalId="modalId.refund"
       @close="closeModal('refund')"
       @success="closeModal('refund'); queryOrder()" />
 
@@ -146,7 +158,7 @@
       @close="closeModal('refundConf')"
       @success="closeModal('refundConf'); queryOrder()" />
 
-    <CloseInfo v-if="modal.closeInfo" width="1000px" :modalId="modalId.closeInfo"
+    <CloseInfo v-if="modal.closeInfo" width="1300px" :modalId="modalId.closeInfo"
       @close="closeModal('closeInfo')"/>
 
     <ApplyDdg v-if="modal.applyDdg" width="430px" :modalId="modalId.applyDdg"

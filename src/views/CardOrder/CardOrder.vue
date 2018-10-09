@@ -55,23 +55,30 @@
     <div class="tableRegion">
       <div class="flex1">
         <el-table :data="orders" :default-sort = "{prop: 'orderNo', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-          <el-table-column header-align="center" align="center" prop="orderNo" label="订单编号" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" prop="createTime" label="申请时间" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" prop="name" label="客户姓名" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" prop="mobile" label="客户手机" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" label="申请金额" sortable>
+          <el-table-column min-width="150" header-align="center" align="center" prop="orderNo" label="订单编号" sortable></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="createTime" label="申请时间" sortable></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
+          <el-table-column min-width="150" header-align="center" align="center" label="申请金额">
             <template slot-scope="scope">
               {{ scope.row.orderAmount | fix2 | numFormat }}
             </template>
           </el-table-column>
-          <el-table-column header-align="center" align="center" label="收款金额" sortable>
+          <el-table-column min-width="150" header-align="center" align="center" label="收款金额">
             <template slot-scope="scope">
               {{ scope.row.merchantAmount | fix2 | numFormat }}
             </template>
           </el-table-column>
-          <el-table-column header-align="center" align="center" prop="tenor" label="申请期数" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" prop="paymentStatus" label="状态" sortable></el-table-column>
-          <el-table-column header-align="center" align="center" label="退款状态" sortable>
+          <el-table-column min-width="105" header-align="center" align="center" prop="tenor" label="申请期数" sortable></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" label="放款日期">
+            <template slot-scope="scope">
+              {{ scope.row.drawdownTime || '-' }}
+            </template>
+          </el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="saleName" label="销售姓名"></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="paymentStatus" label="状态"></el-table-column>
+          <el-table-column min-width="105" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
+          <el-table-column min-width="150" header-align="center" align="center" label="退款状态">
             <template slot-scope="scope">
               <div v-if="scope.row.refundFlag === 0">
                 已退贷
@@ -81,7 +88,7 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column header-align="center" align="center" label="操作" sortable>
+          <el-table-column min-width="150" header-align="center" align="center" label="操作">
             <template slot-scope="scope">
               <div v-if="scope.row.refundStatus === '未退款' && scope.row.paymentStatus === '支付成功' && scope.row.refundFlag !== '0'">
                 <div class="tableBtn tableCommonBtn marginCenter" @click="checkRefundLimit(scope.row)">退贷预约</div>

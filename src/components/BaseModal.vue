@@ -44,6 +44,7 @@ export default {
      display: flex;
      justify-content:space-between;
      border-radius: 6px 6px 0px 0px;
+     padding: 15px 25px;
   }
   .modal-title{
     color: #fff;
