@@ -128,7 +128,7 @@
           type: 1,
           page: 1
         },
-        orders: [{"orderNo":"123465","createTime":"2018-18-18","name":"客户姓名","mobile":"123456789","orderAmount":2000,"merchantAmount":1234.56,"tenor":12,"paymentStatus":"支付成功","refundStatus":"未退款","refundFlag":1},{"orderNo":"222222222","createTime":"2018-11-11","name":"客户","mobile":"888888888","orderAmount":92000,"merchantAmount":51234.56,"tenor":6,"paymentStatus":"支付成功","refundStatus":"商户退货中","refundFlag":1}],
+        orders: [],
         ordersTotal: 0,
         orderStatus: constant.ORDER_STATUS,
         modal: {
@@ -189,7 +189,6 @@
           this.modal.cciRefund = true
         })
         .catch(err => {
-          this.modal.cciRefund = true;
           this.$ui.alert(err);
         })
         

@@ -132,10 +132,10 @@
           storeCode: this.isShop ? this.storeCode : this.query.code,
         })
         .then(res => {
-          // this.records = res.rows,
-          // this.ordersTotal = res.total
-          this.records = [{"storeName":"shyj","paymentNo":123,"payDate":"2018-01-01","payAmount":2000,"payCorpus":1000,"charge":1000,"payRisk":1000,"payRepayAllFee":1000}];
-          this.ordersTotal = 1000;
+          this.records = res.rows;
+          this.ordersTotal = res.total
+          // this.records = [{"storeName":"shyj","paymentNo":123,"payDate":"2018-01-01","payAmount":2000,"payCorpus":1000,"charge":1000,"payRisk":1000,"payRepayAllFee":1000}];
+          // this.ordersTotal = 1000;
         })
       },
       exportXls () {
