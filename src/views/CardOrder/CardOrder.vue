@@ -106,7 +106,7 @@
     </div>
     <!-- 弹框区域 -->
     <aside class="backdrop" v-show="hasModal"></aside>
-    <CCIRefund title="退贷预约" v-if="modal.cciRefund" width="550px" :modalParam="modalParam.cciRefund" @close="closeModal('cciRefund')" @success="closeModal('cciRefund'); cardOrderList()" />
+    <CCIRefund title="退贷预约" v-if="modal.cciRefund" width="670px" :modalParam="modalParam.cciRefund" @close="closeModal('cciRefund')" @success="closeModal('cciRefund'); cardOrderList()" />
   </section>
 </template>
 <script>
@@ -188,7 +188,10 @@
           }
           this.modal.cciRefund = true
         })
-        .catch(err => this.$ui.alert(err))
+        .catch(err => {
+          this.modal.cciRefund = true;
+          this.$ui.alert(err);
+        })
         
       },
       cancelReserve (appId) {
