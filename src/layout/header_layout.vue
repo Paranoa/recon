@@ -20,23 +20,30 @@
         </div>
       </div>
     </div>
+    <aside class="backdrop" v-show="showResetPwd"></aside>
+    <resetpwd title="修改密码" width="600px" v-if="showResetPwd" @close="showResetPwd = false"/>
   </header>
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import resetpwd from '../views/Resetpwd/Resetpwd.vue'
 export default {
   name: 'headerLayout',
   data () {
     return {
-      messageNum: '13' 
+      messageNum: '13',
+      showResetPwd:false,
     }
   },
   computed: {
     ...mapGetters(['cName'])
   },
+  components: {
+    resetpwd,
+  },
   methods: {
     resetPwd () {
-      this.$router.push('/home/resetpwd')
+      this.showResetPwd = true;
     },
     logout () {
       this.$ui.confirm('确定要退出吗？', (confirm) => {
