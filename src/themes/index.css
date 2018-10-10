@@ -36,9 +36,9 @@
     background: #fff;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.09);
     padding: 30px 25px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 15px;
     letter-spacing:2px;
+    color: #212121;
 }
 #app .button{
     width: 90px;
@@ -69,6 +69,7 @@
     border-radius: 100px;
     text-align: center;
     cursor: pointer;
+    padding-top: 1px;
 }
 #app .tableCommonBtn{
     background: #F6A623;
@@ -96,3 +97,23 @@
     box-shadow: 0 1px 3px 0 #31BAB8;
     color: #fff;
 }
+.el-table th{
+    padding: 5px;
+}
+.el-table__row td{
+    padding: 0px;
+}
+.el-table__row .cell{
+    padding: 10px 14px;
+}
+input::-webkit-input-placeholder {
+    color: #A0A0A0;
+    opacity: 1;
+}
+select, textarea, input[type="text"]{
+    color: #5F5F5F;
+}
+.el-radio,.el-radio__input.is-checked+.el-radio__label{
+    color: #212121;
+}
+

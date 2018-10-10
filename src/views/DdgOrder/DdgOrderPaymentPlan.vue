@@ -8,26 +8,26 @@
           </div>
         </div>
         <!-- 表格区域 -->
-        <div class="tableRegion" style="padding:0px;">
-          <el-table :data="repaymentPlan" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-            <el-table-column min-width="105" header-align="center" align="center" prop="tenor" label="期数"></el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" label="计划收款日期">
+        <div class="tableRegion" style="padding:0px;height:400px;">
+          <el-table :data="repaymentPlan" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
+            <el-table-column min-width="90" header-align="center" align="center" prop="tenor" label="期数"></el-table-column>
+            <el-table-column min-width="120" header-align="center" align="center" label="计划收款日期">
                 <template slot-scope="scope">
                   {{ scope.row.payDate | simpleDate }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" label="实际收款日期">
+            <el-table-column min-width="120" header-align="center" align="center" label="实际收款日期">
                 <template slot-scope="scope">
                   {{ scope.row.finishDate | simpleDate }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="140" header-align="center" align="center" label="应收金额">
+            <el-table-column min-width="120" header-align="center" align="center" label="应收金额">
                 <template slot-scope="scope">
                   {{ scope.row.payAmount | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" prop="status" label="收款状态"></el-table-column>
-            <el-table-column min-width="140" header-align="center" align="center" label="应收本金">
+            <el-table-column min-width="100" header-align="center" align="center" prop="status" label="收款状态"></el-table-column>
+            <el-table-column min-width="120" header-align="center" align="center" label="应收本金">
                 <template slot-scope="scope">
                   {{ scope.row.payCorpus | fix2 }}
                 </template>
@@ -42,7 +42,7 @@
                   {{ scope.row.payRisk | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="150" header-align="center" align="center" label="应收提前还款手续费">
+            <el-table-column min-width="160" header-align="center" align="center" label="应收提前还款手续费">
                 <template slot-scope="scope">
                   {{ scope.row.payRepayAllFee | fix2 }}
                 </template>

@@ -86,7 +86,7 @@ export default {
   }
   #Datepicker input[readonly]{
     background: rgba(0,0,0,0);
-    color: #000;
+    color: #5f5f5f;
     cursor: pointer;
   }
 </style>

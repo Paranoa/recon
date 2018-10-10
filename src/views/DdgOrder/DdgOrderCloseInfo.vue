@@ -7,7 +7,7 @@
           <div class="flex">
             <div class="flex">
               <div class="flex heightCenter">
-                <strong>门店名称</strong>
+                <span style="font-size:16px;color:#212121;">门店名称</span>
                 <select class="select" style="margin-left:10px;" v-model="query.code">
                   <option value="">全部</option>
                   <option v-for="store of belowStores" :key="store.c_STORE_CODE" :value="store.c_STORE_CODE">
@@ -16,9 +16,9 @@
                 </select>
               </div>
               <div class="flex heightCenter" style="margin-left:60px;">
-                <strong>时间</strong>
+                <span style="font-size:16px;color:#212121;">时间</span>
                 <Datepicker style="margin-left:10px;" input-class="datepicker-input" v-model="query.startDate" />
-                <strong style="margin:0px 15px;">至</strong>
+                <span style="font-size:16px;color:#212121;margin:0px 15px;">至</span>
                 <Datepicker input-class="datepicker-input" v-model="query.endDate" />
               </div>
             </div>
@@ -34,9 +34,9 @@
           <!-- 表格区域 -->
           <div class="tableRegion">
             <div class="flex1">
-              <el-table :data="records" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-                <el-table-column min-width="105" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
-                <el-table-column min-width="150" header-align="center" align="center" prop="paymentNo" label="结算流水号" sortable></el-table-column>
+              <el-table :data="records" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
+                <el-table-column min-width="90" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
+                <el-table-column min-width="120" header-align="center" align="center" prop="paymentNo" label="结算流水号"></el-table-column>
                 <el-table-column min-width="150" header-align="center" align="center" label="结算日期">
                   <template slot-scope="scope">
                     {{ scope.row.payDate | simpleDate }}
@@ -52,17 +52,17 @@
                     {{ scope.row.payCorpus | fix2 }}
                   </template>
                 </el-table-column>
-                <el-table-column min-width="150" header-align="center" align="center" label="结算手续费">
+                <el-table-column min-width="160" header-align="center" align="center" label="结算手续费">
                   <template slot-scope="scope">
                     {{ scope.row.charge | fix2 }}
                   </template>
                 </el-table-column>
-                <el-table-column min-width="150" header-align="center" align="center" label="结算风险管理费">
+                <el-table-column min-width="170" header-align="center" align="center" label="结算风险管理费">
                   <template slot-scope="scope">
                     {{ scope.row.payRisk | fix2 }}
                   </template>
                 </el-table-column>
-                <el-table-column min-width="150" header-align="center" align="center" label="结算提前还款手续费">
+                <el-table-column min-width="180" header-align="center" align="center" label="结算提前还款手续费">
                   <template slot-scope="scope">
                     {{ scope.row.payRepayAllFee | fix2 }}
                   </template>
@@ -179,11 +179,13 @@
   #DdgOrderCloseInfo .content-body{
     padding: 30px 35px;
     height: 550px;
+    display: flex;
+    flex-direction: column;
   }
   #DdgOrderCloseInfo strong{
     font-size: 16px;
   }
-  #DdgOrderCloseInfo .tableRegion{
+  #ddgOrder #DdgOrderCloseInfo .tableRegion{
     padding: 0px;
   }
   #DdgOrderCloseInfo .ico-help {
@@ -195,5 +197,11 @@
     vertical-align: middle;
     margin: -5px 5px 0;
     cursor: pointer;
+  }
+  #DdgOrderCloseInfo .el-table th>.cell{
+    height: 23px;
+  }
+  #DdgOrderCloseInfo .el-table th>.cell>div{
+    line-height: normal;
   }
 </style>

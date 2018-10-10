@@ -5,7 +5,7 @@
         <!-- 查询区域 -->
         <div class="flex">
           <div class="flex heightCenter">
-            <strong>搜索</strong>
+            <span style="font-size:16px;color:#212121;">搜索</span>
             <input class="input" style="margin-left:10px;" type="text" v-model="keyword">
           </div>
           <div class="flex" style="margin-left:50px;">
@@ -19,17 +19,17 @@
         </div>
         <!-- 表格区域 -->
         <div class="tableRegion" style="padding:0px;">
-          <el-table :data="records" :default-sort = "{prop: 'C_APP_ID', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-            <el-table-column min-width="150" header-align="center" align="center" prop="extId" label="申请编号"></el-table-column>
+          <el-table :data="records" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
+            <el-table-column min-width="120" header-align="center" prop="extId" label="申请编号"></el-table-column>
             <el-table-column min-width="105" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" label="结算时间">
+            <el-table-column min-width="120" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
+            <el-table-column min-width="105" header-align="center" prop="storeName" label="门店"></el-table-column>
+            <el-table-column min-width="110" header-align="center" label="结算时间">
                 <template slot-scope="scope">
                   {{ scope.row.payDate | simpleDate }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" prop="tenor" label="结算期数"></el-table-column>
+            <el-table-column min-width="90" header-align="center" align="center" prop="tenor" label="结算期数"></el-table-column>
             <el-table-column min-width="150" header-align="center" align="center" label="结算金额">
                 <template slot-scope="scope">
                   {{ scope.row.payAmount | fix2 }}
@@ -40,17 +40,17 @@
                   {{ scope.row.payCorpus | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="150" header-align="center" align="center" label="结算手续费">
+            <el-table-column min-width="160" header-align="center" align="center" label="结算手续费">
                 <template slot-scope="scope">
                   {{ scope.row.charge | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="150" header-align="center" align="center" label="结算风险管理费">
+            <el-table-column min-width="170" header-align="center" align="center" label="结算风险管理费">
                 <template slot-scope="scope">
                   {{ scope.row.payRisk | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="150" header-align="center" align="center" label="结算提前还款手续费">
+            <el-table-column min-width="180" header-align="center" align="center" label="结算提前还款手续费">
                 <template slot-scope="scope">
                   {{ scope.row.payRepayAllFee | fix2 }}
                 </template>
@@ -133,6 +133,8 @@
   #DdgOrderCloseInfoDetail .content-body{
     padding: 30px 35px;
     height: 550px;
+    display: flex;
+    flex-direction: column;
   }
   #DdgOrderCloseInfoDetail strong{
     font-size: 16px;

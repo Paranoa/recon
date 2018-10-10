@@ -37,8 +37,8 @@
         </div>
         <div class="flex heightCenter" style="margin-left:30px;">
           <el-radio-group class="radio" v-model="searchCondition.type">
-            <el-radio :label="1"><strong style="font-size:16px;">申请时间</strong></el-radio>
-            <el-radio :label="2"><strong style="font-size:16px;">放款时间</strong></el-radio>
+            <el-radio :label="1"><span style="font-size:16px;">申请时间</span></el-radio>
+            <el-radio :label="2"><span style="font-size:16px;">放款时间</span></el-radio>
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
@@ -55,10 +55,10 @@
     <div class="tableRegion">
       <div class="flex1">
         <el-table :data="orders" :default-sort = "{prop: 'orderNo', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-          <el-table-column min-width="150" header-align="center" align="center" prop="orderNo" label="订单编号" sortable></el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="createTime" label="申请时间" sortable></el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
+          <el-table-column min-width="165" header-align="center" align="center" prop="orderNo" label="订单编号"></el-table-column>
+          <el-table-column min-width="120" header-align="center" align="center" prop="createTime" label="申请时间"></el-table-column>
+          <el-table-column min-width="90" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
+          <el-table-column min-width="120" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
           <el-table-column min-width="150" header-align="center" align="center" label="申请金额">
             <template slot-scope="scope">
               {{ scope.row.orderAmount | fix2 | numFormat }}
@@ -69,15 +69,15 @@
               {{ scope.row.merchantAmount | fix2 | numFormat }}
             </template>
           </el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="tenor" label="申请期数" sortable></el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" label="放款日期">
+          <el-table-column min-width="90" header-align="center" align="center" prop="tenor" label="申请期数"></el-table-column>
+          <el-table-column min-width="110" header-align="center" align="center" label="放款日期">
             <template slot-scope="scope">
               {{ scope.row.drawdownTime || '-' }}
             </template>
           </el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="saleName" label="销售姓名"></el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="paymentStatus" label="状态"></el-table-column>
-          <el-table-column min-width="105" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
+          <el-table-column min-width="90" header-align="center" align="center" prop="saleName" label="销售姓名"></el-table-column>
+          <el-table-column min-width="90" header-align="center" align="center" prop="paymentStatus" label="状态"></el-table-column>
+          <el-table-column min-width="150" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
           <el-table-column min-width="150" header-align="center" align="center" label="退款状态">
             <template slot-scope="scope">
               <div v-if="scope.row.refundFlag === 0">
