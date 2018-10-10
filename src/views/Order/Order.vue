@@ -37,8 +37,8 @@
         </div>
         <div class="flex heightCenter" style="margin-left:30px;">
           <el-radio-group class="radio" v-model="searchCondition.tp">
-            <el-radio :label="1"><span style="font-size:16px;">申请时间</span></el-radio>
-            <el-radio :label="2"><span style="font-size:16px;">放款时间</span></el-radio>
+            <el-radio :label="1"><span style="font-size:15px;">申请时间</span></el-radio>
+            <el-radio :label="2"><span style="font-size:15px;">放款时间</span></el-radio>
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
