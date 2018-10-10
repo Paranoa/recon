@@ -42,7 +42,7 @@
                     {{ scope.row.payDate | simpleDate }}
                   </template>
                 </el-table-column>
-                <el-table-column min-width="150" header-align="center" align="center" label="结算金额" :render-header="renderHeader">
+                <el-table-column class-name="icon" min-width="150" header-align="center" align="center" label="结算金额" :render-header="renderHeader">
                   <template slot-scope="scope">
                     <span @click="showDetail = true, paymentNo = scope.row.paymentNo" style="color:#1AB3FF;cursor: pointer;">{{ scope.row.payAmount | fix2 }}</span>
                   </template>
@@ -198,7 +198,10 @@
     margin: -5px 5px 0;
     cursor: pointer;
   }
-  #DdgOrderCloseInfo .el-table th>.cell>div{
+  #DdgOrderCloseInfo .icon .el-table th>.cell{
+    height: 23px;
+  }
+  #DdgOrderCloseInfo .icon .el-table th>.cell>div{
     line-height: normal;
   }
 </style>

@@ -111,26 +111,28 @@
             </template>
           </el-table-column>
           <el-table-column min-width="220" header-align="center" align="center" label="操作">
-            <template slot-scope="scope" class="flex flexCenter flexCenter">
-              <div class="flex flexCenter" v-if="scope.row.N_APP_STATUS == '160'">
-                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" style="margin:0px 10px;" class="tableBtn tableCommonBtn" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
-                  退贷预约
-                </div>
-                <div v-else class="flex flexCenter">
-                  <div class="flex flexCenter" v-if="[2, 23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
-                    <div class="tableBtn tableCancelReservationBtn" style="margin:0px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">取消预约</div>
-                    <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.refundConf = scope.row, modal.refundConf = true">上传凭证</div>
+            <template slot-scope="scope">
+              <div class="flex flexCenter">
+                <div class="flex flexCenter" v-if="scope.row.N_APP_STATUS == '160'">
+                  <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" style="margin:0px 10px;" class="tableBtn tableCommonBtn" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
+                    退贷预约
                   </div>
-                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" class="label">
-                    {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
-                  </span>
+                  <div v-else class="flex flexCenter">
+                    <div class="flex flexCenter" v-if="[2, 23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
+                      <div class="tableBtn tableCancelReservationBtn" style="margin:0px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">取消预约</div>
+                      <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.refundConf = scope.row, modal.refundConf = true">上传凭证</div>
+                    </div>
+                    <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" class="label">
+                      {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div v-else-if="scope.row.N_APP_STATUS == '130' && scope.row.FINANCE_CODE == 'DDG'">
-                <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
-              </div>
-              <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
-                {{ scope.row.SHOW_APPLY_BUTTON_NAME }}
+                <div v-else-if="scope.row.N_APP_STATUS == '130' && scope.row.FINANCE_CODE == 'DDG'">
+                  <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
+                </div>
+                <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
+                  {{ scope.row.SHOW_APPLY_BUTTON_NAME }}
+                </div>
               </div>
             </template>
           </el-table-column>
