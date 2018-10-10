@@ -42,7 +42,7 @@
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
-          <div class="button queryBtn" style="margin-right:30px;" @click="cardOrderList">
+          <div class="button queryBtn" style="margin-right:30px;" @click="cardOrderList(1)">
             查询
           </div>
           <div class="button exportBtn" @click="exportExl">
