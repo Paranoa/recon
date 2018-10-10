@@ -55,16 +55,16 @@
     <div class="tableRegion">
       <div class="flex1">
         <el-table :data="orders" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-          <el-table-column min-width="120" header-align="center" prop="C_APP_ID" label="申请编号"></el-table-column>
-          <el-table-column min-width="115" header-align="center" prop="D_APPLICATION" label="申请时间"></el-table-column>
+          <el-table-column min-width="90" header-align="center" prop="C_APP_ID" label="申请编号"></el-table-column>
+          <el-table-column min-width="90" header-align="center" prop="D_APPLICATION" label="申请时间"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="C_NAME_CN" label="客户姓名"></el-table-column>
-          <el-table-column min-width="120" header-align="center" align="center" prop="C_MBL_TEL" label="客户手机"></el-table-column>
-          <el-table-column min-width="150" header-align="center" align="center" label="申请金额">
+          <el-table-column min-width="90" header-align="center" align="center" prop="C_MBL_TEL" label="客户手机"></el-table-column>
+          <el-table-column min-width="90" header-align="center" align="center" label="申请金额">
             <template slot-scope="scope">
               {{ scope.row.N_AMT_APPLIED | fix2 | numFormat }}
             </template>
           </el-table-column>
-          <el-table-column min-width="150" header-align="center" align="center" label="放款金额">
+          <el-table-column min-width="90" header-align="center" align="center" label="放款金额">
             <template slot-scope="scope" v-if="scope.row.N_APP_STATUS === 130">
               {{ scope.row.N_AMT_DRAWDOWN | fix2 | numFormat }}
             </template>
@@ -80,19 +80,19 @@
             </template>
           </el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="N_TENOR_APPLIED" label="申请期数"></el-table-column>
-          <el-table-column min-width="190" header-align="center" prop="pdt" label="分期类型"></el-table-column>
-          <el-table-column min-width="110" header-align="center" align="center" label="审批日期">
+          <el-table-column min-width="90" header-align="center" prop="pdt" label="分期类型"></el-table-column>
+          <el-table-column min-width="90" header-align="center" align="center" label="审批日期">
             <template slot-scope="scope">
               {{ scope.row.D_DECISION | len10 }}
             </template>
           </el-table-column>
-          <el-table-column min-width="110" header-align="center" align="center" label="放款日期">
+          <el-table-column min-width="90" header-align="center" align="center" label="放款日期">
             <template slot-scope="scope">
               {{ scope.row.D_DRAWDOWN | len10 }}
             </template>
           </el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="C_SALES_ID" label="销售姓名"></el-table-column>
-          <el-table-column min-width="90" header-align="center" align="center" label="状态">
+          <el-table-column min-width="100" header-align="center" align="center" label="状态">
             <template slot-scope="scope">
               <span>
                 <span v-if="scope.row.N_APP_STATUS === '130' && scope.row.D_SEND_FUND_TIME">
@@ -104,8 +104,8 @@
               </span>
             </template>
           </el-table-column>
-          <el-table-column min-width="150" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
-          <el-table-column min-width="95" header-align="center" align="center" label="订单类型">
+          <el-table-column min-width="180" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
+          <el-table-column min-width="90" header-align="center" align="center" label="订单类型">
             <template slot-scope="scope">
             {{ scope.row.C_APP_TYPE | appType }}
             </template>
@@ -275,6 +275,10 @@ export default {
     margin-top: 20px;
     background-color: #fff;
     padding:10px 25px;
+  }
+  #order>.tableRegion .el-table__row .cell{
+    padding: 3px 7px;
+    font-size: 12px;
   }
   /* #order .el-table__body-wrapper.is-scrolling-none::-webkit-scrollbar{
     width:0;
