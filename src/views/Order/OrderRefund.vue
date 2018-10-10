@@ -12,7 +12,7 @@
             <p style="margin-top:5px;color:#585858;">请在预约日期<span style="color:#5FCAFF;">16:00</span>之前完成打款，否则需要重新预约，可能会产生费用。</p>
           </div>
         </div>
-        <div class="flex" style="margin-top:15px;" v-show="!refundShow">
+        <div class="flex" style="margin-top:15px;" v-show="refundShow">
           <div class="left">
             <div class="flex">
               <strong style="width:120px;color:#212121;">贷款本金</strong>
@@ -90,7 +90,7 @@
             </div>
           </div>
         </div>
-        <div class="yuyue" @click="yuyue" v-show="!refundShow">预约</div>
+        <div class="yuyue" @click="yuyue" v-show="refundShow">预约</div>
       </div>
     </template>
   </BaseModal>
