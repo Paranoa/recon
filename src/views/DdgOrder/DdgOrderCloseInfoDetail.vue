@@ -57,7 +57,7 @@
             </el-table-column>
           </el-table>
           <div style="height:100px;" class="flex heightCenter">
-            <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal"  @current-change="getCashRecordDetail"></el-pagination>
+            <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal" :current-page="page"  @current-change="getCashRecordDetail"></el-pagination>
           </div>
         </div>
       </div>

@@ -81,7 +81,7 @@ export default {
   flex: 1;
   justify-content:flex-end;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   margin-right: 25px;
 }
 #pcHeader .right .el-badge__content{

@@ -42,7 +42,7 @@
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
-          <div class="button queryBtn" style="margin-right:30px;" @click="queryOrder">
+          <div class="button queryBtn" style="margin-right:30px;" @click="queryOrder(1)">
             查询
           </div>
           <div class="button exportBtn" @click="doOut">
@@ -139,7 +139,7 @@
         </el-table>
       </div>
       <div style="height:100px;" class="flex heightCenter">
-        <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal"  @current-change="queryOrder"></el-pagination>
+        <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal" :current-page="searchCondition.page"  @current-change="queryOrder"></el-pagination>
       </div>
     </div>
     <!-- 弹框区域 -->
@@ -181,7 +181,8 @@ export default {
         app_status:"",
         search_start:util.dateToString(constant.A_MONTH_BEFORE),
         search_end:util.dateToString(constant.NOW),
-        tp:1
+        tp:1,
+        page:1
       },
       GEEX_SHOW_STATUS_MEAN: [
         {key:'110',val:'审批中'},

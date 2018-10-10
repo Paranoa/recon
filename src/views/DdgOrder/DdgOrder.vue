@@ -42,7 +42,7 @@
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
-          <div class="button queryBtn" style="margin-right:30px;" @click="queryOrder">
+          <div class="button queryBtn" style="margin-right:30px;" @click="queryOrder(1)">
             查询
           </div>
           <div class="button exportBtn" style="margin-right:30px;" @click="exportResult">
@@ -137,7 +137,7 @@
         </el-table>
       </div>
       <div style="height:100px;" class="flex heightCenter">
-        <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal"  @current-change="queryOrder"></el-pagination>
+        <el-pagination style="margin:0px auto;" background layout="prev, pager, next"  :current-page="searchCondition.page" :total="ordersTotal"  @current-change="queryOrder"></el-pagination>
       </div>
     </div>
     <!-- 弹框区域 -->
@@ -232,9 +232,8 @@
       this.queryOrder()
     },
     methods: {
-      queryOrder (page = 1) {
+      queryOrder (page) {
         this.searchCondition['page'] = page
-
         api.ddgOrderList({
           page: this.searchCondition.page,
           name: this.searchCondition.name,
@@ -245,8 +244,8 @@
           tp: this.searchCondition.type,
         })
         .then(({ result, resultCnt }) => {
-          this.orders = result
-          this.ordersTotal = resultCnt
+          this.orders = result;
+          this.ordersTotal = resultCnt;
         })
       },
       exportResult () {

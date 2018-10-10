@@ -101,7 +101,7 @@
         </el-table>
       </div>
       <div style="height:100px;" class="flex heightCenter">
-        <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal"  @current-change="cardOrderList"></el-pagination>
+        <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :total="ordersTotal" :current-page="searchCondition.page"  @current-change="cardOrderList"></el-pagination>
       </div>
     </div>
     <!-- 弹框区域 -->
