@@ -3,7 +3,7 @@
     <div id="pcHeader">
       <!-- 左侧log -->
       <div class="left">
-        <router-link :to="{name:'home'}" tag="div" class="hand" style="margin-left:20px;"><img src="../assets/logo_wechat1.png" /></router-link>
+        <img class="hand" style="margin-left:20px;" src="../assets/logo_wechat1.png" />
       </div>
       <!-- 右侧菜单 -->
       <div class="right">

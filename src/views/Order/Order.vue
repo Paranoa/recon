@@ -37,8 +37,8 @@
         </div>
         <div class="flex heightCenter" style="margin-left:30px;">
           <el-radio-group class="radio" v-model="searchCondition.tp">
-            <el-radio :label="1"><span style="font-size:15px;">申请时间</span></el-radio>
-            <el-radio :label="2"><span style="font-size:15px;">放款时间</span></el-radio>
+            <el-radio :label="1"><span style="font-size:14px;">申请时间</span></el-radio>
+            <el-radio :label="2"><span style="font-size:14px;">放款时间</span></el-radio>
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
@@ -56,7 +56,7 @@
       <div class="flex1">
         <el-table :data="orders" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
           <el-table-column min-width="90" header-align="center" prop="C_APP_ID" label="申请编号"></el-table-column>
-          <el-table-column min-width="90" header-align="center" prop="D_APPLICATION" label="申请时间"></el-table-column>
+          <el-table-column width="90" header-align="center" prop="D_APPLICATION" label="申请时间"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="C_NAME_CN" label="客户姓名"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="C_MBL_TEL" label="客户手机"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" label="申请金额">
@@ -80,7 +80,7 @@
             </template>
           </el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="N_TENOR_APPLIED" label="申请期数"></el-table-column>
-          <el-table-column min-width="90" header-align="center" prop="pdt" label="分期类型"></el-table-column>
+          <el-table-column min-width="140" header-align="center" prop="pdt" label="分期类型"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" label="审批日期">
             <template slot-scope="scope">
               {{ scope.row.D_DECISION | len10 }}
@@ -104,22 +104,22 @@
               </span>
             </template>
           </el-table-column>
-          <el-table-column min-width="180" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
+          <el-table-column min-width="140" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" label="订单类型">
             <template slot-scope="scope">
             {{ scope.row.C_APP_TYPE | appType }}
             </template>
           </el-table-column>
-          <el-table-column min-width="150" header-align="center" align="center" label="操作">
-            <template slot-scope="scope">
-              <div v-if="scope.row.N_APP_STATUS == '160'">
-                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" class="tableBtn tableCommonBtn marginCenter" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
+          <el-table-column min-width="220" header-align="center" align="center" label="操作">
+            <template slot-scope="scope" class="flex flexCenter flexCenter">
+              <div class="flex flexCenter" v-if="scope.row.N_APP_STATUS == '160'">
+                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" style="margin:0px 10px;" class="tableBtn tableCommonBtn" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
                   退贷预约
                 </div>
-                <div v-else>
-                  <div v-if="[2, 23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
-                    <div class="tableBtn tableCancelReservationBtn marginCenter" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">取消预约</div>
-                    <div class="tableBtn tableCommonBtn marginCenter" @click="modalId.refundConf = scope.row, modal.refundConf = true">上传凭证</div>
+                <div v-else class="flex flexCenter">
+                  <div class="flex flexCenter" v-if="[2, 23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
+                    <div class="tableBtn tableCancelReservationBtn" style="margin:0px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">取消预约</div>
+                    <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.refundConf = scope.row, modal.refundConf = true">上传凭证</div>
                   </div>
                   <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" class="label">
                     {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
@@ -129,7 +129,7 @@
               <div v-else-if="scope.row.N_APP_STATUS == '130' && scope.row.FINANCE_CODE == 'DDG'">
                 <div class="tableBtn tableCommonBtn marginCenter" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
               </div>
-              <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn marginCenter" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
+              <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
                 {{ scope.row.SHOW_APPLY_BUTTON_NAME }}
               </div>
             </template>

@@ -58,7 +58,7 @@ export default {
     }
     #menuLeft li{
         color: #fff;
-        font-size: 17px;
+        font-size: 15px;
         height: 60px;
         display: flex;
         align-items: center;

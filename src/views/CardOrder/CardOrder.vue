@@ -37,8 +37,8 @@
         </div>
         <div class="flex heightCenter" style="margin-left:30px;">
           <el-radio-group class="radio" v-model="searchCondition.type">
-            <el-radio :label="1"><span style="font-size:15px;">申请时间</span></el-radio>
-            <el-radio :label="2"><span style="font-size:15px;">放款时间</span></el-radio>
+            <el-radio :label="1"><span style="font-size:14px;">申请时间</span></el-radio>
+            <el-radio :label="2"><span style="font-size:14px;">放款时间</span></el-radio>
           </el-radio-group>
         </div>
         <div class="flex flex1 rightAlignment">
@@ -56,7 +56,7 @@
       <div class="flex1">
         <el-table :data="orders" :default-sort = "{prop: 'orderNo', order: 'descending'}" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
           <el-table-column min-width="165" header-align="center" align="center" prop="orderNo" label="订单编号"></el-table-column>
-          <el-table-column min-width="120" header-align="center" align="center" prop="createTime" label="申请时间"></el-table-column>
+          <el-table-column width="90" header-align="center" align="center" prop="createTime" label="申请时间"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
           <el-table-column min-width="120" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
           <el-table-column min-width="150" header-align="center" align="center" label="申请金额">
