@@ -5,19 +5,19 @@
         <div class="content-body">
           <div class="flex">
             <div style="width:85px;">
-              <strong>贷款金额</strong>
+              <strong style="color:#212121; font-size:16px;">贷款金额</strong>
             </div>
             <div>
-              <strong>￥{{ modalParam.merchantAmount }}</strong>
+              <strong style="color:#585858;font-size:17px;">￥{{ modalParam.merchantAmount }}</strong>
             </div>
           </div>
           <div>
             <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
-            <span style="margin-left:5px;">请将款项打入以下账户</span>
+            <span style="margin-left:5px;color:#585858;">请将款项打入以下账户</span>
           </div>
           <div class="flex">
             <div style="width:85px;">
-              <strong>金额</strong>
+              <span style="color:#212121;font-size:16px;">金额</span>
             </div>
             <div>
               <span>￥{{ modalParam.merchantAmount }}</span>
@@ -25,36 +25,36 @@
           </div>
           <div class="flex">
             <div style="width:85px;">
-              <strong>户名</strong>
+              <span style="color:#212121;font-size:16px;">户名</span>
             </div>
             <div>
-              <span>即科金融信息服务(上海)有限公司</span>
+              <span style="color:#585858;">即科金融信息服务(上海)有限公司</span>
             </div>
           </div>
           <div class="flex">
             <div style="width:85px;">
-              <strong>开户行</strong>
+              <span style="color:#212121;font-size:16px;">开户行</span>
             </div>
             <div>
-              <span>中国银行上海市国定路支行</span>
+              <span style="color:#585858;">中国银行上海市国定路支行</span>
             </div>
           </div>
           <div class="flex">
             <div style="width:85px;">
-              <strong>账号</strong>
+              <span style="color:#212121;font-size:16px;">账号</span>
             </div>
             <div>
-              <span>62178376292872788</span>
+              <span style="color:#585858;">62178376292872788</span>
             </div>
           </div>
           <div>
             <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
             <span style="margin-left:5px; color:#585858;">因银行网点搬迁，</span>
-            <span>如在退款/汇款操作时查询不到“开户行："中国银行上海市国定路支行"，可以选择"中国银行上海市新江湾城支行"。其他信息不变！</span>
+            <span style="color:#0F0F0F;">如在退款/汇款操作时查询不到“开户行："中国银行上海市国定路支行"，可以选择"中国银行上海市新江湾城支行"。其他信息不变！</span>
           </div>
           <div class="flex">
             <div style="width:85px;">
-              <strong>备注信息</strong>
+              <span style="color:#585858;font-size:13px;">备注信息</span>
             </div>
             <div>
               <strong style="color:#FF3949;font-size:16px;">金国平15001964062</strong>
@@ -62,7 +62,7 @@
           </div>
           <div class="flex heightCenter" style="margin-top:20px;">
             <div>
-              <strong>上传打印凭证</strong>
+              <span style="color:#212121;font-size:16px;">上传打印凭证</span>
             </div>
             <div style="margin-left:20px;">
               <FileUpload class="upload"
