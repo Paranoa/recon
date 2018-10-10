@@ -127,7 +127,7 @@
                 </div>
               </div>
               <div v-else-if="scope.row.N_APP_STATUS == '130' && scope.row.FINANCE_CODE == 'DDG'">
-                <div class="tableBtn tableCommonBtn marginCenter" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
+                <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
               </div>
               <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
                 {{ scope.row.SHOW_APPLY_BUTTON_NAME }}

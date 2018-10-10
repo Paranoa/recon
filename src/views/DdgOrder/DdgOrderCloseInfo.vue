@@ -198,9 +198,6 @@
     margin: -5px 5px 0;
     cursor: pointer;
   }
-  #DdgOrderCloseInfo .el-table th>.cell{
-    height: 23px;
-  }
   #DdgOrderCloseInfo .el-table th>.cell>div{
     line-height: normal;
   }

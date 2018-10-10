@@ -20,37 +20,37 @@
         <!-- 表格区域 -->
         <div class="tableRegion" style="padding:0px;">
           <el-table :data="records" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
-            <el-table-column min-width="120" header-align="center" prop="extId" label="申请编号"></el-table-column>
-            <el-table-column min-width="105" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
-            <el-table-column min-width="120" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
-            <el-table-column min-width="105" header-align="center" prop="storeName" label="门店"></el-table-column>
-            <el-table-column min-width="110" header-align="center" label="结算时间">
+            <el-table-column min-width="90" header-align="center" prop="extId" label="申请编号"></el-table-column>
+            <el-table-column min-width="90" header-align="center" align="center" prop="name" label="客户姓名"></el-table-column>
+            <el-table-column min-width="90" header-align="center" align="center" prop="mobile" label="客户手机"></el-table-column>
+            <el-table-column min-width="100" header-align="center" prop="storeName" label="门店"></el-table-column>
+            <el-table-column min-width="90" header-align="center" label="结算时间">
                 <template slot-scope="scope">
                   {{ scope.row.payDate | simpleDate }}
                 </template>
             </el-table-column>
             <el-table-column min-width="90" header-align="center" align="center" prop="tenor" label="结算期数"></el-table-column>
-            <el-table-column min-width="150" header-align="center" align="center" label="结算金额">
+            <el-table-column min-width="90" header-align="center" align="center" label="结算金额">
                 <template slot-scope="scope">
                   {{ scope.row.payAmount | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="150" header-align="center" align="center" label="结算本金">
+            <el-table-column min-width="90" header-align="center" align="center" label="结算本金">
                 <template slot-scope="scope">
                   {{ scope.row.payCorpus | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="160" header-align="center" align="center" label="结算手续费">
+            <el-table-column min-width="120" header-align="center" align="center" label="结算手续费">
                 <template slot-scope="scope">
                   {{ scope.row.charge | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="170" header-align="center" align="center" label="结算风险管理费">
+            <el-table-column min-width="150" header-align="center" align="center" label="结算风险管理费">
                 <template slot-scope="scope">
                   {{ scope.row.payRisk | fix2 }}
                 </template>
             </el-table-column>
-            <el-table-column min-width="180" header-align="center" align="center" label="结算提前还款手续费">
+            <el-table-column min-width="160" header-align="center" align="center" label="结算提前还款手续费">
                 <template slot-scope="scope">
                   {{ scope.row.payRepayAllFee | fix2 }}
                 </template>
