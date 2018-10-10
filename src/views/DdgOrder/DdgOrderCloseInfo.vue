@@ -158,7 +158,7 @@
         .catch(err => this.$ui.alert(err))
       },
       renderHeader(h, { column }) {
-        return h("div",{attrs:{style:"height: 23px;line-height: normal;"}}, [
+        return h("div",{attrs:{style:"height: 23px;line-height: normal;padding-top:5px;"}}, [
           h("span", column.label),
           h("i", {
             attrs: {
@@ -197,8 +197,5 @@
     vertical-align: middle;
     margin: -5px 5px 0;
     cursor: pointer;
-  }
-  #DdgOrderCloseInfo .el-table th>.cell{
-    height: 23px;
   }
 </style>
