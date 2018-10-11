@@ -166,7 +166,7 @@
           app_status: this.searchCondition.app_status || '',
           search_start: this.searchCondition.search_start || '',
           search_end: this.searchCondition.search_end || '',
-          type: this.searchCondition.type || '',
+          tp: this.searchCondition.type || '',
           name: this.searchCondition.name || ''
         })
         .then(res => {

@@ -280,5 +280,6 @@
 
   @media (max-width: 370px) {
     .ui-mb-select, .ui-mb-input, .ui-mb-datepicker { width: 90px }
+    .vdp-datepicker + img { display: none }
   }
 </style>
