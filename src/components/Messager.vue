@@ -69,7 +69,7 @@
   .ui-msg-container { position: fixed; left: 0; right: 0; top: 50%; margin-top: -200px; z-index: 12000; }
   .ui-msg-box { margin: auto; background: #fff; border-radius: 6px; overflow: hidden; }
   .ui-msg-title { background: #192C4A; color: #fff; font-size: 18px; text-align: center; line-height: 20px; padding: 15px ; }
-  .ui-msg-text { height: 110px; line-height: 110px; text-align: center; overflow: auto; margin: 0; vertical-align: middle;}
+  .ui-msg-text { padding: 0px 20px; height: 110px; line-height: 110px; text-align: center; overflow: auto; margin: 0; vertical-align: middle;}
   .ui-msg-text >div { display: inline-block; line-height: 1.5; font-size: 17px; color: #212121; vertical-align: middle;}
   .ico { display: inline-block; width: 20px; height: 20px; vertical-align: middle; background-size: 100% 100%; margin: -4px 5px 0;}
   .ico-notice { background-image: url(../assets/ico/ico-light.png); }
