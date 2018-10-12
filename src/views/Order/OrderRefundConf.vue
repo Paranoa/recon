@@ -6,46 +6,46 @@
           <div style="width:100px;">
             <span style="color: rgb(33, 33, 33); font-size: 15px;">上传打印凭证</span>
           </div>
-          <div style="margin-left:30px;width:270px;">
-            <div>
+          <div style="margin-left:30px;width:320px;">
+            <div class="flex">
               <FileUpload
               action="order/img/upload"
                 @success="(res, name) => { uploadSuccess(0, res, name) }"
                 @error="uploadErr">
                 <span class="uploadBtn">选择文件</span>
               </FileUpload>
-              <span style="margin-left: 10px; color:#A0A0A0;">{{ imgFileNames[0] || '未选择任何文件' }}</span>
+              <span style="margin-left: 10px; color:#A0A0A0;width:210px;overflow-wrap: break-word;">{{ imgFileNames[0] || '未选择任何文件' }}</span>
             </div>
-            <div style="margin-top:25px;">
+            <div class="flex" style="margin-top:25px;">
               <FileUpload
               action="order/img/upload"
                 @success="(res, name) => { uploadSuccess(1, res, name) }"
                 @error="uploadErr">
                 <span class="uploadBtn">选择文件</span>
               </FileUpload>
-              <span style="margin-left: 10px; color:#A0A0A0;">{{ imgFileNames[1] || '未选择任何文件' }}</span>
+              <span style="margin-left: 10px; color:#A0A0A0;width:210px;overflow-wrap: break-word;">{{ imgFileNames[1] || '未选择任何文件' }}</span>
             </div>
-            <div style="margin-top:25px;">
+            <div class="flex" style="margin-top:25px;">
               <FileUpload
               action="order/img/upload"
                 @success="(res, name) => { uploadSuccess(2, res, name) }"
                 @error="uploadErr">
                 <span class="uploadBtn">选择文件</span>
               </FileUpload>
-              <span style="margin-left: 10px; color:#A0A0A0;">{{ imgFileNames[2] || '未选择任何文件' }}</span>
+              <span style="margin-left: 10px; color:#A0A0A0;width:210px;overflow-wrap: break-word;">{{ imgFileNames[2] || '未选择任何文件' }}</span>
             </div>
           </div>
-          <div class="flex rightAlignment" style="width:135px;">
+          <div class="flex rightAlignment" style="width:155px;">
             <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
             <span style="font-size: 12px;color: #585858;margin-left:5px;">仅限jpg/png/bmp/gif</span>
           </div>
         </div>
         <div class="flex" style="margin-top:25px;">
-          <div style="margin-left:59px;">
+          <div style="margin-left:70px;">
             <span style="color: rgb(33, 33, 33); font-size: 15px;">备注</span>
           </div>
           <div class="col-lg-10" style="margin-left:30px;">
-            <textarea type="text" style="width:300px; height:120px;resize:none;background: #FAFAFA;" v-model="mark" maxlength="100"></textarea>
+            <textarea type="text" style="width:364px; height:120px;resize:none;background: #FAFAFA;" v-model="mark" maxlength="100"></textarea>
           </div>
         </div>
         <div style="height:50px;" v-if="modalParam.mark">
