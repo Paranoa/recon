@@ -114,7 +114,7 @@
 <style scoped>
   #OrderRefundConf{
     padding: 30px 30px;
-    height: 420px;
+    height: auto;
     font-size: 14px;
   }
   label.file-uploads { line-height: 30px }
