@@ -172,5 +172,4 @@
     justify-content: center;
     margin-left: 20px;
   }
-  }
 </style>
