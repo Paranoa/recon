@@ -6,7 +6,7 @@
           <div class="infoTableHeader">
             订单信息
           </div>
-          <div class="flex" style="border-bottom: 1px solid #BDBDBD;">
+          <div class="flex" style="min-height:60px;border-bottom: 1px solid #BDBDBD;">
             <div class="cellA rightBorder">
               客户姓名
             </div>
@@ -26,7 +26,7 @@
               {{ order.C_APP_ID }}
             </div>
           </div>
-          <div class="flex" style="border-bottom: 1px solid #BDBDBD;">
+          <div class="flex" style="min-height:60px;border-bottom: 1px solid #BDBDBD;">
             <div class="cellA rightBorder">
               申请金额
             </div>
@@ -46,7 +46,7 @@
               {{ order.pdt }}
             </div>
           </div>
-          <div class="flex" style="border-bottom: 1px solid #BDBDBD;">
+          <div class="flex" style="min-height:60px;">
             <div class="cellA rightBorder">
               分期状态
             </div>
@@ -163,6 +163,7 @@
     background-color: #FAFAFA;
     height: 35px;
     padding: 10px 25px;
+    font-size: 14px;
   }
   .rightBorder{
     border-right: 1px solid #BDBDBD;
@@ -178,6 +179,7 @@
     width: 240px;
     align-items: center;
     padding-left: 30px;
+    color: #A0A0A0;
   }
 
 </style>
