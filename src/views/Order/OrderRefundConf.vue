@@ -3,7 +3,7 @@
     <template slot="body">
       <div id="OrderRefundConf">
         <div class="flex">
-          <div style="width:90px;">
+          <div style="width:100px;">
             <span style="color: rgb(33, 33, 33); font-size: 15px;">上传打印凭证</span>
           </div>
           <div style="margin-left:30px;width:270px;">
@@ -48,10 +48,10 @@
             <textarea type="text" style="width:300px; height:120px;resize:none;background: #FAFAFA;" v-model="mark" maxlength="100"></textarea>
           </div>
         </div>
-        <div style="height:50px;">
-          <span style="color:red;font-size: 14px;margin-left:98px;" v-if="modalParam.mark">【打回原因：1111111111111111111111111111111{{ modalParam.mark }}】</span>
+        <div style="height:50px;" v-if="modalParam.mark">
+          <span style="color:red;font-size: 14px;margin-left:98px;">【打回原因：1111111111111111111111111111111{{ modalParam.mark }}】</span>
         </div>
-        <div class="flex flexCenter" style="margin-top:40px;">
+        <div class="flex flexCenter" style="margin-top:30px;">
           <div class="gb" @click="close">关闭</div>
           <div class="tj" @click="submit">提交</div>
         </div>
@@ -158,7 +158,6 @@
     justify-content: center;
   }
   #OrderRefundConf .tj{
-    background: #1A9BFE;
     background: #1A9BFE;
     box-shadow: 0 1px 3px 0 rgba(68,165,249,0.92);
     border-radius: 100px;

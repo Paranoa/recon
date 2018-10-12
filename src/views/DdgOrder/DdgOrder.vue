@@ -116,7 +116,7 @@
                       上传凭证
                     </div>
                   </div>
-                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:5px 10px;width:80px;">
+                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:5px 10px;width:80px;display:block;">
                     {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
                   </span>
                 </div>
@@ -154,7 +154,7 @@
       @close="closeModal('applyLoan')"
       @success="closeModal('applyLoan'); queryOrder()" />
 
-    <RefundConf v-if="modal.refundConf" width="580px" :modalParam="modalId.refundConf"
+    <RefundConf v-if="modal.refundConf" width="670px" :modalParam="modalId.refundConf"
       @close="closeModal('refundConf')"
       @success="closeModal('refundConf'); queryOrder()" />
 
