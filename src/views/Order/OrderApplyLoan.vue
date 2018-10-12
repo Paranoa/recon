@@ -2,81 +2,73 @@
   <BaseModal title="申请放款" :width="width" @close="close">
     <template slot="body">
       <div class="content-body">
-        <div>
-          <h5>订单信息</h5>
-          <hr style="width: 80%; margin: 10px 0"/>
-          <table class="applyloan-table table table-striped">
-            <tbody>
-              <tr>
-                <th>客户姓名</th>
-                <td>{{ order.C_NAME_CN }}</td>
-                <th>客户手机</th>
-                <td>{{ order.C_MBL_TEL }}</td>
-                <th>订单号</th>
-                <td>{{ order.C_APP_ID }}</td>
-              </tr>
-              <tr>
-                <th>申请金额</th>
-                <td>{{ order.N_AMT_APPLIED }}</td>
-                <th>分期期数</th>
-                <td>{{ order.N_TENOR_APPLIED }}</td>
-                <th>分期类型</th>
-                <td>{{ order.pdt }}</td>
-              </tr>
-              <tr>
-                <th>分期状态</th>
-                <td>{{ order.SELF_ADD_APPLY_STATUS|statusMean }}</td>
-                <th>销售姓名</th>
-                <td>{{ order.C_SALES_ID }}</td>
-                <th>发货地址</th>
-                <td>{{ order.jiaJuDaiAddr1+' '+order.jiaJuDaiAddr2 }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <h5>资料上传</h5>
-          <hr style="width: 80%; margin: 10px 0"/>
-          <div class="form-group clearfix">
-            <div class="col-lg-10">
-              发货时间: <Datepicker v-model="sendTime" :disabledDates="{ to: today }" />
+        <div class="infoTable">
+          <div class="infoTableHeader">
+            订单信息
+          </div>
+          <div class="flex" style="border-bottom: 1px solid #BDBDBD;">
+            <div class="cellA rightBorder">
+              客户姓名
+            </div>
+            <div class="cellB rightBorder">
+              {{ order.C_NAME_CN }}
+            </div>
+            <div class="cellA rightBorder">
+              客户手机
+            </div>
+            <div class="cellB rightBorder">
+              {{ order.C_MBL_TEL }}
+            </div>
+            <div class="cellA rightBorder">
+              订单号
+            </div>
+            <div class="cellB">
+              {{ order.C_APP_ID }}
             </div>
           </div>
-          <div class="form-group clearfix">
-            <label class="fbld col-lg-2 control-label">下单凭证：请上传下单凭证</label>
-            <div class="col-lg-10">
-              <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
-                <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
-                <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
-              </div>
-              <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
-                <div class="tinyImgUpload-img-up-add tinyImgUpload-img-item">
-                  <span class="tinyImgUpload-img-add-icon">+</span>
-                </div>
-              </FileUpload>
+          <div class="flex" style="border-bottom: 1px solid #BDBDBD;">
+            <div class="cellA rightBorder">
+              申请金额
+            </div>
+            <div class="cellB rightBorder">
+              {{ order.N_AMT_APPLIED }}
+            </div>
+            <div class="cellA rightBorder">
+              分期期数
+            </div>
+            <div class="cellB rightBorder">
+              {{ order.N_TENOR_APPLIED }}
+            </div>
+            <div class="cellA rightBorder">
+              分期类型
+            </div>
+            <div class="cellB">
+              {{ order.pdt }}
             </div>
           </div>
-          <div class="form-group clearfix">
-            <label class="fbld col-lg-2 control-label ">打款记录：请上传打款记录</label>
-            <div class="col-lg-10">
-              <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of finaceFiles" :key="file.id">
-                <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
-                <i class="tinyImgUpload-img-remove" @click="finaceFiles.splice(index, 1)">x</i>
-              </div>
-              <FileUpload @success="finaceFileUploaded" action="order/img/upload" @error="uploadErr">
-                <div class="tinyImgUpload-img-up-add  tinyImgUpload-img-item">
-                  <span class="tinyImgUpload-img-add-icon">+</span>
-                </div>
-              </FileUpload>
+          <div class="flex" style="border-bottom: 1px solid #BDBDBD;">
+            <div class="cellA rightBorder">
+              分期状态
+            </div>
+            <div class="cellB rightBorder">
+              {{ order.SELF_ADD_APPLY_STATUS|statusMean }}
+            </div>
+            <div class="cellA rightBorder">
+              销售姓名
+            </div>
+            <div class="cellB rightBorder">
+              {{ order.C_SALES_ID }}
+            </div>
+            <div class="cellA rightBorder">
+              发货地址
+            </div>
+            <div class="cellB">
+              {{ order.jiaJuDaiAddr1+' '+order.jiaJuDaiAddr2 }}
             </div>
           </div>
         </div>
       </div>
     </template>
-    <template slot="footer">
-      <button type="button" class="btn btn-default" @click="close">关闭</button>
-      <button type="button" class="btn btn-primary" @click="submit">提交申请</button>
-    </template>   
   </BaseModal>
 </template>
 
@@ -158,54 +150,34 @@
 </script>
 
 <style scoped>
-  .content-body { max-height: none; height: 480px }
-  .applyloan-table th, .applyloan-table td { border-color: #edf2f7 }
-  .icon-question-sign { font-size: 14px; float: right; margin-right: 20px; margin-top: 3px }
+  .content-body {
+    padding: 15px 25px; 
+  }
+  .infoTable{
+    width: 1090px;
+    height: 217px;
+    border: 1px solid #BDBDBD;
+    border-radius: 0px 0px 4px 4px;
+  }
+  .infoTableHeader{
+    background-color: #FAFAFA;
+    height: 35px;
+    padding: 10px 25px;
+  }
+  .rightBorder{
+    border-right: 1px solid #BDBDBD;
+  }
+  .cellA{
+    display: flex;
+    width: 120px;
+    align-items: center;
+    justify-content: center;
+  }
+  .cellB{
+    display: flex;
+    width: 240px;
+    align-items: center;
+    padding-left: 30px;
+  }
 
-  .tinyImgUpload-img-item {
-    position: relative;
-    float: left;
-    margin-right: 0.1875rem;
-    margin-bottom: 0.1875rem;
-    height: 2.34375rem;
-    width: 2.34375rem;
-    box-sizing: border-box;
-  }
-  .tinyImgUpload-img-thumb {
-    border: 1px solid #000;
-  }
-  .tinyImgUpload-thumb-icon {
-    width: 100%;
-    height: 100%;
-  }
-  .tinyImgUpload-img-up-add {
-    display: table;
-    border: 1px dashed #E0E0E0;
-  }
-  .tinyImgUpload-img-add-icon {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-  }
-  .tinyImgUpload-img-remove {
-    cursor: pointer;
-    position: absolute;
-    right: -0.1875rem;
-    top: -0.1875rem;
-    display: block;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background: #f7333d;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 0.25rem;
-    overflow: hidden;
-    background-clip: padding-box;
-    line-height: 1;
-  }
-  .tinyImgUpload-img-file-input {
-    display: none;
-  }
 </style>
