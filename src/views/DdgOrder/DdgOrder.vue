@@ -116,7 +116,7 @@
                       上传凭证
                     </div>
                   </div>
-                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:5px 10px;">
+                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:5px 10px;width:80px;">
                     {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
                   </span>
                 </div>
