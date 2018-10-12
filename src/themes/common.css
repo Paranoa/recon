@@ -18,6 +18,9 @@
 .flexCenter{
   justify-content:center;
 }
+.flexWrap{
+  flex-wrap:wrap;
+}
 .heightCenter{
   align-items: center;
 }

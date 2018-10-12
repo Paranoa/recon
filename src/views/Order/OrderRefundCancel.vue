@@ -2,60 +2,97 @@
   <BaseModal title="查看/取消预约" :width="width" @close="close">
     <template slot="body">
       <div class="content-body">
-        <div class="form-group clearfix">
-          <label class="col-lg-2 fl" style="font-size:12px; margin-top: 10px">预约退贷打款日期：</label>
+        <div class="flex heightCenter">
+          <span style="font-size:16px;margin-right:15px;color:#212121;">预约退货打款日期</span>
           <span class="reserve-date">{{ payDate }}</span>
-          <div style="width:240px;height:50px;float:right;">请在预约日期16:00之前完成打款，否则需要重新预约，可能会产生费用</div>
-        </div>
-        <div class="form-group clearfix refund_show" style="width:207px;height:auto;padding:20px 0 0 50px;float:left;line-height: 23px;">
-          贷款本金：<span class="benjin">{{ loanAmt | fix2 }}</span>
-          <i class="icon-question-sign" title="客户申请的借款金额"></i>
-          <br>
-          <template v-if="!hidePrincipal">
-            已还本金：<span class="yihuanbenjin">{{ paidAmt | fix2 }}</span>
-            <i class="icon-question-sign"  title="客户已归还的贷款本金部分"></i>
-            <br>
-          </template>
-          剩余本金：<span class="shengyubenjin">{{ corpus | fix2 }}</span>
-          <i class="icon-question-sign"  title="贷款本金-已还本金"></i>
-          <br>
-          +应还手续费：<span class="yinghuanshouxufei">{{ fee | fix2 }}</span>
-          <i class="icon-question-sign"  title="到当期为止全部应还手续费-已还手续费"></i>
-          <br>
-          <div class="zhilajindiv" v-show="showLateFee">
-            +滞纳金：<span class="zhilajin">{{ lateFee | fix2 }}</span>
-            <i class="icon-question-sign" title="逾期应还金额5%（每个账单日计算一次并累加）"></i>
+          <div class="flex" style="margin-left:20px;width:230px;">
+            <div style="display: flex;align-items: center;justify-content: center;font-weight: bold;color: #fff;height: 14px;width: 27px;border-radius: 100%;background: #FF4545; margin-top:10px;margin-right:10px;">
+              ！
+            </div>
+            <p style="margin-top:5px;color:#585858;">请在预约日期<span style="color:#5FCAFF;">16:00</span>之前完成打款，否则需要重新预约，可能会产生费用。</p>
           </div>
-          <div class="faxidiv" v-show="penaltiesShow">
-            +罚息：<span class="faxi">{{ penalties | fix2 }}</span>
-            <i class="icon-question-sign"  title="贷款本金*0.5‰逾期天数"></i>
-          </div>
-          <div class="qitafeiyongdiv" v-show="otherFeeShow">
-            +其他费用：<span class="qitafeiyong">{{ otherFee | fix2 }}</span>
-          </div>
-          +退贷手续费：<span class="shouxufei">{{ refundFee | fix2 }}</span>
-          <i class="icon-question-sign" title="贷款本金*1%"></i>
-          <br>
-          -贴息金额：<span class="tiexi">{{ merchantRefundFee | fix2 }}</span>
-          <i class="icon-question-sign" title="商户贴息金额"></i>
-          <br>
-          <b>合计：<span class="heji">{{ heji | fix2 }}</span></b>
         </div>
-        <div class="form-group clearfix refund_show" style="width:254px;float:left;line-height:17px;padding-top:20px">
-          <b>请将款项打入以下账户：</b><br><br>
-          金额：<span class="heji">{{ heji }}</span><br>
-          户名：即科金融信息服务（上海）有限公司<br>
-          开户行：中国银行上海市国定路支行<br>
-          账号：436466315168<br>
-          因银行网点搬迁，<span style="font-weight: 800">如在退款/汇款操作时查询不到“开户行：中国银行上海市国定路支行”，可以选择“中国银行上海市新江湾城支行”。其他信息不变！</span><br>
-          备注信息：<span class="beizhu" style="color:red">{{ remark }}</span>
+        <div class="flex" style="margin-top:15px;">
+          <div class="left">
+            <div class="flex">
+              <strong style="width:120px;color:#212121;">贷款本金</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ loanAmt | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="客户申请的借款金额"></i>
+            </div>
+            <div class="flex" v-if="!hidePrincipal">
+              <strong style="width:120px;">已还本金</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ paidAmt | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="客户已归还的贷款本金部分"></i>
+            </div>
+            <div class="flex">
+              <strong style="width:120px;">剩余本金</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ corpus | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="贷款本金-已还本金"></i>
+            </div>
+            <div class="flex">
+              <strong style="width:120px;">+应还手续费</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ fee | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="到当期为止全部应还手续费-已还手续费"></i>
+            </div>
+            <div class="flex" v-show="showLateFee">
+              <strong style="width:120px;">+滞纳金</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ lateFee | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="逾期应还金额5%（每个账单日计算一次并累加）"></i>
+            </div>
+            <div class="flex" v-show="penaltiesShow">
+              <strong style="width:120px;">+罚息</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ penalties | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="贷款本金*0.5‰逾期天数"></i>
+            </div>
+            <div class="flex" v-show="otherFeeShow">
+              <strong style="width:120px;">+其他费用</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ otherFee | fix2 }}</p>
+            </div>
+            <div class="flex">
+              <strong style="width:120px;">-贴息金额</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ merchantRefundFee | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="商户贴息金额"></i>
+            </div>
+            <div class="flex">
+              <strong style="width:120px;">合计</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ heji | fix2 }}</p>
+            </div>
+          </div>
+          <div class="right">
+            <div>
+              <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
+              <span style="margin-left:5px;color:#585858;">请将款项打入以下账户</span>
+            </div>
+            <div class="flex">
+              <strong style="width:75px;color:#212121;">金额</strong>
+              <p style="color:#585858;">￥{{ heji }}</p>
+            </div>
+            <div class="flex">
+              <strong style="width:75px;color:#212121;">户名</strong>
+              <p style="color:#585858;">即科金融信息服务（上海）有限公司</p>
+            </div>
+            <div class="flex">
+              <strong style="width:75px;color:#212121;">开户行</strong>
+              <p style="color:#585858;">中国银行上海市国定路支行</p>
+            </div>
+            <div class="flex">
+              <strong style="width:75px;color:#212121;">账号</strong>
+              <p style="color:#585858;">62178376292872788</p>
+            </div>
+            <div>
+              <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
+              <span style="margin-left:5px; color:#585858;">因银行网点搬迁，</span>
+              <span style="color:#0F0F0F;">如在退款/汇款操作时查询不到“开户行："中国银行上海市国定路支行"，可以选择"中国银行上海市新江湾城支行"。其他信息不变！</span>
+            </div>
+            <div class="flex">
+              <div style="width:75px; color:#585858;">备注信息</div>
+              <span style="color:#FF3949;font-size:16px;">{{ remark }}</span>
+            </div>
+          </div>
         </div>
+        <div class="yuyue" @click="cancel">取消预约</div>
       </div>
-    </template>
-    <template slot="footer">
-      <button type="button" class="btn btn-primary" @click="cancel">取消预约</button>
-      <button type="button" class="btn btn-default" @click="close">关闭</button>
-    </template>   
+    </template> 
   </BaseModal>
 </template>
 
@@ -130,7 +167,34 @@
 </script>
 
 <style scoped>
-  .reserve-date { display: inline-block; vertical-align: middle; margin-top: 10px; }
-  .content-body { height: 400px }
-  .icon-question-sign { font-size: 14px; float: right; margin-right: 20px; margin-top: 3px;}
+  .content-body { 
+    height: 430px;
+    padding: 30px; 
+  }
+  .left strong{
+    font-size: 15px;
+  }
+  .left>div,.right>div{
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .right{
+    margin-left: 32px;
+  }
+  .yuyue{
+    width: 110px;
+    height: 35px;
+    background: #F6A623;
+    box-shadow: 0 1px 3px 0 #EFB657;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+    margin-top: 5px;
+  }
 </style>

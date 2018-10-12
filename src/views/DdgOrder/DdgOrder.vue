@@ -100,23 +100,23 @@
           <el-table-column min-width="150" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
           <el-table-column min-width="220" header-align="center" align="center" label="操作">
             <template slot-scope="scope">
-              <div class="flex flexCenter" v-if="+scope.row.N_APP_STATUS == 160">
-                <div class="tableBtn tableReceivablesPlanBtn" style="margin:0px 10px;" @click="modal.paymentPlan = true, modalId.paymentPlan = scope.row.C_APP_ID">
+              <div class="flex flexCenter flexWrap" v-if="+scope.row.N_APP_STATUS == 160">
+                <div class="tableBtn tableReceivablesPlanBtn" style="margin:5px 10px;" @click="modal.paymentPlan = true, modalId.paymentPlan = scope.row.C_APP_ID">
                   收款计划
                 </div>
-                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
+                <div v-if="![0,2,3,4,5,8,21,23].includes(+scope.row.N_LOAN_AFTER_STATUS)" class="tableBtn tableCommonBtn" style="margin:5px 10px;" @click="modalId.refund = scope.row.C_APP_ID, modal.refund = true">
                   退贷预约
                 </div>
                 <div v-else>
                   <div class="flex flexCenter" v-if="[2,23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
-                    <div class="tableBtn tableCancelReservationBtn" style="margin:0px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">
+                    <div class="tableBtn tableCancelReservationBtn" style="margin:5px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">
                       取消预约
                     </div>
-                    <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.refundConf = scope.row, modal.refundConf = true">
+                    <div class="tableBtn tableCommonBtn" style="margin:5px 10px;" @click="modalId.refundConf = scope.row, modal.refundConf = true">
                       上传凭证
                     </div>
                   </div>
-                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:0px 10px;">
+                  <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:5px 10px;">
                     {{ scope.row.N_LOAN_AFTER_STATUS | loanAfterStatus }}
                   </span>
                 </div>
@@ -146,7 +146,7 @@
       @close="closeModal('refund')"
       @success="closeModal('refund'); queryOrder()" />
 
-    <RefundCancel v-if="modal.refundCancel" width="560px" :hidePrincipal="true" :modalId="modalId.refundCancel"
+    <RefundCancel v-if="modal.refundCancel" width="670px" :hidePrincipal="true" :modalId="modalId.refundCancel"
       @close="closeModal('refundCancel')" 
       @success="closeModal('refundCancel'); queryOrder()" />
 
@@ -154,7 +154,7 @@
       @close="closeModal('applyLoan')"
       @success="closeModal('applyLoan'); queryOrder()" />
 
-    <RefundConf v-if="modal.refundConf" width="500px" :modalParam="modalId.refundConf"
+    <RefundConf v-if="modal.refundConf" width="580px" :modalParam="modalId.refundConf"
       @close="closeModal('refundConf')"
       @success="closeModal('refundConf'); queryOrder()" />
 

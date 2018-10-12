@@ -1,58 +1,62 @@
 <template>
   <BaseModal title="退款确认" :width="width" @close="close">
     <template slot="body">
-      <div class="content-body form-horizontal">
-        <div class="form-group clearfix">
-          <label for="return_img0" class="col-lg-2 control-label">上传打款凭证：</label>
-          <div class="col-lg-10">
-            <FileUpload
+      <div id="OrderRefundConf">
+        <div class="flex">
+          <div>
+            <span style="color: rgb(33, 33, 33); font-size: 15px;">上传打印凭证</span>
+          </div>
+          <div style="margin-left:30px;">
+            <div>
+              <FileUpload
               action="order/img/upload"
-              @success="(res, name) => { uploadSuccess(0, res, name) }"
-              @error="uploadErr">
-              <span class="btn">选择文件</span>
-            </FileUpload>
-            <span>{{ imgFileNames[0] || '未选择任何文件' }}</span>
-            <span class="fr">*仅限jpg/png/bmp/gif</span>
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="return_img1" class="col-lg-2 control-label"></label>
-          <div class="col-lg-10">
-            <FileUpload
+                @success="(res, name) => { uploadSuccess(0, res, name) }"
+                @error="uploadErr">
+                <span class="uploadBtn">选择文件</span>
+              </FileUpload>
+              <span style="margin-left: 10px; color:#A0A0A0;">{{ imgFileNames[0] || '未选择任何文件' }}</span>
+            </div>
+            <div style="margin-top:25px;">
+              <FileUpload
               action="order/img/upload"
-              @success="(res, name) => { uploadSuccess(1, res, name) }"
-              @error="uploadErr">
-              <span class="btn">选择文件</span>
-           </FileUpload>
-           <span>{{ imgFileNames[1] || '未选择任何文件' }}</span>
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="return_img2" class="col-lg-2 control-label"></label>
-          <div class="col-lg-10">
-            <FileUpload
+                @success="(res, name) => { uploadSuccess(1, res, name) }"
+                @error="uploadErr">
+                <span class="uploadBtn">选择文件</span>
+              </FileUpload>
+              <span style="margin-left: 10px; color:#A0A0A0;">{{ imgFileNames[1] || '未选择任何文件' }}</span>
+            </div>
+            <div style="margin-top:25px;">
+              <FileUpload
               action="order/img/upload"
-              @success="(res, name) => { uploadSuccess(2, res, name) }"
-              @error="uploadErr">
-              <span class="btn">选择文件</span>
-            </FileUpload>
-            <span>{{ imgFileNames[2] || '未选择任何文件' }}</span>
+                @success="(res, name) => { uploadSuccess(2, res, name) }"
+                @error="uploadErr">
+                <span class="uploadBtn">选择文件</span>
+              </FileUpload>
+              <span style="margin-left: 10px; color:#A0A0A0;">{{ imgFileNames[2] || '未选择任何文件' }}</span>
+            </div>
+          </div>
+          <div style="flex flex1 rightAlignment">
+            <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
+            <span style="font-size: 12px;color: #585858;">仅限jpg/png/bmp/gif</span>
           </div>
         </div>
-        <div class="form-group clearfix">
-          <label for="inputPassword1" class="col-lg-2 control-label">备注: </label>
-          <div class="col-lg-10"><input type="text" class="form-control" v-model="mark" maxlength="100"></div>
-        </div>
-        <div class="form-group clearfix">
+        <div class="flex" style="margin-top:25px;">
+          <div style="margin-left:59px;">
+            <span style="color: rgb(33, 33, 33); font-size: 15px;">备注</span>
+          </div>
           <div class="col-lg-10">
-            <span style="color:red;font-size: 14px;" v-if="modalParam.mark">【打回原因：{{ modalParam.mark }}】</span>
+            <textarea type="text" style="width:300px; height:120px;" v-model="mark" maxlength="100"></textarea>
           </div>
         </div>
+        <div style="height:50px;">
+          <span style="color:red;font-size: 14px;margin-left:98px;" v-if="modalParam.mark">【打回原因：1111111111111111111111111111111{{ modalParam.mark }}】</span>
+        </div>
+        <div class="flex flexCenter">
+          <div class="gb" @click="close">关闭</div>
+          <div class="tj" @click="submit">提交</div>
+        </div>
+        
       </div>
-    </template>
-    <template slot="footer">
-      <button type="button" class="btn btn-primary" @click="submit">提交</button>
-      <button type="button" class="btn btn-default" @click="close">关闭</button>
     </template>
   </BaseModal>
 </template>
@@ -108,5 +112,35 @@
 </script>
 
 <style scoped>
+  #OrderRefundConf{
+    padding: 30px 30px;
+    height: 420px;
+    font-size: 14px;
+  }
   label.file-uploads { line-height: 30px }
+  #OrderRefundConf .uploadBtn{
+    border: 1px solid #1FCFCC;
+    border-radius: 2px;
+    color: #1FCFCC;
+    padding: 5px 25px;
+    font-size: 12px;
+  }
+  #OrderRefundConf .file-uploads{
+    overflow: inherit;
+  }
+  #OrderRefundConf .yuyue{
+    width: 110px;
+    height: 35px;
+    background: #F6A623;
+    box-shadow: 0 1px 3px 0 #EFB657;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+  }
 </style>

@@ -128,7 +128,7 @@
                   </div>
                 </div>
                 <div v-else-if="scope.row.N_APP_STATUS == '130' && scope.row.FINANCE_CODE == 'DDG'">
-                  <div class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">单单过申请</div>
+                  <div class="tableBtn tableCommonBtn" style="margin:0px 10px;background-color: #19DDB0;" @click="applDdgReject(scope.row.C_APP_ID, scope.row.C_ORG04)">转单单过申请</div>
                 </div>
                 <div v-if="scope.row.SHOW_APPLY_BUTTON" class="tableBtn tableCommonBtn" style="margin:0px 10px;" @click="modalId.applyLoan = scope.row.C_APP_ID, modal.applyLoan = true">
                   {{ scope.row.SHOW_APPLY_BUTTON_NAME }}
@@ -148,7 +148,7 @@
       @close="closeModal('refund')"
       @success="closeModal('refund'); queryOrder()" />
 
-    <RefundCancel v-if="modal.refundCancel" width="560px" :modalId="modalId.refundCancel"
+    <RefundCancel v-if="modal.refundCancel" width="670px" :modalId="modalId.refundCancel"
       @close="closeModal('refundCancel')"
       @success="closeModal('refundCancel'); queryOrder()" />
 
@@ -156,7 +156,7 @@
       @close="closeModal('applyLoan')"
       @success="closeModal('applyLoan'); queryOrder()" />
 
-    <RefundConf v-if="modal.refundConf" width="500px" :modalParam="modalId.refundConf"
+    <RefundConf v-if="modal.refundConf" width="580px" :modalParam="modalId.refundConf"
       @close="closeModal('refundConf')"
       @success="closeModal('refundConf'); queryOrder()" />
   </section>
@@ -226,7 +226,7 @@ export default {
       })
     },
     applDdgReject (appId,storeCode) {
-      if (confirm('是否确认该笔订单申请单单过？')) {
+      this.$ui.confirm('是否确认该笔订单申请单单过？', () => {
         api.ddgApply({
           cAppId: appId,
           storeCode: storeCode
@@ -235,8 +235,8 @@ export default {
           this.$ui.alert('申请成功');
           this.queryOrder()
         })
-        .catch(err => alert(err))
-      }
+        .catch(err => this.$ui.alert(err))
+      })
     },
     closeModal(modalId) {
       this.modal[modalId] = false
