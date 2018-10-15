@@ -109,11 +109,11 @@
                 </div>
                 <div v-else>
                   <div class="flex flexCenter" v-if="[2,23].includes(+scope.row.N_LOAN_AFTER_STATUS)">
-                    <div class="tableBtn tableCancelReservationBtn" style="margin:5px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">
-                      取消预约
-                    </div>
                     <div class="tableBtn tableCommonBtn" style="margin:5px 10px;" @click="modalId.refundConf = scope.row, modal.refundConf = true">
                       上传凭证
+                    </div>
+                    <div class="tableBtn tableCancelReservationBtn" style="margin:5px 10px;" @click="modalId.refundCancel = scope.row.C_APP_ID, modal.refundCancel = true">
+                      取消预约
                     </div>
                   </div>
                   <span v-else-if="scope.row.N_LOAN_AFTER_STATUS" style="margin:5px 10px;width:80px;display:block;">
