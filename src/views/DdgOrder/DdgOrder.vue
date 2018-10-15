@@ -98,7 +98,7 @@
             </template>
           </el-table-column>
           <el-table-column min-width="150" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
-          <el-table-column min-width="220" header-align="center" align="center" label="操作">
+          <el-table-column min-width="330" header-align="center" align="center" label="操作">
             <template slot-scope="scope">
               <div class="flex flexCenter flexWrap" v-if="+scope.row.N_APP_STATUS == 160">
                 <div class="tableBtn tableReceivablesPlanBtn" style="margin:5px 10px;" @click="modal.paymentPlan = true, modalId.paymentPlan = scope.row.C_APP_ID">
