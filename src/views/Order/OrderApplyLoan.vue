@@ -67,6 +67,12 @@
             </div>
           </div>
         </div>
+        <p style="font-size:15px;color:#212121;border-left:4px;padding-left:10px;margin-top:15px;">资料上传</p>
+        <div class="flex heightCenter" style="margin-top:20px;">
+          <span style="font-size:16px;margin-right:15px;color:#212121;">发货时间</span>
+          <Datepicker v-model="sendTime" :disabledDates="{ to: today }" />
+        </div>
+        <p style="color:#212121;font-size:15px;margin-top:20px;">下单凭证：请上传下单凭证</p>
       </div>
     </template>
   </BaseModal>
@@ -158,6 +164,7 @@
     height: 217px;
     border: 1px solid #BDBDBD;
     border-radius: 0px 0px 4px 4px;
+    font-size: 14px;
   }
   .infoTableHeader{
     background-color: #FAFAFA;
