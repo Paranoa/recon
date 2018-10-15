@@ -67,12 +67,23 @@
             </div>
           </div>
         </div>
-        <p style="font-size:15px;color:#212121;border-left:4px;padding-left:10px;margin-top:15px;">资料上传</p>
+        <p style="font-size:17px;color:#1A2D4A;border-left:4px solid #1A2D4A;padding-left:10px;margin-top:15px;">资料上传</p>
         <div class="flex heightCenter" style="margin-top:20px;">
           <span style="font-size:16px;margin-right:15px;color:#212121;">发货时间</span>
           <Datepicker v-model="sendTime" :disabledDates="{ to: today }" />
         </div>
         <p style="color:#212121;font-size:15px;margin-top:20px;">下单凭证：请上传下单凭证</p>
+        <div style="margin-top:10px;">
+          <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
+              <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
+              <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
+            </div>
+            <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
+              <div class="tinyImgUpload-img-up-add tinyImgUpload-img-item">
+                <span class="tinyImgUpload-img-add-icon">+</span>
+              </div>
+            </FileUpload>
+        </div>
       </div>
     </template>
   </BaseModal>
