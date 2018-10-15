@@ -102,6 +102,14 @@
             </div>
           </FileUpload>
         </div>
+        <div class="flex flexCenter" style="margin-tpo:20px;margin-bottom:20px;">
+          <div class="closeBtn">
+            <span @click="close">关闭</span>
+          </div>
+          <div class="submitBtn">
+            <span @click="submit">提交申请</span>
+          </div>
+        </div>
       </div>
     </template>
   </BaseModal>
@@ -245,6 +253,33 @@
     height: 16px;
     margin-left: -17px;
     margin-top: 3px;
+    cursor: pointer;
+  }
+  .closeBtn{
+    background: #FAFAFA;
+    border: 1px solid #A0A0A0;
+    box-shadow: 0 1px 3px 0 rgba(210,210,210,0.92);
+    border-radius: 100px;
+    color: #777;
+    display: flex;
+    width: 110px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  .submitBtn{
+    display: flex;
+    width: 110px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background: #1A9BFE;
+    box-shadow: 0 1px 3px 0 rgba(68,165,249,0.92);
+    border-radius: 100px;
+    color: #fff;
     cursor: pointer;
   }
 

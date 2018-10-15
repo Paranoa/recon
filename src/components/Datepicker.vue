@@ -1,6 +1,6 @@
 <template>
   <div id="Datepicker">
-    <Datepicker format="yyyy-MM-dd" :id="id" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" @opened="opened" style="background-image:url('../assets/ico/rili.png')"/>
+    <Datepicker format="yyyy-MM-dd" :id="id" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" @opened="opened"/>
     <img style="margin-left:-30px;" src="../assets/ico/rili.png" />
   </div>
 </template>
@@ -84,7 +84,7 @@ export default {
   div.vdp-datepicker input{
     margin: 0px;
   }
-  #Datepicker input[readonly]{
+  #Datepicker input{
     background: rgba(0,0,0,0);
     color: #5f5f5f;
     cursor: pointer;
