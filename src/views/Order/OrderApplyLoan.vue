@@ -73,16 +73,17 @@
           <Datepicker v-model="sendTime" :disabledDates="{ to: today }" />
         </div>
         <p style="color:#212121;font-size:15px;margin-top:20px;">下单凭证：请上传下单凭证</p>
-        <div style="margin-top:10px;">
+        <div class="flex" style="margin-top:10px;">
           <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
-              <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
-              <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
+            <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
+            <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
+          </div>
+          <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
+            <div class="addImgBox">
+              <span class="addImgIcon">+</span>
+              <span>点击添加图片</span>
             </div>
-            <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
-              <div class="tinyImgUpload-img-up-add tinyImgUpload-img-item">
-                <span class="tinyImgUpload-img-add-icon">+</span>
-              </div>
-            </FileUpload>
+          </FileUpload>
         </div>
       </div>
     </template>
@@ -198,6 +199,23 @@
     align-items: center;
     padding-left: 30px;
     color: #A0A0A0;
+  }
+  .addImgBox{
+    background: #FAFAFA;
+    box-shadow: 0 1px 3px 0 #CDCDCD;
+    border-radius: 2px;
+    width: 90px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .addImgIcon{
+    width: 20px;
+    height: 20px;
+    background: #FFAE27;
+    border-radius: 100%;
+    color:#fff;
   }
 
 </style>

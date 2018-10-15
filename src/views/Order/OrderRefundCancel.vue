@@ -6,7 +6,7 @@
           <span style="font-size:16px;margin-right:15px;color:#212121;">预约退货打款日期</span>
           <span class="reserve-date" style="color:#5F5F5F;">{{ payDate }}</span>
           <div class="flex flex1 rightAlignment" style="margin-left:20px;width:230px;">
-            <div style="width:260px;">
+            <div class="flex" style="width:260px;">
               <div style="display: flex;align-items: center;justify-content: center;font-weight: bold;color: #fff;height: 14px;width: 27px;border-radius: 100%;background: #FF4545; margin-top:10px;margin-right:10px;">
                 ！
               </div>
