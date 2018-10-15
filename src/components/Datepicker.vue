@@ -1,7 +1,9 @@
 <template>
-  <div id="Datepicker">
+  <div id="Datepicker" class="flex">
     <Datepicker format="yyyy-MM-dd" :id="id" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" @opened="opened"/>
-    <img style="margin-left:-30px;" src="../assets/ico/rili.png" />
+    <div style="border-left: 1px solid #BDBDBD;margin-left: -30px;display: flex;align-items: center;padding: 0px 2px;">
+      <img style="    width: 24px;height: 24px;" src="../assets/ico/rili.png" />
+    </div>
   </div>
 </template>
 

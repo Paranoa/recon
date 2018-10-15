@@ -106,7 +106,7 @@
           <div class="closeBtn">
             <span @click="close">关闭</span>
           </div>
-          <div class="submitBtn">
+          <div class="submitBtn" style="margin-left:40px;">
             <span @click="submit">提交申请</span>
           </div>
         </div>
