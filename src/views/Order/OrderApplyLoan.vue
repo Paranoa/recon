@@ -80,8 +80,10 @@
           </div>
           <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
             <div class="addImgBox">
-              <span class="addImgIcon">+</span>
-              <span>点击添加图片</span>
+              <div class="addImgIcon">
+                <span>+</span>
+              </div>
+              <span style="font-size:12px;margin-top:5px;">点击添加图片</span>
             </div>
           </FileUpload>
         </div>
@@ -209,6 +211,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
   .addImgIcon{
     width: 20px;
@@ -216,6 +219,10 @@
     background: #FFAE27;
     border-radius: 100%;
     color:#fff;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
 </style>
