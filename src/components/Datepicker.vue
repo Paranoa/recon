@@ -1,6 +1,6 @@
 <template>
   <div id="Datepicker">
-    <Datepicker format="yyyy-MM-dd" :id="id" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" @opened="opened" :calendar-button="true" calendar-button-icon="../assets/ico/rili.png" />
+    <Datepicker format="yyyy-MM-dd" :id="id" :input-class="inputClass" :language="zh" v-model="dateModel" :disabled-dates="disabledDates" @input="input" @opened="opened" style="background-image:url('../assets/ico/rili.png')"/>
     <img style="margin-left:-30px;" src="../assets/ico/rili.png" />
   </div>
 </template>

@@ -76,10 +76,24 @@
         <div class="flex flexWrap" style="margin-top:10px;">
           <div style="margin-right:15px; margin-bottom:10px;" class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
             <img style="width:90px;height:62px;" class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
-            <img src="../../assets/ico/delete.png">
-            <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
+            <img class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)" src="../../assets/ico/delete.png">
           </div>
           <FileUpload style="margin-right:15px; margin-bottom:10px;" @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
+            <div class="addImgBox">
+              <div class="addImgIcon">
+                <span style="margin-left:-1px;margin-top:-4px;">+</span>
+              </div>
+              <span style="font-size:12px;margin-top:5px;">点击添加图片</span>
+            </div>
+          </FileUpload>
+        </div>
+        <p style="color:#212121;font-size:15px;margin-top:20px;">打款记录：请上传打款记录</p>
+        <div class="flex flexWrap" style="margin-top:10px;">
+          <div style="margin-right:15px; margin-bottom:10px;" class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of finaceFiles" :key="file.id">
+            <img style="width:90px;height:62px;" class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
+            <img class="tinyImgUpload-img-remove" @click="finaceFiles.splice(index, 1)" src="../../assets/ico/delete.png">
+          </div>
+          <FileUpload style="margin-right:15px; margin-bottom:10px;" @success="finaceFileUploaded" action="order/img/upload" @error="uploadErr">
             <div class="addImgBox">
               <div class="addImgIcon">
                 <span style="margin-left:-1px;margin-top:-4px;">+</span>
@@ -226,7 +240,12 @@
     justify-content: center;
   }
   .tinyImgUpload-img-remove{
-    background-image: url("../../assets/ico/delete.png")
+    position: absolute;
+    width: 13px;
+    height: 16px;
+    margin-left: -17px;
+    margin-top: 3px;
+    cursor: pointer;
   }
 
 </style>
