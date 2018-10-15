@@ -73,15 +73,15 @@
           <Datepicker v-model="sendTime" :disabledDates="{ to: today }" />
         </div>
         <p style="color:#212121;font-size:15px;margin-top:20px;">下单凭证：请上传下单凭证</p>
-        <div class="flex" style="margin-top:10px;">
-          <div class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
-            <img class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
+        <div class="flex flexWrap" style="margin-top:10px;">
+          <div style="margin-right:15px;" class="tinyImgUpload-img-thumb tinyImgUpload-img-item" v-for="(file, index) of orderFiles" :key="file.id">
+            <img style="width:90px;height:62px;" class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
             <i class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)">x</i>
           </div>
-          <FileUpload @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
+          <FileUpload style="margin-right:15px;" @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
             <div class="addImgBox">
               <div class="addImgIcon">
-                <span>+</span>
+                <span style="margin-left:1px;margin-top:-3px;">+</span>
               </div>
               <span style="font-size:12px;margin-top:5px;">点击添加图片</span>
             </div>
