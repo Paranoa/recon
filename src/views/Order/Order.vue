@@ -80,7 +80,7 @@
             </template>
           </el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" prop="N_TENOR_APPLIED" label="申请期数"></el-table-column>
-          <el-table-column min-width="140" header-align="center" prop="pdt" label="分期类型"></el-table-column>
+          <el-table-column min-width="90" header-align="center" prop="pdt" label="分期类型"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" label="审批日期">
             <template slot-scope="scope">
               {{ scope.row.D_DECISION | len10 }}
@@ -104,7 +104,7 @@
               </span>
             </template>
           </el-table-column>
-          <el-table-column min-width="140" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
+          <el-table-column min-width="150" header-align="center" align="center" prop="STORE_NAME" label="门店"></el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" label="订单类型">
             <template slot-scope="scope">
             {{ scope.row.C_APP_TYPE | appType }}
