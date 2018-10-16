@@ -96,7 +96,7 @@
       close () {
         this.$emit('close')
       },
-      spReject (appId) {
+      spReject () {
         api.ddgRefuse({
           appId: this.applyDdgId
         })

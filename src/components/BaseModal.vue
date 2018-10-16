@@ -2,13 +2,15 @@
   <div class="modal-dialog">
     <div class="modal-content" :style="{ width: width }">
       <div class="modal-header">
-        <button type="button" class="close" @click="close">×</button>
         <h4 class="modal-title">{{ title }}</h4>
+        <div class="closeBnt" @click="close">
+          ×
+        </div>
       </div>
       <div class="modal-body">
         <slot name="body"></slot>
       </div>
-      <div class="modal-footer">
+      <div>
         <slot name="footer"></slot>
       </div>
     </div>
@@ -33,10 +35,32 @@ export default {
 </script>
 
 <style scoped>
-  .modal-body { max-height: none }
+  .modal-body { max-height: none;padding: 0px; }
+  .modal-content{
+    border-radius: 6px;
+  }
+  .modal-header{
+     background-color: #192C4A;
+     display: flex;
+     justify-content:space-between;
+     border-radius: 6px 6px 0px 0px;
+     padding: 15px 25px;
+  }
+  .modal-title{
+    color: #fff;
+  }
+  .modal-dialog .closeBnt{
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 100px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+  }
   @media (max-width: 500px) {
     .modal-title { font-size: 17px }
-    .modal-header { color: #212121; text-align: center; border-bottom: 1px solid #E7E7E7 }
+    .modal-header { color: #212121; text-align: center; border-bottom: 1px solid #E7E7E7; }
     .modal-footer { padding: 0; background: none; border-top: 1px solid #E7E7E7; overflow: hidden; }
   }
 </style>

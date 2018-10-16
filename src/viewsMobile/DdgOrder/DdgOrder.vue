@@ -209,7 +209,7 @@
         }
         return true
       },
-      windowScroll (event) {
+      windowScroll () {
         if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
           if (!this.showDetail) {
             this.queryOrder()
@@ -278,6 +278,7 @@
 
   .datepicker-mask { position:  absolute; width: 100%; height: 100%; left: 0; top: 0; background: none; z-index: 1}
 
+  .vdp-datepicker + img { display: none }
   @media (max-width: 370px) {
     .ui-mb-select, .ui-mb-input, .ui-mb-datepicker { width: 90px }
   }

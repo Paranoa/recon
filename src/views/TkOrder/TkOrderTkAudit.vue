@@ -72,27 +72,28 @@
           app_id: this.modalParam.C_APP_ID
         })
         .then(() => {
-          alert('操作成功')
+          this.$ui.alert('操作成功')
           this.$emit('success')
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       reject () {
         if (this.return_mark) {
-          if (confirm('确定要这样操作吗？')) {
+          this.$ui.confirm('确定要这样操作吗？', (confirm) => {
             api.tkAudit({
               refund_audit: '23',
               return_mark: this.return_mark,
               app_id: this.modalParam.C_APP_ID
             })
             .then(() => {
-              alert('操作成功')
+              confirm.close()
+              this.$ui.alert('操作成功')
               this.$emit('success')
             })
-            .catch(err => alert(err))
-          }
+            .catch(err => this.$ui.alert(err))
+          })
         } else {
-          alert('提示：打回需要填写打回原因！')
+          this.$ui.alert('提示：打回需要填写打回原因！')
         }
       },
       close () {

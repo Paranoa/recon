@@ -1,69 +1,83 @@
 <template>
-  <div>
+  <div id="DdgOrderCloseInfo">
     <BaseModal title="结算信息" :width="width" @close="close">
       <template slot="body">
-        <div>
-          <form class="search-line" style="margin-bottom: 20px" @submit.prevent="getCashRecord(); $refs.paginate.resetPage()">
-            <div>门店名称： 
-              <div class="ui-select" style="width: auto">
-                <select v-model="query.code">
+        <div class="content-body">
+          <!-- 查询区域 -->
+          <div class="flex">
+            <div class="flex">
+              <div class="flex heightCenter">
+                <span style="font-size:16px;color:#212121;">门店名称</span>
+                <select class="select" style="margin-left:10px;" v-model="query.code">
                   <option value="">全部</option>
-                  <option v-for="store of belowStores" :value="store.c_STORE_CODE" :key="store.c_STORE_CODE">{{ store.c_NAME }}</option>
+                  <option v-for="store of belowStores" :key="store.c_STORE_CODE" :value="store.c_STORE_CODE">
+                    {{ store.c_NAME }}
+                  </option>
                 </select>
               </div>
-              <span>
-                时间：<Datepicker v-model="query.startDate" />
-                至：<Datepicker v-model="query.endDate" />
-              </span>
-              <button class="btn-glow" style="margin-left: 20px;"><i class="icon-search"></i>查询</button>
-              <button type="button" class="btn-glow" style="margin-left: 10px" @click="exportXls"><i class="icon-search"></i>导出</button>
+              <div class="flex heightCenter" style="margin-left:60px;">
+                <span style="font-size:16px;color:#212121;">时间</span>
+                <Datepicker style="margin-left:10px;" input-class="datepicker-input" v-model="query.startDate" />
+                <span style="font-size:16px;color:#212121;margin:0px 15px;">至</span>
+                <Datepicker input-class="datepicker-input" v-model="query.endDate" />
+              </div>
             </div>
-          </form>
-          <table class="table table-bordered table-hover table-condensed ddg-table">
-            <thead>
-              <tr class="ddg-thead">
-                <th>门店</th>
-                <th>结算流水号</th>
-                <th>结算日期</th>
-                <th>结算金额<i class="ico-help" title="点击具体金额可查看结算订单明细"></i></th>
-                <th>结算本金</th>
-                <th>结算手续费</th>
-                <th>结算风险管理费</th>
-                <th>结算提前还款手续费</th>
-              </tr>
-            </thead>
-            <tbody>
-              <template v-if="records.length">
-                <tr v-for="record of records" :key="record.id">
-                  <td>{{ record.storeName }}</td>
-                  <td>{{ record.paymentNo }}</td>
-                  <td>{{ record.payDate | simpleDate }}</td>
-                  <td class="txtrt"><a class="link" @click="showDetail = true, paymentNo = record.paymentNo">{{ record.payAmount | fix2 }}</a></td>
-                  <td class="txtrt">{{ record.payCorpus | fix2 }}</td>
-                  <td class="txtrt">{{ record.charge | fix2 }}</td>
-                  <td class="txtrt">{{ record.payRisk | fix2 }}</td>
-                  <td class="txtrt">{{ record.payRepayAllFee | fix2 }}</td>
-                </tr>
-              </template>
-              <template v-else>
-                  <tr>
-                    <td class="txtcenter" colspan="8">未查询到结果</td>
-                  </tr>
-              </template>
-            </tbody>
-          </table>
-          <div class="pagination-aside">
-            <div class="pagination">
-              <Paginate ref="paginate" :total="ordersTotal" @change="getCashRecord" />
+            <div class="flex flex1 rightAlignment">
+              <div class="button queryBtn" @click="getCashRecord(1)">
+                查询
+              </div>
+              <div class="button exportBtn" style="margin-left:30px;" @click="exportXls">
+                导出
+              </div>
+            </div>
+          </div>
+          <!-- 表格区域 -->
+          <div class="tableRegion">
+            <div class="flex1">
+              <el-table :data="records" height="100%" :header-cell-style="{'background':'#FAFAFA'}" border>
+                <el-table-column min-width="90" header-align="center" align="center" prop="storeName" label="门店"></el-table-column>
+                <el-table-column min-width="120" header-align="center" align="center" prop="paymentNo" label="结算流水号"></el-table-column>
+                <el-table-column min-width="150" header-align="center" align="center" label="结算日期">
+                  <template slot-scope="scope">
+                    {{ scope.row.payDate | simpleDate }}
+                  </template>
+                </el-table-column>
+                <el-table-column class="icon" min-width="150" header-align="center" align="center" label="结算金额" :render-header="renderHeader">
+                  <template slot-scope="scope">
+                    <span @click="showDetail = true, paymentNo = scope.row.paymentNo" style="color:#1AB3FF;cursor: pointer;">{{ scope.row.payAmount | fix2 }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="150" header-align="center" align="center" label="结算本金">
+                  <template slot-scope="scope">
+                    {{ scope.row.payCorpus | fix2 }}
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="160" header-align="center" align="center" label="结算手续费">
+                  <template slot-scope="scope">
+                    {{ scope.row.charge | fix2 }}
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="170" header-align="center" align="center" label="结算风险管理费">
+                  <template slot-scope="scope">
+                    {{ scope.row.payRisk | fix2 }}
+                  </template>
+                </el-table-column>
+                <el-table-column min-width="180" header-align="center" align="center" label="结算提前还款手续费">
+                  <template slot-scope="scope">
+                    {{ scope.row.payRepayAllFee | fix2 }}
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+            <div style="height:100px;" class="flex heightCenter">
+              <el-pagination style="margin:0px auto;" background layout="prev, pager, next" :current-page="query.page" :total="ordersTotal"  @current-change="getCashRecord"></el-pagination>
             </div>
           </div>
         </div>
       </template>
-      <template slot="footer">
-        <button type="button" class="btn btn-default" @click="close">关闭</button>
-      </template>
     </BaseModal>
-    <BillingDetail title="结算信息详情" width="1000px" v-if="showDetail" :modalId="paymentNo" @close="showDetail = false"/>
+    <aside style="z-index:11111;" class="backdrop" v-show="showDetail"></aside>
+    <BillingDetail style="z-index:12111;top:13%;" title="结算信息详情" width="1300px" v-if="showDetail" :modalId="paymentNo" @close="showDetail = false"/>
   </div>
 </template>
 
@@ -108,8 +122,7 @@
         this.$emit('close')
       },
       getCashRecord (page = 1) {
-        this.query.page = page
-
+        this.query['page'] = page
         api.ddgBillingInfo({
           page: this.query.page,
           rows: ROWS_COUNT,
@@ -119,8 +132,10 @@
           storeCode: this.isShop ? this.storeCode : this.query.code,
         })
         .then(res => {
-          this.records = res.rows,
+          this.records = res.rows;
           this.ordersTotal = res.total
+          // this.records = [{"storeName":"shyj","paymentNo":123,"payDate":"2018-01-01","payAmount":2000,"payCorpus":1000,"charge":1000,"payRisk":1000,"payRepayAllFee":1000}];
+          // this.ordersTotal = 1000;
         })
       },
       exportXls () {
@@ -135,12 +150,23 @@
         .then(res => {
           if (res && res.size) {
             util.downloadXls(res, '结算信息导出' + new Date().getTime() +'.xls')
-            alert('导出成功')
+            this.$ui.alert('导出成功')
           } else {
-            alert('导出失败:' + JSON.stringify(res))              
+            this.$ui.alert('导出失败:' + JSON.stringify(res))              
           }
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
+      },
+      renderHeader(h, { column }) {
+        return h("div",{attrs:{style:"height: 23px;line-height: normal;padding-top:5px;"}}, [
+          h("span", column.label),
+          h("i", {
+            attrs: {
+              class: "ico-help",
+              title: "点击具体金额可查看结算订单明细"
+            }
+          })
+        ])
       }
     },
     mounted () {
@@ -149,11 +175,20 @@
   }
 </script>
 
-<style scoped>
-  .link { 
-    cursor: pointer;
+<style>
+  #DdgOrderCloseInfo .content-body{
+    padding: 30px 35px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
   }
-  .ico-help {
+  #DdgOrderCloseInfo strong{
+    font-size: 16px;
+  }
+  #ddgOrder #DdgOrderCloseInfo .tableRegion{
+    padding: 0px;
+  }
+  #DdgOrderCloseInfo .ico-help {
     display: inline-block;
     width: 15px;
     height: 15px;
@@ -162,15 +197,5 @@
     vertical-align: middle;
     margin: -5px 5px 0;
     cursor: pointer;
-  }
-
-  .ddg-table td {
-    text-align: center;
-  }
-
-  .ddg-thead th {
-    padding-bottom: 5px;
-    background: #eee;
-    text-align: center
   }
 </style>

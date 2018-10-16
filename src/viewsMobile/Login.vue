@@ -38,7 +38,6 @@
 <script>
 import { apiUrl } from '@/api/config'
 import util from '@/util'
-import Datepicker from '@/components/Datepicker.vue'
 
 export default {
   name: 'home',

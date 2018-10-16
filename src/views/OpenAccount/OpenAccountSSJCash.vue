@@ -41,7 +41,7 @@
           console.log(this.modalId + ' ' + this.cashAmount)
           this.$emit('inputed', this.cashAmount)
         } else {
-          alert('提现金额1元起提，且金额为整数')
+          this.$ui.alert('提现金额1元起提，且金额为整数')
         }
       },
       close () {

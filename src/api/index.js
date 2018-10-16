@@ -1,7 +1,7 @@
-import { apiUrl } from '@/api/config'
+import { apiUrl, baseURL } from '@/api/config'
 import axios from 'axios'
 import util from '@/util'
-import loading from '@/util/loading'
+import Vue from 'vue'
 
 export default {
   login,
@@ -224,10 +224,10 @@ function ddgExportBillingDetail (data) {
 
 function get (url, params, options, originResponse) { // originResponse为true时,返回原始响应数据
   return new Promise((resolve, reject) => {
-    var load = loading.service()
+    var load = Vue.$ui.loading.service()
 
     axios.get(url, {
-        baseURL: process.env.VUE_APP_BASE_URL,
+        baseURL,
         params: {
           timeStamp: new Date().getTime(),
           ...params
@@ -266,12 +266,12 @@ function post (url, params, options, originResponse) {
   }
 
   return new Promise((resolve, reject) => {
-    var load = loading.service()
+    var load = Vue.$ui.loading.service()
     axios.post(url, postParams, {
+      baseURL,
       headers: {
         'token': util.getCookie('token')
       },
-      baseURL: process.env.VUE_APP_BASE_URL,
       withCredentials: true,
       ...options
     }).then(({ data }) => {

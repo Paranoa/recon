@@ -20,7 +20,7 @@
 * @method format
 */
 import FileUpload from 'vue-upload-component'
-import { baseUrl } from '@/api/config'
+import { baseURL } from '@/api/config'
 
 export default {
   props: {
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       files: [],
-      postAction: baseUrl + this.action
+      postAction: baseURL + this.action
     }
   },
   methods: {

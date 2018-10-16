@@ -14,5 +14,10 @@ module.exports = {
     ]
   },
   devServer: {
+    // proxy:{
+    //   "/geex-merchant-recon-provider":{
+    //       target:"https://beta.geexfinance.com/recon-web"
+    //   }
+    // }
   }
 }

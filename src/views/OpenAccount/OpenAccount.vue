@@ -11,17 +11,17 @@
         <div>
           <table class="table table-hover">
             <template v-for="(store, key) in storeInfos">
-              <tr>
+              <tr :key="key">
                 <th colspan="5" style="border-top: none; font-size: 17px; font-weight: bold; line-height: 3; padding: 6px">{{ key }}</th>
               </tr>
-              <tr>
+              <tr :key="key">
                 <th>渠道名称</th>
                 <th>开户状态</th>
                 <th>银行账号</th>
                 <th>可提现余额(元)</th>
                 <th>操作</th>
               </tr>
-              <tr v-for="fund of store">
+              <tr v-for="fund of store" :key="fund.quDaoCode">
                 <td>{{ fund.quDaoCode | fundName }}</td>
                 <td>
                   <template v-if="fund.quDaoCode === 'KLJ01'">
@@ -84,6 +84,7 @@
 
 <script>
   import api from '@/api'
+  import { apiUrl } from '@/api/config'
   import CashRecord from './OpenAccountCashRecord.vue'
   import SSJCash from './OpenAccountSSJCash.vue'
   import UploadPic from './OpenAccountUploadPic.vue'
@@ -137,7 +138,7 @@
         })
         .catch(err => {
           this.loading = false
-          alert(err)
+          this.$ui.alert(err)
         })
       },
       openAccountKL (fund) {
@@ -153,7 +154,7 @@
             this.modal.uploadPic = true
             this.modalParam.uploadPic = fund.storeCode
           } else {
-            alert(err)
+            this.$ui.alert(err)
           }
         })
       },
@@ -170,7 +171,7 @@
             this.modal.uploadPic = true
             this.modalParam.uploadPic = fund.storeCode
           } else {
-            alert(err)
+            this.$ui.alert(err)
           }
         })
       },
@@ -186,7 +187,7 @@
           newWin.document.write(res)
           newWin.focus()
         })
-        .catch(err => alert(err))
+        .catch(err => this.$ui.alert(err))
       },
       cashSSJ () {
         api.storeDeposit({
@@ -198,32 +199,32 @@
           window.open(res)
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err)
         })
       },
       unlockSSJ ({ storeCode }) {
         api.storeUnlock({
           storeCode,
-          callbackUrl: process.env.VUE_APP_CB_URL + 'home/openAccount'
+          callbackUrl: apiUrl.cbUrl + '/home/openAccount'
         })
         .then(res => {
           window.open(res)
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err)
         })
 
       },
       ResetPwdSSJ ({ storeCode }) {
         api.storeResetPwd({
           storeCode,
-          callbackUrl: process.env.VUE_APP_CB_URL + 'home/openAccount'
+          callbackUrl: apiUrl.cbUrl + '/home/openAccount'
         })
         .then(res => {
           window.open(res)
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err)
         })
       }
     },

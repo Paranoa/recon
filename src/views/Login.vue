@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import { apiUrl } from '@/api/config'
+import { apiUrl, baseURL } from '@/api/config'
 import util from '@/util'
 
 export default {
   name: 'home',
   data () {
     return {
-      captchaSrc: process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random(),
+      captchaSrc: baseURL + apiUrl.getCode + '?seed=' + Math.random(),
       username: '',
       password: '',
       vercode: '',
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     change_vercode () {
-      this.captchaSrc =  process.env.VUE_APP_BASE_URL + apiUrl.getCode + '?seed=' + Math.random()
+      this.captchaSrc =  baseURL + apiUrl.getCode + '?seed=' + Math.random()
     },
     login () {
       if (this.valForm()) {
@@ -58,21 +58,21 @@ export default {
           }
         })
         .catch(err => {
-          alert(err)
+          this.$ui.alert(err.toString())
         })
       }
     },
     valForm () {
       if (!this.username) {
-        alert('对不起，账号不能为空！')
+        this.$ui.alert('对不起，账号不能为空！')
         return false
       }
       if (!this.password) {
-        alert('对不起，密码不能为空！')
+        this.$ui.alert('对不起，密码不能为空！')
         return false
       }
       if (!this.vercode) {
-        alert('对不起，请填写验证码！')
+        this.$ui.alert('对不起，请填写验证码！')
         return false
       }
 

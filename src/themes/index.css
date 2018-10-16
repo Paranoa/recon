@@ -1,0 +1,120 @@
+#app .input{
+    width: 190px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px 10px;
+    font-size: 13px;
+    border-radius: 0px;
+}
+#app .select{
+    width: 190px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px 10px;
+    font-size: 13px;
+    border-radius: 0px;
+    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
+    background: url("../assets/ico/xiala.png") no-repeat scroll right center transparent;
+}
+.radio .el-radio__inner{
+    background-color: #fff !important;
+    border-color: #777;
+  }
+.radio .el-radio__input.is-checked .el-radio__inner{
+    border-color: #1A9BFE;
+}
+.radio .el-radio__inner::after{
+    background-color: #1A9BFE;
+    width: 8px;
+    height: 8px;
+}
+#app .searchRegion{
+    height: 135px;
+    margin-top: 10px;
+    background: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.09);
+    padding: 30px 25px;
+    font-size: 14px;
+    letter-spacing:2px;
+    color: #212121;
+}
+#app .button{
+    width: 90px;
+    height: 30px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: initial;
+    padding: 5px;
+    cursor: pointer;
+}
+#app .queryBtn{
+    background: #FF557E;
+    box-shadow: 0 1px 3px 0 #FF557E;
+}
+#app .exportBtn{
+    background: #149AFF;
+    box-shadow: 0 1px 3px 0 #44A5FA;
+}
+#app .settlementInfoBtn{
+    background: #FF6701;
+    box-shadow: 0 1px 3px 0 #FF7212;
+}
+#app .tableBtn{
+    width: 80px;
+    height: 26px;
+    border-radius: 100px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 1px;
+}
+#app .tableCommonBtn{
+    background: #F6A623;
+    box-shadow: 0 1px 3px 0 #EFB657;
+    color: #fff;
+}
+#app .tableCancelReservationBtn{
+    background: #FAFAFA;
+    border: 1px solid #A0A0A0;
+    box-shadow: 0 1px 3px 0 rgba(210,210,210,0.92);
+    color: #777777;
+}
+#app .tableReceivablesPlanBtn{
+    background: #1AB3FF;
+    box-shadow: 0 1px 3px 0 #5DC1F3;
+    color: #fff;
+}
+#app .tableAuditRefuseBtn{
+    background: #FF5C5C;
+    box-shadow: 0 1px 3px 0 #F8A2A2;
+    color: #fff;
+}
+#app .tableAuditthroughBtn{
+    background: #1FCFCC;
+    box-shadow: 0 1px 3px 0 #31BAB8;
+    color: #fff;
+}
+.el-table th{
+    padding: 5px;
+}
+.el-table__row td{
+    padding: 0px;
+}
+.el-table__row .cell{
+    padding: 3px 7px;
+    font-size: 12PX;
+}
+input::-webkit-input-placeholder {
+    color: #A0A0A0;
+    opacity: 1;
+}
+select, textarea, input[type="text"]{
+    color: #5F5F5F;
+}
+.el-radio,.el-radio__input.is-checked+.el-radio__label{
+    color: #212121;
+}
+
