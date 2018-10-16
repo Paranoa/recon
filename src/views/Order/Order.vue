@@ -226,7 +226,7 @@ export default {
       })
     },
     applDdgReject (appId,storeCode) {
-      this.$ui.confirm('如申请成功，此订单将从无卡订单转换为单单过订单，是否确认该申请？', () => {
+      this.$ui.confirm('如申请成功，此订单将从无卡订单转换为单单过订单，是否确认该申请？', (confirm) => {
         api.ddgApply({
           cAppId: appId,
           storeCode: storeCode
@@ -234,8 +234,12 @@ export default {
         .then(() => {
           this.$ui.alert('申请成功');
           this.queryOrder()
+          confirm.close()
         })
-        .catch(err => this.$ui.alert(err))
+        .catch(err => {
+          confirm.close()
+          this.$ui.alert(err)
+        })
       })
     },
     closeModal(modalId) {
