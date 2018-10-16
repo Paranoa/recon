@@ -208,6 +208,7 @@
     height: 35px;
     padding: 10px 25px;
     font-size: 14px;
+    border-bottom: 1px solid #BDBDBD;
   }
   .rightBorder{
     border-right: 1px solid #BDBDBD;
