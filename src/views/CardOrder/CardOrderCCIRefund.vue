@@ -57,7 +57,7 @@
               <span style="color:#585858;font-size:13px;">备注信息</span>
             </div>
             <div>
-              <strong style="color:#FF3949;font-size:16px;">金国平15001964062</strong>
+              <strong style="color:#FF3949;font-size:16px;">{{ remark }}</strong>
             </div>
           </div>
           <div class="flex heightCenter" style="margin-top:20px;">

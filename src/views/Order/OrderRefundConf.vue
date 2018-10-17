@@ -49,7 +49,7 @@
           </div>
         </div>
         <div style="height:50px;" v-if="modalParam.mark">
-          <span style="color:red;font-size: 14px;margin-left:98px;">【打回原因：1111111111111111111111111111111{{ modalParam.mark }}】</span>
+          <span style="color:red;font-size: 14px;margin-left:98px;">【打回原因：{{ modalParam.mark }}】</span>
         </div>
         <div class="flex flexCenter" style="margin-top:30px;">
           <div class="gb" @click="close">关闭</div>
