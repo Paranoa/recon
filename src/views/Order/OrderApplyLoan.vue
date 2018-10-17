@@ -218,6 +218,7 @@
     width: 120px;
     align-items: center;
     justify-content: center;
+    min-height: 60px;
   }
   .cellB{
     display: flex;
@@ -225,6 +226,7 @@
     align-items: center;
     padding-left: 30px;
     color: #A0A0A0;
+    min-height: 60px;
   }
   .addImgBox{
     background: #FAFAFA;
