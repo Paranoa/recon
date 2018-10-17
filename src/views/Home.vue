@@ -65,5 +65,6 @@ export default {
   #home .rightContent{
     display: flex;
     width: calc(100% - 180px);
+    height: calc(100vh - 60px);
   }
 </style>

@@ -18,6 +18,8 @@
     -webkit-appearance:none;
     background: url("../assets/ico/xiala.png") no-repeat scroll right center transparent;
 }
+#app .select::-ms-expand { display: none; }
+input[type=text]::-ms-clear { display:none }
 .radio .el-radio__inner{
     background-color: #fff !important;
     border-color: #777;
