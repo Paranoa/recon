@@ -49,6 +49,11 @@
               <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ otherFee | fix2 }}</p>
             </div>
             <div class="flex">
+              <strong style="width:120px;">+退贷手续费</strong>
+              <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ refundFee | fix2 }}</p>
+              <i class="icon-question-sign" style="color:#A0A0A0;" title="贷款本金*1%"></i>
+            </div>
+            <div class="flex">
               <strong style="width:120px;">-贴息金额</strong>
               <p style="width:110px;color:#585858;"><span style="font-size:16px;color:#212121;">￥</span>{{ merchantRefundFee | fix2 }}</p>
               <i class="icon-question-sign" style="color:#A0A0A0;" title="商户贴息金额"></i>
