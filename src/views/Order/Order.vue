@@ -65,7 +65,7 @@
             </template>
           </el-table-column>
           <el-table-column min-width="90" header-align="center" align="center" label="放款金额">
-            <template slot-scope="scope" v-if="scope.row.N_APP_STATUS === 130">
+            <template slot-scope="scope" v-if="scope.row.N_APP_STATUS === 160">
               {{ scope.row.N_AMT_DRAWDOWN | fix2 | numFormat }}
             </template>
           </el-table-column>
