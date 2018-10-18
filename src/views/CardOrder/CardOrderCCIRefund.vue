@@ -36,7 +36,7 @@
               <span style="color:#212121;font-size:15px;">开户行</span>
             </div>
             <div>
-              <span style="color:#585858;">中国银行上海市国定路支行</span>
+              <span style="color:#585858;">中国工商银行杨浦支行</span>
             </div>
           </div>
           <div class="flex">
@@ -44,14 +44,14 @@
               <span style="color:#212121;font-size:15px;">账号</span>
             </div>
             <div>
-              <span style="color:#585858;">62178376292872788</span>
+              <span style="color:#585858;">1001330319100020738</span>
             </div>
           </div>
-          <div>
+          <!-- <div>
             <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
             <span style="margin-left:5px; color:#585858;">因银行网点搬迁，</span>
             <span style="color:#0F0F0F;">如在退款/汇款操作时查询不到“开户行："中国银行上海市国定路支行"，可以选择"中国银行上海市新江湾城支行"。其他信息不变！</span>
-          </div>
+          </div> -->
           <div class="flex">
             <div style="width:85px;">
               <span style="color:#585858;font-size:13px;">备注信息</span>
