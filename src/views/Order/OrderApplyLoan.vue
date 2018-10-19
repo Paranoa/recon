@@ -78,7 +78,7 @@
             <img style="width:90px;height:62px;" class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
             <img class="tinyImgUpload-img-remove" @click="orderFiles.splice(index, 1)" src="../../assets/ico/delete.png">
           </div>
-          <FileUpload style="margin-right:15px; margin-bottom:10px;" @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
+          <FileUpload style="margin-right:15px; margin-bottom:10px;" fileid="xdpz" @success="orderFileUploaded" action="order/img/upload" @error="uploadErr">
             <div class="addImgBox">
               <div class="addImgIcon">
                 <span style="margin-left:-1px;margin-top:-4px;">+</span>
@@ -93,7 +93,7 @@
             <img style="width:90px;height:62px;" class="tinyImgUpload-thumb-icon" :src="file.imgUrl">
             <img class="tinyImgUpload-img-remove" @click="finaceFiles.splice(index, 1)" src="../../assets/ico/delete.png">
           </div>
-          <FileUpload style="margin-right:15px; margin-bottom:10px;" @success="finaceFileUploaded" action="order/img/upload" @error="uploadErr">
+          <FileUpload style="margin-right:15px; margin-bottom:10px;" fileid="dkjl" @success="finaceFileUploaded" action="order/img/upload" @error="uploadErr">
             <div class="addImgBox">
               <div class="addImgIcon">
                 <span style="margin-left:-1px;margin-top:-4px;">+</span>

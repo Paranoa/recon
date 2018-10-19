@@ -1,5 +1,5 @@
 <template>
-  <FileUpload ref="upload" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" :post-action="postAction" :multiple="multiple" :size="2 * 1024 * 1024">
+  <FileUpload ref="upload" :input-id="inputid" v-model="files" accept="image/png,image/gif,image/jpeg,image/webp" :data="data" @input-file="input" :post-action="postAction" :multiple="multiple" :size="2 * 1024 * 1024">
     <slot></slot>
   </FileUpload>
 </template>
@@ -24,6 +24,10 @@ import { baseURL } from '@/api/config'
 
 export default {
   props: {
+    fileid:{
+      type: String,
+      default: 'file'
+    },
     action: {
       type: String,
       default: 'account/upload'
@@ -44,6 +48,7 @@ export default {
   data() {
     return {
       files: [],
+      inputid:this.fileid,
       postAction: baseURL + this.action
     }
   },
