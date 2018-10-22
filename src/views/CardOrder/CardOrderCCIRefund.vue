@@ -28,7 +28,7 @@
               <span style="color:#212121;font-size:15px;">户名</span>
             </div>
             <div>
-              <span style="color:#585858;">即科金融信息服务(上海)有限公司</span>
+              <span style="color:#585858;">即科商业保理（深圳）有限公司</span>
             </div>
           </div>
           <div class="flex">
@@ -44,7 +44,7 @@
               <span style="color:#212121;font-size:15px;">账号</span>
             </div>
             <div>
-              <span style="color:#585858;">1001330319100020738</span>
+              <span style="color:#585858;">1001330309100055282</span>
             </div>
           </div>
           <!-- <div>
