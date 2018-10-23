@@ -74,7 +74,7 @@
             </div>
             <div class="flex">
               <strong style="width:75px;color:#212121;">户名</strong>
-              <p style="color:#585858;">即科商业保理（深圳）有限公司</p>
+              <p style="color:#585858;">即科金融信息服务（上海）有限公司</p>
             </div>
             <div class="flex">
               <strong style="width:75px;color:#212121;">开户行</strong>
@@ -82,7 +82,7 @@
             </div>
             <div class="flex">
               <strong style="width:75px;color:#212121;">账号</strong>
-              <p style="color:#585858;">1001330309100055282</p>
+              <p style="color:#585858;">1001330319100020738</p>
             </div>
             <!-- <div>
               <span style="color:#FF4545;font-size:20px;vertical-align: middle;">*</span>
