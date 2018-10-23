@@ -167,6 +167,9 @@
               self.otherFeeShow = false
             }
             self.refundShow= true
+        }).catch(err => {
+          this.refundShow = false
+          this.$ui.alert(err)
         })
       },
       yuyue () {
